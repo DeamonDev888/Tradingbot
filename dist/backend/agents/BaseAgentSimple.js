@@ -144,7 +144,7 @@ class BaseAgentSimple {
                     }
                 }
             }
-            catch (_parseError) {
+            catch {
                 // Ignorer les lignes non-JSON
             }
         }
@@ -167,7 +167,7 @@ class BaseAgentSimple {
         try {
             return JSON.parse(jsonMatch[0]);
         }
-        catch (_jsonError) {
+        catch {
             return null;
         }
     }
@@ -200,7 +200,7 @@ class BaseAgentSimple {
             score: hasScore ? parsedObj.score : 0,
             risk_level: hasRiskLevel ? parsedObj.risk_level.toUpperCase() : 'MEDIUM',
             catalysts: hasCatalysts ? parsedObj.catalysts : [],
-            summary: hasSummary ? parsedObj.summary : 'No summary available',
+            summary: hasSummary ? parsedObj.summary : 'Aucun résumé disponible',
         };
     }
 }

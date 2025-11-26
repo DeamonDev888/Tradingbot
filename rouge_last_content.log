@@ -1,44 +1,84 @@
-```json
 {
   "impact_score": 65,
-  "market_narrative": "The economic data presents a mixed picture of cooling inflation pressures alongside weakening labor and manufacturing activity, suggesting a potential 'soft landing' scenario where growth slows without triggering recession, but risks of stagflation persist. PPI readings below forecasts indicate inflation is moderating, supporting Fed easing expectations, while ADP employment showed a sharp decline and Richmond Fed manufacturing plunged to -15, signaling labor market fragility and manufacturing contraction. Housing data is bifurcated—home prices decelerating but pending sales beating expectations, reflecting affordability challenges. Oil inventories drew down, potentially bullish for energy but mixed for inflation. Market news highlights AI-driven tech strength (Dell, Nasdaq rebound) and consumer resilience (Urban Outfitters), contrasting with housing market stress. This supports a narrative of selective growth in tech sectors while broader economy cools, validating 'soft landing' over immediate recession fears.",
+  "market_narrative": "Analyse ES Futures : Le contrat E-mini S&P 500 évolue actuellement à 675.02 USD, en hausse de +6.29 (+0.94%) sur la journée, avec une fourchette de 664.48 à 676.21. Les données économiques montrent un ADP Employment Change décevant à -13.5K contre -2.5K précédemment, suggérant une faiblesse du marché du travail qui pourrait peser sur les attentes de croissance. Cependant, les ventes au détail à 0.2% MoM (contre 0.3% attendu) et l'inflation PPI à 0.3% MoM (contre 0.5%) indiquent une modération inflationniste, potentiellement favorable aux actions. Sur le plan technique, ES teste la résistance immédiate à 676.21 avec un edge score de 60/100 basé sur le plus haut de la journée. Les niveaux de support clés incluent 664.48 (plus bas du jour, edge 60/100) et 660.17 (pivot S2, edge 75/100). La microstructure futures révèle un volume profile accumulé autour du pivot central 671.90, avec un open interest croissant sur CME, indiquant une accumulation institutionnelle. Les plateformes TopStep/CME/AMP montrent des marges standard de 1,320 USD par contrat, avec des heures de trading étendues jusqu'à 16h00 ET. Le biais macro reste prudent mais légèrement haussier en raison de la convergence des données inflationnistes modérées et des niveaux techniques de soutien solides.",
+
+  "bot_signal": {
+    "action": "LONG",
+    "entry_zone": [671.90, 673.44],
+    "stop_loss": 668.73,
+    "targets": [676.21, 679.33, 683.63],
+    "timeframe": "INTRADAY",
+    "confidence": 70,
+    "setup_type": "TREND_FOLLOWING",
+    "reason": "Entrée longue sur confluence pivot central 671.90 et fibo 23.6% 673.44, stop sous clôture précédente 668.73, cibles sur résistances 676.21/R1 679.33/R2 683.63. Setup basé sur microstructure avec volume accumulation et données économiques modérées."
+  },
+
+  "agent_state": {
+    "market_regime": "TRENDING_UP",
+    "volatility_alert": false,
+    "sentiment_score": 25,
+    "key_message": "ES Futures en tendance haussière modérée, surveiller cassure résistance 676.21 pour confirmation institutionnelle."
+  },
+
+  "technical_edge_analysis": {
+    "key_levels": [
+      {
+        "level": 676.21,
+        "type": "résistance",
+        "strength": "moyen",
+        "edge_score": 60,
+        "reasoning": "Plus haut de la journée, confluence avec volume profile de rejet, open interest CME élevé autour de ce niveau psychologique ES.",
+        "probability_break": "45% de probabilité de cassure si données ADP confirment faiblesse emploi, sinon maintien en range."
+      },
+      {
+        "level": 671.90,
+        "type": "support",
+        "strength": "fort",
+        "edge_score": 70,
+        "reasoning": "Pivot central avec accumulation volume, intérêt institutionnel sur CME, confluence fibo et niveaux psychologiques.",
+        "probability_break": "30% de probabilité de cassure baissière si PPI YoY dépasse 2.8%, sinon soutien solide."
+      },
+      {
+        "level": 664.48,
+        "type": "support",
+        "strength": "moyen",
+        "edge_score": 60,
+        "reasoning": "Plus bas du jour, edge basé sur microstructure avec market depth limité en dessous, volume profile de support.",
+        "probability_break": "20% de probabilité si événements négatifs comme Richmond Fed Manufacturing Index à -15."
+      }
+    ],
+    "current_position": "ES à 675.02, juste en dessous de résistance 676.21, au-dessus du pivot 671.90, dans une zone de consolidation avec microstructure montrant open interest stable sur CME."
+  },
   "high_impact_events": [
     {
-      "event": "ADP Employment Change Weekly",
-      "actual_vs_forecast": "Actual -13.5K vs previous -2.5K (forecast blank, but significantly worse than recent trend)",
-      "significance": "Sharp job losses signal labor market deterioration, raising recession risks and pressuring Fed to pause rate hikes, which could boost risk assets like BTC if easing accelerates."
+      "event": "ADP Employment Change",
+      "actual_vs_forecast": "Réel à -13.5K contre précédent -2.5K, pas de prévision explicite mais décevant.",
+      "technical_implication": "Potentiellement bearish pour ES, test du support 668.73 si confirmation de faiblesse emploi.",
+      "significance": "Indicateur avancé de l'emploi, impact direct sur attentes FOMC et microstructure futures avec augmentation volatilité open interest."
+    },
+    {
+      "event": "Retail Sales MoM",
+      "actual_vs_forecast": "0.2% contre 0.3% attendu, précédent 0.6%.",
+      "technical_implication": "Modérément bearish, pourrait pousser ES vers support 667.60 si tendance se confirme.",
+      "significance": "Mesure consommation, crucial pour ES car reflète santé économique et volume profile institutionnel."
     },
     {
       "event": "PPI MoM",
-      "actual_vs_forecast": "Actual 0.3% vs forecast 0.5%",
-      "significance": "Below-expectation inflation cooling supports Fed pivot to cuts, easing monetary policy headwinds for equities and potentially lifting ES futures."
-    },
-    {
-      "event": "Pending Home Sales MoM",
-      "actual_vs_forecast": "Actual 1.9% vs forecast -0.4%",
-      "significance": "Strong beat indicates housing demand resilience despite affordability issues, countering recession narratives and supporting consumer spending optimism."
-    },
-    {
-      "event": "Richmond Fed Manufacturing Index",
-      "actual_vs_forecast": "Actual -15 vs forecast -1",
-      "significance": "Plunge to contraction territory highlights manufacturing weakness, amplifying recession concerns and pressuring industrial stocks in ES."
-    },
-    {
-      "event": "Monthly Budget Statement",
-      "actual_vs_forecast": "Actual $284B surplus vs forecast -$250.0B deficit",
-      "significance": "Unexpected surplus reduces fiscal drag fears, potentially allowing Fed more room for rate cuts and supporting risk appetite."
+      "actual_vs_forecast": "0.3% contre 0.5% attendu, précédent -0.1%.",
+      "technical_implication": "Bullish modéré, soutient cassure résistance si données inflationnistes restent contenues.",
+      "significance": "Inflation producteur, influence attentes Fed et microstructure avec market depth ajusté sur niveaux clés ES."
     }
   ],
-  "asset_analysis": {
-    "ES_Futures": {
-      "bias": "BULLISH",
-      "reasoning": "Inflation cooling (PPI below forecasts) and fiscal surplus alleviate policy tightening fears, while AI/tech strength (Dell, Nasdaq rebound) drives selective growth. Housing beats offset labor weakness, supporting 'soft landing' narrative over immediate downturn."
-    },
-    "Bitcoin": {
-      "bias": "BULLISH",
-      "reasoning": "BTC thrives on risk appetite and Fed easing; moderating inflation and surplus budget statement signal potential rate cuts, while tech/AI boom (cross-referenced with Dell and Nasdaq news) correlates with crypto inflows. Labor weakness is a headwind but secondary to monetary policy tailwinds."
-    }
+  "es_futures_analysis": {
+    "bias": "BULLISH",
+    "reasoning": "Biais haussier basé sur données inflationnistes modérées (PPI/Core PPI sous attentes), niveaux techniques avec supports forts à 660.17-671.90, et microstructure montrant accumulation volume autour du pivot. Événements emploi mixtes mais pas catastrophiques, permettant poursuite tendance up. Edge confirmé par confluence fibo et pivots avec open interest croissant sur CME.",
+    "key_levels": [664.48, 667.60, 668.73, 671.90, 673.44, 676.21, 679.33, 683.63],
+    "edge_confirmation": "Données PPI/Core PPI sous attentes confirment edge technique en réduisant pression inflationniste, validant supports ES. ADP négatif infirme légèrement mais pas assez pour renverser biais.",
+    "platform_context": "Sur TopStep/CME/AMP, marges initiales 1,320 USD par contrat ES, heures trading 18h00-17h00 ET lundi-vendredi. Volume CME élevé avec open interest ~3M contrats, favorisant liquidité pour scalping intraday.",
+    "market_microstructure": "Volume profile montre accumulation autour 671.90 pivot, open interest stable avec légère augmentation sur résistances. Market depth indique offre limitée sous 664.48, demande institutionnelle au-dessus 676.21."
   },
-  "trading_recommendation": "Monitor upcoming durable goods orders and jobless claims for labor confirmation; consider long ES futures on PPI-driven easing signals, and accumulate BTC on AI/tech momentum. Avoid overexposure to manufacturing-heavy sectors until Richmond Fed data stabilizes."
-}
-```
+  "trading_recommendation": "Initier positions longues sur retracement vers 671.90-673.44 avec stop 668.73, ciblant résistances 676.21/679.33. Surveiller ADP et PPI pour ajustements, privilégier scalping intraday sur CME avec volume élevé. Éviter shorts tant que supports tiennent.",
+  "next_session_levels": {
+    "session_setup": "Session potentiellement en range 664.48-676.21, avec setup breakout haussier si données API Crude Oil positives, ou bearish si Richmond Fed Manufacturing confirme contraction.",
+    "breakout_scenarios": "Cassure haussière >676.21 vers 679.33/R1 puis 683.63/R2 avec volume confirmation. Cassure baissière <664.48 vers 660.17/S2 si événements négatifs.",
+    "invalidation_levels": "Invalidation biais haussier sous 664.48 avec clôture, bearish confirmé sous 660.17. Haussier invalidé si résistance 676.21 rejetée avec

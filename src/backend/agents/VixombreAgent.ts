@@ -188,16 +188,40 @@ export class VixombreAgent extends BaseAgentSimple {
 
   private createAnalysisPrompt(results: VixScrapeResult[]): string {
     return `
-You are VIXOMBRE, a world-class volatility expert and market analyst. You specialize in VIX (CBOE Volatility Index) analysis and provide professional trading insights based on volatility patterns, market sentiment, and news catalysts.
+You are VIXOMBRE, a world-class volatility expert and market analyst.
 
-TASK:
-Analyze the provided VIX data and news to deliver an EXPERT VOLATILITY ANALYSIS with actionable insights for ES Futures traders. Focus on present market conditions and future volatility expectations.
+## 🤖 INSTRUCTIONS
+Analyze the provided VIX data and news to deliver an EXPERT VOLATILITY ANALYSIS.
 
-RAW VIX DATA (All Sources):
-${JSON.stringify(results, null, 2)}
+CRITICAL RULES:
+1. Return ONLY valid JSON.
+2. NO conversational text.
+3. ALL text fields MUST be in FRENCH.
+
+## 🧠 KNOWLEDGE BASE: VIX & VVIX INTERPRETATION
+1. **VIX LEVELS**:
+   - **10-15**: Marché confiant, faible volatilité.
+   - **20-30**: Marché nerveux/volatile (peut être haussier mais agité).
+   - **>30**: Peur élevée / Crise.
+
+2. **CALCUL DU MOUVEMENT ATTENDU (ES Futures)**:
+   - "Le VIX te dit de combien ES peut bouger".
+   - **Mouvement Mensuel**: VIX / 3.46 (ex: VIX 20 → ~5.8% / mois).
+   - **Mouvement Hebdo**: ~1.35% pour VIX 20.
+   - **Mouvement Quotidien (Rule of 16)**: VIX / 16.
+
+3. **CORRÉLATION VVIX (Volatilité de la Volatilité)**:
+   - **VIX > 20 & VVIX > 120**: 🚨 GROS MOUVEMENT IMMINENT (généralement BAISSIER).
+   - **VIX Monte & VVIX < 100**: Panique non crédible, le marché rebondit souvent.
+   - **VIX Bas (<15-17) & VVIX > 110**: Gros mouvement dans les 24-72h.
+   - **VVIX > 130**: DANGER, forte probabilité de volatilité/chute.
+   - **VVIX < 85**: Marché calme, gros mouvement peu probable.
+
+## 📊 VIX DATA
+${JSON.stringify(this.simplifyResults(results), null, 2)}
 
 IMPORTANT DATA POINTS:
-- **Value**: Current VIX level (Consensus).
+- **Value**: Current VIX level.
 - **Change**: Daily change in points and percentage.
 - **Range (High/Low)**: Intraday volatility range.
 - **Open/Prev Close**: Gap analysis (Opening Gap).
@@ -520,5 +544,13 @@ Analyze the data above and return ONLY the requested JSON.
     } catch (error) {
       console.error(`[${this.agentName}] Failed to save analysis to DB:`, error);
     }
+  }
+  private simplifyResults(results: VixScrapeResult[]): any[] {
+    return results.map(r => ({
+      source: r.source,
+      value: r.value,
+      change_pct: r.change_pct,
+      news: r.news_headlines.slice(0, 5).map(n => n.title), // Only top 5 titles
+    }));
   }
 }

@@ -423,11 +423,19 @@ function formatRougePulseMessage(data: any): string {
     : data.high_impact_events
       ? JSON.parse(data.high_impact_events)
       : [];
+
+  // Gérer le nouveau format ES Futures (es_futures_analysis) et l'ancien (asset_analysis)
   const assets = data.asset_analysis
     ? typeof data.asset_analysis === 'string'
       ? JSON.parse(data.asset_analysis)
       : data.asset_analysis
     : {};
+  const esFutures = data.es_futures_analysis
+    ? typeof data.es_futures_analysis === 'string'
+      ? JSON.parse(data.es_futures_analysis)
+      : data.es_futures_analysis
+    : assets.ES_Futures || {};
+
   const rec = data.trading_recommendation || 'Aucune recommandation.';
 
   // Vérifier et convertir en français si nécessaire
@@ -466,43 +474,52 @@ function formatRougePulseMessage(data: any): string {
     ? frenchRec.substring(0, maxRecLength - 3) + '...'
     : frenchRec;
 
+  // Gérer le bias ES Futures avec le nouveau format
   const esBias =
-    assets.ES_Futures?.bias === 'BULLISH'
+    esFutures?.bias === 'BULLISH'
       ? '🟢 HAUSSIER'
-      : assets.ES_Futures?.bias === 'BEARISH'
+      : esFutures?.bias === 'BEARISH'
         ? '🔴 BAISSIER'
         : '⚪ NEUTRE';
-  const btcBias =
-    assets.Bitcoin?.bias === 'BULLISH'
-      ? '🟢 HAUSSIER'
-      : assets.Bitcoin?.bias === 'BEARISH'
-        ? '🔴 BAISSIER'
-        : '⚪ NEUTRE';
+
+  // Ajouter la plateforme context si disponible
+  const platformContext = esFutures?.platform_context
+    ? `\n📊 **Contexte Plateformes :** ${esFutures.platform_context.substring(0, 100)}${esFutures.platform_context.length > 100 ? '...' : ''}`
+    : '';
 
   const message = `
-**🔴 RougePulse - Analyse Calendrier Éco**
+**🔴 RougePulse - Expert ES Futures**
 **Impact Session :** ${score}/100
-**ES Futures :** ${esBias} | **Bitcoin :** ${btcBias}
+**ES Futures Bias :** ${esBias}
 
-**📖 Narratif de Marché :**
+**📖 Narratif ES Futures :**
 ${truncatedNarrative}
 
 **🔥 Événements Clés :**
 ${eventsList}
 
-**🎯 Recommandation Trading :**
+**🎯 Recommandation ES Futures :**
 ${truncatedRec}
+${platformContext}
 
-*Date de l'analyse : ${new Date(data.created_at).toLocaleString('fr-FR')}*
+*Analyse ES - TopStep/CME/AMP | Date : ${data.created_at ? new Date(data.created_at).toLocaleString('fr-FR') : 'Date non disponible'}*
   `.trim();
 
   // Optimisation : utiliser la limite maximale de Discord (2000) pas 1900
   const maxDiscordLength = 2000;
   if (message.length > maxDiscordLength) {
-    // Troncation intelligente : garder la fin importante
+    // Troncation intelligente : éviter de couper les mots
     const ellipsis = '...\n\n📋 *Message tronqué - utilisez !rougepulseagent pour voir l\'analyse complète*';
     const cutoffPoint = maxDiscordLength - ellipsis.length;
-    return message.substring(0, cutoffPoint) + ellipsis;
+    let truncatedMessage = message.substring(0, cutoffPoint);
+
+    // Éviter de couper un mot : chercher le dernier espace
+    const lastSpaceIndex = truncatedMessage.lastIndexOf(' ');
+    if (lastSpaceIndex > cutoffPoint - 50) { // Si on n'est pas trop loin du début
+      truncatedMessage = truncatedMessage.substring(0, lastSpaceIndex);
+    }
+
+    return truncatedMessage + ellipsis;
   }
   return message;
 }
@@ -731,7 +748,7 @@ ${data.summary}
 **🔑 Catalyseurs Clés :**
 ${catalysts.map((c: string) => `• ${c}`).join('\n')}
 
-*Date de l'analyse : ${new Date(data.created_at).toLocaleString('fr-FR')}*
+*Date de l'analyse : ${data.created_at ? new Date(data.created_at).toLocaleString('fr-FR') : 'Date non disponible'}*
     `.trim();
 }
 
@@ -759,7 +776,7 @@ ${expert.expert_summary ?? 'Aucun résumé disponible.'}
 Stratégie : ${expert.trading_recommendations?.strategy || 'N/A'}
 Niveaux Cibles : ${expert.trading_recommendations?.target_vix_levels?.join(' - ') || 'N/A'}
 
-*Date de l'analyse : ${new Date(row.created_at).toLocaleString('fr-FR')}*
+*Date de l'analyse : ${row.created_at ? new Date(row.created_at).toLocaleString('fr-FR') : 'Date non disponible'}*
     `.trim();
 }
 

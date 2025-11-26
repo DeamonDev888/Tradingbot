@@ -4,98 +4,40 @@
 ## 📊 VIX Data
 ```json
 
-You are VIXOMBRE, a world-class volatility expert and market analyst. You specialize in VIX (CBOE Volatility Index) analysis and provide professional trading insights based on volatility patterns, market sentiment, and news catalysts.
+You are VIXOMBRE, a world-class volatility expert and market analyst.
 
-TASK:
-Analyze the provided VIX data and news to deliver an EXPERT VOLATILITY ANALYSIS with actionable insights for ES Futures traders. Focus on present market conditions and future volatility expectations.
+## 🤖 INSTRUCTIONS
+Analyze the provided VIX data and news to deliver an EXPERT VOLATILITY ANALYSIS.
 
-RAW VIX DATA (All Sources):
+CRITICAL RULES:
+1. Return ONLY valid JSON.
+2. NO conversational text.
+3. ALL text fields MUST be in FRENCH.
+
+## 📊 VIX DATA
 [
   {
     "source": "MarketWatch",
     "value": 18.56,
-    "change_abs": null,
     "change_pct": null,
-    "previous_close": null,
-    "open": null,
-    "high": null,
-    "low": null,
-    "last_update": "2025-11-25T23:59:16.320Z",
-    "news_headlines": [
-      {
-        "title": "Even Nvidia can’t help a stock market that’s in real trouble",
-        "url": "https://www.marketwatch.com/story/even-nvidia-cant-help-a-stock-market-thats-in-real-trouble-c41151db?mod=mw_quote_news_topstories",
-        "published_at": "2025-11-25T23:59:16.312Z",
-        "source_date": "2025-11-25T23:59:16.312Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "4:32p\n                                            \n                                                Is making ‘Rush Hour 4’ Trump’s latest executive order? Paramount looks to be onboard.",
-        "url": "https://www.marketwatch.com/story/is-making-rush-hour-4-trumps-latest-executive-order-paramount-looks-to-be-onboard-114f53ca?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.298Z",
-        "source_date": "2025-11-25T23:59:16.298Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "4:42p\n                                            \n                                                Urban Outfitters shares rally as turnaround at namesake stores pays off",
-        "url": "https://www.marketwatch.com/story/urban-outfitters-shares-rally-as-turnaround-at-namesake-stores-pays-off-099f5948?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.290Z",
-        "source_date": "2025-11-25T23:59:16.290Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "4:51p\n                                            \n                                                Dell rides a boom in AI servers to deliver an upbeat forecast",
-        "url": "https://www.marketwatch.com/story/dell-rides-a-boom-in-ai-servers-to-deliver-an-upbeat-forecast-62049790?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.283Z",
-        "source_date": "2025-11-25T23:59:16.283Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "5:27p\n                                            \n                                                ‘I have no paperwork’: My father gave me my mother’s jewelry before he died. Will I owe taxes if I sell?",
-        "url": "https://www.marketwatch.com/story/i-have-no-paperwork-my-father-gave-my-mothers-jewelry-before-he-died-will-i-owe-taxes-if-i-sell-768ee7dc?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.270Z",
-        "source_date": "2025-11-25T23:59:16.270Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "5:47p\n                                            \n                                                I’m 59. Does it make financial sense to raid my $2.5 million IRA to buy a $400K home?",
-        "url": "https://www.marketwatch.com/story/i-regret-not-buying-10-years-ago-im-59-and-pay-2-300-in-rent-do-i-dip-into-my-ira-to-buy-a-home-d581e678?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.263Z",
-        "source_date": "2025-11-25T23:59:16.263Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "6:13p\n                                            \n                                                Why AMD’s stock is having its worst month in three years",
-        "url": "https://www.marketwatch.com/story/why-amds-stock-is-having-its-worst-month-in-three-years-c2b30a54?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.255Z",
-        "source_date": "2025-11-25T23:59:16.255Z",
-        "relative_time": "Recent"
-      },
-      {
-        "title": "6:31p\n                                            \n                                                My sons will each inherit $500K laundromats from their grandparents. How do we keep their spouses out of it?",
-        "url": "https://www.marketwatch.com/story/my-sons-will-each-inherit-500k-laundromats-from-their-grandparents-how-do-we-keep-their-spouses-out-of-it-6dd520d2?mod=mw_latestnews",
-        "published_at": "2025-11-25T23:59:16.248Z",
-        "source_date": "2025-11-25T23:59:16.248Z",
-        "relative_time": "Recent"
-      }
+    "news": [
+      "Even Nvidia can’t help a stock market that’s in real trouble",
+      "4:32p\n                                            \n                                                Is making ‘Rush Hour 4’ Trump’s latest executive order? Paramount looks to be onboard.",
+      "4:42p\n                                            \n                                                Urban Outfitters shares rally as turnaround at namesake stores pays off",
+      "4:51p\n                                            \n                                                Dell rides a boom in AI servers to deliver an upbeat forecast",
+      "5:27p\n                                            \n                                                ‘I have no paperwork’: My father gave me my mother’s jewelry before he died. Will I owe taxes if I sell?"
     ]
   },
   {
     "source": "Investing.com",
     "value": 18.56,
-    "change_abs": -1.96,
     "change_pct": -9.55,
-    "previous_close": null,
-    "open": null,
-    "high": null,
-    "low": null,
-    "last_update": "2025-11-25T23:58:21.321Z",
-    "news_headlines": []
+    "news": []
   }
 ]
 
 IMPORTANT DATA POINTS:
-- **Value**: Current VIX level (Consensus).
+- **Value**: Current VIX level.
 - **Change**: Daily change in points and percentage.
 - **Range (High/Low)**: Intraday volatility range.
 - **Open/Prev Close**: Gap analysis (Opening Gap).

@@ -58,7 +58,6 @@ async function testPlaywrightVixScraper() {
         console.log('📋 RÉSULTATS PAR SOURCE:');
         console.log('='.repeat(80));
         let successCount = 0;
-        let totalValue = 0;
         const validValues = [];
         results.forEach(result => {
             if (result.error) {
@@ -78,7 +77,6 @@ async function testPlaywrightVixScraper() {
                     console.log(`   • Sample news: "${result.news_headlines[0].title.substring(0, 80)}..."`);
                 }
                 successCount++;
-                totalValue += result.value;
                 validValues.push(result.value);
             }
             console.log('');
@@ -156,8 +154,8 @@ async function checkPlaywrightInstallation() {
             await browser.close();
             console.log('✅ Browser Chromium fonctionnel');
         }
-        catch (error) {
-            console.error('❌ Erreur browser:', error instanceof Error ? error.message : String(error));
+        catch (_error) {
+            console.error('❌ Erreur browser: vérifiez l\'installation de Playwright');
             console.log('💡 Solution: npx playwright install');
             return false;
         }

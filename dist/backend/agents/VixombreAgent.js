@@ -95,8 +95,8 @@ class VixombreAgent extends BaseAgentSimple_1.BaseAgentSimple {
                 const lows = scrapeResults.filter(r => r.low !== null).map(r => r.low);
                 const maxHigh = highs.length > 0 ? Math.max(...highs) : 0;
                 const minLow = lows.length > 0 ? Math.min(...lows) : 0;
-                const spread = maxHigh && minLow ? maxHigh - minLow : 0;
-                const headlines = scrapeResults.flatMap((r) => r.news_headlines);
+                const _spread = maxHigh && minLow ? maxHigh - minLow : 0;
+                const _headlines = scrapeResults.flatMap((r) => r.news_headlines);
                 aiAnalysis = {
                     volatility_analysis: {
                         current_vix: validValues.length > 0 ? parseFloat(avg.toFixed(2)) : 0,
@@ -105,9 +105,9 @@ class VixombreAgent extends BaseAgentSimple_1.BaseAgentSimple {
                         sentiment: 'NEUTRAL',
                         sentiment_score: 0,
                         risk_level: avg > 20 ? 'HIGH' : 'MEDIUM',
-                        catalysts: ['AI Analysis Unavailable', 'Market Data Only'],
-                        expert_summary: 'Automated fallback analysis. AI service was unavailable to provide detailed insights.',
-                        key_insights: ['VIX data scraped successfully', 'Detailed AI analysis skipped'],
+                        catalysts: ['Analyse IA indisponible', 'Données de marché uniquement'],
+                        expert_summary: "Analyse de secours automatisée. Le service d'IA n'était pas disponible pour fournir des informations détaillées.",
+                        key_insights: ['Données VIX récupérées avec succès', 'Analyse IA détaillée ignorée'],
                         trading_recommendations: {
                             strategy: 'NEUTRAL',
                             target_vix_levels: [15, 25],
@@ -196,16 +196,40 @@ class VixombreAgent extends BaseAgentSimple_1.BaseAgentSimple {
     }
     createAnalysisPrompt(results) {
         return `
-You are VIXOMBRE, a world-class volatility expert and market analyst. You specialize in VIX (CBOE Volatility Index) analysis and provide professional trading insights based on volatility patterns, market sentiment, and news catalysts.
+You are VIXOMBRE, a world-class volatility expert and market analyst.
 
-TASK:
-Analyze the provided VIX data and news to deliver an EXPERT VOLATILITY ANALYSIS with actionable insights for ES Futures traders. Focus on present market conditions and future volatility expectations.
+## 🤖 INSTRUCTIONS
+Analyze the provided VIX data and news to deliver an EXPERT VOLATILITY ANALYSIS.
 
-RAW VIX DATA (All Sources):
-${JSON.stringify(results, null, 2)}
+CRITICAL RULES:
+1. Return ONLY valid JSON.
+2. NO conversational text.
+3. ALL text fields MUST be in FRENCH.
+
+## 🧠 KNOWLEDGE BASE: VIX & VVIX INTERPRETATION
+1. **VIX LEVELS**:
+   - **10-15**: Marché confiant, faible volatilité.
+   - **20-30**: Marché nerveux/volatile (peut être haussier mais agité).
+   - **>30**: Peur élevée / Crise.
+
+2. **CALCUL DU MOUVEMENT ATTENDU (ES Futures)**:
+   - "Le VIX te dit de combien ES peut bouger".
+   - **Mouvement Mensuel**: VIX / 3.46 (ex: VIX 20 → ~5.8% / mois).
+   - **Mouvement Hebdo**: ~1.35% pour VIX 20.
+   - **Mouvement Quotidien (Rule of 16)**: VIX / 16.
+
+3. **CORRÉLATION VVIX (Volatilité de la Volatilité)**:
+   - **VIX > 20 & VVIX > 120**: 🚨 GROS MOUVEMENT IMMINENT (généralement BAISSIER).
+   - **VIX Monte & VVIX < 100**: Panique non crédible, le marché rebondit souvent.
+   - **VIX Bas (<15-17) & VVIX > 110**: Gros mouvement dans les 24-72h.
+   - **VVIX > 130**: DANGER, forte probabilité de volatilité/chute.
+   - **VVIX < 85**: Marché calme, gros mouvement peu probable.
+
+## 📊 VIX DATA
+${JSON.stringify(this.simplifyResults(results), null, 2)}
 
 IMPORTANT DATA POINTS:
-- **Value**: Current VIX level (Consensus).
+- **Value**: Current VIX level.
 - **Change**: Daily change in points and percentage.
 - **Range (High/Low)**: Intraday volatility range.
 - **Open/Prev Close**: Gap analysis (Opening Gap).
@@ -226,11 +250,11 @@ REQUIRED EXPERT ANALYSIS FORMAT:
     "sentiment": "EXTREME_FEAR|FEAR|NEUTRAL|GREED|EXTREME_GREED",
     "sentiment_score": number_between_-100_and_100,
     "risk_level": "CRITICAL|HIGH|MEDIUM|LOW",
-    "catalysts": ["List of 3-5 key volatility drivers from news"],
+    "catalysts": ["List of 3-5 key volatility drivers from news (IN FRENCH)"],
     "technical_signals": {
-      "vix_vs_mean": string,
-      "volatility_trend": string,
-      "pattern_recognition": string,
+      "vix_vs_mean": "string (IN FRENCH)",
+      "volatility_trend": "string (IN FRENCH)",
+      "pattern_recognition": "string (IN FRENCH)",
       "gap_analysis": "GAP_UP|GAP_DOWN|NONE",
       "intraday_range_analysis": "EXPANDING|CONTRACTING|STABLE"
     },
@@ -240,12 +264,12 @@ REQUIRED EXPERT ANALYSIS FORMAT:
       "confidence_level": number_between_0_100,
       "time_horizon": "INTRADAY|SWING|POSITIONAL"
     },
-    "expert_summary": "Professional volatility analysis summary (2-3 sentences)",
-    "key_insights": ["3-5 bullet points of actionable volatility insights"],
+    "expert_summary": "Professional volatility analysis summary (2-3 sentences) IN FRENCH",
+    "key_insights": ["3-5 bullet points of actionable volatility insights IN FRENCH"],
     "trading_recommendations": {
       "strategy": "VOLATILITY_BUY|VOLATILITY_SELL|NEUTRAL",
-      "entry_signals": ["Specific entry conditions"],
-      "risk_management": "Risk management advice",
+      "entry_signals": ["Specific entry conditions IN FRENCH"],
+      "risk_management": "Risk management advice IN FRENCH",
       "target_vix_levels": [min_target, max_target]
     }
   }
@@ -267,6 +291,7 @@ RULES:
 4. Base sentiment_score on: Negative = -50 to -100, Neutral = -49 to 49, Positive = 50 to 100.
 5. Include numerical VIX targets when providing recommendations.
 6. Consider both current conditions AND future volatility expectations.
+7. **IMPORTANT: ALL TEXT FIELDS (summary, insights, catalysts, recommendations) MUST BE IN FRENCH.**
 `;
     }
     async tryKiloCodeWithFile(prompt) {
@@ -314,9 +339,9 @@ Analyze the data above and return ONLY the requested JSON.
         fs.writeFile('vix_debug_output.txt', stdout).catch(console.error);
         try {
             const clean = stdout
-                .replace(/\x1b\[[0-9;]*m/g, '')
-                .replace(/\x1b\[[0-9;]*[A-Z]/g, '')
-                .replace(/\x1b\[.*?[A-Za-z]/g, '');
+                .replace(/\u001b\[[0-9;]*m/g, '')
+                .replace(/\u001b\[[0-9;]*[A-Z]/g, '')
+                .replace(/\u001b\[.*?[A-Za-z]/g, '');
             const lines = clean.split('\n').filter(line => line.trim() !== '');
             let finalJson = null;
             for (const line of lines) {
@@ -502,6 +527,14 @@ Analyze the data above and return ONLY the requested JSON.
         catch (error) {
             console.error(`[${this.agentName}] Failed to save analysis to DB:`, error);
         }
+    }
+    simplifyResults(results) {
+        return results.map(r => ({
+            source: r.source,
+            value: r.value,
+            change_pct: r.change_pct,
+            news: r.news_headlines.slice(0, 5).map(n => n.title), // Only top 5 titles
+        }));
     }
 }
 exports.VixombreAgent = VixombreAgent;

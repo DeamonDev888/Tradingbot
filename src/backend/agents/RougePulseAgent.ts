@@ -107,8 +107,8 @@ export class RougePulseAgent extends BaseAgentSimple {
       await client.query(
         `
               INSERT INTO rouge_pulse_analyses
-              (impact_score, market_narrative, high_impact_events, asset_analysis, trading_recommendation, raw_analysis, sp500_price, technical_levels)
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+              (impact_score, market_narrative, high_impact_events, asset_analysis, trading_recommendation, raw_analysis, sp500_price, technical_levels, created_at)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())
           `,
         [
           analysis.impact_score,
@@ -437,11 +437,11 @@ ${technicalLevels.fibonacci_levels.map(f => `- ${f.percent}: ${f.level.toFixed(2
 ` : '';
 
     return `
-You are RougePulse, an expert economic calendar and technical analyst with deep understanding of market narratives, price levels, and trading edge.
+You are RougePulse, an expert ES FUTURES technical analyst specializing in E-mini S&P 500 trading with deep understanding of market microstructure, price levels, futures data, and trading edge. You trade exclusively on TOPSTEP, CME GROUP, and AMP FUTURES platforms.
 
 TASK:
-Analyze the economic events, news context, and REAL-TIME TECHNICAL DATA to provide a strategic market assessment.
-You have access to ACTUAL S&P 500 prices and technical levels extracted from market news.
+Analyze the economic events, news context, and REAL-TIME ES FUTURES TECHNICAL DATA to provide a strategic ES futures assessment for professional futures trading.
+You have access to ACTUAL E-mini S&P 500 prices and technical levels from futures markets and specialized trading sources (TopStep, CME, AMP Futures).
 
 ${technicalContext}
 
@@ -451,27 +451,27 @@ ${JSON.stringify(events, null, 2)}
 ## 📰 CONTEXTE DES MARCHÉS (News financières):
 ${newsContext || 'No specific news context available.'}
 
-## 🎯 INSTRUCTIONS SPÉCIFIQUES:
+## 🎯 INSTRUCTIONS SPÉCIFIQUES - EXPERT ES FUTURES:
 
-1. **EDGE TRADING ANALYSIS**: Utilise les niveaux techniques avec les edge scores (>70 = forte confiance, 50-70 = modérée, <50 = faible). Explique POURQUOI un niveau a un edge.
+1. **EDGE TRADING FUTURES**: Utilise les niveaux techniques ES avec les edge scores (>70 = forte confiance, 50-70 = modérée, <50 = faible). Explique POURQUOI un niveau a un edge spécifique pour les futures ES.
 
-2. **PRICE ACTION CONTEXT**: Positionnez les événements économiques par rapport aux niveaux techniques actuels. Est-ce que le prix approche d'un support/résistance important?
+2. **FUTURES MARKET MICROSTRUCTURE**: Positionnez les événements économiques par rapport aux niveaux ES actuels. Impact sur le market depth, volume profile, et open interest.
 
-3. **CONFLICTION ANALYSIS**: Identifiez si les données économiques et les niveaux techniques sont en accord (confluence) ou en contradiction (divergence).
+3. **TOPSTEP/CME/AMP DATA**: Intégrez les données spécifiques des plateformes de trading futures (margin requirements, contract specifications, trading hours).
 
-4. **PROBABILITISTIC ASSESSMENT**: Donnez une évaluation probabiliste plutôt que déterministe (ex: "65% de probabilité de cassure du support 6600 si mauvaises données CPI").
+4. **PROBABILITISTIC FUTURES**: Donnez une évaluation probabiliste pour ES (ex: "65% de probabilité de cassure du support 5250.50 si mauvaises données CPI").
 
-5. **NEXT SESSION PREPARATION**: Identifiez les niveaux clés pour demain basés sur la combinaison événements + niveaux techniques.
+5. **NEXT SESSION FUTURES**: Identifiez les niveaux clés ES pour la session de demain basés sur la combinaison événements + niveaux techniques + contexte futures.
 
-6. **WHY, NOT WHAT**: Expliquez pourquoi ces niveaux fonctionnent. Par exemple: "Le support 6600 est significatif car il correspond à: 1) Niveau psychologique rond, 2) Plusieurs analystes mentionnent ce niveau, 3) Confluence avec l'événement FOMC attendu".
+6. **FUTURES EDGE REASONING**: Expliquez pourquoi ces niveaux fonctionnent pour les contrats ES spécifiquement. Ex: "Le support 5250.50 est significatif car: 1) Niveau psychologique ES, 2) Volume profile accumulation, 3) Confluence événement FOMC, 4) Interest levels sur CME".
 
 7. **LANGUAGE**: Tous les champs texte doivent être en FRANÇAIS.
 
-## 📋 FORMAT JSON REQUIS:
+## 📋 FORMAT JSON REQUIS - ES FUTURES SPECIALIST:
 {
-  "impact_score": number, // 0-100 (100 = Extrême volatilité/importance)
-  "market_narrative": "Analyse détaillée pour le TRADER EXPERT. Récit incluant macro + technique. EN FRANÇAIS.",
-  
+  "impact_score": number, // 0-100 (100 = Extrême volatilité/importance pour ES)
+  "market_narrative": "Analyse ES Futures détaillée pour le TRADER EXPERT. Récit incluant macro + technique + microstructure futures. EN FRANÇAIS.",
+
   "bot_signal": {
     "action": "LONG|SHORT|WAIT",
     "entry_zone": [min_price, max_price],
@@ -480,14 +480,14 @@ ${newsContext || 'No specific news context available.'}
     "timeframe": "SCALP|INTRADAY|SWING",
     "confidence": number (0-100),
     "setup_type": "BREAKOUT|REVERSAL|TREND_FOLLOWING|RANGE_BOUND",
-    "reason": "Logique d'exécution courte pour le bot EN FRANÇAIS"
+    "reason": "Logique d'exécution ES Futures courte pour le bot EN FRANÇAIS"
   },
 
   "agent_state": {
     "market_regime": "TRENDING_UP|TRENDING_DOWN|RANGING|VOLATILE_UNCERTAIN",
     "volatility_alert": boolean,
     "sentiment_score": number (-100 à 100),
-    "key_message": "Message concis pour les autres agents (Vortex/Vixombre) EN FRANÇAIS"
+    "key_message": "Message concis ES Futures pour les autres agents (Vortex/Vixombre) EN FRANÇAIS"
   },
 
   "technical_edge_analysis": {
@@ -497,42 +497,37 @@ ${newsContext || 'No specific news context available.'}
         "type": "support|résistance",
         "strength": "faible|moyen|fort",
         "edge_score": number,
-        "reasoning": "Pourquoi ce niveau est important maintenant EN FRANÇAIS",
-        "probability_break": "Probabilité de cassure si X événement (0-100%) EN FRANÇAIS"
+        "reasoning": "Pourquoi ce niveau ES est important maintenant (volume, open interest) EN FRANÇAIS",
+        "probability_break": "Probabilité de cassure ES si X événement (0-100%) EN FRANÇAIS"
       }
     ],
-    "current_position": "Position du prix actuel par rapport aux niveaux clés EN FRANÇAIS"
+    "current_position": "Position ES actuel par rapport aux niveaux clés et contexte futures EN FRANÇAIS"
   },
   "high_impact_events": [
     {
       "event": "Nom",
       "actual_vs_forecast": "Description de l'écart EN FRANÇAIS",
-      "technical_implication": "Impact technique probable sur les niveaux EN FRANÇAIS",
-      "significance": "Pourquoi ce chiffre spécifique compte maintenant EN FRANÇAIS"
+      "technical_implication": "Impact technique probable sur les niveaux ES Futures EN FRANÇAIS",
+      "significance": "Pourquoi ce chiffre spécifique compte pour ES maintenant EN FRANÇAIS"
     }
   ],
-  "asset_analysis": {
-    "ES_Futures": {
-      "bias": "BULLISH|BEARISH|NEUTRAL",
-      "reasoning": "Analyse détaillée incluant niveaux techniques et événements économiques EN FRANÇAIS",
-      "key_levels": [Array of key price levels for ES Futures],
-      "edge_confirmation": "Comment les données économiques confirment/infutent l'edge technique EN FRANÇAIS"
-    },
-    "Bitcoin": {
-      "bias": "BULLISH|BEARISH|NEUTRAL",
-      "reasoning": "Impact des données macro sur BTC avec corrélation S&P 500 EN FRANÇAIS",
-      "correlation_analysis": "Analyse de corrélation ES-BTC dans ce contexte EN FRANÇAIS"
-    }
+  "es_futures_analysis": {
+    "bias": "BULLISH|BEARISH|NEUTRAL",
+    "reasoning": "Analyse ES détaillée incluant niveaux techniques, événements économiques, et microstructure futures EN FRANÇAIS",
+    "key_levels": [Array of key price levels ES Futures],
+    "edge_confirmation": "Comment les données économiques confirment/infutent l'edge technique ES EN FRANÇAIS",
+    "platform_context": "Analyse spécifique TopStep/CME/AMP (margin, hours, volume) EN FRANÇAIS",
+    "market_microstructure": "Volume profile, open interest, market depth analysis EN FRANÇAIS"
   },
-  "trading_recommendation": "Conseil actionnable basé sur la confluence données + niveaux techniques EN FRANÇAIS",
+  "trading_recommendation": "Conseil actionnable ES Futures basé sur la confluence données + niveaux techniques + contexte futures EN FRANÇAIS",
   "next_session_levels": {
-    "session_setup": "Configuration potentielle pour la prochaine séance EN FRANÇAIS",
-    "breakout_scenarios": "Scénarios de cassure des niveaux clés EN FRANÇAIS",
-    "invalidation_levels": "Niveaux d'invalidation des scénarios EN FRANÇAIS"
+    "session_setup": "Configuration potentielle ES Futures pour la prochaine séance EN FRANÇAIS",
+    "breakout_scenarios": "Scénarios de cassure des niveaux clés ES Futures EN FRANÇAIS",
+    "invalidation_levels": "Niveaux d'invalidation des scénarios ES Futures EN FRANÇAIS"
   }
 }
 
-IMPORTANT: Concentrez-vous sur l'EDGE TRADING - expliquez pourquoi un trader aurait un avantage avec cette information.
+IMPORTANT: Concentrez-vous sur l'EDGE TRADING ES FUTURES - expliquez pourquoi un trader ES aurait un avantage avec cette information spécifique aux contrats E-mini S&P 500.
 `;
   }
 
@@ -792,30 +787,98 @@ Analyze the data above and return ONLY the requested JSON.
 
   private extractPartialData(jsonStr: string): Record<string, unknown> | null {
     try {
-      // Extract key fields even if JSON is malformed
-      const impactMatch = jsonStr.match(/"impact_score"\s*:\s*(\d+)/);
-      const narrativeMatch = jsonStr.match(/"market_narrative"\s*:\s*"([^"]{10,200})"/);
-      const esBiasMatch = jsonStr.match(/"ES_Futures"\s*:\s*{\s*"bias"\s*:\s*"([^"]+)"/);
-      const btcBiasMatch = jsonStr.match(/"Bitcoin"\s*:\s*{\s*"bias"\s*:\s*"([^"]+)"/);
+      console.log(`[${this.agentName}] 🔍 Tentative d'extraction de données partielles...`);
 
-      if (impactMatch || narrativeMatch || esBiasMatch || btcBiasMatch) {
-        return {
-          impact_score: impactMatch ? parseInt(impactMatch[1]) : 25,
-          market_narrative: narrativeMatch ? narrativeMatch[1] : 'Analyse partiellement disponible',
-          asset_analysis: {
-            ES_Futures: { bias: esBiasMatch ? esBiasMatch[1] : 'NEUTRAL' },
-            Bitcoin: { bias: btcBiasMatch ? btcBiasMatch[1] : 'NEUTRAL' },
-          },
-          trading_recommendation: 'Analyse partielle - recommandation tronquée',
-          bot_signal: { action: 'WAIT', confidence: 0, reason: 'Données partielles' },
-          agent_state: { market_regime: 'UNCERTAIN', volatility_alert: true, sentiment_score: 0 },
-          high_impact_events: [],
-          partial_data: true,
-        };
+      // Extraire tous les champs possibles avec des regex plus flexibles
+      const impactMatch = jsonStr.match(/"impact_score"\s*:\s*(\d+)/);
+
+      // Essaye plusieurs patterns pour market_narrative
+      let narrativeText = '';
+      const narrativePatterns = [
+        /"market_narrative"\s*:\s*"([^"]{20,500})"/,
+        /"market_narrative"\s*:\s*'([^']{20,500})'/,
+        /"market_narrative"\s*:\s*"([^"]*)"/,
+      ];
+
+      for (const pattern of narrativePatterns) {
+        const match = jsonStr.match(pattern);
+        if (match && match[1] && match[1].length > 30) {
+          narrativeText = match[1];
+          break;
+        }
       }
+
+      // Extraire les données S&P 500 si disponibles
+      let sp500Data = null;
+      const sp500Match = jsonStr.match(/"sp500_data"\s*:\s*\{[^}]*"current"\s*:\s*([\d.]+)/);
+      if (sp500Match) {
+        sp500Data = parseFloat(sp500Match[1]);
+      }
+
+      // Extraire les niveaux techniques
+      let technicalLevels: any = null;
+      const supportsMatch = jsonStr.match(/"supports"\s*:\s*\[([^\]]+)\]/);
+      const resistancesMatch = jsonStr.match(/"resistances"\s*:\s*\[([^\]]+)\]/);
+
+      if (supportsMatch || resistancesMatch) {
+        technicalLevels = 'Données techniques partiellement extraites';
+      }
+
+      // Extraire bot_signal si disponible
+      let botAction = 'WAIT';
+      let botConfidence = 25;
+      const botActionMatch = jsonStr.match(/"action"\s*:\s*"([^"]+)"/);
+      const botConfidenceMatch = jsonStr.match(/"confidence"\s*:\s*(\d+)/);
+
+      if (botActionMatch) botAction = botActionMatch[1];
+      if (botConfidenceMatch) botConfidence = parseInt(botConfidenceMatch[1]);
+
+      // Si on a trouvé des données significatives
+      if (impactMatch || narrativeText || sp500Data) {
+        const partialData = {
+          impact_score: impactMatch ? parseInt(impactMatch[1]) : 25,
+          market_narrative: narrativeText || 'Analyse partielle - données JSON tronquées mais utilisables',
+          asset_analysis: {
+            ES_Futures: {
+              bias: narrativeText.toLowerCase().includes('hauss') ? 'BULLISH' :
+                     narrativeText.toLowerCase().includes('baiss') ? 'BEARISH' : 'NEUTRAL',
+              reasoning: 'Extrait de l\'analyse tronquée'
+            },
+            Bitcoin: {
+              bias: narrativeText.toLowerCase().includes('hauss') ? 'BULLISH' :
+                     narrativeText.toLowerCase().includes('baiss') ? 'BEARISH' : 'NEUTRAL',
+              reasoning: 'Extrait de l\'analyse tronquée'
+            },
+          },
+          trading_recommendation: narrativeText
+            ? `${narrativeText.substring(0, 150)}${narrativeText.length > 150 ? '...' : ''}`
+            : 'Analyse partielle - utilisez !rougepulseagent pour l\'analyse complète',
+          bot_signal: {
+            action: botAction,
+            confidence: botConfidence,
+            reason: 'Extrait de données tronquées'
+          },
+          agent_state: {
+            market_regime: 'PARTIAL_DATA',
+            volatility_alert: true,
+            sentiment_score: 0
+          },
+          high_impact_events: [],
+          technical_levels: technicalLevels,
+          sp500_price: sp500Data,
+          partial_data: true,
+          note: 'Données extraites d\'une réponse JSON tronquée par l\'IA',
+        };
+
+        console.log(`[${this.agentName}] ✅ Extraction partielle réussie - Score: ${partialData.impact_score}, Narrative: ${partialData.market_narrative.length} chars`);
+        return partialData;
+      }
+
+      console.log(`[${this.agentName}] ⚠️ Aucune donnée significative trouvée dans le JSON tronqué`);
+      return null;
     } catch (e) {
       console.warn(`[${this.agentName}] Partial data extraction failed:`, e);
+      return null;
     }
-    return null;
   }
 }

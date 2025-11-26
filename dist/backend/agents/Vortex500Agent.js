@@ -109,7 +109,7 @@ class Vortex500Agent extends BaseAgentSimple_1.BaseAgentSimple {
             score: null,
             catalysts: [],
             risk_level: 'N/A',
-            summary: `Analysis not available: ${reason}`,
+            summary: `Analyse indisponible : ${reason}`,
             data_source: 'error',
             news_count: 0,
             analysis_method: 'none',
@@ -189,23 +189,24 @@ CRITICAL:
 - Output ONLY the JSON object
 - No markdown, no explanations
 - Must be parseable by JSON.parse()
+- **IMPORTANT: The 'summary' and 'catalysts' fields MUST be in FRENCH.**
 
 EXAMPLE:
 {
   "sentiment": "BEARISH",
   "score": -25,
-  "catalysts": ["Bitcoin decline", "Fed hawkish"],
+  "catalysts": ["Baisse du Bitcoin", "Fed restrictive"],
   "risk_level": "HIGH",
-  "summary": "Market sentiment is negative due to..."
+  "summary": "Le sentiment de marché est négatif en raison de..."
 }
 
 STRUCTURE:
 {
   "sentiment": "BULLISH" | "BEARISH" | "NEUTRAL",
   "score": number between -100 and 100,
-  "catalysts": ["string", "string"],
+  "catalysts": ["string (en Français)", "string (en Français)"],
   "risk_level": "LOW" | "MEDIUM" | "HIGH",
-  "summary": "Brief explanation"
+  "summary": "Brief explanation in French"
 }
 
 DATA:
@@ -216,6 +217,7 @@ RULES:
 2. Macro Data (Yield Curve, Inflation, etc.) is CRITICAL for context
 3. Return ONLY JSON
 4. No conversational text
+5. **WRITE IN FRENCH**
 `;
     }
     /**
@@ -290,15 +292,16 @@ CRITICAL:
 - Output ONLY the JSON object
 - No markdown, no explanations
 - Must be parseable by JSON.parse()
+- **IMPORTANT: The 'summary' and 'catalysts' fields MUST be in FRENCH.**
 
 REQUIRED JSON STRUCTURE:
 \`\`\`json
 {
   "sentiment": "BULLISH" | "BEARISH" | "NEUTRAL",
   "score": number between -100 and 100,
-  "catalysts": ["string", "string"],
+  "catalysts": ["string (en Français)", "string (en Français)"],
   "risk_level": "LOW" | "MEDIUM" | "HIGH",
-  "summary": "Brief explanation"
+  "summary": "Brief explanation in French"
 }
 \`\`\`
 
@@ -306,6 +309,7 @@ RULES:
 1. Analyze all headlines from database
 2. Return ONLY JSON
 3. No conversational text
+4. **WRITE IN FRENCH**
 
 ---
 *Generated: ${new Date().toISOString()}*
@@ -320,9 +324,9 @@ RULES:
         try {
             // Nettoyer les séquences ANSI
             const cleanOutput = stdout
-                .replace(/\x1b\[[0-9;]*m/g, '') // Remove ANSI color codes
-                .replace(/\x1b\[[0-9;]*[A-Z]/g, '') // Remove ANSI control sequences
-                .replace(/\x1b\[.*?[A-Za-z]/g, ''); // Remove all remaining ANSI sequences
+                .replace(/\u001b\[[0-9;]*m/g, '') // Remove ANSI color codes
+                .replace(/\u001b\[[0-9;]*[A-Z]/g, '') // Remove ANSI control sequences
+                .replace(/\u001b\[.*?[A-Za-z]/g, ''); // Remove all remaining ANSI sequences
             // Parser NDJSON
             const lines = cleanOutput.split('\n').filter(line => line.trim() !== '');
             for (const line of lines) {
@@ -421,7 +425,7 @@ RULES:
                     .filter((c) => typeof c === 'string')
                     .slice(0, 5)
                 : [],
-            summary: typeof override.summary === 'string' ? override.summary : 'No analysis available',
+            summary: typeof override.summary === 'string' ? override.summary : 'Aucune analyse disponible',
         };
     }
 }

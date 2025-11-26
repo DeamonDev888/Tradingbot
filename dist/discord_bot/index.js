@@ -383,47 +383,227 @@ function formatRougePulseMessage(data) {
         : data.high_impact_events
             ? JSON.parse(data.high_impact_events)
             : [];
+    // Gérer le nouveau format ES Futures (es_futures_analysis) et l'ancien (asset_analysis)
     const assets = data.asset_analysis
         ? typeof data.asset_analysis === 'string'
             ? JSON.parse(data.asset_analysis)
             : data.asset_analysis
         : {};
+    const esFutures = data.es_futures_analysis
+        ? typeof data.es_futures_analysis === 'string'
+            ? JSON.parse(data.es_futures_analysis)
+            : data.es_futures_analysis
+        : assets.ES_Futures || {};
     const rec = data.trading_recommendation || 'Aucune recommandation.';
+    // Vérifier et convertir en français si nécessaire
+    const frenchNarrative = convertToFrenchIfNeeded(narrative);
+    const frenchRec = convertToFrenchIfNeeded(rec);
+    // Utiliser une limite plus généreuse pour éviter les troncatures inutiles
+    const maxNarrativeLength = 500;
+    const truncatedNarrative = frenchNarrative.length > maxNarrativeLength
+        ? frenchNarrative.substring(0, maxNarrativeLength - 3) + '...'
+        : frenchNarrative;
     let eventsList = '';
     if (events.length > 0) {
-        eventsList = events
-            .map((e) => `**• ${e.event}**\n  └ ${e.actual_vs_forecast}\n  └ *${e.significance}*`)
+        // Limit to first 2 events and truncate descriptions
+        const limitedEvents = events.slice(0, 2);
+        eventsList = limitedEvents
+            .map((e) => {
+            const event = e.event || e.name || 'Événement';
+            const details = e.actual_vs_forecast || e.actual || 'N/A';
+            const significance = e.significance || '';
+            return `**• ${event}**\n  └ ${details}${significance ? `\n  └ *${significance}*` : ''}`;
+        })
             .join('\n\n');
+        if (events.length > 2) {
+            eventsList += `\n\n... et ${events.length - 2} autres événements`;
+        }
     }
     else {
         eventsList = 'Aucun événement majeur détecté.';
     }
-    const esBias = assets.ES_Futures?.bias === 'BULLISH'
+    // Limiter la recommandation de manière plus intelligente
+    const maxRecLength = 300;
+    const truncatedRec = frenchRec.length > maxRecLength
+        ? frenchRec.substring(0, maxRecLength - 3) + '...'
+        : frenchRec;
+    // Gérer le bias ES Futures avec le nouveau format
+    const esBias = esFutures?.bias === 'BULLISH'
         ? '🟢 HAUSSIER'
-        : assets.ES_Futures?.bias === 'BEARISH'
+        : esFutures?.bias === 'BEARISH'
             ? '🔴 BAISSIER'
             : '⚪ NEUTRE';
-    const btcBias = assets.Bitcoin?.bias === 'BULLISH'
-        ? '🟢 HAUSSIER'
-        : assets.Bitcoin?.bias === 'BEARISH'
-            ? '🔴 BAISSIER'
-            : '⚪ NEUTRE';
-    return `
-**🔴 RougePulse - Analyse Calendrier Éco**
+    // Ajouter la plateforme context si disponible
+    const platformContext = esFutures?.platform_context
+        ? `\n📊 **Contexte Plateformes :** ${esFutures.platform_context.substring(0, 100)}${esFutures.platform_context.length > 100 ? '...' : ''}`
+        : '';
+    const message = `
+**🔴 RougePulse - Expert ES Futures**
 **Impact Session :** ${score}/100
-**ES Futures :** ${esBias} | **Bitcoin :** ${btcBias}
+**ES Futures Bias :** ${esBias}
 
-**📖 Narratif de Marché :**
-${narrative}
+**📖 Narratif ES Futures :**
+${truncatedNarrative}
 
 **🔥 Événements Clés :**
 ${eventsList}
 
-**🎯 Recommandation Trading :**
-${rec}
+**🎯 Recommandation ES Futures :**
+${truncatedRec}
+${platformContext}
 
-*Date de l'analyse : ${new Date(data.created_at).toLocaleString('fr-FR')}*
+*Analyse ES - TopStep/CME/AMP | Date : ${data.created_at ? new Date(data.created_at).toLocaleString('fr-FR') : 'Date non disponible'}*
   `.trim();
+    // Optimisation : utiliser la limite maximale de Discord (2000) pas 1900
+    const maxDiscordLength = 2000;
+    if (message.length > maxDiscordLength) {
+        // Troncation intelligente : éviter de couper les mots
+        const ellipsis = '...\n\n📋 *Message tronqué - utilisez !rougepulseagent pour voir l\'analyse complète*';
+        const cutoffPoint = maxDiscordLength - ellipsis.length;
+        let truncatedMessage = message.substring(0, cutoffPoint);
+        // Éviter de couper un mot : chercher le dernier espace
+        const lastSpaceIndex = truncatedMessage.lastIndexOf(' ');
+        if (lastSpaceIndex > cutoffPoint - 50) { // Si on n'est pas trop loin du début
+            truncatedMessage = truncatedMessage.substring(0, lastSpaceIndex);
+        }
+        return truncatedMessage + ellipsis;
+    }
+    return message;
+}
+// Fonction pour convertir l'anglais vers le français si nécessaire
+function convertToFrenchIfNeeded(text) {
+    if (!text || typeof text !== 'string')
+        return text;
+    // Mots clés anglais à remplacer par leurs équivalents français
+    const translations = {
+        // Trading terms
+        'bullish': 'haussier',
+        'bearish': 'baissier',
+        'neutral': 'neutre',
+        'long': 'achat',
+        'short': 'vente',
+        'support': 'support',
+        'resistance': 'résistance',
+        'breakout': 'cassure',
+        'reversal': 'retournement',
+        'trend': 'tendance',
+        'volatility': 'volatilité',
+        'momentum': 'momentum',
+        'consolidation': 'consolidation',
+        'range': 'fourchette',
+        'pullback': 'replï',
+        'rally': 'rally',
+        'dip': 'baisse',
+        'crash': 'krach',
+        // Economic terms
+        'inflation': 'inflation',
+        'recession': 'récession',
+        'growth': 'croissance',
+        'data': 'données',
+        'report': 'rapport',
+        'forecast': 'prévisions',
+        'actual': 'réel',
+        'estimate': 'estimation',
+        'consumer': 'consommateur',
+        'spending': 'dépenses',
+        'manufacturing': 'manufacturier',
+        'services': 'services',
+        'employment': 'emploi',
+        'unemployment': 'chômage',
+        'interest rates': 'taux d\'intérêt',
+        'monetary policy': 'politique monétaire',
+        'federal reserve': 'Réserve Fédérale',
+        'Fed': 'Fed',
+        'central bank': 'banque centrale',
+        // Market terms
+        'stock market': 'marché boursier',
+        'equity markets': 'marchés actions',
+        'bond market': 'marché obligataire',
+        'commodities': 'matières premières',
+        'currencies': 'devises',
+        'forex': 'forex',
+        'cryptocurrency': 'cryptomonnaie',
+        'bitcoin': 'bitcoin',
+        'BTC': 'BTC',
+        'S&P 500': 'S&P 500',
+        'Dow Jones': 'Dow Jones',
+        'NASDAQ': 'NASDAQ',
+        // Analysis terms
+        'analysis': 'analyse',
+        'indicator': 'indicateur',
+        'signal': 'signal',
+        'recommendation': 'recommandation',
+        'strategy': 'stratégie',
+        'portfolio': 'portefeuille',
+        'risk': 'risque',
+        'reward': 'rendement',
+        'profit': 'profit',
+        'loss': 'perte',
+        'gain': 'gain',
+        'return': 'rendement',
+        'yield': 'rendement',
+        'dividend': 'dividende',
+        'earnings': 'bénéfices',
+        'revenue': 'chiffre d\'affaires',
+        'margin': 'marge',
+        // Time periods
+        'daily': 'quotidien',
+        'weekly': 'hebdomadaire',
+        'monthly': 'mensuel',
+        'quarterly': 'trimestriel',
+        'annual': 'annuel',
+        'year': 'année',
+        'month': 'mois',
+        'week': 'semaine',
+        'day': 'jour',
+        'hour': 'heure',
+        'minute': 'minute',
+        // Descriptive words
+        'strong': 'fort',
+        'weak': 'faible',
+        'high': 'élevé',
+        'low': 'bas',
+        'significant': 'significatif',
+        'important': 'important',
+        'major': 'majeur',
+        'minor': 'mineur',
+        'key': 'clé',
+        'critical': 'critique',
+        'essential': 'essentiel',
+        'crucial': 'crucial',
+        'positive': 'positif',
+        'negative': 'négatif',
+        'optimistic': 'optimiste',
+        'pessimistic': 'pessimiste',
+        'cautious': 'prudent',
+        'aggressive': 'agressif',
+        // Common phrases
+        'market sentiment': 'sentiment du marché',
+        'risk appetite': 'appétit pour le risque',
+        'safe haven': 'valeur refuge',
+        'flight to safety': 'fuite vers la qualité',
+        'market timing': 'timing de marché',
+        'technical analysis': 'analyse technique',
+        'fundamental analysis': 'analyse fondamentale',
+        'quantitative analysis': 'analyse quantitative',
+        'algorithmic trading': 'trading algorithmique',
+        'high frequency trading': 'trading haute fréquence',
+        'day trading': 'trading intraday',
+        'swing trading': 'swing trading',
+        'position trading': 'trading de position',
+        'long term': 'long terme',
+        'short term': 'court terme',
+        'medium term': 'moyen terme',
+    };
+    let frenchText = text;
+    // Remplacer les termes anglais par les français (insensible à la casse)
+    for (const [english, french] of Object.entries(translations)) {
+        const regex = new RegExp(`\\b${english}\\b`, 'gi');
+        frenchText = frenchText.replace(regex, french);
+    }
+    // Corriger les majuscules après les transformations
+    frenchText = frenchText.replace(/\b(haussier|baissier|neutre|achat|vente|support|résistance|cassure|retournement|tendance)\b/gi, (match) => match === match.toUpperCase() ? match.toUpperCase() : match);
+    return frenchText;
 }
 function formatHelpMessage() {
     return `
@@ -497,7 +677,7 @@ ${data.summary}
 **🔑 Catalyseurs Clés :**
 ${catalysts.map((c) => `• ${c}`).join('\n')}
 
-*Date de l'analyse : ${new Date(data.created_at).toLocaleString('fr-FR')}*
+*Date de l'analyse : ${data.created_at ? new Date(data.created_at).toLocaleString('fr-FR') : 'Date non disponible'}*
     `.trim();
 }
 function formatVixMessage(row) {
@@ -522,7 +702,7 @@ ${expert.expert_summary ?? 'Aucun résumé disponible.'}
 Stratégie : ${expert.trading_recommendations?.strategy || 'N/A'}
 Niveaux Cibles : ${expert.trading_recommendations?.target_vix_levels?.join(' - ') || 'N/A'}
 
-*Date de l'analyse : ${new Date(row.created_at).toLocaleString('fr-FR')}*
+*Date de l'analyse : ${row.created_at ? new Date(row.created_at).toLocaleString('fr-FR') : 'Date non disponible'}*
     `.trim();
 }
 function formatVixAgentMessage(data) {

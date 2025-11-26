@@ -56,7 +56,9 @@ class TradingEconomicsScraper {
             try {
                 fs.appendFileSync('scraper_debug.log', msg + '\n');
             }
-            catch (e) { }
+            catch (_e) {
+                // Ignore file write errors
+            }
         };
         log('🚀 Starting TradingEconomics US Calendar Scraper...');
         const browser = await playwright_1.chromium.launch({ headless: true });
