@@ -38,7 +38,7 @@ const dotenv = __importStar(require("dotenv"));
 const pg_1 = require("pg");
 const cron = __importStar(require("node-cron"));
 const path = __importStar(require("path"));
-const RougePulseAgentSimple_1 = require("../backend/agents/RougePulseAgentSimple");
+const RougePulseAgent_1 = require("../backend/agents/RougePulseAgent");
 const VixombreAgent_1 = require("../backend/agents/VixombreAgent");
 const Vortex500Agent_1 = require("../backend/agents/Vortex500Agent");
 const NewsAggregator_1 = require("../backend/ingestion/NewsAggregator");
@@ -140,7 +140,7 @@ client.on('messageCreate', async (message) => {
         console.log('🔴 Processing !rougepulseagent command...');
         const loadingMsg = await message.reply('🔴 **RougePulseAgent** analyse le calendrier économique... ⏳');
         try {
-            const agent = new RougePulseAgentSimple_1.RougePulseAgentSimple();
+            const agent = new RougePulseAgent_1.RougePulseAgent();
             // Add a 95s timeout (slightly longer than agent's 90s timeout)
             const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout: L'analyse prend trop de temps.")), 95000));
             const result = (await Promise.race([agent.analyzeEconomicEvents(), timeoutPromise]));

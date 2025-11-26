@@ -2,6 +2,10 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { FredClient } from './FredClient';
 import { FinnhubClient } from './FinnhubClient';
+import { Pool } from 'pg';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export interface NewsItem {
   title: string;
@@ -15,10 +19,18 @@ export interface NewsItem {
 export class NewsAggregator {
   private fredClient: FredClient;
   private finnhubClient: FinnhubClient;
+  private pool: Pool;
 
   constructor() {
     this.fredClient = new FredClient();
     this.finnhubClient = new FinnhubClient();
+    this.pool = new Pool({
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '5432'),
+      database: process.env.DB_NAME || 'financial_analyst',
+      user: process.env.DB_USER || 'postgres',
+      password: process.env.DB_PASSWORD || '9022',
+    });
   }
 
   /**
@@ -183,5 +195,104 @@ export class NewsAggregator {
    */
   async fetchTradingEconomicsCalendar(): Promise<any[]> {
     return [];
+  }
+
+  /**
+   * Sauvegarde les news dans la base de données
+   */
+  async saveNewsToDatabase(news: NewsItem[]): Promise<void> {
+    if (news.length === 0) return;
+
+    const client = await this.pool.connect();
+    try {
+      // Créer la table si elle n'existe pas
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS news_items (
+            id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+            title VARCHAR(1000) NOT NULL,
+            source VARCHAR(100) NOT NULL,
+            url TEXT,
+            content TEXT,
+            sentiment VARCHAR(20),
+            published_at TIMESTAMP WITH TIME ZONE,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+            UNIQUE(title, source, published_at)
+        );
+      `);
+
+      let savedCount = 0;
+
+      for (const item of news) {
+        try {
+          await client.query(
+            `
+                INSERT INTO news_items (title, source, url, content, sentiment, published_at)
+                VALUES ($1, $2, $3, $4, $5, $6)
+                ON CONFLICT (title, source, published_at) DO NOTHING
+            `,
+            [item.title, item.source, item.url, item.content, item.sentiment, item.timestamp]
+          );
+          savedCount++;
+        } catch (e) {
+          console.error(`Failed to save news from ${item.source}:`, e);
+        }
+      }
+
+      console.log(`💾 Saved ${savedCount} news items to database from ${news.length} fetched`);
+    } catch (error) {
+      console.error('❌ Database error saving news:', error);
+    } finally {
+      client.release();
+    }
+  }
+
+  /**
+   * Récupère et sauvegarde toutes les news
+   */
+  async fetchAndSaveAllNews(): Promise<NewsItem[]> {
+    console.log('📰 Starting comprehensive news aggregation...');
+
+    const allNews: NewsItem[] = [];
+
+    try {
+      // Récupérer toutes les sources en parallèle
+      const [zerohedge, cnbc, financialjuice, finnhub] = await Promise.allSettled([
+        this.fetchZeroHedgeHeadlines(),
+        this.fetchCNBCMarketNews(),
+        this.fetchFinancialJuice(),
+        this.fetchFinnhubNews()
+      ]);
+
+      // Ajouter les résultats réussis
+      if (zerohedge.status === 'fulfilled') {
+        allNews.push(...zerohedge.value);
+        console.log(`✅ ZeroHedge: ${zerohedge.value.length} news`);
+      }
+
+      if (cnbc.status === 'fulfilled') {
+        allNews.push(...cnbc.value);
+        console.log(`✅ CNBC: ${cnbc.value.length} news`);
+      }
+
+      if (financialjuice.status === 'fulfilled') {
+        allNews.push(...financialjuice.value);
+        console.log(`✅ FinancialJuice: ${financialjuice.value.length} news`);
+      }
+
+      if (finnhub.status === 'fulfilled') {
+        allNews.push(...finnhub.value);
+        console.log(`✅ Finnhub: ${finnhub.value.length} news`);
+      }
+
+      // Sauvegarder toutes les news
+      await this.saveNewsToDatabase(allNews);
+
+      console.log(`🎉 News aggregation completed: ${allNews.length} total news saved`);
+      return allNews;
+
+    } catch (error) {
+      console.error('❌ Error during news aggregation:', error);
+      return allNews;
+    }
   }
 }

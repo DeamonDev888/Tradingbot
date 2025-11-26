@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import { Pool } from 'pg';
 import * as cron from 'node-cron';
 import * as path from 'path';
-import { RougePulseAgentSimple } from '../backend/agents/RougePulseAgentSimple';
+import { RougePulseAgent } from '../backend/agents/RougePulseAgent';
 import { VixombreAgent } from '../backend/agents/VixombreAgent';
 import { Vortex500Agent } from '../backend/agents/Vortex500Agent';
 import { NewsAggregator } from '../backend/ingestion/NewsAggregator';
@@ -122,7 +122,7 @@ client.on('messageCreate', async message => {
     );
 
     try {
-      const agent = new RougePulseAgentSimple();
+      const agent = new RougePulseAgent();
 
       // Add a 95s timeout (slightly longer than agent's 90s timeout)
       const timeoutPromise = new Promise((_, reject) =>

@@ -10,7 +10,7 @@
 ## 📰 Database News Items (TOON Format)
 
 ```
-headlines[35]{title,src}:
+headlines[32]{title,src}:
   FinancialJuice: EU council formally adopts EU budget for 2026,FinancialJuice
   FinancialJuice: Trump: Full benefit of tariffs has not yet been calculated,FinancialJuice
   FinancialJuice: Trump: Is it really possible that big progress is being made in peace talks between Russia and Ukraine???,FinancialJuice
@@ -43,9 +43,6 @@ headlines[35]{title,src}:
   Why'd Kazakhstan Join The Abraham Accords When It Already Recognizes Israel?,ZeroHedge
   Taiwan Minister Says 'Consensus' Reached With US To Shield Chips From Tariffs,ZeroHedge
   Hamas Threatens 'Ceasefire Is Over' Amid Rising Israeli Airstrikes,ZeroHedge
-  Geoengineering Is No Longer Just A Theory,ZeroHedge
-  MTA Hunts For $675 Million Worth Of Loose Change In Subway Seat Cushions,ZeroHedge
-  US State Department Designates "DEI" As A Violation Of Human Rights,ZeroHedge
 ```
 
 ## 🤖 AI Analysis Instructions
@@ -78,5 +75,5 @@ RULES:
 4. **WRITE IN FRENCH**
 
 ---
-*Generated: 2025-11-25T23:48:23.646Z*
+*Generated: 2025-11-26T02:16:03.620Z*
 *Buffer: database.md*
