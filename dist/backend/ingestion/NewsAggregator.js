@@ -258,7 +258,7 @@ class NewsAggregator {
                 this.fetchZeroHedgeHeadlines(),
                 this.fetchCNBCMarketNews(),
                 this.fetchFinancialJuice(),
-                this.fetchFinnhubNews()
+                this.fetchFinnhubNews(),
             ]);
             // Ajouter les résultats réussis
             if (zerohedge.status === 'fulfilled') {

@@ -43,11 +43,13 @@ class VixPlaywrightScraper {
         if (!this.browser)
             throw new Error('Browser not initialized');
         const context = await this.browser.newContext({
-            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
             viewport: { width: 1920, height: 1080 },
             extraHTTPHeaders: {
                 'Accept-Language': 'en-US,en;q=0.9',
                 'Accept-Encoding': 'gzip, deflate, br',
+                'Upgrade-Insecure-Requests': '1',
+                Referer: 'https://www.google.com/',
                 Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
             },
         });
@@ -127,11 +129,12 @@ class VixPlaywrightScraper {
     async scrapeAll() {
         const startTime = Date.now();
         await this.init();
-        console.log('🚀 Démarrage scraping VIX ultra-rapide (2 sources + cache)...');
-        // Utiliser les timeouts et le cache
+        console.log('🚀 Démarrage scraping VIX (3 sources en parallèle)...');
+        // Exécution parallèle pour la vitesse
         const primaryResults = await Promise.allSettled([
-            this.scrapeWithTimeout('MarketWatch', () => this.scrapeMarketWatch(), 8000),
-            this.scrapeWithTimeout('Investing.com', () => this.scrapeInvesting(), 8000),
+            this.scrapeWithTimeout('MarketWatch', () => this.scrapeMarketWatch(), 35000),
+            this.scrapeWithTimeout('Investing.com', () => this.scrapeInvesting(), 35000),
+            this.scrapeWithTimeout('Yahoo Finance', () => this.scrapeYahoo(), 35000),
         ]);
         await this.close();
         const totalTime = Date.now() - startTime;
@@ -139,7 +142,7 @@ class VixPlaywrightScraper {
         console.log(`📊 Métriques scraping - Total: ${totalTime}ms, Cache hits: ${this.metrics.cacheHits}/${this.metrics.totalRequests}`);
         console.log(`   MarketWatch: ${this.metrics.sourceMetrics.get('MarketWatch')?.success ? '✅' : '❌'}, Investing.com: ${this.metrics.sourceMetrics.get('Investing.com')?.success ? '✅' : '❌'}`);
         const finalResults = primaryResults.map((result, index) => {
-            const sources = ['MarketWatch', 'Investing.com'];
+            const sources = ['MarketWatch', 'Investing.com', 'Yahoo Finance'];
             this.metrics.totalRequests++;
             if (result.status === 'fulfilled') {
                 if (result.value.value !== null) {
@@ -244,12 +247,52 @@ class VixPlaywrightScraper {
         try {
             console.log('[MarketWatch] Navigating to VIX page...');
             await page.goto('https://www.marketwatch.com/investing/index/vix', {
-                waitUntil: 'domcontentloaded',
-                timeout: 20000,
+                waitUntil: 'commit',
+                timeout: 25000,
             });
-            await this.humanDelay(page, 2000, 3000);
-            // Attendre les données de prix avec timeout plus court
-            const value = await this.extractText(page, '.intraday__price .value, [data-test="instrument-price-last"]');
+            await this.humanDelay(page, 2000, 4000);
+            // Strategy 1: Try to extract from meta tag (most reliable)
+            try {
+                const metaContent = await page.getAttribute('meta[name="global-translation-variables"]', 'content');
+                if (metaContent) {
+                    // The content is a JSON string, sometimes wrapped in quotes that need cleaning?
+                    // Usually it's just a JSON string.
+                    // It might be html encoded.
+                    const cleanContent = metaContent.replace(/&quot;/g, '"');
+                    const data = JSON.parse(cleanContent);
+                    if (data && data.LAST_PRICE) {
+                        console.log(`[Investing.com] Found data in meta tag: ${data.LAST_PRICE}`);
+                        return {
+                            source: 'Investing.com',
+                            value: parseFloat(data.LAST_PRICE.replace(/,/g, '')),
+                            change_abs: data.daily_change ? parseFloat(data.daily_change) : null,
+                            change_pct: data.daily_change_percent ? parseFloat(data.daily_change_percent) : null,
+                            previous_close: data.PREV_CLOSE
+                                ? parseFloat(data.PREV_CLOSE.replace(/,/g, ''))
+                                : null,
+                            open: data.OPEN_PRICE ? parseFloat(data.OPEN_PRICE.replace(/,/g, '')) : null,
+                            high: data.DAY_RANGE_HIGH ? parseFloat(data.DAY_RANGE_HIGH.replace(/,/g, '')) : null,
+                            low: data.DAY_RANGE_LOW ? parseFloat(data.DAY_RANGE_LOW.replace(/,/g, '')) : null,
+                            last_update: new Date().toISOString(),
+                            news_headlines: [], // News extraction remains separate
+                        };
+                    }
+                }
+            }
+            catch (e) {
+                console.log('[Investing.com] Meta tag extraction failed, falling back to DOM selectors');
+            }
+            // Strategy 2: DOM Selectors (Fallback)
+            // Attendre explicitement le chargement du prix
+            try {
+                await page.waitForSelector('.intraday__price .value, [data-test="instrument-price-last"]', {
+                    timeout: 10000,
+                });
+            }
+            catch {
+                // Ignore timeout
+            }
+            const value = await this.extractText(page, 'bg-quote.value, .intraday__price .value, [data-test="instrument-price-last"]');
             const changeAbs = await this.extractText(page, '.intraday__price .change--point .value, [data-test="instrument-price-change"]');
             const changePct = await this.extractText(page, '.intraday__price .change--percent .value, [data-test="instrument-price-change-percent"]');
             const prevClose = await this.extractText(page, '.intraday__close .value, [data-test="prev-close-value"]');
@@ -312,7 +355,7 @@ class VixPlaywrightScraper {
                                                 break;
                                             }
                                         }
-                                        catch (e) {
+                                        catch {
                                             continue;
                                         }
                                     }
@@ -328,7 +371,7 @@ class VixPlaywrightScraper {
                                                 }
                                             }
                                         }
-                                        catch (e) {
+                                        catch {
                                             continue;
                                         }
                                     }
@@ -363,7 +406,7 @@ class VixPlaywrightScraper {
                             }
                         }
                     }
-                    catch (e) {
+                    catch {
                         continue;
                     }
                 }
@@ -387,7 +430,7 @@ class VixPlaywrightScraper {
                                 });
                             }
                         }
-                        catch (e) {
+                        catch {
                             continue;
                         }
                     }
@@ -428,22 +471,60 @@ class VixPlaywrightScraper {
         try {
             console.log('[Investing.com] Navigating to VIX page...');
             await page.goto('https://www.investing.com/indices/volatility-s-p-500', {
-                waitUntil: 'domcontentloaded',
-                timeout: 20000,
+                waitUntil: 'commit',
+                timeout: 25000,
             });
-            await this.humanDelay(page, 2000, 3000);
+            await this.humanDelay(page, 2000, 4000);
             // Accepter les cookies si nécessaire
             try {
-                const cookieButton = await page
-                    .locator('#onetrust-accept-btn-handler, button[data-testid="accept-btn"]')
-                    .first();
-                if (await cookieButton.isVisible({ timeout: 2000 })) {
-                    await cookieButton.click();
-                    await page.waitForTimeout(1000);
+                const cookieSelectors = [
+                    '#onetrust-accept-btn-handler',
+                    'button[data-testid="accept-btn"]',
+                    '.js-accept-all-cookies',
+                    'button:has-text("I Agree")',
+                    'button:has-text("Accept")',
+                ];
+                for (const selector of cookieSelectors) {
+                    if (await page.locator(selector).first().isVisible({ timeout: 2000 })) {
+                        await page.locator(selector).first().click();
+                        await page.waitForTimeout(1000);
+                        break;
+                    }
                 }
             }
             catch (e) {
                 // Pas de bouton cookies, c'est normal
+            }
+            // Strategy 1: Try to extract from meta tag (most reliable)
+            try {
+                const metaContent = await page.getAttribute('meta[name="global-translation-variables"]', 'content');
+                if (metaContent) {
+                    // The content is a JSON string, sometimes wrapped in quotes that need cleaning?
+                    // Usually it's just a JSON string.
+                    // It might be html encoded.
+                    const cleanContent = metaContent.replace(/&quot;/g, '"');
+                    const data = JSON.parse(cleanContent);
+                    if (data && data.LAST_PRICE) {
+                        console.log(`[Investing.com] Found data in meta tag: ${data.LAST_PRICE}`);
+                        return {
+                            source: 'Investing.com',
+                            value: parseFloat(data.LAST_PRICE.replace(/,/g, '')),
+                            change_abs: data.daily_change ? parseFloat(data.daily_change) : null,
+                            change_pct: data.daily_change_percent ? parseFloat(data.daily_change_percent) : null,
+                            previous_close: data.PREV_CLOSE
+                                ? parseFloat(data.PREV_CLOSE.replace(/,/g, ''))
+                                : null,
+                            open: data.OPEN_PRICE ? parseFloat(data.OPEN_PRICE.replace(/,/g, '')) : null,
+                            high: data.DAY_RANGE_HIGH ? parseFloat(data.DAY_RANGE_HIGH.replace(/,/g, '')) : null,
+                            low: data.DAY_RANGE_LOW ? parseFloat(data.DAY_RANGE_LOW.replace(/,/g, '')) : null,
+                            last_update: new Date().toISOString(),
+                            news_headlines: [], // News extraction remains separate
+                        };
+                    }
+                }
+            }
+            catch (e) {
+                console.log('[Investing.com] Meta tag extraction failed, falling back to DOM selectors');
             }
             // Attendre les données de prix avec timeout plus court
             const value = await this.extractText(page, '[data-test="instrument-price-last"]');
@@ -512,7 +593,7 @@ class VixPlaywrightScraper {
                                             }
                                         }
                                     }
-                                    catch (e) {
+                                    catch {
                                         continue;
                                     }
                                 }
@@ -528,14 +609,14 @@ class VixPlaywrightScraper {
                                 if (news.length >= 10)
                                     break;
                             }
-                            catch (e) {
+                            catch {
                                 continue;
                             }
                         }
                         if (newsFound && news.length >= 8)
                             break;
                     }
-                    catch (e) {
+                    catch {
                         continue;
                     }
                 }
@@ -567,11 +648,119 @@ class VixPlaywrightScraper {
             await page.close();
         }
     }
+    async scrapeYahoo() {
+        const page = await this.createStealthPage();
+        try {
+            console.log('[Yahoo Finance] Navigating to VIX page...');
+            await page.goto('https://finance.yahoo.com/quote/%5EVIX', {
+                waitUntil: 'commit',
+                timeout: 25000,
+            });
+            await this.humanDelay(page, 2000, 4000);
+            // Handle consent popup if any (Yahoo redirects to consent.yahoo.com)
+            if (page.url().includes('consent.yahoo.com') || (await page.$('button[name="agree"]'))) {
+                console.log('[Yahoo Finance] Consent page detected');
+                try {
+                    const agreeButton = page.locator('button[name="agree"], button.accept-all').first();
+                    if (await agreeButton.isVisible({ timeout: 5000 })) {
+                        await agreeButton.click();
+                        console.log('[Yahoo Finance] Clicked "agree"');
+                        await page.waitForNavigation({ timeout: 20000, waitUntil: 'domcontentloaded' });
+                    }
+                }
+                catch (e) {
+                    console.log('[Yahoo Finance] Error handling consent redirect:', e);
+                }
+            }
+            // Handle in-page consent popup
+            try {
+                const consentSelectors = [
+                    'button[name="agree"]',
+                    '.accept-all',
+                    'button.btn.primary',
+                    'button[value="agree"]',
+                    'form[action*="consent"] button[type="submit"]',
+                    'button:has-text("Accept all")',
+                    'button:has-text("Tout accepter")',
+                ];
+                for (const selector of consentSelectors) {
+                    const button = await page.locator(selector).first();
+                    if (await button.isVisible({ timeout: 3000 })) {
+                        console.log(`[Yahoo Finance] Clicking consent button: ${selector}`);
+                        await button.click();
+                        await page.waitForTimeout(2000); // Wait for navigation/reload
+                        break;
+                    }
+                }
+            }
+            catch (e) {
+                // Ignore
+            }
+            // Wait for price with specific symbol to avoid wrong data
+            const value = await this.extractText(page, 'fin-streamer[data-field="regularMarketPrice"][data-symbol="^VIX"], [data-testid="qsp-price"]');
+            const changeAbs = await this.extractText(page, 'fin-streamer[data-field="regularMarketChange"], [data-testid="qsp-price-change"]');
+            const changePct = await this.extractText(page, 'fin-streamer[data-field="regularMarketChangePercent"], [data-testid="qsp-price-change-percent"]');
+            const prevClose = await this.extractText(page, '[data-test="PREV_CLOSE-value"]');
+            const open = await this.extractText(page, '[data-test="OPEN-value"]');
+            const range = await this.extractText(page, '[data-test="DAYS_RANGE-value"]');
+            const [low, high] = this.parseRange(range);
+            // Extract news
+            const news = [];
+            try {
+                const newsElements = await page.locator('li.js-stream-content, .js-stream-content').all();
+                for (const element of newsElements.slice(0, 5)) {
+                    const titleEl = await element.locator('h3').first();
+                    const linkEl = await element.locator('a').first();
+                    if (await titleEl.isVisible()) {
+                        const title = await titleEl.textContent();
+                        const href = await linkEl.getAttribute('href');
+                        if (title && href) {
+                            news.push({
+                                title: title.trim(),
+                                url: href.startsWith('http') ? href : `https://finance.yahoo.com${href}`,
+                                published_at: new Date().toISOString(),
+                                source_date: new Date(),
+                                relative_time: 'Recent',
+                            });
+                        }
+                    }
+                }
+            }
+            catch {
+                console.log('[Yahoo Finance] Error extracting news');
+            }
+            return {
+                source: 'Yahoo Finance',
+                value: this.parseNumber(value),
+                change_abs: this.parseNumber(changeAbs),
+                change_pct: this.parseNumber(changePct?.replace(/[()%]/g, '')),
+                previous_close: this.parseNumber(prevClose),
+                open: this.parseNumber(open),
+                high: high,
+                low: low,
+                last_update: new Date().toISOString(),
+                news_headlines: news,
+            };
+        }
+        catch (error) {
+            throw new Error(`Yahoo Finance scrape failed: ${error instanceof Error ? error.message : error}`);
+        }
+        finally {
+            await page.close();
+        }
+    }
     async extractText(page, selector) {
         try {
+            // Try to wait for the selector first
+            try {
+                await page.waitForSelector(selector, { timeout: 5000 });
+            }
+            catch (e) {
+                // Ignore timeout, try to get content anyway
+            }
             return (await page.locator(selector).first().textContent()) || '';
         }
-        catch (e) {
+        catch {
             return '';
         }
     }

@@ -27,7 +27,6 @@ async function runDataIngestion() {
 
     console.log('\n🎉 Data ingestion completed successfully!');
     console.log('The RougePulseAgent should now have access to fresh data.');
-
   } catch (error) {
     console.error('❌ Data ingestion failed:', error);
     process.exit(1);

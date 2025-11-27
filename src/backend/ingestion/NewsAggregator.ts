@@ -260,7 +260,7 @@ export class NewsAggregator {
         this.fetchZeroHedgeHeadlines(),
         this.fetchCNBCMarketNews(),
         this.fetchFinancialJuice(),
-        this.fetchFinnhubNews()
+        this.fetchFinnhubNews(),
       ]);
 
       // Ajouter les résultats réussis
@@ -289,7 +289,6 @@ export class NewsAggregator {
 
       console.log(`🎉 News aggregation completed: ${allNews.length} total news saved`);
       return allNews;
-
     } catch (error) {
       console.error('❌ Error during news aggregation:', error);
       return allNews;

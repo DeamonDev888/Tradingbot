@@ -43,7 +43,24 @@ export class Vortex500Agent extends BaseAgentSimple {
       const cacheFresh = await this.dbService.isCacheFresh(2);
       console.log(`[${this.agentName}] Database cache status: ${cacheFresh ? 'FRESH' : 'STALE'}`);
 
-      const cachedNews = await this.dbService.getNewsForAnalysis(48); // 48h de données
+      // Essayer d'abord les 48h récentes, puis étendre à 7 jours si nécessaire
+      let cachedNews = await this.dbService.getNewsForAnalysis(48); // 48h de données
+      let hoursUsed: number | null = 48;
+
+      if (cachedNews.length === 0) {
+        console.log(`[${this.agentName}] No processed news in last 48h, expanding to 7 days...`);
+        cachedNews = await this.getNewsForAnalysisExtended(24 * 7); // 7 jours
+        hoursUsed = 24 * 7;
+      }
+
+      if (cachedNews.length === 0) {
+        console.log(
+          `[${this.agentName}] No processed news in last 7 days, using all processed news...`
+        );
+        cachedNews = await this.getAllProcessedNews();
+        hoursUsed = null;
+      }
+
       allNews = cachedNews.map(item => ({
         title: item.title,
         url: item.url,
@@ -52,7 +69,9 @@ export class Vortex500Agent extends BaseAgentSimple {
         sentiment: item.sentiment,
       }));
 
-      console.log(`[${this.agentName}] Using ${allNews.length} news items from DATABASE`);
+      console.log(
+        `[${this.agentName}] Using ${allNews.length} news items from DATABASE (${hoursUsed ? `last ${hoursUsed}h` : 'all time'})`
+      );
 
       if (allNews.length === 0) {
         console.log(`[${this.agentName}] No news data available in database`);
@@ -81,6 +100,105 @@ export class Vortex500Agent extends BaseAgentSimple {
       return this.createNotAvailableResult(
         `Analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`
       );
+    }
+  }
+
+  /**
+   * Récupère les news pour l'analyse avec paramètre personnalisé
+   */
+  private async getNewsForAnalysisExtended(hoursBack: number): Promise<NewsItem[]> {
+    const client = await (this.dbService as any).pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT id, title, url, source, published_at, scraped_at,
+               sentiment, confidence, keywords, market_hours, processing_status
+        FROM news_items
+        WHERE processing_status = 'processed'
+          AND published_at >= NOW() - INTERVAL '${hoursBack} hours'
+        ORDER BY published_at DESC
+        LIMIT 100
+      `);
+
+      return result.rows.map((row: any) => {
+        // Formater la date en format lisible
+        const publishedDate = new Date(row.published_at);
+        const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+
+        // Nettoyer et normaliser le titre pour gérer les accents et l'encodage
+        const cleanTitle = String(row.title)
+          .replace(/confidentiel/g, 'confidentiel')
+          .replace(/œ/g, 'oe')
+          .replace(/æ/g, 'ae')
+          .replace(/à/g, 'a')
+          .replace(/é/g, 'e')
+          .replace(/è/g, 'e')
+          .replace(/ù/g, 'u');
+
+        return {
+          title: `${cleanTitle} [${formattedDate}]`,
+          url: row.url,
+          source: row.source,
+          timestamp: publishedDate,
+          sentiment: row.sentiment,
+        };
+      });
+    } finally {
+      client.release();
+    }
+  }
+
+  /**
+   * Récupère toutes les news traitées (sans limite de temps)
+   */
+  private async getAllProcessedNews(): Promise<NewsItem[]> {
+    const client = await (this.dbService as any).pool.connect();
+    try {
+      const result = await client.query(`
+        SELECT id, title, url, source, published_at, scraped_at,
+               sentiment, confidence, keywords, market_hours, processing_status
+        FROM news_items
+        WHERE processing_status = 'processed'
+        ORDER BY published_at DESC
+        LIMIT 100
+      `);
+
+      return result.rows.map((row: any) => {
+        // Formater la date en format lisible
+        const publishedDate = new Date(row.published_at);
+        const formattedDate = publishedDate.toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+
+        // Nettoyer et normaliser le titre pour gérer les accents et l'encodage
+        const cleanTitle = String(row.title)
+          .replace(/confidentiel/g, 'confidentiel')
+          .replace(/œ/g, 'oe')
+          .replace(/æ/g, 'ae')
+          .replace(/à/g, 'a')
+          .replace(/é/g, 'e')
+          .replace(/è/g, 'e')
+          .replace(/ù/g, 'u');
+
+        return {
+          title: `${cleanTitle} [${formattedDate}]`,
+          url: row.url,
+          source: row.source,
+          timestamp: publishedDate,
+          sentiment: row.sentiment,
+        };
+      });
+    } finally {
+      client.release();
     }
   }
 
@@ -186,7 +304,7 @@ export class Vortex500Agent extends BaseAgentSimple {
   }
 
   /**
-   * Crée le prompt optimisé pour KiloCode
+   * Crée le prompt optimisé pour KiloCode avec nettoyage des accents
    */
   private createOptimizedPrompt(toonData: string): string {
     return `
@@ -346,13 +464,46 @@ RULES:
     console.log(`[${this.agentName}] Parsing robust output (${stdout.length} chars)...`);
 
     try {
-      // Nettoyer les séquences ANSI
-      const cleanOutput = stdout
-        .replace(/\\x1b\[[0-9;]*m/g, '') // Remove ANSI color codes
-        .replace(/\\x1b\[[0-9;]*[A-Z]/g, '') // Remove ANSI control sequences
-        .replace(/\\x1b\[.*?[A-Za-z]/g, ''); // Remove all remaining ANSI sequences
+      // Nettoyage amélioré des séquences ANSI et caractères de contrôle
+      const cleanOutput = this.stripAnsiCodes(stdout);
 
-      // Parser NDJSON
+      // 1. Chercher d'abord le JSON final complet (pattern le plus spécifique)
+      const finalJsonMatch = cleanOutput.match(/\{[^{}]*"sentiment"[^{}]*\}[^{}]*\}/g);
+      if (finalJsonMatch) {
+        for (const match of finalJsonMatch) {
+          try {
+            const cleaned = match.replace(/^[\s\n\r]+|[\s\n\r]+$/g, '');
+            const parsed = JSON.parse(cleaned);
+            if (this.isValidSentimentResult(parsed)) {
+              console.log(`[${this.agentName}] ✅ Found valid JSON via final pattern`);
+              return this.validateSentimentResult(parsed);
+            }
+          } catch {
+            // Continuer avec le prochain match
+          }
+        }
+      }
+
+      // 2. Améliorer la recherche de JSON dans tout le texte (méthode plus agressive)
+      const enhancedJsonSearch = cleanOutput.match(
+        /\{[\s\S]*?"sentiment"[\s\S]*?"score"[\s\S]*?"risk_level"[\s\S]*?"catalysts"[\s\S]*?"summary"[\s\S]*?\}[\s\S]*\}/g
+      );
+      if (enhancedJsonSearch) {
+        for (const match of enhancedJsonSearch) {
+          try {
+            const cleaned = match.replace(/^[\s\n\r]+|[\s\n\r]+$/g, '');
+            const parsed = JSON.parse(cleaned);
+            if (this.isValidSentimentResult(parsed)) {
+              console.log(`[${this.agentName}] ✅ Found valid JSON via enhanced pattern`);
+              return this.validateSentimentResult(parsed);
+            }
+          } catch {
+            // Continuer avec le prochain match
+          }
+        }
+      }
+
+      // 2. Parser NDJSON ligne par ligne
       const lines = cleanOutput.split('\n').filter(line => line.trim() !== '');
 
       for (const line of lines) {
@@ -383,7 +534,7 @@ RULES:
         }
       }
 
-      // Fallback: chercher JSON dans tout le texte
+      // 3. Fallback: chercher JSON dans tout le texte avec patterns améliorés
       const fallbackParsed = this.extractJsonFromContent(cleanOutput);
       if (fallbackParsed) {
         return this.validateSentimentResult(fallbackParsed);
@@ -395,6 +546,19 @@ RULES:
     }
 
     throw new Error('No valid JSON found in any method');
+  }
+
+  /**
+   * Vérifie si un résultat de sentiment est valide
+   */
+  private isValidSentimentResult(result: any): boolean {
+    return (
+      result &&
+      typeof result === 'object' &&
+      typeof result.sentiment === 'string' &&
+      typeof result.score === 'number' &&
+      ['BULLISH', 'BEARISH', 'NEUTRAL'].includes(result.sentiment.toUpperCase())
+    );
   }
 
   /**
@@ -423,7 +587,7 @@ RULES:
   }
 
   /**
-   * Valide et normalise le résultat pour le SentimentAgent
+   * Valide et normalise le résultat pour le SentimentAgent avec nettoyage
    */
   private validateSentimentResult(result: unknown): Record<string, unknown> {
     if (!result || typeof result !== 'object') {
@@ -441,9 +605,33 @@ RULES:
   }
 
   /**
-   * Crée un résultat validé
+   * Strip ANSI escape codes from a string
+   */
+  private stripAnsiCodes(str: string): string {
+    // Remove ANSI escape sequences
+    return str.replace(
+      /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,
+      ''
+    );
+  }
+
+  /**
+   * Crée un résultat validé avec nettoyage des caractères pour Discord
    */
   private createValidatedResult(override: Record<string, unknown> = {}): Record<string, unknown> {
+    // Fonction de nettoyage pour corriger l'encodage et les accents
+    const cleanForDisplay = (text: string): string => {
+      return String(text)
+        .replace(/confidentiel/g, 'confidentiel')
+        .replace(/œ/g, 'oe')
+        .replace(/æ/g, 'ae')
+        .replace(/à/g, 'a')
+        .replace(/é/g, 'e')
+        .replace(/è/g, 'e')
+        .replace(/ù/g, 'u')
+        .replace(/[^a-zA-Z0-9\s.!?]/g, ''); // Garder seulement lettres, chiffres, espaces et ponctuation simple
+    };
+
     return {
       sentiment:
         override.sentiment &&
@@ -465,7 +653,9 @@ RULES:
             .slice(0, 5)
         : [],
       summary:
-        typeof override.summary === 'string' ? override.summary : 'Aucune analyse disponible',
+        typeof override.summary === 'string'
+          ? cleanForDisplay(override.summary)
+          : 'Aucune analyse disponible',
     };
   }
 }

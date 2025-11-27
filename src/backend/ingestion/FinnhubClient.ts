@@ -156,7 +156,9 @@ export class FinnhubClient {
           symbol: 'ES_CONVERTED',
         };
 
-        console.log(`[Finnhub] ✅ ES Futures (convertis): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`);
+        console.log(
+          `[Finnhub] ✅ ES Futures (convertis): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`
+        );
         return esData;
       }
     } catch (error) {
@@ -181,7 +183,9 @@ export class FinnhubClient {
           symbol: 'ES_FROM_QQQ',
         };
 
-        console.log(`[Finnhub] ⚡ ES Futures (via QQQ): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`);
+        console.log(
+          `[Finnhub] ⚡ ES Futures (via QQQ): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`
+        );
         return esData;
       }
     } catch (error) {
