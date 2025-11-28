@@ -555,7 +555,8 @@ RULES:
      */
     stripAnsiCodes(str) {
         // Remove ANSI escape sequences
-        return str.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
+        const ansiRegex = new RegExp('\x1b\\[[0-9;]*[A-Za-z]', 'g');
+        return str.replace(ansiRegex, '');
     }
     /**
      * Crée un résultat validé avec nettoyage des caractères pour Discord

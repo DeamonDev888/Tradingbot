@@ -343,9 +343,9 @@ ${allNews.length > 15 ? `... et ${allNews.length - 15} autres articles` : ''}
     try {
       const scraper = new TradingEconomicsScraper();
 
-      // Add a 60s timeout for scraping
+      // Add a 120s timeout for scraping (all 3 sources need ~90s)
       const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 60000)
+        setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 120000)
       );
 
       const events = (await Promise.race([scraper.scrapeUSCalendar(), timeoutPromise])) as any[];
@@ -397,9 +397,9 @@ ${events.length > 10 ? `... et ${events.length - 10} autres événements` : ''}
     try {
       const scraper = new VixPlaywrightScraper();
 
-      // Add a 60s timeout for scraping
+      // Add a 120s timeout for scraping (all 3 sources need ~90s)
       const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 60000)
+        setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 120000)
       );
 
       const results = (await Promise.race([scraper.scrapeAll(), timeoutPromise])) as any[];
@@ -569,7 +569,7 @@ ${frenchRec}
   `.trim();
 
   // Vérifier si on a besoin de 2 messages
-  if (message1.length <= 1900) {
+  if (message1.length <= 1800) { // Laisser de la marge pour le second message
     return [message1]; // Un seul message suffit
   } else {
     // Séparer intelligemment en 2 messages
@@ -936,7 +936,7 @@ Analyse : ${metadata.analysis_type || 'N/A'}
   if (message3.length > 0) messages.push(message3);
 
   // Validation finale : garantir que tous les messages sont < 2000 caractères
-  return messages.filter(msg => msg.length > 0 && msg.length <= 1990);
+  return messages.filter(msg => msg.length > 0 && msg.length <= 1999);
 }
 
 function formatVortex500Message(data: any): string {

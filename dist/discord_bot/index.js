@@ -322,8 +322,8 @@ ${allNews.length > 15 ? `... et ${allNews.length - 15} autres articles` : ''}
         const loadingMsg = await message.reply('📅 **TradingEconomicsScraper** scrape le calendrier économique US... ⏳');
         try {
             const scraper = new TradingEconomicsScraper_1.TradingEconomicsScraper();
-            // Add a 60s timeout for scraping
-            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 60000));
+            // Add a 120s timeout for scraping (all 3 sources need ~90s)
+            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 120000));
             const events = (await Promise.race([scraper.scrapeUSCalendar(), timeoutPromise]));
             if (events.length === 0) {
                 await loadingMsg.edit('❌ Aucun événement économique trouvé ou erreur de scraping.');
@@ -363,8 +363,8 @@ ${events.length > 10 ? `... et ${events.length - 10} autres événements` : ''}
         const loadingMsg = await message.reply('📈 **VixPlaywrightScraper** scrape les données VIX... ⏳');
         try {
             const scraper = new VixPlaywrightScraper_1.VixPlaywrightScraper();
-            // Add a 60s timeout for scraping
-            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 60000));
+            // Add a 120s timeout for scraping (all 3 sources need ~90s)
+            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout: Le scraping prend trop de temps.')), 120000));
             const results = (await Promise.race([scraper.scrapeAll(), timeoutPromise]));
             if (results.length === 0) {
                 await loadingMsg.edit('❌ Aucune donnée VIX trouvée ou erreur de scraping.');
@@ -512,7 +512,7 @@ ${frenchRec}
     })()}*
   `.trim();
     // Vérifier si on a besoin de 2 messages
-    if (message1.length <= 1900) {
+    if (message1.length <= 1800) { // Laisser de la marge pour le second message
         return [message1]; // Un seul message suffit
     }
     else {
@@ -847,7 +847,7 @@ Analyse : ${metadata.analysis_type || 'N/A'}
     if (message3.length > 0)
         messages.push(message3);
     // Validation finale : garantir que tous les messages sont < 2000 caractères
-    return messages.filter(msg => msg.length > 0 && msg.length <= 1990);
+    return messages.filter(msg => msg.length > 0 && msg.length <= 1999);
 }
 function formatVortex500Message(data) {
     const sentimentMap = {

@@ -1,0 +1,7 @@
+﻿Keys: [ '0', '1' ]
+Sample values: {
+  last_price: undefined,
+  LastPrice: undefined,
+  lp: undefined,
+  price: undefined
+}

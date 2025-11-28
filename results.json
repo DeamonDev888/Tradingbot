@@ -1,0 +1,57 @@
+[
+  {
+    "source": "Investing.com",
+    "value": 17.21,
+    "change_abs": null,
+    "change_pct": null,
+    "previous_close": 17.21,
+    "open": 17.22,
+    "high": 17.36,
+    "low": 17.05,
+    "last_update": "2025-11-28T01:22:40.767Z",
+    "news_headlines": [
+      {
+        "title": "S&P 500 Faces Rising Reversal Risk as Liquidity and Gamma Pressures Build",
+        "url": "https://www.investing.com/analysis/sp-500-faces-rising-reversal-risk-as-liquidity-and-gamma-pressures-build-200670924",
+        "published_at": "2025-11-28T01:22:40.609Z",
+        "source_date": "2025-11-28T01:22:40.609Z",
+        "relative_time": "Recent",
+        "author": ""
+      },
+      {
+        "title": "Market Response to Fed Messaging Shows AI Remains the Purest Liquidity Trade",
+        "url": "https://www.investing.com/analysis/market-response-to-fed-messaging-shows-ai-remains-the-purest-liquidity-trade-200670729",
+        "published_at": "2025-11-28T01:22:40.690Z",
+        "source_date": "2025-11-28T01:22:40.690Z",
+        "relative_time": "Recent",
+        "author": ""
+      }
+    ]
+  },
+  {
+    "source": "Yahoo Finance",
+    "value": null,
+    "change_abs": null,
+    "change_pct": null,
+    "previous_close": null,
+    "open": null,
+    "high": null,
+    "low": null,
+    "last_update": null,
+    "news_headlines": [],
+    "error": "Timeout: Yahoo Finance scraping timeout"
+  },
+  {
+    "source": "MarketWatch",
+    "value": null,
+    "change_abs": null,
+    "change_pct": null,
+    "previous_close": null,
+    "open": null,
+    "high": null,
+    "low": null,
+    "last_update": null,
+    "news_headlines": [],
+    "error": "Timeout: MarketWatch scraping timeout"
+  }
+]

@@ -1,9 +1,9 @@
 {
-  "events_analyzed": 80,
+  "events_analyzed": 1,
   "analysis": {
     "timestamp": 1,
     "source": "cli",
-    "id": "msg-1764121972141-3778",
+    "id": "msg-1764294794133-7132",
     "type": "welcome",
     "content": "",
     "metadata": {
@@ -15,265 +15,22 @@
     }
   },
   "technical_levels": {
-    "supports": [
-      {
-        "level": 6312.56,
-        "strength": "moyen",
-        "edge_score": 60,
-        "source": "Plus bas de la journée",
-        "edge_reasoning": "Plus bas journalier établit le support technique primaire",
-        "market_context": "Niveau psychologique pour traders intraday",
-        "confirmation_factors": [
-          "Plus bas de la séance",
-          "Support technique visible",
-          "Niveau de référence"
-        ]
-      },
-      {
-        "level": 6352.94,
-        "strength": "faible",
-        "edge_score": 40,
-        "source": "Clôture précédente",
-        "edge_reasoning": "Niveau de clôture précédente comme référence technique secondaire",
-        "market_context": "Point de repère pour traders swing et investisseurs",
-        "confirmation_factors": [
-          "Clôture journalière",
-          "Niveau psychologique modéré",
-          "Point de repère technique"
-        ]
-      },
-      {
-        "level": 6342.166666666666,
-        "strength": "moyen",
-        "edge_score": 65,
-        "source": "Pivot S1",
-        "edge_reasoning": "Support pivot standard calculé sur données journalières",
-        "market_context": "Niveau technique surveillé par les traders intraday",
-        "confirmation_factors": [
-          "Calcul mathématique pivot",
-          "Support technique standard"
-        ]
-      },
-      {
-        "level": 6271.643333333333,
-        "strength": "fort",
-        "edge_score": 75,
-        "source": "Pivot S2",
-        "edge_reasoning": "Second support pivot avec forte signification technique",
-        "market_context": "Zone de support importante pour les mouvements de prix étendus",
-        "confirmation_factors": [
-          "Pivot S2 fort",
-          "Support majeur",
-          "Zone daccumulation potentielle"
-        ]
-      },
-      {
-        "level": 6383.083333333333,
-        "strength": "fort",
-        "edge_score": 70,
-        "source": "Pivot Central (P)",
-        "edge_reasoning": "Pivot central agissant comme support technique important",
-        "market_context": "Niveau pivot surveillé par tous les traders techniques",
-        "confirmation_factors": [
-          "Pivot journalier",
-          "Niveau central",
-          "Point de référence technique"
-        ]
-      },
-      {
-        "level": 6397.70016,
-        "strength": "moyen",
-        "edge_score": 55,
-        "source": "Fibo 23.6%",
-        "edge_reasoning": "Retracement Fibonacci 23.6% calculé sur le range journalier",
-        "market_context": "Support Fibonacci 23.6% surveillé pour rebonds potentiels",
-        "confirmation_factors": [
-          "Fibonacci 23.6%",
-          "Ratio mathématique doré",
-          "Support technique"
-        ]
-      },
-      {
-        "level": 6381.4299200000005,
-        "strength": "moyen",
-        "edge_score": 55,
-        "source": "Fibo 38.2%",
-        "edge_reasoning": "Retracement Fibonacci 38.2% calculé sur le range journalier",
-        "market_context": "Support Fibonacci 38.2% surveillé pour rebonds potentiels",
-        "confirmation_factors": [
-          "Fibonacci 38.2%",
-          "Ratio mathématique doré",
-          "Support technique"
-        ]
-      },
-      {
-        "level": 6368.280000000001,
-        "strength": "moyen",
-        "edge_score": 55,
-        "source": "Fibo 50.0%",
-        "edge_reasoning": "Retracement Fibonacci 50.0% calculé sur le range journalier",
-        "market_context": "Support Fibonacci 50.0% surveillé pour rebonds potentiels",
-        "confirmation_factors": [
-          "Fibonacci 50.0%",
-          "Ratio mathématique doré",
-          "Support technique"
-        ]
-      },
-      {
-        "level": 6355.13008,
-        "strength": "moyen",
-        "edge_score": 55,
-        "source": "Fibo 61.8%",
-        "edge_reasoning": "Retracement Fibonacci 61.8% calculé sur le range journalier",
-        "market_context": "Support Fibonacci 61.8% surveillé pour rebonds potentiels",
-        "confirmation_factors": [
-          "Fibonacci 61.8%",
-          "Ratio mathématique doré",
-          "Support technique"
-        ]
-      }
-    ],
-    "resistances": [
-      {
-        "level": 6424,
-        "strength": "moyen",
-        "edge_score": 60,
-        "source": "Plus haut de la journée",
-        "edge_reasoning": "Plus haut journalier établit la résistance technique primaire",
-        "market_context": "Niveau psychologique pour les prises de profits",
-        "confirmation_factors": [
-          "Plus haut de la séance",
-          "Résistance technique visible",
-          "Zone de distribution"
-        ]
-      },
-      {
-        "level": 6453.606666666666,
-        "strength": "moyen",
-        "edge_score": 65,
-        "source": "Pivot R1",
-        "edge_reasoning": "Résistance pivot standard pour première cible haussière",
-        "market_context": "Objectif technique commun pour les mouvements inversés",
-        "confirmation_factors": [
-          "Résistance pivot R1",
-          "Premier objectif haussier"
-        ]
-      },
-      {
-        "level": 6494.523333333333,
-        "strength": "fort",
-        "edge_score": 75,
-        "source": "Pivot R2",
-        "edge_reasoning": "Résistance pivot majeure pour mouvements directionnels forts",
-        "market_context": "Zone critique pouvant inverser ou accélérer les tendances",
-        "confirmation_factors": [
-          "Résistance forte",
-          "Pivot majeur",
-          "Zone de distribution potentielle"
-        ]
-      }
-    ],
-    "current_price": 6412.69,
+    "supports": [],
+    "resistances": [],
+    "current_price": 0,
     "daily_range": {
-      "high": 6424,
-      "low": 6312.56
+      "high": 0,
+      "low": 0
     },
-    "round_levels": [
-      {
-        "level": 5900,
-        "type": "psychological",
-        "significance": "Niveau psychologique ES"
-      },
-      {
-        "level": 6000,
-        "type": "psychological",
-        "significance": "Niveau psychologique majeur ES"
-      },
-      {
-        "level": 6100,
-        "type": "psychological",
-        "significance": "Niveau psychologique ES"
-      },
-      {
-        "level": 6200,
-        "type": "psychological",
-        "significance": "Niveau psychologique notable"
-      },
-      {
-        "level": 6300,
-        "type": "psychological",
-        "significance": "Zone psychologique proche"
-      },
-      {
-        "level": 6400,
-        "type": "psychological",
-        "significance": "Niveau psychologique actuel"
-      },
-      {
-        "level": 6500,
-        "type": "psychological",
-        "significance": "Zone psychologique proche"
-      },
-      {
-        "level": 6600,
-        "type": "psychological",
-        "significance": "Niveau psychologique notable"
-      },
-      {
-        "level": 6700,
-        "type": "psychological",
-        "significance": "Niveau psychologique ES"
-      },
-      {
-        "level": 6800,
-        "type": "psychological",
-        "significance": "Niveau psychologique ES"
-      },
-      {
-        "level": 6900,
-        "type": "psychological",
-        "significance": "Niveau psychologique ES"
-      }
-    ],
+    "round_levels": [],
     "pivot_points": {
-      "p": 6383.083333333333,
-      "r1": 6453.606666666666,
-      "r2": 6494.523333333333,
-      "s1": 6342.166666666666,
-      "s2": 6271.643333333333
+      "p": 0,
+      "r1": 0,
+      "r2": 0,
+      "s1": 0,
+      "s2": 0
     },
-    "fibonacci_levels": [
-      {
-        "level": 6397.70016,
-        "type": "retracement",
-        "percent": "23.6%"
-      },
-      {
-        "level": 6381.4299200000005,
-        "type": "retracement",
-        "percent": "38.2%"
-      },
-      {
-        "level": 6368.280000000001,
-        "type": "retracement",
-        "percent": "50.0%"
-      },
-      {
-        "level": 6355.13008,
-        "type": "retracement",
-        "percent": "61.8%"
-      }
-    ]
+    "fibonacci_levels": []
   },
-  "sp500_data": {
-    "current": 6412.69,
-    "change": 59.76,
-    "percent_change": 0.9406,
-    "high": 6424,
-    "low": 6312.56,
-    "open": 6351.99,
-    "previous_close": 6352.94,
-    "timestamp": 1764104400,
-    "symbol": "ES_CONVERTED"
-  }
+  "sp500_data": null
 }

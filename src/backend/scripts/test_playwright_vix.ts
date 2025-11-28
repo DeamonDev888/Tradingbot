@@ -24,6 +24,13 @@ async function testPlaywrightVixScraper() {
 
     const startTime = Date.now();
     const results = await scraper.scrapeAll();
+
+    // Save full results to file for debugging
+    const fs = require('fs');
+    fs.writeFileSync('results.json', JSON.stringify(results, null, 2));
+
+    console.log('\n📊 RÉSULTATS DÉTAILLÉS:');
+    -startTime;
     const duration = Date.now() - startTime;
 
     console.log(`⏱️  Scraping terminé en ${duration}ms\n`);

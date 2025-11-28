@@ -1,0 +1,436 @@
+{
+  "date": "2025-12-09",
+  "total_news": 11,
+  "by_hour": {
+    "16:00": [
+      {
+        "date": "2025-12-09",
+        "hour": "16:00",
+        "timestamp": "2025-12-09T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "13:00": [
+      {
+        "date": "2025-12-09",
+        "hour": "13:00",
+        "timestamp": "2025-12-09T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 10-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-09",
+        "hour": "10:00",
+        "timestamp": "2025-12-09T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR JOLTs Job Openings (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Openings",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "10:00",
+        "timestamp": "2025-12-09T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR JOLTs Job Quits (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Quits",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Productivity QoQ Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Nonfarm",
+          "Productivity",
+          "Final"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Unit Labour Costs QoQ Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Unit",
+          "Labour",
+          "Costs"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change Weekly (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "Weekly"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "06:00": [
+      {
+        "date": "2025-12-09",
+        "hour": "06:00",
+        "timestamp": "2025-12-09T11:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NFIB Business Optimism Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Business",
+          "Optimism",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-09",
+        "hour": "00:00",
+        "timestamp": "2025-12-09T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Productivity QoQ Prel (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Nonfarm",
+          "Productivity",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "00:00",
+        "timestamp": "2025-12-09T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Unit Labour Costs QoQ Prel (United States): Actual vs Forecast 0.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Unit",
+          "Labour",
+          "Costs"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-09",
+        "hour": "16:00",
+        "timestamp": "2025-12-09T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "13:00",
+        "timestamp": "2025-12-09T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 10-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "10:00",
+        "timestamp": "2025-12-09T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR JOLTs Job Openings (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Openings",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "10:00",
+        "timestamp": "2025-12-09T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR JOLTs Job Quits (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Quits",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Productivity QoQ Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Nonfarm",
+          "Productivity",
+          "Final"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Unit Labour Costs QoQ Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Unit",
+          "Labour",
+          "Costs"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "08:00",
+        "timestamp": "2025-12-09T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change Weekly (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "Weekly"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "06:00",
+        "timestamp": "2025-12-09T11:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NFIB Business Optimism Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Business",
+          "Optimism",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "00:00",
+        "timestamp": "2025-12-09T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Productivity QoQ Prel (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Nonfarm",
+          "Productivity",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-09",
+        "hour": "00:00",
+        "timestamp": "2025-12-09T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Unit Labour Costs QoQ Prel (United States): Actual vs Forecast 0.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Unit",
+          "Labour",
+          "Costs"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 11,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 5,
+    "market": 3,
+    "after-hours": 1,
+    "extended": 2
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 11
+    },
+    {
+      "keyword": "States):",
+      "count": 4
+    },
+    {
+      "keyword": "Actual",
+      "count": 3
+    },
+    {
+      "keyword": "Change",
+      "count": 2
+    },
+    {
+      "keyword": "Nonfarm",
+      "count": 2
+    },
+    {
+      "keyword": "Productivity",
+      "count": 2
+    },
+    {
+      "keyword": "Unit",
+      "count": 2
+    },
+    {
+      "keyword": "Labour",
+      "count": 2
+    },
+    {
+      "keyword": "Costs",
+      "count": 2
+    },
+    {
+      "keyword": "oil",
+      "count": 1
+    }
+  ]
+}

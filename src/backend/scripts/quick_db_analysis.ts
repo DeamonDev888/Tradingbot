@@ -29,7 +29,11 @@ async function quickDatabaseAnalysis() {
       UNION ALL
       SELECT
         'market_data' as table_name, COUNT(*) as total_rows, MAX(timestamp) as last_update
-      FROM market_data;
+      FROM market_data
+      UNION ALL
+      SELECT
+        'economic_events' as table_name, COUNT(*) as total_rows, MAX(created_at) as last_update
+      FROM economic_events;
     `;
 
     const statsResult = await client.query(statsQuery);

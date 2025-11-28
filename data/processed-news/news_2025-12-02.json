@@ -1,0 +1,314 @@
+{
+  "date": "2025-12-02",
+  "total_news": 7,
+  "by_hour": {
+    "16:00": [
+      {
+        "date": "2025-12-02",
+        "hour": "16:00",
+        "timestamp": "2025-12-02T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-02",
+        "hour": "10:00",
+        "timestamp": "2025-12-02T15:10:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR RCMTIPP Economic Optimism Index (United States): Actual vs Forecast 48.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "economic",
+          "Economic",
+          "Optimism",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "10:00",
+        "timestamp": "2025-12-02T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Bowman Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Bowman",
+          "Speech",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-02",
+        "hour": "08:00",
+        "timestamp": "2025-12-02T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-02",
+        "hour": "00:00",
+        "timestamp": "2025-12-02T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR LMI Logistics Managers Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Logistics",
+          "Managers",
+          "Index"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "00:00",
+        "timestamp": "2025-12-02T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Total Vehicle Sales (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Total",
+          "Vehicle",
+          "Sales"
+        ],
+        "market_hours": "extended"
+      }
+    ],
+    "20:00": [
+      {
+        "date": "2025-12-02",
+        "hour": "20:00",
+        "timestamp": "2025-12-02T01:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Chair Powell Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "powell",
+          "es",
+          "ai",
+          "Chair",
+          "Powell",
+          "Speech"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-02",
+        "hour": "16:00",
+        "timestamp": "2025-12-02T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "10:00",
+        "timestamp": "2025-12-02T15:10:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR RCMTIPP Economic Optimism Index (United States): Actual vs Forecast 48.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "economic",
+          "Economic",
+          "Optimism",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "10:00",
+        "timestamp": "2025-12-02T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Bowman Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Bowman",
+          "Speech",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "08:00",
+        "timestamp": "2025-12-02T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "00:00",
+        "timestamp": "2025-12-02T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR LMI Logistics Managers Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Logistics",
+          "Managers",
+          "Index"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "00:00",
+        "timestamp": "2025-12-02T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Total Vehicle Sales (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Total",
+          "Vehicle",
+          "Sales"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-02",
+        "hour": "20:00",
+        "timestamp": "2025-12-02T01:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Chair Powell Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "powell",
+          "es",
+          "ai",
+          "Chair",
+          "Powell",
+          "Speech"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 7,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 1,
+    "market": 2,
+    "after-hours": 1,
+    "extended": 3
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 7
+    },
+    {
+      "keyword": "index",
+      "count": 2
+    },
+    {
+      "keyword": "Index",
+      "count": 2
+    },
+    {
+      "keyword": "fed",
+      "count": 2
+    },
+    {
+      "keyword": "Speech",
+      "count": 2
+    },
+    {
+      "keyword": "States):",
+      "count": 2
+    },
+    {
+      "keyword": "oil",
+      "count": 1
+    },
+    {
+      "keyword": "Crude",
+      "count": 1
+    },
+    {
+      "keyword": "Stock",
+      "count": 1
+    },
+    {
+      "keyword": "Change",
+      "count": 1
+    }
+  ]
+}

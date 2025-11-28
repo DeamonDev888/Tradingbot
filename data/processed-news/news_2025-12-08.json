@@ -1,0 +1,200 @@
+{
+  "date": "2025-12-08",
+  "total_news": 4,
+  "by_hour": {
+    "13:00": [
+      {
+        "date": "2025-12-08",
+        "hour": "13:00",
+        "timestamp": "2025-12-08T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-12-08",
+        "hour": "11:00",
+        "timestamp": "2025-12-08T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-08",
+        "hour": "11:00",
+        "timestamp": "2025-12-08T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 6-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-08",
+        "hour": "11:00",
+        "timestamp": "2025-12-08T16:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Consumer Inflation Expectations (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "consumer",
+          "Consumer",
+          "Inflation",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-08",
+        "hour": "13:00",
+        "timestamp": "2025-12-08T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-08",
+        "hour": "11:00",
+        "timestamp": "2025-12-08T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-08",
+        "hour": "11:00",
+        "timestamp": "2025-12-08T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 6-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-08",
+        "hour": "11:00",
+        "timestamp": "2025-12-08T16:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Consumer Inflation Expectations (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "consumer",
+          "Consumer",
+          "Inflation",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 4,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 4,
+    "after-hours": 0,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 4
+    },
+    {
+      "keyword": "Auction",
+      "count": 3
+    },
+    {
+      "keyword": "States):",
+      "count": 3
+    },
+    {
+      "keyword": "Bill",
+      "count": 2
+    },
+    {
+      "keyword": "Note",
+      "count": 1
+    },
+    {
+      "keyword": "inflation",
+      "count": 1
+    },
+    {
+      "keyword": "consumer",
+      "count": 1
+    },
+    {
+      "keyword": "Consumer",
+      "count": 1
+    },
+    {
+      "keyword": "Inflation",
+      "count": 1
+    },
+    {
+      "keyword": "Expectations",
+      "count": 1
+    }
+  ]
+}

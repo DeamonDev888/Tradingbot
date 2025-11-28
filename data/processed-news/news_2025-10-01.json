@@ -1,0 +1,114 @@
+{
+  "date": "2025-10-01",
+  "total_news": 2,
+  "by_hour": {
+    "20:00": [
+      {
+        "date": "2025-10-01",
+        "hour": "20:00",
+        "timestamp": "2025-10-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Federal Funds Rate: 4.09 (As of 2025-10-01)",
+        "url": "https://fred.stlouisfed.org/series/FEDFUNDS?date=2025-10-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "rate",
+          "Federal",
+          "Funds",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-10-01",
+        "hour": "20:00",
+        "timestamp": "2025-10-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Federal Funds Rate: 4.09 (As of 2025-10-01)",
+        "url": "https://fred.stlouisfed.org/series/FEDFUNDS?date=2025-10-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "rate",
+          "Federal",
+          "Funds",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "FRED": [
+      {
+        "date": "2025-10-01",
+        "hour": "20:00",
+        "timestamp": "2025-10-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Federal Funds Rate: 4.09 (As of 2025-10-01)",
+        "url": "https://fred.stlouisfed.org/series/FEDFUNDS?date=2025-10-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "rate",
+          "Federal",
+          "Funds",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-10-01",
+        "hour": "20:00",
+        "timestamp": "2025-10-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Federal Funds Rate: 4.09 (As of 2025-10-01)",
+        "url": "https://fred.stlouisfed.org/series/FEDFUNDS?date=2025-10-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "rate",
+          "Federal",
+          "Funds",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 2,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 0,
+    "after-hours": 0,
+    "extended": 2
+  },
+  "top_keywords": [
+    {
+      "keyword": "fed",
+      "count": 2
+    },
+    {
+      "keyword": "rate",
+      "count": 2
+    },
+    {
+      "keyword": "Federal",
+      "count": 2
+    },
+    {
+      "keyword": "Funds",
+      "count": 2
+    },
+    {
+      "keyword": "Rate:",
+      "count": 2
+    }
+  ]
+}

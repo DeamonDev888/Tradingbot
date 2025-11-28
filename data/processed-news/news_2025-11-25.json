@@ -1,0 +1,554 @@
+{
+  "date": "2025-11-25",
+  "total_news": 16,
+  "by_hour": {
+    "17:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "17:00",
+        "timestamp": "2025-11-25T22:29:37.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves after hours: HP Inc., Dell Technologies, Urban Outfitters and more",
+        "url": "https://www.cnbc.com/2025/11/25/stocks-making-the-biggest-moves-after-hours-hpq-dell-urbn.html",
+        "keywords": [
+          "es",
+          "tech",
+          "Stocks",
+          "Inc.,",
+          "Dell"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "14:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "14:00",
+        "timestamp": "2025-11-25T19:10:57.000Z",
+        "source": "CNBC",
+        "title": "Nvidia name-checks Michael Burry in secret memo pushing back on AI bubble allegations",
+        "url": "https://www.cnbc.com/2025/11/25/nvidia-pushes-back-on-charges-that-ai-investment-is-a-bubble.html",
+        "keywords": [
+          "ai",
+          "nvidia",
+          "Nvidia",
+          "Michael",
+          "Burry"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "12:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "12:00",
+        "timestamp": "2025-11-25T17:20:31.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves midday: Abercrombie  Fitch, Nvidia, Coinbase, Symbotic  more",
+        "url": "https://www.cnbc.com/2025/11/25/stocks-making-the-biggest-moves-midday-anf-nvda-coin-sym-more.html",
+        "keywords": [
+          "es",
+          "ym",
+          "nvidia",
+          "Stocks",
+          "Abercrombie",
+          "Fitch,"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "11:00",
+        "timestamp": "2025-11-25T16:29:35.000Z",
+        "source": "CNBC",
+        "title": "Michael Burry's next 'Big Short': An inside look at his analysis showing AI is a bubble",
+        "url": "https://www.cnbc.com/2025/11/25/michael-burrys-next-big-short-an-inside-look-at-his-analysis-showing-ai-is-a-bubble.html",
+        "keywords": [
+          "ai",
+          "Michael",
+          "Burry's",
+          "Short':"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "08:00",
+        "timestamp": "2025-11-25T13:29:41.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves premarket: Kohl's, Nvidia, Dick's Sporting Goods, Symbotic  more",
+        "url": "https://www.cnbc.com/2025/11/25/stocks-making-the-biggest-moves-premarket-kss-nvda-dks-sym.html",
+        "keywords": [
+          "es",
+          "ym",
+          "market",
+          "nvidia",
+          "Stocks",
+          "Kohl's,",
+          "Nvidia,"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "01:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "01:00",
+        "timestamp": "2025-11-25T06:31:49.000Z",
+        "source": "CNBC",
+        "title": "BlackRock's iShares bitcoin fund sees record exodus as crypto heads for worst month since 2022",
+        "url": "https://www.cnbc.com/2025/11/24/blackrocks-ishares-bitcoin-fund-sees-record-exodus-as-crypto-heads-for-worst-month-since-2022.html",
+        "keywords": [
+          "es",
+          "BlackRock's"
+        ],
+        "market_hours": "extended"
+      }
+    ],
+    "19:00": [
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 2-Year Treasury Yield: 3.43 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 5-Year Treasury Yield: 3.55 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS5?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10-Year Treasury Yield: 4.01 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS10?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 30-Year Treasury Yield: 4.67 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS30?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA High Yield Credit Spread: 3.1 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "High",
+          "Yield",
+          "Credit"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 2-Year Treasury Yield: 3.43 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 5-Year Treasury Yield: 3.55 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS5?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10-Year Treasury Yield: 4.01 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS10?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 30-Year Treasury Yield: 4.67 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS30?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA High Yield Credit Spread: 3.1 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "High",
+          "Yield",
+          "Credit"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "by_source": {
+    "CNBC": [
+      {
+        "date": "2025-11-25",
+        "hour": "17:00",
+        "timestamp": "2025-11-25T22:29:37.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves after hours: HP Inc., Dell Technologies, Urban Outfitters and more",
+        "url": "https://www.cnbc.com/2025/11/25/stocks-making-the-biggest-moves-after-hours-hpq-dell-urbn.html",
+        "keywords": [
+          "es",
+          "tech",
+          "Stocks",
+          "Inc.,",
+          "Dell"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "14:00",
+        "timestamp": "2025-11-25T19:10:57.000Z",
+        "source": "CNBC",
+        "title": "Nvidia name-checks Michael Burry in secret memo pushing back on AI bubble allegations",
+        "url": "https://www.cnbc.com/2025/11/25/nvidia-pushes-back-on-charges-that-ai-investment-is-a-bubble.html",
+        "keywords": [
+          "ai",
+          "nvidia",
+          "Nvidia",
+          "Michael",
+          "Burry"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "12:00",
+        "timestamp": "2025-11-25T17:20:31.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves midday: Abercrombie  Fitch, Nvidia, Coinbase, Symbotic  more",
+        "url": "https://www.cnbc.com/2025/11/25/stocks-making-the-biggest-moves-midday-anf-nvda-coin-sym-more.html",
+        "keywords": [
+          "es",
+          "ym",
+          "nvidia",
+          "Stocks",
+          "Abercrombie",
+          "Fitch,"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "11:00",
+        "timestamp": "2025-11-25T16:29:35.000Z",
+        "source": "CNBC",
+        "title": "Michael Burry's next 'Big Short': An inside look at his analysis showing AI is a bubble",
+        "url": "https://www.cnbc.com/2025/11/25/michael-burrys-next-big-short-an-inside-look-at-his-analysis-showing-ai-is-a-bubble.html",
+        "keywords": [
+          "ai",
+          "Michael",
+          "Burry's",
+          "Short':"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "08:00",
+        "timestamp": "2025-11-25T13:29:41.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves premarket: Kohl's, Nvidia, Dick's Sporting Goods, Symbotic  more",
+        "url": "https://www.cnbc.com/2025/11/25/stocks-making-the-biggest-moves-premarket-kss-nvda-dks-sym.html",
+        "keywords": [
+          "es",
+          "ym",
+          "market",
+          "nvidia",
+          "Stocks",
+          "Kohl's,",
+          "Nvidia,"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "01:00",
+        "timestamp": "2025-11-25T06:31:49.000Z",
+        "source": "CNBC",
+        "title": "BlackRock's iShares bitcoin fund sees record exodus as crypto heads for worst month since 2022",
+        "url": "https://www.cnbc.com/2025/11/24/blackrocks-ishares-bitcoin-fund-sees-record-exodus-as-crypto-heads-for-worst-month-since-2022.html",
+        "keywords": [
+          "es",
+          "BlackRock's"
+        ],
+        "market_hours": "extended"
+      }
+    ],
+    "FRED": [
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 2-Year Treasury Yield: 3.43 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 5-Year Treasury Yield: 3.55 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS5?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10-Year Treasury Yield: 4.01 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS10?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 30-Year Treasury Yield: 4.67 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS30?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA High Yield Credit Spread: 3.1 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "High",
+          "Yield",
+          "Credit"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 2-Year Treasury Yield: 3.43 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 5-Year Treasury Yield: 3.55 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS5?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10-Year Treasury Yield: 4.01 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS10?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 30-Year Treasury Yield: 4.67 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/DGS30?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-25",
+        "hour": "19:00",
+        "timestamp": "2025-11-25T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA High Yield Credit Spread: 3.1 (As of 2025-11-25)",
+        "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2?date=2025-11-25",
+        "sentiment": "neutral",
+        "keywords": [
+          "High",
+          "Yield",
+          "Credit"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 10,
+    "unknown": 6
+  },
+  "market_hours_distribution": {
+    "pre-market": 1,
+    "market": 3,
+    "after-hours": 11,
+    "extended": 1
+  },
+  "top_keywords": [
+    {
+      "keyword": "Treasury",
+      "count": 8
+    },
+    {
+      "keyword": "Yield:",
+      "count": 8
+    },
+    {
+      "keyword": "es",
+      "count": 4
+    },
+    {
+      "keyword": "Stocks",
+      "count": 3
+    },
+    {
+      "keyword": "nvidia",
+      "count": 3
+    },
+    {
+      "keyword": "ai",
+      "count": 2
+    },
+    {
+      "keyword": "Michael",
+      "count": 2
+    },
+    {
+      "keyword": "ym",
+      "count": 2
+    },
+    {
+      "keyword": "High",
+      "count": 2
+    },
+    {
+      "keyword": "Yield",
+      "count": 2
+    }
+  ]
+}

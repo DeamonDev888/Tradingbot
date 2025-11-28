@@ -1,0 +1,542 @@
+{
+  "date": "2025-12-04",
+  "total_news": 14,
+  "by_hour": {
+    "16:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "16:00",
+        "timestamp": "2025-12-04T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Balance Sheet (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Balance",
+          "Sheet",
+          "States):"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "12:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "12:00",
+        "timestamp": "2025-12-04T17:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Bowman Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Bowman",
+          "Speech",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "12:00",
+        "timestamp": "2025-12-04T17:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 15-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "12:00",
+        "timestamp": "2025-12-04T17:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 30-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "11:00",
+        "timestamp": "2025-12-04T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 4-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "11:00",
+        "timestamp": "2025-12-04T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 8-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "10:00",
+        "timestamp": "2025-12-04T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Natural Gas Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Natural",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "08:00",
+        "timestamp": "2025-12-04T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Initial Jobless Claims (United States): Actual vs Forecast 220.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ai",
+          "Initial",
+          "Jobless",
+          "Claims"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "08:00",
+        "timestamp": "2025-12-04T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Continuing Jobless Claims (United States): Actual vs Forecast 1964.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ai",
+          "Continuing",
+          "Jobless",
+          "Claims"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "08:00",
+        "timestamp": "2025-12-04T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Jobless Claims 4-week Average (United States): Actual vs Forecast 225.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ai",
+          "Jobless",
+          "Claims",
+          "Average"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "07:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "07:00",
+        "timestamp": "2025-12-04T12:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Challenger Job Cuts (United States): Actual vs Forecast 98.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Challenger",
+          "Cuts",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-04",
+        "hour": "00:00",
+        "timestamp": "2025-12-04T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Balance of Trade (United States): Actual vs Forecast  -57B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "trade",
+          "Balance",
+          "Trade",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "00:00",
+        "timestamp": "2025-12-04T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Exports (United States): Actual vs Forecast 281.0B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Exports",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "00:00",
+        "timestamp": "2025-12-04T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Imports (United States): Actual vs Forecast  338B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Imports",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-04",
+        "hour": "16:00",
+        "timestamp": "2025-12-04T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Balance Sheet (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Balance",
+          "Sheet",
+          "States):"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "12:00",
+        "timestamp": "2025-12-04T17:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Bowman Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Bowman",
+          "Speech",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "12:00",
+        "timestamp": "2025-12-04T17:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 15-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "12:00",
+        "timestamp": "2025-12-04T17:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 30-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "11:00",
+        "timestamp": "2025-12-04T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 4-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "11:00",
+        "timestamp": "2025-12-04T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 8-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "10:00",
+        "timestamp": "2025-12-04T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Natural Gas Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Natural",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "08:00",
+        "timestamp": "2025-12-04T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Initial Jobless Claims (United States): Actual vs Forecast 220.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ai",
+          "Initial",
+          "Jobless",
+          "Claims"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "08:00",
+        "timestamp": "2025-12-04T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Continuing Jobless Claims (United States): Actual vs Forecast 1964.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ai",
+          "Continuing",
+          "Jobless",
+          "Claims"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "08:00",
+        "timestamp": "2025-12-04T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Jobless Claims 4-week Average (United States): Actual vs Forecast 225.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ai",
+          "Jobless",
+          "Claims",
+          "Average"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "07:00",
+        "timestamp": "2025-12-04T12:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Challenger Job Cuts (United States): Actual vs Forecast 98.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Challenger",
+          "Cuts",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "00:00",
+        "timestamp": "2025-12-04T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Balance of Trade (United States): Actual vs Forecast  -57B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "trade",
+          "Balance",
+          "Trade",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "00:00",
+        "timestamp": "2025-12-04T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Exports (United States): Actual vs Forecast 281.0B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Exports",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-04",
+        "hour": "00:00",
+        "timestamp": "2025-12-04T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Imports (United States): Actual vs Forecast  338B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Imports",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 14,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 4,
+    "market": 6,
+    "after-hours": 1,
+    "extended": 3
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 14
+    },
+    {
+      "keyword": "States):",
+      "count": 10
+    },
+    {
+      "keyword": "ai",
+      "count": 3
+    },
+    {
+      "keyword": "Jobless",
+      "count": 3
+    },
+    {
+      "keyword": "Claims",
+      "count": 3
+    },
+    {
+      "keyword": "fed",
+      "count": 2
+    },
+    {
+      "keyword": "Balance",
+      "count": 2
+    },
+    {
+      "keyword": "rate",
+      "count": 2
+    },
+    {
+      "keyword": "Mortgage",
+      "count": 2
+    },
+    {
+      "keyword": "Rate",
+      "count": 2
+    }
+  ]
+}

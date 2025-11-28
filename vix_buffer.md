@@ -36,13 +36,23 @@ CRITICAL RULES:
 ## 📊 VIX DATA
 [
   {
-    "source": "MarketWatch",
+    "source": "Investing.com",
+    "value": 17.19,
+    "change_pct": null,
+    "news": [
+      "S&P 500: Volatility Dispersion Forces Override Liquidity Headwinds",
+      "Japanese Yen Outlook: USD/JPY Jump Mirrors JGB Selloff and Rising Fiscal Unease",
+      "Risk Rally on Resurgent Fed Rate-Cut Optimism"
+    ]
+  },
+  {
+    "source": "Yahoo Finance",
     "value": null,
     "change_pct": null,
     "news": []
   },
   {
-    "source": "Investing.com",
+    "source": "MarketWatch",
     "value": null,
     "change_pct": null,
     "news": []

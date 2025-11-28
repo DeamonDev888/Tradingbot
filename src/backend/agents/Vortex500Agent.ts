@@ -1,5 +1,5 @@
 import { BaseAgentSimple } from './BaseAgentSimple';
-import { NewsAggregator, NewsItem } from '../ingestion/NewsAggregator';
+import { NewsItem } from '../ingestion/NewsAggregator';
 import { NewsDatabaseService } from '../database/NewsDatabaseService';
 import { ToonFormatter } from '../utils/ToonFormatter';
 import { exec } from 'child_process';
@@ -7,7 +7,6 @@ import { promisify } from 'util';
 import * as fs from 'fs/promises';
 
 export class Vortex500Agent extends BaseAgentSimple {
-  private newsAggregator: NewsAggregator;
   private dbService: NewsDatabaseService;
   private readonly execAsync: (
     command: string,
@@ -16,7 +15,6 @@ export class Vortex500Agent extends BaseAgentSimple {
 
   constructor() {
     super('vortex500-agent');
-    this.newsAggregator = new NewsAggregator();
     this.dbService = new NewsDatabaseService();
     this.execAsync = promisify(exec);
   }
@@ -218,47 +216,7 @@ export class Vortex500Agent extends BaseAgentSimple {
     };
   }
 
-  /**
-   * Scraping robust des nouvelles
-   */
-  private async scrapeFreshNews(): Promise<NewsItem[]> {
-    const sources = ['ZeroHedge', 'CNBC', 'FinancialJuice'];
-    console.log(`[${this.agentName}] Scraping from ${sources.join(', ')}...`);
 
-    try {
-      const [zeroHedge, cnbc, financialJuice] = await Promise.allSettled([
-        this.newsAggregator.fetchZeroHedgeHeadlines(),
-        this.newsAggregator.fetchCNBCMarketNews(),
-        this.newsAggregator.fetchFinancialJuice(),
-      ]);
-
-      const results = [zeroHedge, cnbc, financialJuice];
-      const counts = results.map(r => (r.status === 'fulfilled' ? r.value.length : 0));
-      const allNews: NewsItem[] = [];
-
-      results.forEach((result, index) => {
-        if (result.status === 'fulfilled') {
-          allNews.push(...result.value);
-          this.dbService.updateSourceStatus(sources[index], true);
-        } else {
-          console.error(`[${this.agentName}] Failed to scrape ${sources[index]}:`, result.reason);
-          this.dbService.updateSourceStatus(
-            sources[index],
-            false,
-            result.reason instanceof Error ? result.reason.message : 'Unknown error'
-          );
-        }
-      });
-
-      console.log(
-        `[${this.agentName}] Scraped ${allNews.length} headlines (ZH: ${counts[0]}, CNBC: ${counts[1]}, FJ: ${counts[2]})`
-      );
-      return allNews;
-    } catch (error) {
-      console.error(`[${this.agentName}] Scraping failed:`, error);
-      return [];
-    }
-  }
 
   /**
    * Analyse finale robuste avec fallback multiples
@@ -609,10 +567,8 @@ RULES:
    */
   private stripAnsiCodes(str: string): string {
     // Remove ANSI escape sequences
-    return str.replace(
-      /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,
-      ''
-    );
+    const ansiRegex = new RegExp('\x1b\\[[0-9;]*[A-Za-z]', 'g');
+    return str.replace(ansiRegex, '');
   }
 
   /**

@@ -1,0 +1,82 @@
+{
+  "date": "2025-04-01",
+  "total_news": 2,
+  "by_hour": {
+    "20:00": [
+      {
+        "date": "2025-04-01",
+        "hour": "20:00",
+        "timestamp": "2025-04-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US GDP: 30485.729 (As of 2025-04-01)",
+        "url": "https://fred.stlouisfed.org/series/GDP?date=2025-04-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "gdp"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-04-01",
+        "hour": "20:00",
+        "timestamp": "2025-04-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US GDP: 30485.729 (As of 2025-04-01)",
+        "url": "https://fred.stlouisfed.org/series/GDP?date=2025-04-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "gdp"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "FRED": [
+      {
+        "date": "2025-04-01",
+        "hour": "20:00",
+        "timestamp": "2025-04-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US GDP: 30485.729 (As of 2025-04-01)",
+        "url": "https://fred.stlouisfed.org/series/GDP?date=2025-04-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "gdp"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-04-01",
+        "hour": "20:00",
+        "timestamp": "2025-04-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US GDP: 30485.729 (As of 2025-04-01)",
+        "url": "https://fred.stlouisfed.org/series/GDP?date=2025-04-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "gdp"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 2,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 0,
+    "after-hours": 0,
+    "extended": 2
+  },
+  "top_keywords": [
+    {
+      "keyword": "gdp",
+      "count": 2
+    }
+  ]
+}

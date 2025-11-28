@@ -1,0 +1,184 @@
+{
+  "date": "2025-11-28",
+  "total_news": 4,
+  "by_hour": {
+    "20:00": [
+      {
+        "date": "2025-11-28",
+        "hour": "20:00",
+        "timestamp": "2025-11-28T01:00:00.000Z",
+        "source": "ZeroHedge",
+        "title": "DoJ Attempts To Save Face With New Pro-Gun Office  SCOTUS Filing",
+        "url": "https://www.zerohedge.com/political/doj-attempts-save-face-new-pro-gun-office-scotus-filing",
+        "keywords": [
+          "Attempts",
+          "Save",
+          "Face"
+        ],
+        "market_hours": "extended"
+      }
+    ],
+    "19:00": [
+      {
+        "date": "2025-11-28",
+        "hour": "19:00",
+        "timestamp": "2025-11-28T00:30:57.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Australian Housing Credit Actual 0.6 (Forecast -, Previous 0.6)",
+        "url": "https://www.financialjuice.com/News/9319779/Australian-Housing-Credit-Actual-06-Forecast---Previous-06.aspx?xy=rss",
+        "keywords": [
+          "FinancialJuice:",
+          "Australian",
+          "Housing"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-28",
+        "hour": "19:00",
+        "timestamp": "2025-11-28T00:30:57.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Australian Private Sector Credit Actual 0.7 (Forecast 0.6, Previous 0.6)",
+        "url": "https://www.financialjuice.com/News/9319778/Australian-Private-Sector-Credit-Actual-07-Forecast-06-Previous-06.aspx?xy=rss",
+        "keywords": [
+          "FinancialJuice:",
+          "Australian",
+          "Private"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-28",
+        "hour": "19:00",
+        "timestamp": "2025-11-28T00:15:00.000Z",
+        "source": "ZeroHedge",
+        "title": "UN Conference Proves Climate Agenda Is All About Money And Woke Cultism",
+        "url": "https://www.zerohedge.com/geopolitical/un-conference-proves-climate-agenda-all-about-money-and-woke-cultism",
+        "keywords": [
+          "es",
+          "Conference",
+          "Proves",
+          "Climate"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "by_source": {
+    "ZeroHedge": [
+      {
+        "date": "2025-11-28",
+        "hour": "20:00",
+        "timestamp": "2025-11-28T01:00:00.000Z",
+        "source": "ZeroHedge",
+        "title": "DoJ Attempts To Save Face With New Pro-Gun Office  SCOTUS Filing",
+        "url": "https://www.zerohedge.com/political/doj-attempts-save-face-new-pro-gun-office-scotus-filing",
+        "keywords": [
+          "Attempts",
+          "Save",
+          "Face"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-11-28",
+        "hour": "19:00",
+        "timestamp": "2025-11-28T00:15:00.000Z",
+        "source": "ZeroHedge",
+        "title": "UN Conference Proves Climate Agenda Is All About Money And Woke Cultism",
+        "url": "https://www.zerohedge.com/geopolitical/un-conference-proves-climate-agenda-all-about-money-and-woke-cultism",
+        "keywords": [
+          "es",
+          "Conference",
+          "Proves",
+          "Climate"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "FinancialJuice": [
+      {
+        "date": "2025-11-28",
+        "hour": "19:00",
+        "timestamp": "2025-11-28T00:30:57.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Australian Housing Credit Actual 0.6 (Forecast -, Previous 0.6)",
+        "url": "https://www.financialjuice.com/News/9319779/Australian-Housing-Credit-Actual-06-Forecast---Previous-06.aspx?xy=rss",
+        "keywords": [
+          "FinancialJuice:",
+          "Australian",
+          "Housing"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-28",
+        "hour": "19:00",
+        "timestamp": "2025-11-28T00:30:57.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Australian Private Sector Credit Actual 0.7 (Forecast 0.6, Previous 0.6)",
+        "url": "https://www.financialjuice.com/News/9319778/Australian-Private-Sector-Credit-Actual-07-Forecast-06-Previous-06.aspx?xy=rss",
+        "keywords": [
+          "FinancialJuice:",
+          "Australian",
+          "Private"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 0,
+    "unknown": 4
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 0,
+    "after-hours": 3,
+    "extended": 1
+  },
+  "top_keywords": [
+    {
+      "keyword": "FinancialJuice:",
+      "count": 2
+    },
+    {
+      "keyword": "Australian",
+      "count": 2
+    },
+    {
+      "keyword": "Attempts",
+      "count": 1
+    },
+    {
+      "keyword": "Save",
+      "count": 1
+    },
+    {
+      "keyword": "Face",
+      "count": 1
+    },
+    {
+      "keyword": "Housing",
+      "count": 1
+    },
+    {
+      "keyword": "Private",
+      "count": 1
+    },
+    {
+      "keyword": "es",
+      "count": 1
+    },
+    {
+      "keyword": "Conference",
+      "count": 1
+    },
+    {
+      "keyword": "Proves",
+      "count": 1
+    }
+  ]
+}

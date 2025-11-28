@@ -1,0 +1,366 @@
+{
+  "date": "2025-12-19",
+  "total_news": 9,
+  "by_hour": {
+    "13:00": [
+      {
+        "date": "2025-12-19",
+        "hour": "13:00",
+        "timestamp": "2025-12-19T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Oil Rig Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Baker",
+          "Hughes",
+          "Count"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "13:00",
+        "timestamp": "2025-12-19T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Total Rigs Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Baker",
+          "Hughes",
+          "Total"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Existing Home Sales (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Existing",
+          "Home",
+          "Sales"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Existing Home Sales MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Existing",
+          "Home",
+          "Sales"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Sentiment Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Sentiment"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan 5 Year Inflation Expectations Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Year",
+          "Inflation"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Expectations Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Current Conditions Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Michigan",
+          "Current",
+          "Conditions"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Inflation Expectations Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Inflation",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-19",
+        "hour": "13:00",
+        "timestamp": "2025-12-19T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Oil Rig Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Baker",
+          "Hughes",
+          "Count"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "13:00",
+        "timestamp": "2025-12-19T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Total Rigs Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Baker",
+          "Hughes",
+          "Total"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Existing Home Sales (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Existing",
+          "Home",
+          "Sales"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Existing Home Sales MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Existing",
+          "Home",
+          "Sales"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Sentiment Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Sentiment"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan 5 Year Inflation Expectations Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Year",
+          "Inflation"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Expectations Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Current Conditions Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Michigan",
+          "Current",
+          "Conditions"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-19",
+        "hour": "10:00",
+        "timestamp": "2025-12-19T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Inflation Expectations Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Inflation",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 9,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 9,
+    "after-hours": 0,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 9
+    },
+    {
+      "keyword": "Michigan",
+      "count": 5
+    },
+    {
+      "keyword": "Baker",
+      "count": 2
+    },
+    {
+      "keyword": "Hughes",
+      "count": 2
+    },
+    {
+      "keyword": "Existing",
+      "count": 2
+    },
+    {
+      "keyword": "Home",
+      "count": 2
+    },
+    {
+      "keyword": "Sales",
+      "count": 2
+    },
+    {
+      "keyword": "consumer",
+      "count": 2
+    },
+    {
+      "keyword": "Consumer",
+      "count": 2
+    },
+    {
+      "keyword": "inflation",
+      "count": 2
+    }
+  ]
+}

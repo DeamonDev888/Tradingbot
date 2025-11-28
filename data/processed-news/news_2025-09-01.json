@@ -1,0 +1,186 @@
+{
+  "date": "2025-09-01",
+  "total_news": 4,
+  "by_hour": {
+    "20:00": [
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US CPI (Inflation): 324.368 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/CPIAUCSL?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "cpi"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US Unemployment Rate: 4.4 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/UNRATE?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US CPI (Inflation): 324.368 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/CPIAUCSL?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "cpi"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US Unemployment Rate: 4.4 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/UNRATE?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "FRED": [
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US CPI (Inflation): 324.368 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/CPIAUCSL?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "cpi"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US Unemployment Rate: 4.4 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/UNRATE?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US CPI (Inflation): 324.368 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/CPIAUCSL?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "cpi"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-09-01",
+        "hour": "20:00",
+        "timestamp": "2025-09-01T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA US Unemployment Rate: 4.4 (As of 2025-09-01)",
+        "url": "https://fred.stlouisfed.org/series/UNRATE?date=2025-09-01",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate:"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 4,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 0,
+    "after-hours": 0,
+    "extended": 4
+  },
+  "top_keywords": [
+    {
+      "keyword": "inflation",
+      "count": 2
+    },
+    {
+      "keyword": "cpi",
+      "count": 2
+    },
+    {
+      "keyword": "rate",
+      "count": 2
+    },
+    {
+      "keyword": "ym",
+      "count": 2
+    },
+    {
+      "keyword": "employment",
+      "count": 2
+    },
+    {
+      "keyword": "unemployment",
+      "count": 2
+    },
+    {
+      "keyword": "Unemployment",
+      "count": 2
+    },
+    {
+      "keyword": "Rate:",
+      "count": 2
+    }
+  ]
+}

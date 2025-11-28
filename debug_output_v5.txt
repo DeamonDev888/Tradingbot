@@ -1,0 +1,5 @@
+﻿
+--- Debugging Investing.com ---
+Found meta tag content (length): 2925
+Data is string, parsing again...
+Parsed JSON data: { LAST_PRICE: '17.19', PREV_CLOSE: '17.19', OPEN_PRICE: '18.25' }

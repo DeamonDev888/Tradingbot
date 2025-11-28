@@ -1,0 +1,888 @@
+{
+  "date": "2025-12-23",
+  "total_news": 24,
+  "by_hour": {
+    "16:00": [
+      {
+        "date": "2025-12-23",
+        "hour": "16:00",
+        "timestamp": "2025-12-23T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "13:00": [
+      {
+        "date": "2025-12-23",
+        "hour": "13:00",
+        "timestamp": "2025-12-23T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 5-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "13:00",
+        "timestamp": "2025-12-23T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Money Supply (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Money",
+          "Supply",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-12-23",
+        "hour": "11:00",
+        "timestamp": "2025-12-23T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 52-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Richmond Fed Manufacturing Index (United States): Actual vs Forecast 4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "manufacturing",
+          "Richmond",
+          "Manufacturing",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Richmond Fed Manufacturing Shipments Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "manufacturing",
+          "Richmond",
+          "Manufacturing",
+          "Shipments"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Richmond Fed Services Revenues Index (United States): Actual vs Forecast 2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "services",
+          "Richmond",
+          "Services",
+          "Revenues"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR GDP Growth Rate QoQ 2nd Est (United States): Actual vs Forecast 3.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "gdp",
+          "growth",
+          "Growth",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Corporate Profits QoQ Prel (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Corporate",
+          "Profits",
+          "Prel"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR GDP Price Index QoQ 2nd Est (United States): Actual vs Forecast 2.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "gdp",
+          "Price",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Core PCE Prices QoQ 2nd Est (United States): Actual vs Forecast 2.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "Core",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR GDP Sales QoQ 2nd Est (United States): Actual vs Forecast 7.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "gdp",
+          "Sales",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR PCE Prices QoQ 2nd Est (United States): Actual vs Forecast 2.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "Prices",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Real Consumer Spending QoQ 2nd Est (United States): Actual vs Forecast 2.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Real",
+          "Consumer",
+          "Spending"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change Weekly (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "Weekly"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales (United States): Actual vs Forecast 0.69M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales (United States): Actual vs Forecast 0.7M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales MoM (United States): Actual vs Forecast -13.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales MoM (United States): Actual vs Forecast 1.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-23",
+        "hour": "16:00",
+        "timestamp": "2025-12-23T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "13:00",
+        "timestamp": "2025-12-23T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 5-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "13:00",
+        "timestamp": "2025-12-23T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Money Supply (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Money",
+          "Supply",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "11:00",
+        "timestamp": "2025-12-23T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 52-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Richmond Fed Manufacturing Index (United States): Actual vs Forecast 4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "manufacturing",
+          "Richmond",
+          "Manufacturing",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Richmond Fed Manufacturing Shipments Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "manufacturing",
+          "Richmond",
+          "Manufacturing",
+          "Shipments"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "10:00",
+        "timestamp": "2025-12-23T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Richmond Fed Services Revenues Index (United States): Actual vs Forecast 2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "services",
+          "Richmond",
+          "Services",
+          "Revenues"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR GDP Growth Rate QoQ 2nd Est (United States): Actual vs Forecast 3.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "gdp",
+          "growth",
+          "Growth",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Corporate Profits QoQ Prel (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Corporate",
+          "Profits",
+          "Prel"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR GDP Price Index QoQ 2nd Est (United States): Actual vs Forecast 2.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "gdp",
+          "Price",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Core PCE Prices QoQ 2nd Est (United States): Actual vs Forecast 2.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "Core",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR GDP Sales QoQ 2nd Est (United States): Actual vs Forecast 7.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "gdp",
+          "Sales",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR PCE Prices QoQ 2nd Est (United States): Actual vs Forecast 2.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "Prices",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Real Consumer Spending QoQ 2nd Est (United States): Actual vs Forecast 2.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Real",
+          "Consumer",
+          "Spending"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "08:00",
+        "timestamp": "2025-12-23T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change Weekly (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "Weekly"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales (United States): Actual vs Forecast 0.69M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales (United States): Actual vs Forecast 0.7M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales MoM (United States): Actual vs Forecast -13.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-23",
+        "hour": "00:00",
+        "timestamp": "2025-12-23T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR New Home Sales MoM (United States): Actual vs Forecast 1.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Home",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 24,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 9,
+    "market": 8,
+    "after-hours": 1,
+    "extended": 6
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 24
+    },
+    {
+      "keyword": "States):",
+      "count": 15
+    },
+    {
+      "keyword": "Sales",
+      "count": 7
+    },
+    {
+      "keyword": "Home",
+      "count": 6
+    },
+    {
+      "keyword": "index",
+      "count": 4
+    },
+    {
+      "keyword": "fed",
+      "count": 3
+    },
+    {
+      "keyword": "Richmond",
+      "count": 3
+    },
+    {
+      "keyword": "Actual",
+      "count": 3
+    },
+    {
+      "keyword": "gdp",
+      "count": 3
+    },
+    {
+      "keyword": "Change",
+      "count": 2
+    }
+  ]
+}

@@ -1,0 +1,740 @@
+{
+  "date": "2025-12-05",
+  "total_news": 20,
+  "by_hour": {
+    "15:00": [
+      {
+        "date": "2025-12-05",
+        "hour": "15:00",
+        "timestamp": "2025-12-05T20:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Consumer Credit Change (United States): Actual vs Forecast 9.0B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Consumer",
+          "Credit",
+          "Change"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "13:00": [
+      {
+        "date": "2025-12-05",
+        "hour": "13:00",
+        "timestamp": "2025-12-05T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Oil Rig Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Baker",
+          "Hughes",
+          "Count"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "13:00",
+        "timestamp": "2025-12-05T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Total Rigs Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Baker",
+          "Hughes",
+          "Total"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Core PCE Price Index MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Core",
+          "Price",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Sentiment Prel (United States): Actual vs Forecast 53",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Sentiment"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Personal Income MoM (United States): Actual vs Forecast 0.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Personal",
+          "Income",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Personal Spending MoM (United States): Actual vs Forecast 0.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Personal",
+          "Spending",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR PCE Price Index MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Price",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR PCE Price Index YoY (United States): Actual vs Forecast 2.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Price",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Core PCE Price Index YoY (United States): Actual vs Forecast 2.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Core",
+          "Price",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan 5 Year Inflation Expectations Prel (United States): Actual vs Forecast 3.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Year",
+          "Inflation"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Expectations Prel (United States): Actual vs Forecast 53",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Current Conditions Prel (United States): Actual vs Forecast 52",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Michigan",
+          "Current",
+          "Conditions"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Inflation Expectations Prel (United States): Actual vs Forecast 4.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Inflation",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Used Car Prices MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Used",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Used Car Prices YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Used",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders MoM (United States): Actual vs Forecast -0.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders ex Transportation (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "Transportation"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders ex Transportation (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "Transportation"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-05",
+        "hour": "15:00",
+        "timestamp": "2025-12-05T20:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Consumer Credit Change (United States): Actual vs Forecast 9.0B",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Consumer",
+          "Credit",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "13:00",
+        "timestamp": "2025-12-05T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Oil Rig Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Baker",
+          "Hughes",
+          "Count"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "13:00",
+        "timestamp": "2025-12-05T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Total Rigs Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Baker",
+          "Hughes",
+          "Total"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Core PCE Price Index MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Core",
+          "Price",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Sentiment Prel (United States): Actual vs Forecast 53",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Sentiment"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Personal Income MoM (United States): Actual vs Forecast 0.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Personal",
+          "Income",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Personal Spending MoM (United States): Actual vs Forecast 0.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Personal",
+          "Spending",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR PCE Price Index MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Price",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR PCE Price Index YoY (United States): Actual vs Forecast 2.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Price",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Core PCE Price Index YoY (United States): Actual vs Forecast 2.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "pce",
+          "es",
+          "index",
+          "Core",
+          "Price",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan 5 Year Inflation Expectations Prel (United States): Actual vs Forecast 3.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Year",
+          "Inflation"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Consumer Expectations Prel (United States): Actual vs Forecast 53",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "consumer",
+          "Michigan",
+          "Consumer",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Current Conditions Prel (United States): Actual vs Forecast 52",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Michigan",
+          "Current",
+          "Conditions"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "10:00",
+        "timestamp": "2025-12-05T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Michigan Inflation Expectations Prel (United States): Actual vs Forecast 4.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "inflation",
+          "es",
+          "Michigan",
+          "Inflation",
+          "Expectations"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Used Car Prices MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Used",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Used Car Prices YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Used",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders MoM (United States): Actual vs Forecast -0.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders ex Transportation (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "Transportation"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-05",
+        "hour": "00:00",
+        "timestamp": "2025-12-05T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Factory Orders ex Transportation (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Factory",
+          "Orders",
+          "Transportation"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 20,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 14,
+    "after-hours": 0,
+    "extended": 6
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 20
+    },
+    {
+      "keyword": "States):",
+      "count": 8
+    },
+    {
+      "keyword": "Michigan",
+      "count": 5
+    },
+    {
+      "keyword": "pce",
+      "count": 4
+    },
+    {
+      "keyword": "index",
+      "count": 4
+    },
+    {
+      "keyword": "Price",
+      "count": 4
+    },
+    {
+      "keyword": "Index",
+      "count": 4
+    },
+    {
+      "keyword": "Factory",
+      "count": 4
+    },
+    {
+      "keyword": "Orders",
+      "count": 4
+    },
+    {
+      "keyword": "consumer",
+      "count": 3
+    }
+  ]
+}

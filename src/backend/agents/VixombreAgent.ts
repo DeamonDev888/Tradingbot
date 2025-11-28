@@ -38,8 +38,8 @@ export class VixombreAgent extends BaseAgentSimple {
       const dbConnected = await this.testDatabaseConnection();
 
       if (!dbConnected) {
-        console.log(`[${this.agentName}] Database not connected - trying scraping fallback`);
-        return this.performScrapingFallback();
+        console.log(`[${this.agentName}] Database not connected - cannot proceed`);
+        return { error: 'Database not connected and scraping fallback is disabled.' };
       }
 
       console.log(`[${this.agentName}] Using DATABASE-FIRST mode`);
@@ -52,8 +52,8 @@ export class VixombreAgent extends BaseAgentSimple {
         return this.performDatabaseAnalysis(vixData);
       }
 
-      console.log(`[${this.agentName}] No VIX data in database - scraping fresh data`);
-      return this.performScrapingFallback();
+      console.log(`[${this.agentName}] No VIX data in database - cannot proceed`);
+      return { error: 'No VIX data found in database. Please run ingestion pipeline.' };
     } catch (error) {
       console.error(`[${this.agentName}] Analysis failed:`, error);
       return {
@@ -82,7 +82,8 @@ export class VixombreAgent extends BaseAgentSimple {
    */
   private async getVixDataFromDatabase(): Promise<any[]> {
     try {
-      const query = `
+      // Essayer d'abord vix_data (table dédiée)
+      const vixDataQuery = `
         SELECT
           source,
           value,
@@ -95,13 +96,42 @@ export class VixombreAgent extends BaseAgentSimple {
           last_update,
           created_at
         FROM vix_data
-        WHERE created_at >= NOW() - INTERVAL '2 hours'
+        WHERE created_at >= NOW() - INTERVAL '24 hours'
         ORDER BY created_at DESC
         LIMIT 10
       `;
 
-      const result = await this.pool.query(query);
-      return result.rows;
+      const vixResult = await this.pool.query(vixDataQuery);
+
+      if (vixResult.rows.length > 0) {
+        console.log(`[${this.agentName}] Found ${vixResult.rows.length} records in vix_data table`);
+        return vixResult.rows;
+      }
+
+      // Fallback vers market_data (table principale)
+      const marketDataQuery = `
+        SELECT
+          source,
+          price as value,
+          change_abs,
+          change_pct,
+          NULL as previous_close,
+          NULL as open,
+          NULL as high,
+          NULL as low,
+          timestamp as last_update,
+          created_at
+        FROM market_data
+        WHERE symbol = 'VIX'
+        AND created_at >= NOW() - INTERVAL '24 hours'
+        ORDER BY created_at DESC
+        LIMIT 10
+      `;
+
+      const marketResult = await this.pool.query(marketDataQuery);
+      console.log(`[${this.agentName}] Found ${marketResult.rows.length} records in market_data table`);
+      return marketResult.rows;
+
     } catch (error) {
       console.error(`[${this.agentName}] Error getting VIX data from database:`, error);
       return [];
@@ -208,148 +238,7 @@ export class VixombreAgent extends BaseAgentSimple {
     return result;
   }
 
-  /**
-   * Fallback: Scraper les données si la base de données est vide
-   */
-  private async performScrapingFallback(): Promise<Record<string, unknown> | { error: string }> {
-    console.log(`[${this.agentName}] Using SCRAPING FALLBACK mode...`);
 
-    try {
-      // 1. Scrape Data
-      const scrapeResults: VixScrapeResult[] = await this.scraper.scrapeAll();
-      const successCount = scrapeResults.filter(
-        (r: VixScrapeResult) => !r.error && r.value !== null
-      ).length;
-      const failedSources = scrapeResults
-        .filter((r: VixScrapeResult) => r.error || r.value === null)
-        .map((r: VixScrapeResult) => `${r.source} (${r.error || 'No data'})`);
-
-      console.log(`[${this.agentName}] Scraped ${successCount} sources successfully.`);
-
-      // 2. Save to Database
-      await this.scraper.saveToDatabase(this.pool, scrapeResults);
-
-      // 2. Prepare Data for AI
-      const prompt = this.createAnalysisPrompt(scrapeResults);
-
-      // 3. Analyze with KiloCode
-      let aiAnalysis: Record<string, unknown> | null = await this.tryKiloCodeWithFile(prompt);
-
-      // Fallback if AI failed
-      if (!aiAnalysis) {
-        console.log(`[${this.agentName}] AI Analysis failed, generating fallback stats...`);
-        const validValues = scrapeResults
-          .filter((r: VixScrapeResult) => r.value !== null)
-          .map((r: VixScrapeResult) => r.value as number);
-        const avg =
-          validValues.length > 0
-            ? validValues.reduce((a: number, b: number) => a + b, 0) / validValues.length
-            : 0;
-        const validChanges = scrapeResults
-          .filter((r: VixScrapeResult) => r.change_pct !== null)
-          .map((r: VixScrapeResult) => r.change_pct as number);
-        const avgChange =
-          validChanges.length > 0
-            ? validChanges.reduce((a: number, b: number) => a + b, 0) / validChanges.length
-            : 0;
-
-        // Calculate High/Low spread from available data
-        scrapeResults.flatMap((r: VixScrapeResult) => r.news_headlines);
-
-        aiAnalysis = {
-          volatility_analysis: {
-            current_vix: validValues.length > 0 ? parseFloat(avg.toFixed(2)) : 0,
-            vix_trend: avgChange < 0 ? 'BEARISH' : 'BULLISH',
-            volatility_regime: avg > 30 ? 'CRISIS' : avg > 20 ? 'ELEVATED' : 'NORMAL',
-            sentiment: 'NEUTRAL',
-            sentiment_score: 0,
-            risk_level: avg > 20 ? 'HIGH' : 'MEDIUM',
-            catalysts: ['Analyse IA indisponible', 'Données de marché uniquement'],
-            expert_summary:
-              "Analyse de secours automatisée. Le service d'IA n'était pas disponible pour fournir des informations détaillées.",
-            key_insights: ['Données VIX récupérées avec succès', 'Analyse IA détaillée ignorée'],
-            trading_recommendations: {
-              strategy: 'NEUTRAL',
-              target_vix_levels: [15, 25],
-            },
-          },
-        } as Record<string, unknown>;
-      }
-
-      // 4. Récupérer données historiques VIX pour analyse de tendance
-      const historicalData = await this.getVixHistoricalData();
-
-      // 5. Construct Final JSON avec analyse experte
-      const expertAnalysis =
-        ((aiAnalysis as Record<string, unknown>).volatility_analysis as Record<string, unknown>) ||
-        {};
-
-      const finalResult = {
-        metadata: {
-          analysis_timestamp: new Date().toISOString(),
-          markets_status: this.determineMarketStatus(),
-          sources_scraped: successCount,
-          sources_failed: failedSources,
-          analysis_type: 'EXPERT_VOLATILITY_ANALYSIS',
-        },
-        current_vix_data: {
-          consensus_value: expertAnalysis.current_vix || this.getConsensusValue(scrapeResults),
-          trend: expertAnalysis.vix_trend || 'NEUTRAL',
-          sources: scrapeResults.map((r: VixScrapeResult) => {
-            return Object.fromEntries(
-              Object.entries({
-                source: r.source,
-                value: r.value,
-                change_abs: r.change_abs,
-                change_pct: r.change_pct,
-                previous_close: r.previous_close,
-                open: r.open,
-                high: r.high,
-                low: r.low,
-                last_update: r.last_update,
-              }).filter(([, v]) => v !== null)
-            ) as Record<string, unknown>;
-          }),
-        },
-        expert_volatility_analysis: {
-          current_vix: expertAnalysis.current_vix,
-          vix_trend: expertAnalysis.vix_trend,
-          volatility_regime: expertAnalysis.volatility_regime,
-          sentiment: expertAnalysis.sentiment,
-          sentiment_score: expertAnalysis.sentiment_score,
-          risk_level: expertAnalysis.risk_level,
-          catalysts: expertAnalysis.catalysts || [],
-          technical_signals: expertAnalysis.technical_signals || {},
-          market_implications: expertAnalysis.market_implications || {},
-          expert_summary: expertAnalysis.expert_summary,
-          key_insights: expertAnalysis.key_insights || [],
-          trading_recommendations: expertAnalysis.trading_recommendations || {},
-        },
-        historical_context: {
-          comparison_5day: historicalData.five_day_avg,
-          comparison_20day: historicalData.twenty_day_avg,
-          volatility_trend: this.calculateVolatilityTrend(historicalData),
-          key_levels: {
-            support: historicalData.support_level,
-            resistance: historicalData.resistance_level,
-          },
-        },
-        news_analysis: {
-          total_headlines: scrapeResults.reduce((sum, r) => sum + r.news_headlines.length, 0),
-          key_themes: this.extractNewsThemes(scrapeResults),
-          volatility_catalysts: this.identifyVolatilityCatalysts(scrapeResults),
-        },
-      };
-
-      await this.saveAnalysisToDatabase(finalResult);
-      return finalResult;
-    } catch (error) {
-      console.error(`[${this.agentName}] Analysis failed:`, error);
-      return {
-        error: `Analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
-      };
-    }
-  }
 
   /**
    * Détermine le statut du marché
@@ -483,10 +372,10 @@ RULES:
   }
 
   private async tryKiloCodeWithFile(prompt: string): Promise<any> {
-    const bufferPath = path.resolve('vix_buffer.md');
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const bufferPath = path.resolve(`vix_buffer_${timestamp}.md`);
 
-    const content = `
-# Vixombre Analysis Buffer
+    const content = `# Vixombre Analysis Buffer
 
 ## 📊 VIX Data
 \`\`\`json
@@ -497,85 +386,133 @@ ${prompt}
 Analyze the data above and return ONLY the requested JSON.
 `;
 
-    await fs.writeFile(bufferPath, content, 'utf-8');
-
-    console.log(`\n[${this.agentName}] 🔍 SYSTEM PROMPT (Buffer Content):`);
-    console.log('='.repeat(80));
-    console.log(content);
-    console.log('='.repeat(80));
-
     try {
+      // Écrire le fichier buffer
+      await fs.writeFile(bufferPath, content, 'utf-8');
+
+      console.log(`\n[${this.agentName}] 📝 Buffer créé: ${bufferPath}`);
+      console.log(`[${this.agentName}] 📊 Taille du prompt: ${prompt.length} caractères`);
+
+      // Préparer la commande selon l'OS
       const isWindows = process.platform === 'win32';
       const readCommand = isWindows ? `type "${bufferPath}"` : `cat "${bufferPath}"`;
       const command = `${readCommand} | kilocode -m ask --auto --json`;
 
-      console.log(`\n[${this.agentName}] 🚀 EXECUTING COMMAND:`);
-      console.log(`> ${command}`);
-      console.log('='.repeat(80));
+      console.log(`\n[${this.agentName}] 🚀 Exécution KiloCode...`);
 
-      const { stdout } = await this.execAsync(command, {
-        timeout: 90000,
+      const { stdout, stderr } = await this.execAsync(command, {
+        timeout: 120000, // 2 minutes timeout
         cwd: process.cwd(),
+        maxBuffer: 1024 * 1024, // 1MB buffer
       });
 
-      return this.parseOutput(stdout);
+      console.log(`[${this.agentName}] ✅ KiloCode terminé, parsing de la réponse...`);
+
+      // Nettoyer le fichier buffer après succès
+      await fs.unlink(bufferPath).catch(() => {
+        console.log(`[${this.agentName}] ⚠️ Impossible de supprimer le buffer: ${bufferPath}`);
+      });
+
+      return this.parseOutput(stdout, stderr);
     } catch (error) {
-      console.error(`[${this.agentName}] KiloCode execution failed:`, error);
+      console.error(`[${this.agentName}] ❌ Erreur KiloCode:`, error instanceof Error ? error.message : error);
+
+      // Garder le fichier en cas d'erreur pour debugging
+      console.log(`[${this.agentName}] 📄 Buffer conservé pour debug: ${bufferPath}`);
+
       return null;
-    } finally {
-      // await fs.unlink(bufferPath).catch(() => {});
-      console.log(`[${this.agentName}] 📄 VIX buffer kept for inspection: ${bufferPath}`);
     }
   }
 
-  private parseOutput(stdout: string): Record<string, unknown> | null {
-    console.log(`[${this.agentName}] Raw AI Output length:`, stdout.length);
+  private parseOutput(stdout: string, stderr?: string): Record<string, unknown> | null {
+    console.log(`[${this.agentName}] 📊 Parsing de la réponse KiloCode...`);
+    console.log(`[${this.agentName}] 📏 Taille stdout: ${stdout.length} caractères`);
+
+    if (stderr) {
+      console.log(`[${this.agentName}] ⚠️ Stderr: ${stderr}`);
+    }
+
+    // Sauvegarder pour debug
     fs.writeFile('vix_debug_output.txt', stdout).catch(console.error);
 
     try {
+      // Nettoyer les codes ANSI et autres artifacts
       const clean = stdout
-        .replace(/\\x1b\[[0-9;]*m/g, '')
-        .replace(/\\x1b\[[0-9;]*[A-Z]/g, '')
-        .replace(/\\x1b\[.*?[A-Za-z]/g, '');
+        .replace(/\\x1b\[[0-9;]*m/g, '') // Supprimer les couleurs
+        .replace(/\\x1b\[[0-9;]*[A-Z]/g, '') // Supprimer les codes de contrôle
+        .replace(/\\x1b\[.*?[A-Za-z]/g, '') // Supprimer autres séquences d'échappement
+        .trim();
 
+      console.log(`[${this.agentName}] 🧹 Nettoyage effectué, recherche du JSON...`);
+
+      // Essayer 1: Extraire directement du contenu JSON
+      let extracted = this.extractJsonFromContent(clean);
+      if (extracted) {
+        console.log(`[${this.agentName}] ✅ JSON extrait directement du contenu`);
+        return this.validateAndCleanVixJson(extracted);
+      }
+
+      // Essayer 2: Parser ligne par ligne pour les événements KiloCode
       const lines = clean.split('\n').filter(line => line.trim() !== '');
-      let finalJson = null;
+      console.log(`[${this.agentName}] 📄 Analyse de ${lines.length} lignes...`);
 
-      for (const line of lines) {
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
         try {
           const event = JSON.parse(line);
+          console.log(`[${this.agentName}] 🔍 Événement trouvé ligne ${i + 1}:`, event.type || 'unknown');
 
-          if (event.metadata && (event.metadata.comparisons || event.metadata.aggregated_news)) {
-            return event.metadata;
-          }
-
+          // Vérifier les différents types de réponses KiloCode
           if (event.type === 'completion_result' && event.content) {
             if (typeof event.content === 'string') {
-              const extracted = this.extractJsonFromContent(event.content);
-              if (extracted) finalJson = extracted;
-            } else {
-              finalJson = event.content;
+              extracted = this.extractJsonFromContent(event.content);
+              if (extracted) {
+                console.log(`[${this.agentName}] ✅ JSON trouvé dans completion_result`);
+                return this.validateAndCleanVixJson(extracted);
+              }
+            } else if (typeof event.content === 'object') {
+              console.log(`[${this.agentName}] ✅ Objet JSON trouvé dans completion_result`);
+              return this.validateAndCleanVixJson(event.content);
             }
           }
 
-          if (event.type === 'say' && event.say !== 'reasoning' && event.content) {
-            const extracted = this.extractJsonFromContent(event.content);
-            if (extracted) finalJson = extracted;
+          if (event.type === 'say' && event.content && event.say !== 'reasoning') {
+            extracted = this.extractJsonFromContent(event.content);
+            if (extracted) {
+              console.log(`[${this.agentName}] ✅ JSON trouvé dans say event`);
+              return this.validateAndCleanVixJson(extracted);
+            }
           }
-        } catch {
-          // Ignore JSON parsing errors
+
+          // Vérifier s'il y a des métadonnées
+          if (event.metadata && (event.metadata.volatility_analysis || event.metadata.current_vix)) {
+            console.log(`[${this.agentName}] ✅ JSON trouvé dans metadata`);
+            return this.validateAndCleanVixJson(event.metadata);
+          }
+
+        } catch (parseError) {
+          // Ignorer les erreurs de parsing ligne par ligne
+          continue;
         }
       }
 
-      if (finalJson) return finalJson;
+      // Essayer 3: Reconstruire depuis les fragments JSON
+      console.log(`[${this.agentName}] 🔧 Tentative de reconstruction depuis fragments...`);
+      const jsonFragments = this.extractJsonFragments(clean);
+      if (jsonFragments.length > 0) {
+        console.log(`[${this.agentName}] ✅ ${jsonFragments.length} fragments JSON trouvés`);
+        return this.validateAndCleanVixJson(jsonFragments[0]);
+      }
 
-      const fallbackParsed = this.extractJsonFromContent(clean);
-      if (fallbackParsed) return fallbackParsed as Record<string, unknown>;
+      throw new Error('No valid JSON found in KiloCode response');
 
-      throw new Error('No valid JSON found in stream');
     } catch (error) {
-      console.error(`[${this.agentName}] Parsing failed:`, error);
-      return null;
+      console.error(`[${this.agentName}] ❌ Erreur de parsing:`, error instanceof Error ? error.message : error);
+
+      // Créer une réponse de fallback minimale
+      return this.createFallbackAnalysis();
     }
   }
 
@@ -731,5 +668,106 @@ Analyze the data above and return ONLY the requested JSON.
       change_pct: r.change_pct,
       news: r.news_headlines.slice(0, 5).map(n => n.title), // Only top 5 titles
     }));
+  }
+
+  /**
+   * Valide et nettoie la réponse JSON VIX (spécialisation de la méthode de base)
+   */
+  private validateAndCleanVixJson(json: any): Record<string, unknown> {
+    try {
+      // S'assurer que c'est un objet
+      if (typeof json !== 'object' || json === null) {
+        throw new Error('Response is not a JSON object');
+      }
+
+      // Vérifier la structure minimale attendue
+      if (json.volatility_analysis) {
+        console.log(`[${this.agentName}] ✅ Structure volatility_analysis valide`);
+        return json;
+      }
+
+      if (json.current_vix || json.vix_trend) {
+        console.log(`[${this.agentName}] ✅ Structure VIX valide`);
+        return { volatility_analysis: json };
+      }
+
+      // Si aucune structure attendue, envelopper dans volatility_analysis
+      console.log(`[${this.agentName}] 📦 Enveloppement dans volatility_analysis`);
+      return { volatility_analysis: json };
+
+    } catch (error) {
+      console.error(`[${this.agentName}] ❌ Erreur validation JSON:`, error);
+      return this.createFallbackAnalysis();
+    }
+  }
+
+  /**
+   * Crée une analyse de fallback si KiloCode échoue
+   */
+  private createFallbackAnalysis(): Record<string, unknown> {
+    console.log(`[${this.agentName}] 🔄 Création analyse de fallback...`);
+
+    return {
+      volatility_analysis: {
+        current_vix: 0,
+        vix_trend: 'NEUTRAL',
+        volatility_regime: 'NORMAL',
+        sentiment: 'NEUTRAL',
+        sentiment_score: 0,
+        risk_level: 'MEDIUM',
+        catalysts: ['Analyse IA indisponible - données en cours de collecte'],
+        technical_signals: {
+          vix_vs_mean: 'Indisponible',
+          volatility_trend: 'Indisponible',
+          pattern_recognition: 'Pas de pattern détecté',
+          gap_analysis: 'NONE',
+          intraday_range_analysis: 'STABLE'
+        },
+        market_implications: {
+          es_futures_bias: 'NEUTRAL',
+          volatility_expectation: 'STABLE',
+          confidence_level: 0,
+          time_horizon: 'INTRADAY'
+        },
+        expert_summary: 'Analyse VIX de secours - service IA temporairement indisponible. Veuillez réessayer ultérieurement.',
+        key_insights: [
+          'Service d\'analyse IA temporairement indisponible',
+          'Données VIX en cours de collecte',
+          'Veuillez consulter les sources directes pour les dernières valeurs'
+        ],
+        trading_recommendations: {
+          strategy: 'NEUTRAL',
+          entry_signals: ['Attendre confirmation IA'],
+          risk_management: 'Gestion prudente en attendant l\'analyse complète',
+          target_vix_levels: [15, 20, 25]
+        }
+      },
+      metadata: {
+        analysis_type: 'FALLBACK_ANALYSIS',
+        error_reason: 'KiloCode parsing failed',
+        fallback_used: true,
+        timestamp: new Date().toISOString()
+      }
+    };
+  }
+
+  /**
+   * Extrait tous les fragments JSON du contenu
+   */
+  private extractJsonFragments(content: string): any[] {
+    const fragments: any[] = [];
+    const jsonRegex = /\{[\s\S]*?\}/g;
+    let match;
+
+    while ((match = jsonRegex.exec(content)) !== null) {
+      try {
+        const json = JSON.parse(match[0]);
+        fragments.push(json);
+      } catch {
+        continue;
+      }
+    }
+
+    return fragments;
   }
 }

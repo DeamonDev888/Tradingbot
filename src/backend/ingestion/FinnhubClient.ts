@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as dotenv from 'dotenv';
+import { SP500FuturesScraper, SP500FuturesData } from './SP500FuturesScraper';
 
 dotenv.config();
 
@@ -30,9 +31,11 @@ export interface StockData {
 export class FinnhubClient {
   private apiKey: string;
   private baseUrl = 'https://finnhub.io/api/v1';
+  private futuresScraper: SP500FuturesScraper;
 
   constructor() {
     this.apiKey = process.env.FINNHUB_API_KEY || '';
+    this.futuresScraper = new SP500FuturesScraper();
     if (!this.apiKey) {
       console.warn('⚠️ FINNHUB_API_KEY is missing. Finnhub data will not be fetched.');
     }
@@ -132,41 +135,163 @@ export class FinnhubClient {
     }
   }
 
+  
+  /**
+   * Récupère spécifiquement les données du contrat future ES (E-mini S&P 500)
+   * Méthode améliorée avec scraping prioritaire pour obtenir le vrai prix du contrat future S&P500
+   */
+  async fetchESFutures(): Promise<StockData | null> {
+    console.log(`[Finnhub] 🔄 Récupération ES Futures (S&P500) - Sources multiples...`);
+
+    // PRIORITÉ 1: Scraper des vrais contrats futures avec niveaux ZeroHedge (plus fiable)
+    try {
+      console.log(`[Finnhub] 1️⃣ Tentative scraping direct des futures avec niveaux ZeroHedge...`);
+      const futuresData = await this.futuresScraper.fetchSP500FuturesWithZeroHedge();
+
+      if (futuresData && futuresData.current && futuresData.current > 1000) {
+        console.log(
+          `[Finnhub] ✅ ES Futures via scraping (${futuresData.source}): ${futuresData.current.toFixed(2)} (${(futuresData.change || 0) > 0 ? '+' : ''}${(futuresData.percent_change || 0).toFixed(2)}%)`
+        );
+
+        // Afficher les niveaux techniques si disponibles
+        if (futuresData.zero_hedge_analysis) {
+          console.log(`[Finnhub] 📊 Niveaux ZeroHedge:`);
+          if (futuresData.support_levels && futuresData.support_levels.length > 0) {
+            console.log(`[Finnhub]   Supports: [${futuresData.support_levels.slice(0, 5).join(', ')}${futuresData.support_levels.length > 5 ? '...' : ''}]`);
+          }
+          if (futuresData.resistance_levels && futuresData.resistance_levels.length > 0) {
+            console.log(`[Finnhub]   Résistances: [${futuresData.resistance_levels.slice(0, 5).join(', ')}${futuresData.resistance_levels.length > 5 ? '...' : ''}]`);
+          }
+          console.log(`[Finnhub]   Sentiment ZeroHedge: ${futuresData.zero_hedge_analysis.sentiment}`);
+          if (futuresData.zero_hedge_analysis.key_messages.length > 0) {
+            console.log(`[Finnhub]   Messages clés: ${futuresData.zero_hedge_analysis.key_messages.slice(0, 2).join(' | ')}`);
+          }
+        }
+
+        return {
+          current: futuresData.current,
+          change: futuresData.change || 0,
+          percent_change: futuresData.percent_change || 0,
+          high: futuresData.high || futuresData.current,
+          low: futuresData.low || futuresData.current,
+          open: futuresData.open || futuresData.current,
+          previous_close: futuresData.previous_close || futuresData.current,
+          timestamp: Math.floor(Date.now() / 1000),
+          symbol: `ES_${futuresData.source.replace(/\s+/g, '_')}`,
+        };
+      }
+    } catch (error) {
+      console.log(`[Finnhub] Échec scraping futures:`, error instanceof Error ? error.message : error);
+    }
+
+    // PRIORITÉ 1B: Scraper des vrais contrats futures (sans ZeroHedge)
+    try {
+      console.log(`[Finnhub] 1️⃣B Tentative scraping direct des futures (sans ZeroHedge)...`);
+      const futuresData = await this.futuresScraper.fetchSP500Futures();
+
+      if (futuresData && futuresData.current && futuresData.current > 1000) {
+        console.log(
+          `[Finnhub] ✅ ES Futures via scraping (${futuresData.source}): ${futuresData.current.toFixed(2)} (${(futuresData.change || 0) > 0 ? '+' : ''}${(futuresData.percent_change || 0).toFixed(2)}%)`
+        );
+
+        return {
+          current: futuresData.current,
+          change: futuresData.change || 0,
+          percent_change: futuresData.percent_change || 0,
+          high: futuresData.high || futuresData.current,
+          low: futuresData.low || futuresData.current,
+          open: futuresData.open || futuresData.current,
+          previous_close: futuresData.previous_close || futuresData.current,
+          timestamp: Math.floor(Date.now() / 1000),
+          symbol: `ES_${futuresData.source.replace(/\s+/g, '_')}`,
+        };
+      }
+    } catch (error) {
+      console.log(`[Finnhub] Échec scraping futures backup:`, error instanceof Error ? error.message : error);
+    }
+
+    // PRIORITÉ 2: API Finnhub avec symboles futures
+    console.log(`[Finnhub] 2️⃣ Tentative API Finnhub avec symboles futures...`);
+    const futureSymbols = [
+      'ES=F',      // Yahoo Finance format
+      'ES1!',      // Interactive Brokers format
+      '@ES.1',     // TD Ameritrade format
+      'E-mini S&P 500', // Descriptif
+    ];
+
+    for (const symbol of futureSymbols) {
+      try {
+        console.log(`[Finnhub] Tentative API avec symbole: ${symbol}`);
+        const data = await this.fetchQuote(symbol);
+
+        if (data && data.current && data.current > 0) {
+          // Vérifier si le prix semble correct pour les ES Futures (généralement > 4000)
+          if (data.current > 1000) { // Les ES futures sont autour de 4000-5000
+            console.log(
+              `[Finnhub] ✅ ES Futures réussi via API ${symbol}: ${data.current.toFixed(2)} (${data.change > 0 ? '+' : ''}${data.percent_change.toFixed(2)}%)`
+            );
+            return {
+              ...data,
+              symbol: 'ES_FUTURES_API',
+            };
+          } else {
+            console.log(`[Finnhub] ⚠️ Prix incorrect pour ${symbol}: ${data.current} (trop bas pour ES Futures)`);
+          }
+        }
+      } catch (error) {
+        console.log(`[Finnhub] Échec API avec ${symbol}:`, error instanceof Error ? error.message : error);
+        continue;
+      }
+    }
+
+    console.log(`[Finnhub] ❌ Toutes les sources ES Futures ont échoué`);
+    return null;
+  }
+
   /**
    * Récupère spécifiquement les données du S&P 500
-   * Utilise SPY et convertit en ES Futures de manière fiable
+   * Version corrigée qui essaie d'abord les vrais contrats futures
    */
   async fetchSP500Data(): Promise<StockData | null> {
-    console.log(`[Finnhub] 🔄 Récupération des données S&P 500 via SPY...`);
+    console.log(`[Finnhub] 🔄 Récupération des données S&P 500 (priorité Futures)...`);
 
     try {
-      // Utiliser SPY directement (le plus fiable sur Finnhub)
+      // PRIORITÉ 1: Essayer les vrais contrats futures ES
+      const esData = await this.fetchESFutures();
+      if (esData) {
+        return esData;
+      }
+
+      console.log(`[Finnhub] ⚠️ ES Futures indisponible, fallback vers SPY ETF...`);
+
+      // PRIORITÉ 2: Utiliser SPY ETF comme fallback (ancienne méthode)
       const spyData = await this.fetchQuote('SPY');
       if (spyData) {
-        // Conversion SPY -> ES Futures (ratio standard: 1 ES = 10 SPY environ)
-        const multiplier = 10.0; // Ratio plus précis ES/SPY
+        // Conversion SPY -> ES Futures (ratio plus précis basé sur le prix actuel)
+        const estimatedESPrice = spyData.current * 10.0; // Approximation
+
         const esData = {
           ...spyData,
-          current: Math.round(spyData.current * multiplier * 100) / 100,
-          high: Math.round(spyData.high * multiplier * 100) / 100,
-          low: Math.round(spyData.low * multiplier * 100) / 100,
-          open: Math.round(spyData.open * multiplier * 100) / 100,
-          previous_close: Math.round(spyData.previous_close * multiplier * 100) / 100,
-          change: Math.round(spyData.change * multiplier * 100) / 100,
-          symbol: 'ES_CONVERTED',
+          current: Math.round(estimatedESPrice * 100) / 100,
+          high: Math.round(spyData.high * 10.0 * 100) / 100,
+          low: Math.round(spyData.low * 10.0 * 100) / 100,
+          open: Math.round(spyData.open * 10.0 * 100) / 100,
+          previous_close: Math.round(spyData.previous_close * 10.0 * 100) / 100,
+          change: Math.round(spyData.change * 10.0 * 100) / 100,
+          symbol: 'ES_FROM_SPY',
         };
 
         console.log(
-          `[Finnhub] ✅ ES Futures (convertis): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`
+          `[Finnhub] ⚡ ES Futures (estimé via SPY): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`
         );
         return esData;
       }
     } catch (error) {
-      console.error(`[Finnhub] ❌ Erreur récupération SPY:`, error);
+      console.error(`[Finnhub] Erreur récupération S&P 500:`, error);
     }
 
-    // Fallback: utiliser un proxy d'un autre indice si SPY échoue
-    console.warn(`[Finnhub] ⚠️ SPY indisponible, tentative avec QQQ...`);
+    // PRIORITÉ 3: Dernier fallback avec QQQ si SPY échoue
+    console.warn(`[Finnhub] ⚠️ SPY indisponible, tentative finale avec QQQ...`);
     try {
       const qqqData = await this.fetchQuote('QQQ');
       if (qqqData) {
@@ -184,15 +309,15 @@ export class FinnhubClient {
         };
 
         console.log(
-          `[Finnhub] ⚡ ES Futures (via QQQ): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`
+          `[Finnhub] 🔥 ES Futures (via QQQ fallback): ${esData.current.toFixed(2)} (${esData.change > 0 ? '+' : ''}${esData.percent_change.toFixed(2)}%)`
         );
         return esData;
       }
     } catch (error) {
-      console.error(`[Finnhub] ❌ Erreur récupération QQQ:`, error);
+      console.error(`[Finnhub] Erreur récupération QQQ:`, error);
     }
 
-    console.error(`[Finnhub] ❌ Impossible de récupérer les données S&P 500`);
+    console.error(`[Finnhub] ❌ Impossible de récupérer les données S&P 500 avec toutes les méthodes`);
     return null;
   }
 

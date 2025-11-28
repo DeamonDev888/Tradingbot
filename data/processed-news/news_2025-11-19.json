@@ -1,0 +1,98 @@
+{
+  "date": "2025-11-19",
+  "total_news": 2,
+  "by_hour": {
+    "19:00": [
+      {
+        "date": "2025-11-19",
+        "hour": "19:00",
+        "timestamp": "2025-11-19T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Fed Balance Sheet (Liquidity): 6555283 (As of 2025-11-19)",
+        "url": "https://fred.stlouisfed.org/series/WALCL?date=2025-11-19",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "Balance",
+          "Sheet"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-19",
+        "hour": "19:00",
+        "timestamp": "2025-11-19T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Fed Balance Sheet (Liquidity): 6555283 (As of 2025-11-19)",
+        "url": "https://fred.stlouisfed.org/series/WALCL?date=2025-11-19",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "Balance",
+          "Sheet"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "by_source": {
+    "FRED": [
+      {
+        "date": "2025-11-19",
+        "hour": "19:00",
+        "timestamp": "2025-11-19T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Fed Balance Sheet (Liquidity): 6555283 (As of 2025-11-19)",
+        "url": "https://fred.stlouisfed.org/series/WALCL?date=2025-11-19",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "Balance",
+          "Sheet"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-19",
+        "hour": "19:00",
+        "timestamp": "2025-11-19T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA Fed Balance Sheet (Liquidity): 6555283 (As of 2025-11-19)",
+        "url": "https://fred.stlouisfed.org/series/WALCL?date=2025-11-19",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "Balance",
+          "Sheet"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 2,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 0,
+    "after-hours": 2,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "fed",
+      "count": 2
+    },
+    {
+      "keyword": "Balance",
+      "count": 2
+    },
+    {
+      "keyword": "Sheet",
+      "count": 2
+    }
+  ]
+}

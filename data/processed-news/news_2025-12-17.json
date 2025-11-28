@@ -1,0 +1,1174 @@
+{
+  "date": "2025-12-17",
+  "total_news": 32,
+  "by_hour": {
+    "13:00": [
+      {
+        "date": "2025-12-17",
+        "hour": "13:00",
+        "timestamp": "2025-12-17T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 20-Year Bond Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bond",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-12-17",
+        "hour": "11:00",
+        "timestamp": "2025-12-17T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 17-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Imports Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Imports",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Cushing Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Cushing",
+          "Crude",
+          "Stocks"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Fuel Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Fuel",
+          "Production"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Production",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Heating Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Heating",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Refinery Crude Runs Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Refinery",
+          "Crude",
+          "Runs"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Business Inventories MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Business",
+          "Inventories",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Control Group MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Control"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex Autos MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Autos"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex GasAutos MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "GasAutos"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "07:00": [
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA 30-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Applications (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Mortgage",
+          "Applications",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Market Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "market",
+          "index",
+          "Mortgage",
+          "Market",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Refinance Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Mortgage",
+          "Refinance",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Purchase Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Purchase",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM Adv (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM Adv (United States): Actual vs Forecast -0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Control Group MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Control"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex Autos MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex GasAutos MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "GasAutos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales YoY (United States): Actual vs Forecast 2.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Business Inventories MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Business",
+          "Inventories",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-17",
+        "hour": "13:00",
+        "timestamp": "2025-12-17T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 20-Year Bond Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bond",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "11:00",
+        "timestamp": "2025-12-17T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 17-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Imports Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Imports",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Cushing Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Cushing",
+          "Crude",
+          "Stocks"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Fuel Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Fuel",
+          "Production"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Production",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Heating Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Heating",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Refinery Crude Runs Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Refinery",
+          "Crude",
+          "Runs"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Business Inventories MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Business",
+          "Inventories",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "10:00",
+        "timestamp": "2025-12-17T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Control Group MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Control"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex Autos MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Autos"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex GasAutos MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "GasAutos"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "08:00",
+        "timestamp": "2025-12-17T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA 30-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Applications (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Mortgage",
+          "Applications",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Market Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "market",
+          "index",
+          "Mortgage",
+          "Market",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Refinance Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Mortgage",
+          "Refinance",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "07:00",
+        "timestamp": "2025-12-17T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Purchase Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Purchase",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM Adv (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM Adv (United States): Actual vs Forecast -0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Control Group MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Control"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex Autos MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales Ex GasAutos MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "GasAutos"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Sales YoY (United States): Actual vs Forecast 2.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Sales",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Business Inventories MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Business",
+          "Inventories",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-17",
+        "hour": "00:00",
+        "timestamp": "2025-12-17T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Retail Inventories Ex Autos MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "Retail",
+          "Inventories",
+          "Autos"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 32,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 10,
+    "market": 13,
+    "after-hours": 0,
+    "extended": 9
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 32
+    },
+    {
+      "keyword": "retail",
+      "count": 14
+    },
+    {
+      "keyword": "ai",
+      "count": 14
+    },
+    {
+      "keyword": "Retail",
+      "count": 14
+    },
+    {
+      "keyword": "States):",
+      "count": 11
+    },
+    {
+      "keyword": "Sales",
+      "count": 10
+    },
+    {
+      "keyword": "Change",
+      "count": 6
+    },
+    {
+      "keyword": "Inventories",
+      "count": 6
+    },
+    {
+      "keyword": "Autos",
+      "count": 6
+    },
+    {
+      "keyword": "Stocks",
+      "count": 5
+    }
+  ]
+}

@@ -74,6 +74,15 @@ export class TradingEconomicsScraper {
 
         if (dateMatch) {
           currentDate = dateMatch[1]; // Found a date in this row
+        } else {
+            // Fallback: Try to find date in the text content of the first cell
+            // Sometimes it's just in the text like "Nov 27"
+             const firstTdText = await row.$eval('td', el => el.textContent?.trim() || '').catch(() => '');
+             // Simple check if it looks like a date (optional, but good for safety)
+             if (firstTdText && !firstTdText.includes(':')) {
+                 // If we really needed to parse "Nov 27", we'd need a year. 
+                 // For now, let's rely on the class name as primary, but log a warning if we miss it on a header row.
+             }
         }
 
         // On the country-specific page, we assume United States.

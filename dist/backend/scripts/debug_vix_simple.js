@@ -4,7 +4,7 @@ const playwright_1 = require("playwright");
 async function debugScraper() {
     const browser = await playwright_1.chromium.launch({
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     try {
         const context = await browser.newContext({
@@ -14,14 +14,17 @@ async function debugScraper() {
                 'Accept-Language': 'en-US,en;q=0.9',
                 'Accept-Encoding': 'gzip, deflate, br',
                 'Upgrade-Insecure-Requests': '1',
-                'Referer': 'https://www.google.com/',
-            }
+                Referer: 'https://www.google.com/',
+            },
         });
         const page = await context.newPage();
         // --- Investing.com Debug ---
         console.log('\n--- Debugging Investing.com ---');
         try {
-            await page.goto('https://www.investing.com/indices/volatility-s-p-500', { timeout: 30000, waitUntil: 'commit' });
+            await page.goto('https://www.investing.com/indices/volatility-s-p-500', {
+                timeout: 30000,
+                waitUntil: 'commit',
+            });
             await page.waitForTimeout(3000);
             // Meta tag check
             const metaContent = await page.getAttribute('meta[name="global-translation-variables"]', 'content');
@@ -33,7 +36,7 @@ async function debugScraper() {
                     console.log('Parsed JSON data:', {
                         LAST_PRICE: data.LAST_PRICE,
                         PREV_CLOSE: data.PREV_CLOSE,
-                        OPEN_PRICE: data.OPEN_PRICE
+                        OPEN_PRICE: data.OPEN_PRICE,
                     });
                 }
                 catch (e) {
@@ -50,7 +53,10 @@ async function debugScraper() {
         // --- Yahoo Finance Debug ---
         console.log('\n--- Debugging Yahoo Finance ---');
         try {
-            await page.goto('https://finance.yahoo.com/quote/%5EVIX', { timeout: 30000, waitUntil: 'commit' });
+            await page.goto('https://finance.yahoo.com/quote/%5EVIX', {
+                timeout: 30000,
+                waitUntil: 'commit',
+            });
             await page.waitForTimeout(3000);
             if (page.url().includes('consent.yahoo.com') || (await page.$('button[name="agree"]'))) {
                 console.log('Consent page detected');
@@ -82,7 +88,10 @@ async function debugScraper() {
         // --- MarketWatch Debug ---
         console.log('\n--- Debugging MarketWatch ---');
         try {
-            await page.goto('https://www.marketwatch.com/investing/index/vix', { timeout: 30000, waitUntil: 'commit' });
+            await page.goto('https://www.marketwatch.com/investing/index/vix', {
+                timeout: 30000,
+                waitUntil: 'commit',
+            });
             await page.waitForTimeout(3000);
             const content = await page.content();
             if (content.includes('DataDome')) {
@@ -93,7 +102,7 @@ async function debugScraper() {
                 const selectors = [
                     'bg-quote.value',
                     '.intraday__price .value',
-                    '[data-test="instrument-price-last"]'
+                    '[data-test="instrument-price-last"]',
                 ];
                 for (const sel of selectors) {
                     const el = page.locator(sel).first();

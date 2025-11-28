@@ -1,0 +1,276 @@
+{
+  "date": "2025-12-22",
+  "total_news": 6,
+  "by_hour": {
+    "13:00": [
+      {
+        "date": "2025-12-22",
+        "hour": "13:00",
+        "timestamp": "2025-12-22T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 2-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-12-22",
+        "hour": "11:00",
+        "timestamp": "2025-12-22T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "11:00",
+        "timestamp": "2025-12-22T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 6-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-22",
+        "hour": "08:00",
+        "timestamp": "2025-12-22T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Chicago Fed National Activity Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "Chicago",
+          "National",
+          "Activity"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-22",
+        "hour": "00:00",
+        "timestamp": "2025-12-22T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Chicago Fed National Activity Index (United States): Actual vs Forecast -0.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "Chicago",
+          "National",
+          "Activity"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "00:00",
+        "timestamp": "2025-12-22T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Chicago Fed National Activity Index (United States): Actual vs Forecast -0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "Chicago",
+          "National",
+          "Activity"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-22",
+        "hour": "13:00",
+        "timestamp": "2025-12-22T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 2-Year Note Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Note",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "11:00",
+        "timestamp": "2025-12-22T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "11:00",
+        "timestamp": "2025-12-22T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 6-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "08:00",
+        "timestamp": "2025-12-22T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Chicago Fed National Activity Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "Chicago",
+          "National",
+          "Activity"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "00:00",
+        "timestamp": "2025-12-22T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Chicago Fed National Activity Index (United States): Actual vs Forecast -0.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "Chicago",
+          "National",
+          "Activity"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-22",
+        "hour": "00:00",
+        "timestamp": "2025-12-22T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Chicago Fed National Activity Index (United States): Actual vs Forecast -0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "Chicago",
+          "National",
+          "Activity"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 6,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 1,
+    "market": 3,
+    "after-hours": 0,
+    "extended": 2
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 6
+    },
+    {
+      "keyword": "Auction",
+      "count": 3
+    },
+    {
+      "keyword": "States):",
+      "count": 3
+    },
+    {
+      "keyword": "fed",
+      "count": 3
+    },
+    {
+      "keyword": "index",
+      "count": 3
+    },
+    {
+      "keyword": "Chicago",
+      "count": 3
+    },
+    {
+      "keyword": "National",
+      "count": 3
+    },
+    {
+      "keyword": "Activity",
+      "count": 3
+    },
+    {
+      "keyword": "Bill",
+      "count": 2
+    },
+    {
+      "keyword": "Note",
+      "count": 1
+    }
+  ]
+}

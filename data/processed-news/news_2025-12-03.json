@@ -1,0 +1,976 @@
+{
+  "date": "2025-12-03",
+  "total_news": 27,
+  "by_hour": {
+    "11:00": [
+      {
+        "date": "2025-12-03",
+        "hour": "11:00",
+        "timestamp": "2025-12-03T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 17-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Imports Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Imports",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Cushing Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Cushing",
+          "Crude",
+          "Stocks"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Fuel Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Fuel",
+          "Production"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Production",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Heating Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Heating",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Refinery Crude Runs Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Refinery",
+          "Crude",
+          "Runs"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services PMI (United States): Actual vs Forecast 52.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services Business Activity (United States): Actual vs Forecast 54.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "Business",
+          "Activity"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services Employment (United States): Actual vs Forecast 48",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "services",
+          "Services",
+          "Employment",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services New Orders (United States): Actual vs Forecast 56.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "Orders",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services Prices (United States): Actual vs Forecast 70.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "09:00": [
+      {
+        "date": "2025-12-03",
+        "hour": "09:00",
+        "timestamp": "2025-12-03T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Composite PMI Final (United States): Actual vs Forecast 54.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Global",
+          "Composite",
+          "Final"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "09:00",
+        "timestamp": "2025-12-03T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Services PMI Final (United States): Actual vs Forecast 55.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Global",
+          "Services",
+          "Final"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices YoY (United States): Actual vs Forecast 4.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices YoY (United States): Actual vs Forecast 0.6",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change (United States): Actual vs Forecast -15.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "07:00": [
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA 30-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Applications (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Mortgage",
+          "Applications",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Market Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "market",
+          "index",
+          "Mortgage",
+          "Market",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Refinance Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Mortgage",
+          "Refinance",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Purchase Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Purchase",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-03",
+        "hour": "11:00",
+        "timestamp": "2025-12-03T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 17-Week Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Crude Oil Imports Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Imports",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Cushing Crude Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Cushing",
+          "Crude",
+          "Stocks"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Fuel Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Fuel",
+          "Production"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Distillate Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Distillate",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Gasoline Production Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Gasoline",
+          "Production",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Heating Oil Stocks Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Heating",
+          "Stocks",
+          "Change"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR EIA Refinery Crude Runs Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Refinery",
+          "Crude",
+          "Runs"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services PMI (United States): Actual vs Forecast 52.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services Business Activity (United States): Actual vs Forecast 54.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "Business",
+          "Activity"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services Employment (United States): Actual vs Forecast 48",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "services",
+          "Services",
+          "Employment",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services New Orders (United States): Actual vs Forecast 56.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "Orders",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "10:00",
+        "timestamp": "2025-12-03T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ISM Services Prices (United States): Actual vs Forecast 70.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Services",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "09:00",
+        "timestamp": "2025-12-03T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Composite PMI Final (United States): Actual vs Forecast 54.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Global",
+          "Composite",
+          "Final"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "09:00",
+        "timestamp": "2025-12-03T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Services PMI Final (United States): Actual vs Forecast 55.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Global",
+          "Services",
+          "Final"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices MoM (United States): Actual vs Forecast 0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices YoY (United States): Actual vs Forecast 4.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices YoY (United States): Actual vs Forecast 0.6",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "08:00",
+        "timestamp": "2025-12-03T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change (United States): Actual vs Forecast -15.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA 30-Year Mortgage Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Mortgage",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Applications (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Mortgage",
+          "Applications",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Market Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "market",
+          "index",
+          "Mortgage",
+          "Market",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Mortgage Refinance Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Mortgage",
+          "Refinance",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-03",
+        "hour": "07:00",
+        "timestamp": "2025-12-03T12:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR MBA Purchase Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "Purchase",
+          "Index",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 27,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 10,
+    "market": 17,
+    "after-hours": 0,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 27
+    },
+    {
+      "keyword": "States):",
+      "count": 13
+    },
+    {
+      "keyword": "Change",
+      "count": 7
+    },
+    {
+      "keyword": "services",
+      "count": 6
+    },
+    {
+      "keyword": "Services",
+      "count": 6
+    },
+    {
+      "keyword": "Stocks",
+      "count": 5
+    },
+    {
+      "keyword": "Prices",
+      "count": 5
+    },
+    {
+      "keyword": "oil",
+      "count": 4
+    },
+    {
+      "keyword": "Crude",
+      "count": 4
+    },
+    {
+      "keyword": "Mortgage",
+      "count": 4
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { FredClient } from './FredClient';
 import { FinnhubClient } from './FinnhubClient';
+import { TradingEconomicsScraper } from './TradingEconomicsScraper';
 import { Pool } from 'pg';
 import * as dotenv from 'dotenv';
 
@@ -19,11 +20,13 @@ export interface NewsItem {
 export class NewsAggregator {
   private fredClient: FredClient;
   private finnhubClient: FinnhubClient;
+  private teScraper: TradingEconomicsScraper;
   private pool: Pool;
 
   constructor() {
     this.fredClient = new FredClient();
     this.finnhubClient = new FinnhubClient();
+    this.teScraper = new TradingEconomicsScraper();
     this.pool = new Pool({
       host: process.env.DB_HOST || 'localhost',
       port: parseInt(process.env.DB_PORT || '5432'),
@@ -191,10 +194,89 @@ export class NewsAggregator {
   }
 
   /**
-   * Placeholder pour TradingEconomics
+   * Récupère le calendrier économique via TradingEconomics
    */
-  async fetchTradingEconomicsCalendar(): Promise<any[]> {
-    return [];
+  async fetchTradingEconomicsCalendar(): Promise<NewsItem[]> {
+    try {
+      const events = await this.teScraper.scrapeUSCalendar();
+      
+      // Sauvegarder les événements bruts dans leur propre table
+      await this.teScraper.saveEvents(events);
+
+      // Convertir en NewsItems pour le flux général
+      return events.map(event => ({
+        title: `[ECO CALENDAR] ${event.event} (${event.country}): Actual ${event.actual} vs Forecast ${event.forecast}`,
+        source: 'TradingEconomics',
+        url: 'https://tradingeconomics.com/united-states/calendar',
+        timestamp: event.date,
+        sentiment: 'neutral', // À analyser
+        content: `Importance: ${event.importance}/3. Previous: ${event.previous}`
+      }));
+    } catch (error) {
+      console.error('Error fetching TradingEconomics calendar:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Récupère et sauvegarde les données de marché (ES Futures prioritaire)
+   */
+  async fetchAndSaveMarketData(): Promise<void> {
+    try {
+      console.log('📈 Fetching market data (ES Futures priority)...');
+      const stockData = await this.finnhubClient.fetchSP500Data();
+
+      if (stockData) {
+        const client = await this.pool.connect();
+        try {
+          // Déterminer le type d'actif en fonction du symbole
+          let assetType = 'ETF';
+          let symbol = stockData.symbol;
+
+          if (stockData.symbol.includes('ES_FUTURES') || stockData.symbol.includes('ES_CONVERTED') || stockData.symbol.includes('ES_FROM_')) {
+            assetType = 'FUTURES';
+            symbol = 'ES'; // Standardiser pour ES Futures
+          } else if (stockData.symbol === 'SPY') {
+            assetType = 'ETF';
+            symbol = 'SPY';
+          } else if (stockData.symbol === 'QQQ') {
+            assetType = 'ETF';
+            symbol = 'QQQ';
+          }
+
+          await client.query(
+            `INSERT INTO market_data
+             (symbol, asset_type, price, change, change_percent, high, low, open, previous_close, source, timestamp)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'Finnhub', NOW())`,
+            [
+              symbol,
+              assetType,
+              stockData.current,
+              stockData.change,
+              stockData.percent_change,
+              stockData.high,
+              stockData.low,
+              stockData.open,
+              stockData.previous_close
+            ]
+          );
+
+          // Log détaillé pour comprendre la source des données
+          const sourceInfo = stockData.symbol.includes('ES_FUTURES') ? ' (Futures directs)' :
+                            stockData.symbol.includes('ES_FROM_SPY') ? ' (via SPY)' :
+                            stockData.symbol.includes('ES_FROM_QQQ') ? ' (via QQQ)' :
+                            ' (ETF)';
+
+          console.log(`✅ Market data saved for ${symbol}${sourceInfo}: ${stockData.current.toFixed(2)} (${stockData.change > 0 ? '+' : ''}${stockData.percent_change.toFixed(2)}%)`);
+        } finally {
+          client.release();
+        }
+      } else {
+        console.warn('⚠️ No market data returned from Finnhub');
+      }
+    } catch (error) {
+      console.error('❌ Error fetching/saving market data:', error);
+    }
   }
 
   /**
@@ -256,11 +338,15 @@ export class NewsAggregator {
 
     try {
       // Récupérer toutes les sources en parallèle
-      const [zerohedge, cnbc, financialjuice, finnhub] = await Promise.allSettled([
+      const [zerohedge, cnbc, financialjuice, finnhub, fred, te] = await Promise.allSettled([
         this.fetchZeroHedgeHeadlines(),
         this.fetchCNBCMarketNews(),
         this.fetchFinancialJuice(),
         this.fetchFinnhubNews(),
+        this.fetchFredEconomicData(),
+        this.fetchFredEconomicData(),
+        this.fetchTradingEconomicsCalendar(),
+        this.fetchAndSaveMarketData(),
       ]);
 
       // Ajouter les résultats réussis
@@ -282,6 +368,16 @@ export class NewsAggregator {
       if (finnhub.status === 'fulfilled') {
         allNews.push(...finnhub.value);
         console.log(`✅ Finnhub: ${finnhub.value.length} news`);
+      }
+
+      if (fred.status === 'fulfilled') {
+        allNews.push(...fred.value);
+        console.log(`✅ FRED: ${fred.value.length} indicators`);
+      }
+
+      if (te.status === 'fulfilled') {
+        allNews.push(...te.value);
+        console.log(`✅ TradingEconomics: ${te.value.length} events`);
       }
 
       // Sauvegarder toutes les news

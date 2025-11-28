@@ -105,7 +105,8 @@ class VixombreAgent extends BaseAgentSimple_1.BaseAgentSimple {
      */
     async getVixDataFromDatabase() {
         try {
-            const query = `
+            // Essayer d'abord vix_data (table dédiée)
+            const vixDataQuery = `
         SELECT
           source,
           value,
@@ -122,8 +123,33 @@ class VixombreAgent extends BaseAgentSimple_1.BaseAgentSimple {
         ORDER BY created_at DESC
         LIMIT 10
       `;
-            const result = await this.pool.query(query);
-            return result.rows;
+            const vixResult = await this.pool.query(vixDataQuery);
+            if (vixResult.rows.length > 0) {
+                console.log(`[${this.agentName}] Found ${vixResult.rows.length} records in vix_data table`);
+                return vixResult.rows;
+            }
+            // Fallback vers market_data (table principale)
+            const marketDataQuery = `
+        SELECT
+          source,
+          price as value,
+          change_abs,
+          change_pct,
+          NULL as previous_close,
+          NULL as open,
+          NULL as high,
+          NULL as low,
+          timestamp as last_update,
+          created_at
+        FROM market_data
+        WHERE symbol = 'VIX'
+        AND created_at >= NOW() - INTERVAL '2 hours'
+        ORDER BY created_at DESC
+        LIMIT 10
+      `;
+            const marketResult = await this.pool.query(marketDataQuery);
+            console.log(`[${this.agentName}] Found ${marketResult.rows.length} records in market_data table`);
+            return marketResult.rows;
         }
         catch (error) {
             console.error(`[${this.agentName}] Error getting VIX data from database:`, error);
@@ -470,9 +496,9 @@ RULES:
 `;
     }
     async tryKiloCodeWithFile(prompt) {
-        const bufferPath = path.resolve('vix_buffer.md');
-        const content = `
-# Vixombre Analysis Buffer
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const bufferPath = path.resolve(`vix_buffer_${timestamp}.md`);
+        const content = `# Vixombre Analysis Buffer
 
 ## 📊 VIX Data
 \`\`\`json
@@ -482,79 +508,112 @@ ${prompt}
 ## 🤖 Instructions
 Analyze the data above and return ONLY the requested JSON.
 `;
-        await fs.writeFile(bufferPath, content, 'utf-8');
-        console.log(`\n[${this.agentName}] 🔍 SYSTEM PROMPT (Buffer Content):`);
-        console.log('='.repeat(80));
-        console.log(content);
-        console.log('='.repeat(80));
         try {
+            // Écrire le fichier buffer
+            await fs.writeFile(bufferPath, content, 'utf-8');
+            console.log(`\n[${this.agentName}] 📝 Buffer créé: ${bufferPath}`);
+            console.log(`[${this.agentName}] 📊 Taille du prompt: ${prompt.length} caractères`);
+            // Préparer la commande selon l'OS
             const isWindows = process.platform === 'win32';
             const readCommand = isWindows ? `type "${bufferPath}"` : `cat "${bufferPath}"`;
             const command = `${readCommand} | kilocode -m ask --auto --json`;
-            console.log(`\n[${this.agentName}] 🚀 EXECUTING COMMAND:`);
-            console.log(`> ${command}`);
-            console.log('='.repeat(80));
-            const { stdout } = await this.execAsync(command, {
-                timeout: 90000,
+            console.log(`\n[${this.agentName}] 🚀 Exécution KiloCode...`);
+            const { stdout, stderr } = await this.execAsync(command, {
+                timeout: 120000, // 2 minutes timeout
                 cwd: process.cwd(),
+                maxBuffer: 1024 * 1024, // 1MB buffer
             });
-            return this.parseOutput(stdout);
+            console.log(`[${this.agentName}] ✅ KiloCode terminé, parsing de la réponse...`);
+            // Nettoyer le fichier buffer après succès
+            await fs.unlink(bufferPath).catch(() => {
+                console.log(`[${this.agentName}] ⚠️ Impossible de supprimer le buffer: ${bufferPath}`);
+            });
+            return this.parseOutput(stdout, stderr);
         }
         catch (error) {
-            console.error(`[${this.agentName}] KiloCode execution failed:`, error);
+            console.error(`[${this.agentName}] ❌ Erreur KiloCode:`, error instanceof Error ? error.message : error);
+            // Garder le fichier en cas d'erreur pour debugging
+            console.log(`[${this.agentName}] 📄 Buffer conservé pour debug: ${bufferPath}`);
             return null;
-        }
-        finally {
-            // await fs.unlink(bufferPath).catch(() => {});
-            console.log(`[${this.agentName}] 📄 VIX buffer kept for inspection: ${bufferPath}`);
         }
     }
-    parseOutput(stdout) {
-        console.log(`[${this.agentName}] Raw AI Output length:`, stdout.length);
+    parseOutput(stdout, stderr) {
+        console.log(`[${this.agentName}] 📊 Parsing de la réponse KiloCode...`);
+        console.log(`[${this.agentName}] 📏 Taille stdout: ${stdout.length} caractères`);
+        if (stderr) {
+            console.log(`[${this.agentName}] ⚠️ Stderr: ${stderr}`);
+        }
+        // Sauvegarder pour debug
         fs.writeFile('vix_debug_output.txt', stdout).catch(console.error);
         try {
+            // Nettoyer les codes ANSI et autres artifacts
             const clean = stdout
-                .replace(/\\x1b\[[0-9;]*m/g, '')
-                .replace(/\\x1b\[[0-9;]*[A-Z]/g, '')
-                .replace(/\\x1b\[.*?[A-Za-z]/g, '');
+                .replace(/\\x1b\[[0-9;]*m/g, '') // Supprimer les couleurs
+                .replace(/\\x1b\[[0-9;]*[A-Z]/g, '') // Supprimer les codes de contrôle
+                .replace(/\\x1b\[.*?[A-Za-z]/g, '') // Supprimer autres séquences d'échappement
+                .trim();
+            console.log(`[${this.agentName}] 🧹 Nettoyage effectué, recherche du JSON...`);
+            // Essayer 1: Extraire directement du contenu JSON
+            let extracted = this.extractJsonFromContent(clean);
+            if (extracted) {
+                console.log(`[${this.agentName}] ✅ JSON extrait directement du contenu`);
+                return this.validateAndCleanVixJson(extracted);
+            }
+            // Essayer 2: Parser ligne par ligne pour les événements KiloCode
             const lines = clean.split('\n').filter(line => line.trim() !== '');
-            let finalJson = null;
-            for (const line of lines) {
+            console.log(`[${this.agentName}] 📄 Analyse de ${lines.length} lignes...`);
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line)
+                    continue;
                 try {
                     const event = JSON.parse(line);
-                    if (event.metadata && (event.metadata.comparisons || event.metadata.aggregated_news)) {
-                        return event.metadata;
-                    }
+                    console.log(`[${this.agentName}] 🔍 Événement trouvé ligne ${i + 1}:`, event.type || 'unknown');
+                    // Vérifier les différents types de réponses KiloCode
                     if (event.type === 'completion_result' && event.content) {
                         if (typeof event.content === 'string') {
-                            const extracted = this.extractJsonFromContent(event.content);
-                            if (extracted)
-                                finalJson = extracted;
+                            extracted = this.extractJsonFromContent(event.content);
+                            if (extracted) {
+                                console.log(`[${this.agentName}] ✅ JSON trouvé dans completion_result`);
+                                return this.validateAndCleanVixJson(extracted);
+                            }
                         }
-                        else {
-                            finalJson = event.content;
+                        else if (typeof event.content === 'object') {
+                            console.log(`[${this.agentName}] ✅ Objet JSON trouvé dans completion_result`);
+                            return this.validateAndCleanVixJson(event.content);
                         }
                     }
-                    if (event.type === 'say' && event.say !== 'reasoning' && event.content) {
-                        const extracted = this.extractJsonFromContent(event.content);
-                        if (extracted)
-                            finalJson = extracted;
+                    if (event.type === 'say' && event.content && event.say !== 'reasoning') {
+                        extracted = this.extractJsonFromContent(event.content);
+                        if (extracted) {
+                            console.log(`[${this.agentName}] ✅ JSON trouvé dans say event`);
+                            return this.validateAndCleanVixJson(extracted);
+                        }
+                    }
+                    // Vérifier s'il y a des métadonnées
+                    if (event.metadata && (event.metadata.volatility_analysis || event.metadata.current_vix)) {
+                        console.log(`[${this.agentName}] ✅ JSON trouvé dans metadata`);
+                        return this.validateAndCleanVixJson(event.metadata);
                     }
                 }
-                catch {
-                    // Ignore JSON parsing errors
+                catch (parseError) {
+                    // Ignorer les erreurs de parsing ligne par ligne
+                    continue;
                 }
             }
-            if (finalJson)
-                return finalJson;
-            const fallbackParsed = this.extractJsonFromContent(clean);
-            if (fallbackParsed)
-                return fallbackParsed;
-            throw new Error('No valid JSON found in stream');
+            // Essayer 3: Reconstruire depuis les fragments JSON
+            console.log(`[${this.agentName}] 🔧 Tentative de reconstruction depuis fragments...`);
+            const jsonFragments = this.extractJsonFragments(clean);
+            if (jsonFragments.length > 0) {
+                console.log(`[${this.agentName}] ✅ ${jsonFragments.length} fragments JSON trouvés`);
+                return this.validateAndCleanVixJson(jsonFragments[0]);
+            }
+            throw new Error('No valid JSON found in KiloCode response');
         }
         catch (error) {
-            console.error(`[${this.agentName}] Parsing failed:`, error);
-            return null;
+            console.error(`[${this.agentName}] ❌ Erreur de parsing:`, error instanceof Error ? error.message : error);
+            // Créer une réponse de fallback minimale
+            return this.createFallbackAnalysis();
         }
     }
     extractJsonFromContent(content) {
@@ -696,6 +755,99 @@ Analyze the data above and return ONLY the requested JSON.
             change_pct: r.change_pct,
             news: r.news_headlines.slice(0, 5).map(n => n.title), // Only top 5 titles
         }));
+    }
+    /**
+     * Valide et nettoie la réponse JSON VIX (spécialisation de la méthode de base)
+     */
+    validateAndCleanVixJson(json) {
+        try {
+            // S'assurer que c'est un objet
+            if (typeof json !== 'object' || json === null) {
+                throw new Error('Response is not a JSON object');
+            }
+            // Vérifier la structure minimale attendue
+            if (json.volatility_analysis) {
+                console.log(`[${this.agentName}] ✅ Structure volatility_analysis valide`);
+                return json;
+            }
+            if (json.current_vix || json.vix_trend) {
+                console.log(`[${this.agentName}] ✅ Structure VIX valide`);
+                return { volatility_analysis: json };
+            }
+            // Si aucune structure attendue, envelopper dans volatility_analysis
+            console.log(`[${this.agentName}] 📦 Enveloppement dans volatility_analysis`);
+            return { volatility_analysis: json };
+        }
+        catch (error) {
+            console.error(`[${this.agentName}] ❌ Erreur validation JSON:`, error);
+            return this.createFallbackAnalysis();
+        }
+    }
+    /**
+     * Crée une analyse de fallback si KiloCode échoue
+     */
+    createFallbackAnalysis() {
+        console.log(`[${this.agentName}] 🔄 Création analyse de fallback...`);
+        return {
+            volatility_analysis: {
+                current_vix: 0,
+                vix_trend: 'NEUTRAL',
+                volatility_regime: 'NORMAL',
+                sentiment: 'NEUTRAL',
+                sentiment_score: 0,
+                risk_level: 'MEDIUM',
+                catalysts: ['Analyse IA indisponible - données en cours de collecte'],
+                technical_signals: {
+                    vix_vs_mean: 'Indisponible',
+                    volatility_trend: 'Indisponible',
+                    pattern_recognition: 'Pas de pattern détecté',
+                    gap_analysis: 'NONE',
+                    intraday_range_analysis: 'STABLE'
+                },
+                market_implications: {
+                    es_futures_bias: 'NEUTRAL',
+                    volatility_expectation: 'STABLE',
+                    confidence_level: 0,
+                    time_horizon: 'INTRADAY'
+                },
+                expert_summary: 'Analyse VIX de secours - service IA temporairement indisponible. Veuillez réessayer ultérieurement.',
+                key_insights: [
+                    'Service d\'analyse IA temporairement indisponible',
+                    'Données VIX en cours de collecte',
+                    'Veuillez consulter les sources directes pour les dernières valeurs'
+                ],
+                trading_recommendations: {
+                    strategy: 'NEUTRAL',
+                    entry_signals: ['Attendre confirmation IA'],
+                    risk_management: 'Gestion prudente en attendant l\'analyse complète',
+                    target_vix_levels: [15, 20, 25]
+                }
+            },
+            metadata: {
+                analysis_type: 'FALLBACK_ANALYSIS',
+                error_reason: 'KiloCode parsing failed',
+                fallback_used: true,
+                timestamp: new Date().toISOString()
+            }
+        };
+    }
+    /**
+     * Extrait tous les fragments JSON du contenu
+     */
+    extractJsonFragments(content) {
+        const fragments = [];
+        const jsonRegex = /\{[\s\S]*?\}/g;
+        let match;
+        while ((match = jsonRegex.exec(content)) !== null) {
+            try {
+                const json = JSON.parse(match[0]);
+                fragments.push(json);
+            }
+            catch {
+                continue;
+            }
+        }
+        return fragments;
     }
 }
 exports.VixombreAgent = VixombreAgent;

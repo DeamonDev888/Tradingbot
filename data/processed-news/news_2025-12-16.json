@@ -1,0 +1,2158 @@
+{
+  "date": "2025-12-16",
+  "total_news": 63,
+  "by_hour": {
+    "16:00": [
+      {
+        "date": "2025-12-16",
+        "hour": "16:00",
+        "timestamp": "2025-12-16T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "09:00": [
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Composite PMI Flash (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Global",
+          "Composite",
+          "Flash"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Manufacturing PMI Flash (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Global",
+          "Manufacturing",
+          "Flash"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Services PMI Flash (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Global",
+          "Services",
+          "Flash"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Capacity Utilization (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Capacity",
+          "Utilization",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Prel (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Non Farm Payrolls (United States): Actual vs Forecast 55.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Farm",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Non Farm Payrolls (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Farm",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Unemployment Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings YoY (United States): Actual vs Forecast 3.6",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Prel (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Participation Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Participation",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Weekly Hours (United States): Actual vs Forecast 34.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Weekly",
+          "Hours"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Weekly Hours (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Weekly",
+          "Hours"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Government Payrolls (United States): Actual vs Forecast -35.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "government",
+          "Government",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Government Payrolls (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "government",
+          "Government",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Payrolls (United States): Actual vs Forecast -2.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "manufacturing",
+          "Manufacturing",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Payrolls (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "manufacturing",
+          "Manufacturing",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Payrolls Private (United States): Actual vs Forecast 20.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Nonfarm",
+          "Payrolls",
+          "Private"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Payrolls Private (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Nonfarm",
+          "Payrolls",
+          "Private"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NY Fed Services Activity Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "services",
+          "Services",
+          "Activity",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR U-6 Unemployment Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change Weekly (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "Weekly"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "00:00": [
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Prel (United States): Actual vs Forecast 1.34M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Prel (United States): Actual vs Forecast 1.35M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts (United States): Actual vs Forecast 1.32M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts (United States): Actual vs Forecast 1.33M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Prel (United States): Actual vs Forecast 0.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Prel (United States): Actual vs Forecast 0.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices MoM (United States): Actual vs Forecast -0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts MoM (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts MoM (United States): Actual vs Forecast 0.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices YoY (United States): Actual vs Forecast 3.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices YoY (United States): Actual vs Forecast 0.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production MoM (United States): Actual vs Forecast -0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Capacity Utilization (United States): Actual vs Forecast 77.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Capacity",
+          "Utilization",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Capacity Utilization (United States): Actual vs Forecast 77.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Capacity",
+          "Utilization",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production YoY (United States): Actual vs Forecast 1.6",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production YoY (United States): Actual vs Forecast 1.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production MoM (United States): Actual vs Forecast -0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production YoY (United States): Actual vs Forecast 1.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production YoY (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-16",
+        "hour": "16:00",
+        "timestamp": "2025-12-16T21:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR API Crude Oil Stock Change (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Crude",
+          "Stock",
+          "Change"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Composite PMI Flash (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Global",
+          "Composite",
+          "Flash"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Manufacturing PMI Flash (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Global",
+          "Manufacturing",
+          "Flash"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:45:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR SP Global Services PMI Flash (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "services",
+          "Global",
+          "Services",
+          "Flash"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Capacity Utilization (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Capacity",
+          "Utilization",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "09:00",
+        "timestamp": "2025-12-16T14:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:55:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Redbook YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Redbook",
+          "States):",
+          "Actual"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Prel (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Non Farm Payrolls (United States): Actual vs Forecast 55.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Farm",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Non Farm Payrolls (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Farm",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Unemployment Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings MoM (United States): Actual vs Forecast 0.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings YoY (United States): Actual vs Forecast 3.6",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Hourly Earnings YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Hourly",
+          "Earnings"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Prel (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices MoM (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Participation Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "Participation",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Weekly Hours (United States): Actual vs Forecast 34.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Weekly",
+          "Hours"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Average Weekly Hours (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Average",
+          "Weekly",
+          "Hours"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Government Payrolls (United States): Actual vs Forecast -35.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "government",
+          "Government",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Government Payrolls (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "government",
+          "Government",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices YoY (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Payrolls (United States): Actual vs Forecast -2.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "manufacturing",
+          "Manufacturing",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Payrolls (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "manufacturing",
+          "Manufacturing",
+          "Payrolls",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Payrolls Private (United States): Actual vs Forecast 20.0K",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Nonfarm",
+          "Payrolls",
+          "Private"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Nonfarm Payrolls Private (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "payrolls",
+          "Nonfarm",
+          "Payrolls",
+          "Private"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NY Fed Services Activity Index (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "index",
+          "services",
+          "Services",
+          "Activity",
+          "Index"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR U-6 Unemployment Rate (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "rate",
+          "es",
+          "ym",
+          "employment",
+          "unemployment",
+          "Unemployment",
+          "Rate",
+          "States):"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "08:00",
+        "timestamp": "2025-12-16T13:15:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR ADP Employment Change Weekly (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "ym",
+          "employment",
+          "Employment",
+          "Change",
+          "Weekly"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Final (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Final"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Prel (United States): Actual vs Forecast 1.34M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits Prel (United States): Actual vs Forecast 1.35M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts (United States): Actual vs Forecast 1.32M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts (United States): Actual vs Forecast 1.33M",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Prel (United States): Actual vs Forecast 0.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Building Permits MoM Prel (United States): Actual vs Forecast 0.7",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Building",
+          "Permits",
+          "Prel"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices MoM (United States): Actual vs Forecast -0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts MoM (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Housing Starts MoM (United States): Actual vs Forecast 0.8",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Housing",
+          "Starts",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Export Prices YoY (United States): Actual vs Forecast 3.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Export",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Import Prices YoY (United States): Actual vs Forecast 0.5",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Import",
+          "Prices",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production MoM (United States): Actual vs Forecast -0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Capacity Utilization (United States): Actual vs Forecast 77.4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Capacity",
+          "Utilization",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Capacity Utilization (United States): Actual vs Forecast 77.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Capacity",
+          "Utilization",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production YoY (United States): Actual vs Forecast 1.6",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Industrial Production YoY (United States): Actual vs Forecast 1.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Industrial",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production MoM (United States): Actual vs Forecast 0.1",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production MoM (United States): Actual vs Forecast -0.2",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production YoY (United States): Actual vs Forecast 1.3",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      },
+      {
+        "date": "2025-12-16",
+        "hour": "00:00",
+        "timestamp": "2025-12-16T05:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Manufacturing Production YoY (United States): Actual vs Forecast 1.0",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "manufacturing",
+          "Manufacturing",
+          "Production",
+          "States):"
+        ],
+        "market_hours": "extended"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 63,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 28,
+    "market": 8,
+    "after-hours": 1,
+    "extended": 26
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 63
+    },
+    {
+      "keyword": "States):",
+      "count": 39
+    },
+    {
+      "keyword": "Production",
+      "count": 12
+    },
+    {
+      "keyword": "Building",
+      "count": 10
+    },
+    {
+      "keyword": "Permits",
+      "count": 10
+    },
+    {
+      "keyword": "manufacturing",
+      "count": 9
+    },
+    {
+      "keyword": "Manufacturing",
+      "count": 9
+    },
+    {
+      "keyword": "payrolls",
+      "count": 8
+    },
+    {
+      "keyword": "Payrolls",
+      "count": 8
+    },
+    {
+      "keyword": "Prices",
+      "count": 8
+    }
+  ]
+}

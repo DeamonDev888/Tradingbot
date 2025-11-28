@@ -1,0 +1,168 @@
+{
+  "date": "2025-12-12",
+  "total_news": 3,
+  "by_hour": {
+    "13:00": [
+      {
+        "date": "2025-12-12",
+        "hour": "13:00",
+        "timestamp": "2025-12-12T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Oil Rig Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Baker",
+          "Hughes",
+          "Count"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-12",
+        "hour": "13:00",
+        "timestamp": "2025-12-12T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Total Rigs Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Baker",
+          "Hughes",
+          "Total"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-12",
+        "hour": "10:00",
+        "timestamp": "2025-12-12T15:35:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Goolsbee Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Goolsbee",
+          "Speech",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-12",
+        "hour": "13:00",
+        "timestamp": "2025-12-12T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Oil Rig Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "oil",
+          "Baker",
+          "Hughes",
+          "Count"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-12",
+        "hour": "13:00",
+        "timestamp": "2025-12-12T18:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Baker Hughes Total Rigs Count (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Baker",
+          "Hughes",
+          "Total"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-12",
+        "hour": "10:00",
+        "timestamp": "2025-12-12T15:35:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR Fed Goolsbee Speech (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "fed",
+          "es",
+          "Goolsbee",
+          "Speech",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 3,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 3,
+    "after-hours": 0,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 3
+    },
+    {
+      "keyword": "Baker",
+      "count": 2
+    },
+    {
+      "keyword": "Hughes",
+      "count": 2
+    },
+    {
+      "keyword": "oil",
+      "count": 1
+    },
+    {
+      "keyword": "Count",
+      "count": 1
+    },
+    {
+      "keyword": "Total",
+      "count": 1
+    },
+    {
+      "keyword": "fed",
+      "count": 1
+    },
+    {
+      "keyword": "Goolsbee",
+      "count": 1
+    },
+    {
+      "keyword": "Speech",
+      "count": 1
+    },
+    {
+      "keyword": "States):",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,1240 @@
+{
+  "date": "2025-11-27",
+  "total_news": 37,
+  "by_hour": {
+    "18:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:58:54.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Large Scale Retail Sales YoY Actual 5 (Forecast -, Previous 3)",
+        "url": "https://www.financialjuice.com/News/9319747/Japanese-Large-Scale-Retail-Sales-YoY-Actual-5-Forecast---Previous-3.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "FinancialJuice:",
+          "Japanese",
+          "Large"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:51.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Retail Sales YoY Actual 1.7 (Forecast 0.8, Previous 0.5)",
+        "url": "https://www.financialjuice.com/News/9319745/Japanese-Retail-Sales-YoY-Actual-17-Forecast-08-Previous-05.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "FinancialJuice:",
+          "Japanese",
+          "Retail"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:51.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Industrial Output Prelim MoM SA Actual 1.4 (Forecast -0.6, Previous 2.6)",
+        "url": "https://www.financialjuice.com/News/9319746/Japanese-Industrial-Output-Prelim-MoM-SA-Actual-14-Forecast--06-Previous-26.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Japanese",
+          "Industrial"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:45.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Foreign Investment Japanese Stocks Actual -348.7B (Forecast -, Previous 1,020.9B)",
+        "url": "https://www.financialjuice.com/News/9319744/Foreign-Investment-Japanese-Stocks-Actual--3487B-Forecast---Previous-10209B.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Foreign",
+          "Investment"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:45.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Foreign Bond Investment Actual 576.5B (Forecast -, Previous 348.4B)",
+        "url": "https://www.financialjuice.com/News/9319743/Japanese-Foreign-Bond-Investment-Actual-5765B-Forecast---Previous-3484B.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Japanese",
+          "Foreign"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:48.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Tokyo CPI Overall Actual 2.7 (Forecast 2.7, Previous 2.8)",
+        "url": "https://www.financialjuice.com/News/9319718/Tokyo-CPI-Overall-Actual-27-Forecast-27-Previous-28.aspx?xy=rss",
+        "keywords": [
+          "cpi",
+          "FinancialJuice:",
+          "Tokyo",
+          "Overall"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:48.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Unemployment Rate Actual 2.6 (Forecast 2.5, Previous 2.6)",
+        "url": "https://www.financialjuice.com/News/9319717/Japanese-Unemployment-Rate-Actual-26-Forecast-25-Previous-26.aspx?xy=rss",
+        "keywords": [
+          "rate",
+          "es",
+          "ym",
+          "employment",
+          "unemployment",
+          "FinancialJuice:",
+          "Japanese",
+          "Unemployment"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:48.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Tokyo Core CPI YoY Actual 2.8 (Forecast 2.7, Previous 2.8)",
+        "url": "https://www.financialjuice.com/News/9319716/Tokyo-Core-CPI-YoY-Actual-28-Forecast-27-Previous-28.aspx?xy=rss",
+        "keywords": [
+          "cpi",
+          "FinancialJuice:",
+          "Tokyo",
+          "Core"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:45.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese JobsApplicants Ratio Actual 1.18 (Forecast 1.2, Previous 1.20)",
+        "url": "https://www.financialjuice.com/News/9319715/Japanese-JobsApplicants-Ratio-Actual-118-Forecast-12-Previous-120.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "jobs",
+          "FinancialJuice:",
+          "Japanese",
+          "JobsApplicants"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Can The Lost Generation Be Found?",
+        "url": "https://www.zerohedge.com/personal-finance/can-lost-generation-be-found",
+        "keywords": [
+          "Lost",
+          "Generation",
+          "Found?"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "17:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "17:00",
+        "timestamp": "2025-11-27T22:45:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Propaganda Blunder: Democrat Senator Accidentally Highlights Biden's Epic Failure",
+        "url": "https://www.zerohedge.com/political/propaganda-blunder-democrat-senator-accidentally-highlights-bidens-epic-failure",
+        "keywords": [
+          "ai",
+          "Propaganda",
+          "Blunder:",
+          "Democrat"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "17:00",
+        "timestamp": "2025-11-27T22:00:00.000Z",
+        "source": "ZeroHedge",
+        "title": "OpenAI Admits Data-Breach After Analytics Partner Hit By Phishing Attack",
+        "url": "https://www.zerohedge.com/ai/openai-admits-data-breach-after-analytics-partner-hit-phishing-attack",
+        "keywords": [
+          "ai",
+          "OpenAI",
+          "Admits",
+          "Data-Breach"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "16:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "16:00",
+        "timestamp": "2025-11-27T21:58:50.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Belgium says using frozen Russian assets to fund Ukraine will endanger a peace deal - FT",
+        "url": "https://www.financialjuice.com/News/9319686/Belgium-says-using-frozen-Russian-assets-to-fund-Ukraine-will-endanger-a-peace-deal---FT.aspx?xy=rss",
+        "keywords": [
+          "ai",
+          "ukraine",
+          "russia",
+          "FinancialJuice:",
+          "Belgium",
+          "Russian"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "16:00",
+        "timestamp": "2025-11-27T21:15:00.000Z",
+        "source": "ZeroHedge",
+        "title": "NATO Chief Rules Out Russian Veto On Ukraine Joining Alliance, Erecting Barrier Toward Peace",
+        "url": "https://www.zerohedge.com/geopolitical/nato-chief-rules-out-russian-veto-ukraine-joining-alliance-erecting-barrier-toward",
+        "keywords": [
+          "es",
+          "ai",
+          "ukraine",
+          "russia",
+          "Chief",
+          "Rules",
+          "Russian"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "16:00",
+        "timestamp": "2025-11-27T21:00:01.000Z",
+        "source": "CNBC",
+        "title": "'Green light' away from AI trade: Two ETF executives see a key market shift underway",
+        "url": "https://www.cnbc.com/2025/11/27/green-light-away-from-ai-trade-two-etf-ceos-see-a-key-market-shift.html",
+        "keywords": [
+          "es",
+          "market",
+          "ai",
+          "trade"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "15:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "15:00",
+        "timestamp": "2025-11-27T20:30:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Small Retailers Enter Holiday Season Optimistic",
+        "url": "https://www.zerohedge.com/personal-finance/small-retailers-enter-holiday-season-optimistic",
+        "keywords": [
+          "retail",
+          "ai",
+          "Small",
+          "Retailers",
+          "Enter"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "15:00",
+        "timestamp": "2025-11-27T20:22:19.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Friday FX Option Expiries",
+        "url": "https://www.financialjuice.com/News/9319648/Friday-FX-Option-Expiries.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Friday",
+          "Option"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "14:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:45:00.000Z",
+        "source": "ZeroHedge",
+        "title": "White House Tells Reporter To Shut The Fk Up for Saying National Guard Should Never Have Been In DC",
+        "url": "https://www.zerohedge.com/political/white-house-tells-reporter-shut-fk-saying-national-guard-should-never-have-been-dc",
+        "keywords": [
+          "White",
+          "House",
+          "Tells"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:03:46.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Statistics Canada: International merchandise trade data for November 2025 will be published on January 29th, December data to be released on February 19th and January data on March 12th.",
+        "url": "https://www.financialjuice.com/News/9319610/Statistics-Canada--International-merchandise-trade-data-for-November-2025-will-be-published-on-January-29th-December-data-to-be-released-on-February-19th-and-January-data-on-March-12th.aspx?xy=rss",
+        "keywords": [
+          "trade",
+          "FinancialJuice:",
+          "Statistics",
+          "Canada:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:03:00.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Statistics Canada: September and October international merchandise trade data will be released on December 11 and January 8, respectively.",
+        "url": "https://www.financialjuice.com/News/9319609/Statistics-Canada-September-and-October-international-merchandise-trade-data-will-be-released-on-December-11-and-January-8-respectively.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "trade",
+          "FinancialJuice:",
+          "Statistics",
+          "Canada:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:00:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Drone Strike Hits Major Iraqi Kurdistan Gas Field, Plunging Region Into Darkness",
+        "url": "https://www.zerohedge.com/energy/drone-strike-hits-major-iraqi-kurdistan-gas-field-plunging-region-darkness",
+        "keywords": [
+          "es",
+          "Drone",
+          "Strike",
+          "Hits"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "13:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "13:00",
+        "timestamp": "2025-11-27T18:26:05.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Brent crude January futures settle at 63.34bbl up 21 cents, or 0.2.",
+        "url": "https://www.financialjuice.com/News/9319587/Brent-crude-January-futures-settle-at-6334bbl-up-21-cents-or-02.aspx?xy=rss",
+        "keywords": [
+          "futures",
+          "es",
+          "FinancialJuice:",
+          "Brent",
+          "January"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "13:00",
+        "timestamp": "2025-11-27T18:24:52.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Ukraine's Zelenskiy: Ukrainian and US delegations to meet this week to work on points raised at Geneva talks to bring peace, provide security guarantees for Ukraine.",
+        "url": "https://www.financialjuice.com/News/9319586/Ukraines-Zelenskiy-Ukrainian-and-US-delegations-to-meet-this-week-to-work-on-points-raised-at-Geneva-talks-to-bring-peace-provide-security-guarantees-for-Ukraine.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "ai",
+          "ukraine",
+          "FinancialJuice:",
+          "Ukraine's",
+          "Zelenskiy:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "13:00",
+        "timestamp": "2025-11-27T18:02:34.000Z",
+        "source": "CNBC",
+        "title": "SEC investigates Jefferies over First Brands collapse, report says",
+        "url": "https://www.cnbc.com/2025/11/27/sec-investigates-jefferies-over-first-brands-collapse-report-says.html",
+        "keywords": [
+          "es",
+          "Jefferies",
+          "First",
+          "Brands"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "12:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:30:00.000Z",
+        "source": "ZeroHedge",
+        "title": "How To Survive Thanksgiving???",
+        "url": "https://www.zerohedge.com/markets/how-survive-thanksgiving",
+        "keywords": [
+          "Survive",
+          "Thanksgiving???"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:14:13.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: BoEs Greene: There are concerns about whether disinflation is continuing.",
+        "url": "https://www.financialjuice.com/News/9319527/BoEs-Greene-There-are-concerns-about-whether-disinflation-is-continuing.aspx?xy=rss",
+        "keywords": [
+          "inflation",
+          "es",
+          "FinancialJuice:",
+          "BoEs",
+          "Greene:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:13:54.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: BoEs Greene: I'm marginally less concerned about inflation since the budget, but only marginally.",
+        "url": "https://www.financialjuice.com/News/9319526/BoEs-Greene-Im-marginally-less-concerned-about-inflation-since-the-budget-but-only-marginally.aspx?xy=rss",
+        "keywords": [
+          "inflation",
+          "es",
+          "FinancialJuice:",
+          "BoEs",
+          "Greene:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:13:36.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: BoEs Greene: The latest news on inflation has been to the downside.",
+        "url": "https://www.financialjuice.com/News/9319525/BoEs-Greene-The-latest-news-on-inflation-has-been-to-the-downside.aspx?xy=rss",
+        "keywords": [
+          "inflation",
+          "dow",
+          "es",
+          "FinancialJuice:",
+          "BoEs",
+          "Greene:"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "11:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "11:00",
+        "timestamp": "2025-11-27T16:00:01.000Z",
+        "source": "Finnhub",
+        "title": "88-year-old Morgan Freeman shares the secrets to his long life and 60-year career: 'Keep getting up in the morning, keep moving'",
+        "url": "https://www.cnbc.com/2025/11/27/morgan-freemans-secret-to-longevity-as-an-88-year-old-actor.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Morgan",
+          "Freeman"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "10:00",
+        "timestamp": "2025-11-27T15:00:01.000Z",
+        "source": "Finnhub",
+        "title": "35-year-old American left the U.S. for the U.K., spends about 2,532 a month: 'This is where I'm supposed to be'",
+        "url": "https://www.cnbc.com/2025/11/27/american-left-us-for-uk.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "American"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "09:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "09:00",
+        "timestamp": "2025-11-27T14:40:39.000Z",
+        "source": "Finnhub",
+        "title": "Putin breaks his silence on Ukraine peace plan, says Moscow ready for 'serious' talks",
+        "url": "https://www.cnbc.com/2025/11/27/putin-moscow-ready-for-serious-talks-on-ukraine-peace-plan.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "ai",
+          "ukraine",
+          "Putin",
+          "Ukraine",
+          "Moscow"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "09:00",
+        "timestamp": "2025-11-27T14:00:01.000Z",
+        "source": "Finnhub",
+        "title": "With Trump's tax bill set to dent giving by the wealthy, can middle-class donors make up the difference?",
+        "url": "https://www.cnbc.com/2025/11/27/trump-tax-changes-middle-class-donors-giving-gap.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "With",
+          "Trump's"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "09:00",
+        "timestamp": "2025-11-27T14:00:01.000Z",
+        "source": "Finnhub",
+        "title": "Psychologists say this 'green flag' is one of the strongest predictors of a successful relationshipit can be 'hard to spot'",
+        "url": "https://www.cnbc.com/2025/11/27/psychologists-this-is-one-of-the-strongest-predictors-of-a-happy-relationship.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Psychologists"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "06:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "06:00",
+        "timestamp": "2025-11-27T11:32:00.000Z",
+        "source": "Finnhub",
+        "title": "Trumps One Big Beautiful Bill Act will really kick into gear next year. These are the stocks to watch, says SocGen.",
+        "url": "https://www.marketwatch.com/story/trumps-one-big-beautiful-bill-act-will-really-kick-into-gear-next-year-these-are-the-stocks-to-watch-says-socgen-a31725a5",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Trumps",
+          "Beautiful",
+          "Bill"
+        ],
+        "market_hours": "pre-market"
+      }
+    ],
+    "05:00": [
+      {
+        "date": "2025-11-27",
+        "hour": "05:00",
+        "timestamp": "2025-11-27T10:45:00.000Z",
+        "source": "Finnhub",
+        "title": "Im burned out by the drama: Is it wrong to skip my Thanksgiving family dinner? Last year was fraught.",
+        "url": "https://www.marketwatch.com/story/im-burned-out-by-the-drama-is-it-wrong-to-skip-my-thanksgiving-family-dinner-last-year-was-fraught-0731f498",
+        "sentiment": "neutral",
+        "keywords": [
+          "Thanksgiving",
+          "Last"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "05:00",
+        "timestamp": "2025-11-27T10:21:00.000Z",
+        "source": "Finnhub",
+        "title": "Beaten-down Puma shares are soaring. The sportswear maker may have a suitor.",
+        "url": "https://www.marketwatch.com/story/beaten-down-puma-shares-are-soaring-the-sportswear-maker-may-have-a-suitor-33a83834",
+        "sentiment": "neutral",
+        "keywords": [
+          "dow",
+          "es",
+          "Beaten-down",
+          "Puma"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "05:00",
+        "timestamp": "2025-11-27T10:03:00.000Z",
+        "source": "Finnhub",
+        "title": "Kevin Spacey says he is living in hotels after Baltimore foreclosure Im going where the work is",
+        "url": "https://www.marketwatch.com/story/kevin-spacey-says-he-is-living-in-hotels-after-baltimore-foreclosure-im-going-where-the-work-is-0069a5b6",
+        "sentiment": "neutral",
+        "keywords": [
+          "Kevin",
+          "Spacey",
+          "Baltimore"
+        ],
+        "market_hours": "pre-market"
+      }
+    ]
+  },
+  "by_source": {
+    "FinancialJuice": [
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:58:54.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Large Scale Retail Sales YoY Actual 5 (Forecast -, Previous 3)",
+        "url": "https://www.financialjuice.com/News/9319747/Japanese-Large-Scale-Retail-Sales-YoY-Actual-5-Forecast---Previous-3.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "FinancialJuice:",
+          "Japanese",
+          "Large"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:51.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Retail Sales YoY Actual 1.7 (Forecast 0.8, Previous 0.5)",
+        "url": "https://www.financialjuice.com/News/9319745/Japanese-Retail-Sales-YoY-Actual-17-Forecast-08-Previous-05.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "retail",
+          "ai",
+          "FinancialJuice:",
+          "Japanese",
+          "Retail"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:51.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Industrial Output Prelim MoM SA Actual 1.4 (Forecast -0.6, Previous 2.6)",
+        "url": "https://www.financialjuice.com/News/9319746/Japanese-Industrial-Output-Prelim-MoM-SA-Actual-14-Forecast--06-Previous-26.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Japanese",
+          "Industrial"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:45.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Foreign Investment Japanese Stocks Actual -348.7B (Forecast -, Previous 1,020.9B)",
+        "url": "https://www.financialjuice.com/News/9319744/Foreign-Investment-Japanese-Stocks-Actual--3487B-Forecast---Previous-10209B.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Foreign",
+          "Investment"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:50:45.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Foreign Bond Investment Actual 576.5B (Forecast -, Previous 348.4B)",
+        "url": "https://www.financialjuice.com/News/9319743/Japanese-Foreign-Bond-Investment-Actual-5765B-Forecast---Previous-3484B.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Japanese",
+          "Foreign"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:48.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Tokyo CPI Overall Actual 2.7 (Forecast 2.7, Previous 2.8)",
+        "url": "https://www.financialjuice.com/News/9319718/Tokyo-CPI-Overall-Actual-27-Forecast-27-Previous-28.aspx?xy=rss",
+        "keywords": [
+          "cpi",
+          "FinancialJuice:",
+          "Tokyo",
+          "Overall"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:48.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese Unemployment Rate Actual 2.6 (Forecast 2.5, Previous 2.6)",
+        "url": "https://www.financialjuice.com/News/9319717/Japanese-Unemployment-Rate-Actual-26-Forecast-25-Previous-26.aspx?xy=rss",
+        "keywords": [
+          "rate",
+          "es",
+          "ym",
+          "employment",
+          "unemployment",
+          "FinancialJuice:",
+          "Japanese",
+          "Unemployment"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:48.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Tokyo Core CPI YoY Actual 2.8 (Forecast 2.7, Previous 2.8)",
+        "url": "https://www.financialjuice.com/News/9319716/Tokyo-Core-CPI-YoY-Actual-28-Forecast-27-Previous-28.aspx?xy=rss",
+        "keywords": [
+          "cpi",
+          "FinancialJuice:",
+          "Tokyo",
+          "Core"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:45.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Japanese JobsApplicants Ratio Actual 1.18 (Forecast 1.2, Previous 1.20)",
+        "url": "https://www.financialjuice.com/News/9319715/Japanese-JobsApplicants-Ratio-Actual-118-Forecast-12-Previous-120.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "jobs",
+          "FinancialJuice:",
+          "Japanese",
+          "JobsApplicants"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "16:00",
+        "timestamp": "2025-11-27T21:58:50.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Belgium says using frozen Russian assets to fund Ukraine will endanger a peace deal - FT",
+        "url": "https://www.financialjuice.com/News/9319686/Belgium-says-using-frozen-Russian-assets-to-fund-Ukraine-will-endanger-a-peace-deal---FT.aspx?xy=rss",
+        "keywords": [
+          "ai",
+          "ukraine",
+          "russia",
+          "FinancialJuice:",
+          "Belgium",
+          "Russian"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "15:00",
+        "timestamp": "2025-11-27T20:22:19.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Friday FX Option Expiries",
+        "url": "https://www.financialjuice.com/News/9319648/Friday-FX-Option-Expiries.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "FinancialJuice:",
+          "Friday",
+          "Option"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:03:46.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Statistics Canada: International merchandise trade data for November 2025 will be published on January 29th, December data to be released on February 19th and January data on March 12th.",
+        "url": "https://www.financialjuice.com/News/9319610/Statistics-Canada--International-merchandise-trade-data-for-November-2025-will-be-published-on-January-29th-December-data-to-be-released-on-February-19th-and-January-data-on-March-12th.aspx?xy=rss",
+        "keywords": [
+          "trade",
+          "FinancialJuice:",
+          "Statistics",
+          "Canada:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:03:00.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Statistics Canada: September and October international merchandise trade data will be released on December 11 and January 8, respectively.",
+        "url": "https://www.financialjuice.com/News/9319609/Statistics-Canada-September-and-October-international-merchandise-trade-data-will-be-released-on-December-11-and-January-8-respectively.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "trade",
+          "FinancialJuice:",
+          "Statistics",
+          "Canada:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "13:00",
+        "timestamp": "2025-11-27T18:26:05.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Brent crude January futures settle at 63.34bbl up 21 cents, or 0.2.",
+        "url": "https://www.financialjuice.com/News/9319587/Brent-crude-January-futures-settle-at-6334bbl-up-21-cents-or-02.aspx?xy=rss",
+        "keywords": [
+          "futures",
+          "es",
+          "FinancialJuice:",
+          "Brent",
+          "January"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "13:00",
+        "timestamp": "2025-11-27T18:24:52.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: Ukraine's Zelenskiy: Ukrainian and US delegations to meet this week to work on points raised at Geneva talks to bring peace, provide security guarantees for Ukraine.",
+        "url": "https://www.financialjuice.com/News/9319586/Ukraines-Zelenskiy-Ukrainian-and-US-delegations-to-meet-this-week-to-work-on-points-raised-at-Geneva-talks-to-bring-peace-provide-security-guarantees-for-Ukraine.aspx?xy=rss",
+        "keywords": [
+          "es",
+          "ai",
+          "ukraine",
+          "FinancialJuice:",
+          "Ukraine's",
+          "Zelenskiy:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:14:13.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: BoEs Greene: There are concerns about whether disinflation is continuing.",
+        "url": "https://www.financialjuice.com/News/9319527/BoEs-Greene-There-are-concerns-about-whether-disinflation-is-continuing.aspx?xy=rss",
+        "keywords": [
+          "inflation",
+          "es",
+          "FinancialJuice:",
+          "BoEs",
+          "Greene:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:13:54.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: BoEs Greene: I'm marginally less concerned about inflation since the budget, but only marginally.",
+        "url": "https://www.financialjuice.com/News/9319526/BoEs-Greene-Im-marginally-less-concerned-about-inflation-since-the-budget-but-only-marginally.aspx?xy=rss",
+        "keywords": [
+          "inflation",
+          "es",
+          "FinancialJuice:",
+          "BoEs",
+          "Greene:"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:13:36.000Z",
+        "source": "FinancialJuice",
+        "title": "FinancialJuice: BoEs Greene: The latest news on inflation has been to the downside.",
+        "url": "https://www.financialjuice.com/News/9319525/BoEs-Greene-The-latest-news-on-inflation-has-been-to-the-downside.aspx?xy=rss",
+        "keywords": [
+          "inflation",
+          "dow",
+          "es",
+          "FinancialJuice:",
+          "BoEs",
+          "Greene:"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "ZeroHedge": [
+      {
+        "date": "2025-11-27",
+        "hour": "18:00",
+        "timestamp": "2025-11-27T23:30:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Can The Lost Generation Be Found?",
+        "url": "https://www.zerohedge.com/personal-finance/can-lost-generation-be-found",
+        "keywords": [
+          "Lost",
+          "Generation",
+          "Found?"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "17:00",
+        "timestamp": "2025-11-27T22:45:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Propaganda Blunder: Democrat Senator Accidentally Highlights Biden's Epic Failure",
+        "url": "https://www.zerohedge.com/political/propaganda-blunder-democrat-senator-accidentally-highlights-bidens-epic-failure",
+        "keywords": [
+          "ai",
+          "Propaganda",
+          "Blunder:",
+          "Democrat"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "17:00",
+        "timestamp": "2025-11-27T22:00:00.000Z",
+        "source": "ZeroHedge",
+        "title": "OpenAI Admits Data-Breach After Analytics Partner Hit By Phishing Attack",
+        "url": "https://www.zerohedge.com/ai/openai-admits-data-breach-after-analytics-partner-hit-phishing-attack",
+        "keywords": [
+          "ai",
+          "OpenAI",
+          "Admits",
+          "Data-Breach"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "16:00",
+        "timestamp": "2025-11-27T21:15:00.000Z",
+        "source": "ZeroHedge",
+        "title": "NATO Chief Rules Out Russian Veto On Ukraine Joining Alliance, Erecting Barrier Toward Peace",
+        "url": "https://www.zerohedge.com/geopolitical/nato-chief-rules-out-russian-veto-ukraine-joining-alliance-erecting-barrier-toward",
+        "keywords": [
+          "es",
+          "ai",
+          "ukraine",
+          "russia",
+          "Chief",
+          "Rules",
+          "Russian"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "15:00",
+        "timestamp": "2025-11-27T20:30:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Small Retailers Enter Holiday Season Optimistic",
+        "url": "https://www.zerohedge.com/personal-finance/small-retailers-enter-holiday-season-optimistic",
+        "keywords": [
+          "retail",
+          "ai",
+          "Small",
+          "Retailers",
+          "Enter"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:45:00.000Z",
+        "source": "ZeroHedge",
+        "title": "White House Tells Reporter To Shut The Fk Up for Saying National Guard Should Never Have Been In DC",
+        "url": "https://www.zerohedge.com/political/white-house-tells-reporter-shut-fk-saying-national-guard-should-never-have-been-dc",
+        "keywords": [
+          "White",
+          "House",
+          "Tells"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "14:00",
+        "timestamp": "2025-11-27T19:00:00.000Z",
+        "source": "ZeroHedge",
+        "title": "Drone Strike Hits Major Iraqi Kurdistan Gas Field, Plunging Region Into Darkness",
+        "url": "https://www.zerohedge.com/energy/drone-strike-hits-major-iraqi-kurdistan-gas-field-plunging-region-darkness",
+        "keywords": [
+          "es",
+          "Drone",
+          "Strike",
+          "Hits"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "12:00",
+        "timestamp": "2025-11-27T17:30:00.000Z",
+        "source": "ZeroHedge",
+        "title": "How To Survive Thanksgiving???",
+        "url": "https://www.zerohedge.com/markets/how-survive-thanksgiving",
+        "keywords": [
+          "Survive",
+          "Thanksgiving???"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "CNBC": [
+      {
+        "date": "2025-11-27",
+        "hour": "16:00",
+        "timestamp": "2025-11-27T21:00:01.000Z",
+        "source": "CNBC",
+        "title": "'Green light' away from AI trade: Two ETF executives see a key market shift underway",
+        "url": "https://www.cnbc.com/2025/11/27/green-light-away-from-ai-trade-two-etf-ceos-see-a-key-market-shift.html",
+        "keywords": [
+          "es",
+          "market",
+          "ai",
+          "trade"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "13:00",
+        "timestamp": "2025-11-27T18:02:34.000Z",
+        "source": "CNBC",
+        "title": "SEC investigates Jefferies over First Brands collapse, report says",
+        "url": "https://www.cnbc.com/2025/11/27/sec-investigates-jefferies-over-first-brands-collapse-report-says.html",
+        "keywords": [
+          "es",
+          "Jefferies",
+          "First",
+          "Brands"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "Finnhub": [
+      {
+        "date": "2025-11-27",
+        "hour": "11:00",
+        "timestamp": "2025-11-27T16:00:01.000Z",
+        "source": "Finnhub",
+        "title": "88-year-old Morgan Freeman shares the secrets to his long life and 60-year career: 'Keep getting up in the morning, keep moving'",
+        "url": "https://www.cnbc.com/2025/11/27/morgan-freemans-secret-to-longevity-as-an-88-year-old-actor.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Morgan",
+          "Freeman"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "10:00",
+        "timestamp": "2025-11-27T15:00:01.000Z",
+        "source": "Finnhub",
+        "title": "35-year-old American left the U.S. for the U.K., spends about 2,532 a month: 'This is where I'm supposed to be'",
+        "url": "https://www.cnbc.com/2025/11/27/american-left-us-for-uk.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "American"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "09:00",
+        "timestamp": "2025-11-27T14:40:39.000Z",
+        "source": "Finnhub",
+        "title": "Putin breaks his silence on Ukraine peace plan, says Moscow ready for 'serious' talks",
+        "url": "https://www.cnbc.com/2025/11/27/putin-moscow-ready-for-serious-talks-on-ukraine-peace-plan.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "ai",
+          "ukraine",
+          "Putin",
+          "Ukraine",
+          "Moscow"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "09:00",
+        "timestamp": "2025-11-27T14:00:01.000Z",
+        "source": "Finnhub",
+        "title": "With Trump's tax bill set to dent giving by the wealthy, can middle-class donors make up the difference?",
+        "url": "https://www.cnbc.com/2025/11/27/trump-tax-changes-middle-class-donors-giving-gap.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "With",
+          "Trump's"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "09:00",
+        "timestamp": "2025-11-27T14:00:01.000Z",
+        "source": "Finnhub",
+        "title": "Psychologists say this 'green flag' is one of the strongest predictors of a successful relationshipit can be 'hard to spot'",
+        "url": "https://www.cnbc.com/2025/11/27/psychologists-this-is-one-of-the-strongest-predictors-of-a-happy-relationship.html",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Psychologists"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "06:00",
+        "timestamp": "2025-11-27T11:32:00.000Z",
+        "source": "Finnhub",
+        "title": "Trumps One Big Beautiful Bill Act will really kick into gear next year. These are the stocks to watch, says SocGen.",
+        "url": "https://www.marketwatch.com/story/trumps-one-big-beautiful-bill-act-will-really-kick-into-gear-next-year-these-are-the-stocks-to-watch-says-socgen-a31725a5",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Trumps",
+          "Beautiful",
+          "Bill"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "05:00",
+        "timestamp": "2025-11-27T10:45:00.000Z",
+        "source": "Finnhub",
+        "title": "Im burned out by the drama: Is it wrong to skip my Thanksgiving family dinner? Last year was fraught.",
+        "url": "https://www.marketwatch.com/story/im-burned-out-by-the-drama-is-it-wrong-to-skip-my-thanksgiving-family-dinner-last-year-was-fraught-0731f498",
+        "sentiment": "neutral",
+        "keywords": [
+          "Thanksgiving",
+          "Last"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "05:00",
+        "timestamp": "2025-11-27T10:21:00.000Z",
+        "source": "Finnhub",
+        "title": "Beaten-down Puma shares are soaring. The sportswear maker may have a suitor.",
+        "url": "https://www.marketwatch.com/story/beaten-down-puma-shares-are-soaring-the-sportswear-maker-may-have-a-suitor-33a83834",
+        "sentiment": "neutral",
+        "keywords": [
+          "dow",
+          "es",
+          "Beaten-down",
+          "Puma"
+        ],
+        "market_hours": "pre-market"
+      },
+      {
+        "date": "2025-11-27",
+        "hour": "05:00",
+        "timestamp": "2025-11-27T10:03:00.000Z",
+        "source": "Finnhub",
+        "title": "Kevin Spacey says he is living in hotels after Baltimore foreclosure Im going where the work is",
+        "url": "https://www.marketwatch.com/story/kevin-spacey-says-he-is-living-in-hotels-after-baltimore-foreclosure-im-going-where-the-work-is-0069a5b6",
+        "sentiment": "neutral",
+        "keywords": [
+          "Kevin",
+          "Spacey",
+          "Baltimore"
+        ],
+        "market_hours": "pre-market"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 9,
+    "unknown": 28
+  },
+  "market_hours_distribution": {
+    "pre-market": 4,
+    "market": 18,
+    "after-hours": 15,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 22
+    },
+    {
+      "keyword": "FinancialJuice:",
+      "count": 18
+    },
+    {
+      "keyword": "ai",
+      "count": 10
+    },
+    {
+      "keyword": "Japanese",
+      "count": 6
+    },
+    {
+      "keyword": "ukraine",
+      "count": 4
+    },
+    {
+      "keyword": "retail",
+      "count": 3
+    },
+    {
+      "keyword": "trade",
+      "count": 3
+    },
+    {
+      "keyword": "inflation",
+      "count": 3
+    },
+    {
+      "keyword": "BoEs",
+      "count": 3
+    },
+    {
+      "keyword": "Greene:",
+      "count": 3
+    }
+  ]
+}

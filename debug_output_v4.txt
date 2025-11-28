@@ -1,0 +1,16 @@
+﻿
+--- Debugging Investing.com ---
+Found meta tag content (length): 2925
+Parsed JSON data: { LAST_PRICE: undefined, PREV_CLOSE: undefined, OPEN_PRICE: undefined }
+
+--- Debugging Yahoo Finance ---
+Consent page detected
+Clicked agree
+Yahoo Price (attribute): null
+Yahoo Price (text): 17.19
+
+--- Debugging MarketWatch ---
+MarketWatch: Page loaded (no obvious captcha)
+Selector found: bg-quote.value, Text: $85.92
+Selector found: .intraday__price .value, Text: 17.19
+Selector NOT found: [data-test="instrument-price-last"]

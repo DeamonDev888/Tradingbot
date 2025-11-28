@@ -1,0 +1,290 @@
+{
+  "date": "2025-11-26",
+  "total_news": 7,
+  "by_hour": {
+    "16:00": [
+      {
+        "date": "2025-11-26",
+        "hour": "16:00",
+        "timestamp": "2025-11-26T21:52:00.000Z",
+        "source": "Finnhub",
+        "title": "Stranger Things has made at least 1 billion for Netflix already. Now Season 5 could deliver another 200 million.",
+        "url": "https://www.marketwatch.com/story/stranger-things-has-made-at-least-1-billion-for-netflix-already-now-season-5-could-deliver-another-200-million-b8827337",
+        "sentiment": "neutral",
+        "keywords": [
+          "Stranger",
+          "Things",
+          "Netflix"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "12:00": [
+      {
+        "date": "2025-11-26",
+        "hour": "12:00",
+        "timestamp": "2025-11-26T17:06:02.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves midday: Dell, Arrowhead Pharmaceuticals, Urban Outfitters  more",
+        "url": "https://www.cnbc.com/2025/11/26/stocks-making-the-biggest-moves-midday-dell-arwr-urbn.html",
+        "keywords": [
+          "es",
+          "Stocks",
+          "Dell,",
+          "Arrowhead"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "09:00": [
+      {
+        "date": "2025-11-26",
+        "hour": "09:00",
+        "timestamp": "2025-11-26T14:28:12.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves premarket: Deere, Dell Technologies, HP, Autodesk  more",
+        "url": "https://www.cnbc.com/2025/11/26/stocks-making-the-biggest-moves-premarket-de-dell-hpq-adsk.html",
+        "keywords": [
+          "es",
+          "market",
+          "tech",
+          "Stocks",
+          "Deere,",
+          "Dell"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "19:00": [
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-2Y Treasury Yield Spread: 0.55 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y2Y?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-3M Treasury Yield Spread: 0.08 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y3M?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-2Y Treasury Yield Spread: 0.55 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y2Y?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-3M Treasury Yield Spread: 0.08 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y3M?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "by_source": {
+    "Finnhub": [
+      {
+        "date": "2025-11-26",
+        "hour": "16:00",
+        "timestamp": "2025-11-26T21:52:00.000Z",
+        "source": "Finnhub",
+        "title": "Stranger Things has made at least 1 billion for Netflix already. Now Season 5 could deliver another 200 million.",
+        "url": "https://www.marketwatch.com/story/stranger-things-has-made-at-least-1-billion-for-netflix-already-now-season-5-could-deliver-another-200-million-b8827337",
+        "sentiment": "neutral",
+        "keywords": [
+          "Stranger",
+          "Things",
+          "Netflix"
+        ],
+        "market_hours": "after-hours"
+      }
+    ],
+    "CNBC": [
+      {
+        "date": "2025-11-26",
+        "hour": "12:00",
+        "timestamp": "2025-11-26T17:06:02.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves midday: Dell, Arrowhead Pharmaceuticals, Urban Outfitters  more",
+        "url": "https://www.cnbc.com/2025/11/26/stocks-making-the-biggest-moves-midday-dell-arwr-urbn.html",
+        "keywords": [
+          "es",
+          "Stocks",
+          "Dell,",
+          "Arrowhead"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "09:00",
+        "timestamp": "2025-11-26T14:28:12.000Z",
+        "source": "CNBC",
+        "title": "Stocks making the biggest moves premarket: Deere, Dell Technologies, HP, Autodesk  more",
+        "url": "https://www.cnbc.com/2025/11/26/stocks-making-the-biggest-moves-premarket-de-dell-hpq-adsk.html",
+        "keywords": [
+          "es",
+          "market",
+          "tech",
+          "Stocks",
+          "Deere,",
+          "Dell"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "FRED": [
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-2Y Treasury Yield Spread: 0.55 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y2Y?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-3M Treasury Yield Spread: 0.08 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y3M?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-2Y Treasury Yield Spread: 0.55 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y2Y?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      },
+      {
+        "date": "2025-11-26",
+        "hour": "19:00",
+        "timestamp": "2025-11-26T00:00:00.000Z",
+        "source": "FRED",
+        "title": "MACRO DATA 10Y-3M Treasury Yield Spread: 0.08 (As of 2025-11-26)",
+        "url": "https://fred.stlouisfed.org/series/T10Y3M?date=2025-11-26",
+        "sentiment": "neutral",
+        "keywords": [
+          "Treasury",
+          "Yield",
+          "Spread:"
+        ],
+        "market_hours": "after-hours"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 5,
+    "unknown": 2
+  },
+  "market_hours_distribution": {
+    "pre-market": 0,
+    "market": 2,
+    "after-hours": 5,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "Treasury",
+      "count": 4
+    },
+    {
+      "keyword": "Yield",
+      "count": 4
+    },
+    {
+      "keyword": "Spread:",
+      "count": 4
+    },
+    {
+      "keyword": "es",
+      "count": 2
+    },
+    {
+      "keyword": "Stocks",
+      "count": 2
+    },
+    {
+      "keyword": "Stranger",
+      "count": 1
+    },
+    {
+      "keyword": "Things",
+      "count": 1
+    },
+    {
+      "keyword": "Netflix",
+      "count": 1
+    },
+    {
+      "keyword": "Dell,",
+      "count": 1
+    },
+    {
+      "keyword": "Arrowhead",
+      "count": 1
+    }
+  ]
+}

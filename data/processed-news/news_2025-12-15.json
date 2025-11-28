@@ -1,0 +1,206 @@
+{
+  "date": "2025-12-15",
+  "total_news": 4,
+  "by_hour": {
+    "11:00": [
+      {
+        "date": "2025-12-15",
+        "hour": "11:00",
+        "timestamp": "2025-12-15T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-15",
+        "hour": "11:00",
+        "timestamp": "2025-12-15T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 6-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "10:00": [
+      {
+        "date": "2025-12-15",
+        "hour": "10:00",
+        "timestamp": "2025-12-15T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NAHB Housing Market Index (United States): Actual vs Forecast 37",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "market",
+          "index",
+          "Housing",
+          "Market",
+          "Index"
+        ],
+        "market_hours": "market"
+      }
+    ],
+    "08:00": [
+      {
+        "date": "2025-12-15",
+        "hour": "08:00",
+        "timestamp": "2025-12-15T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NY Empire State Manufacturing Index (United States): Actual vs Forecast 4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "manufacturing",
+          "Empire",
+          "State",
+          "Manufacturing"
+        ],
+        "market_hours": "pre-market"
+      }
+    ]
+  },
+  "by_source": {
+    "TradingEconomics": [
+      {
+        "date": "2025-12-15",
+        "hour": "11:00",
+        "timestamp": "2025-12-15T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 3-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-15",
+        "hour": "11:00",
+        "timestamp": "2025-12-15T16:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR 6-Month Bill Auction (United States): Actual vs Forecast",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "Bill",
+          "Auction",
+          "States):"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-15",
+        "hour": "10:00",
+        "timestamp": "2025-12-15T15:00:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NAHB Housing Market Index (United States): Actual vs Forecast 37",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "market",
+          "index",
+          "Housing",
+          "Market",
+          "Index"
+        ],
+        "market_hours": "market"
+      },
+      {
+        "date": "2025-12-15",
+        "hour": "08:00",
+        "timestamp": "2025-12-15T13:30:00.000Z",
+        "source": "TradingEconomics",
+        "title": "ECO CALENDAR NY Empire State Manufacturing Index (United States): Actual vs Forecast 4",
+        "url": "https://tradingeconomics.com/united-states/calendar",
+        "sentiment": "neutral",
+        "keywords": [
+          "es",
+          "index",
+          "manufacturing",
+          "Empire",
+          "State",
+          "Manufacturing"
+        ],
+        "market_hours": "pre-market"
+      }
+    ]
+  },
+  "sentiment_distribution": {
+    "bullish": 0,
+    "bearish": 0,
+    "neutral": 4,
+    "unknown": 0
+  },
+  "market_hours_distribution": {
+    "pre-market": 1,
+    "market": 3,
+    "after-hours": 0,
+    "extended": 0
+  },
+  "top_keywords": [
+    {
+      "keyword": "es",
+      "count": 4
+    },
+    {
+      "keyword": "Bill",
+      "count": 2
+    },
+    {
+      "keyword": "Auction",
+      "count": 2
+    },
+    {
+      "keyword": "States):",
+      "count": 2
+    },
+    {
+      "keyword": "index",
+      "count": 2
+    },
+    {
+      "keyword": "market",
+      "count": 1
+    },
+    {
+      "keyword": "Housing",
+      "count": 1
+    },
+    {
+      "keyword": "Market",
+      "count": 1
+    },
+    {
+      "keyword": "Index",
+      "count": 1
+    },
+    {
+      "keyword": "manufacturing",
+      "count": 1
+    }
+  ]
+}
