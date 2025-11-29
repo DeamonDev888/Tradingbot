@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.VixPlaywrightScraper = void 0;
-const playwright_1 = require("playwright");
-class VixPlaywrightScraper {
+import { chromium } from 'playwright';
+export class VixPlaywrightScraper {
     browser = null;
     cache;
     metrics;
@@ -22,26 +19,9 @@ class VixPlaywrightScraper {
             try {
                 // Attendre un court délai pour éviter les race conditions
                 await new Promise(resolve => setTimeout(resolve, 100));
-                this.browser = await playwright_1.chromium.launch({
+                this.browser = await chromium.launch({
                     headless: true,
-                    args: [
-                        '--no-sandbox',
-                        '--disable-setuid-sandbox',
-                        '--disable-dev-shm-usage',
-                        '--disable-accelerated-2d-canvas',
-                        '--no-first-run',
-                        '--no-zygote',
-                        '--disable-gpu',
-                        '--disable-background-timer-throttling',
-                        '--disable-backgrounding-occluded-windows',
-                        '--disable-breakpad',
-                        '--disable-client-side-phishing-detection',
-                        '--disable-component-extensions-with-background-pages',
-                        '--disable-extensions-except',
-                        '--disable-web-security',
-                        '--single-process',
-                        '--disable-features=VizDisplayCompositor',
-                    ],
+                    args: ['--no-sandbox', '--disable-setuid-sandbox'],
                     timeout: 30000,
                 });
                 console.log('[VixPlaywrightScraper] Browser launched successfully');
@@ -82,15 +62,11 @@ class VixPlaywrightScraper {
             const page = await context.newPage();
             // Simuler comportement humain
             await page.addInitScript(() => {
-                // @ts-ignore
+                // Browser globals are available in page context
                 Object.defineProperty(navigator, 'webdriver', { get: () => false });
-                // @ts-ignore
                 Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-                // @ts-ignore
                 Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-                // @ts-ignore
                 window.chrome = { runtime: {} };
-                // @ts-ignore
                 Object.defineProperty(navigator, 'permissions', {
                     get: () => ({
                         query: () => Promise.resolve({ state: 'granted' }),
@@ -1303,4 +1279,4 @@ class VixPlaywrightScraper {
         return lines;
     }
 }
-exports.VixPlaywrightScraper = VixPlaywrightScraper;
+//# sourceMappingURL=VixPlaywrightScraper.js.map

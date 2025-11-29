@@ -75,21 +75,21 @@ export class MonitoringService {
   private alertRules: AlertRule[] = [
     {
       name: 'database_connection',
-      condition: (m) => !m.database.connected,
+      condition: m => !m.database.connected,
       severity: 'critical',
       message: 'Base de données inaccessible',
       enabled: true,
     },
     {
       name: 'no_recent_data',
-      condition: (m) => m.database.connected && m.database.recentNews24h < 10,
+      condition: m => m.database.connected && m.database.recentNews24h < 10,
       severity: 'critical',
       message: 'Aucune donnée récente (moins de 10 news/24h)',
       enabled: true,
     },
     {
       name: 'high_duplication_rate',
-      condition: (m) => {
+      condition: m => {
         const dupRate = m.database.totalNews > 0 ? m.database.duplicates / m.database.totalNews : 0;
         return dupRate > 0.1; // 10%
       },
@@ -99,8 +99,9 @@ export class MonitoringService {
     },
     {
       name: 'quality_issues',
-      condition: (m) => {
-        const qualityRate = m.database.totalNews > 0 ? m.database.qualityIssues / m.database.totalNews : 0;
+      condition: m => {
+        const qualityRate =
+          m.database.totalNews > 0 ? m.database.qualityIssues / m.database.totalNews : 0;
         return qualityRate > 0.15; // 15%
       },
       severity: 'warning',
@@ -109,21 +110,21 @@ export class MonitoringService {
     },
     {
       name: 'slow_queries',
-      condition: (m) => m.performance.slowQueries > 5,
+      condition: m => m.performance.slowQueries > 5,
       severity: 'warning',
       message: 'Requêtes lentes détectées',
       enabled: true,
     },
     {
       name: 'connection_pool_exhaustion',
-      condition: (m) => m.performance.connectionPoolActive > 15,
+      condition: m => m.performance.connectionPoolActive > 15,
       severity: 'critical',
       message: 'Pool de connexions presque épuisé',
       enabled: true,
     },
     {
       name: 'low_data_volume',
-      condition: (m) => m.database.connected && m.database.recentNews7d < 100,
+      condition: m => m.database.connected && m.database.recentNews7d < 100,
       severity: 'warning',
       message: 'Faible volume de données (moins de 100 news/7j)',
       enabled: true,
@@ -221,12 +222,16 @@ export class MonitoringService {
       }
 
       // Requêtes lentes (simplifié)
-      const slowQueryStats = await client.query(`
+      const slowQueryStats = await client
+        .query(
+          `
         SELECT COUNT(*) as slow_queries
         FROM pg_stat_statements
         WHERE mean_exec_time > 1000
         AND calls > 10
-      `).catch(() => ({ rows: [{ slow_queries: 0 }] }));
+      `
+        )
+        .catch(() => ({ rows: [{ slow_queries: 0 }] }));
 
       metrics.performance.slowQueries = parseInt(slowQueryStats.rows[0].slow_queries);
 
@@ -235,13 +240,14 @@ export class MonitoringService {
 
       // Calcul du score de santé
       this.calculateHealthScore(metrics);
-
     } catch (error) {
       console.error('Erreur lors de la collecte des métriques:', error);
       metrics.database.connected = false;
       metrics.health.score = 0;
       metrics.health.status = 'critical';
-      metrics.health.issues.push(`Erreur de collecte: ${error instanceof Error ? error.message : error}`);
+      metrics.health.issues.push(
+        `Erreur de collecte: ${error instanceof Error ? error.message : error}`
+      );
     } finally {
       client.release();
     }
@@ -330,7 +336,7 @@ export class MonitoringService {
     try {
       await fs.promises.appendFile(this.logFile, logLine);
     } catch (error) {
-      console.error('Erreur lors de l\'écriture du log:', error);
+      console.error("Erreur lors de l'écriture du log:", error);
     }
   }
 
@@ -344,9 +350,15 @@ export class MonitoringService {
     lines.push('');
 
     // Score de santé
-    const scoreEmoji = metrics.health.status === 'healthy' ? '🟢' :
-                      metrics.health.status === 'warning' ? '🟡' : '🔴';
-    lines.push(`${scoreEmoji} SANTÉ GLOBALE: ${metrics.health.score}/100 (${metrics.health.status.toUpperCase()})`);
+    const scoreEmoji =
+      metrics.health.status === 'healthy'
+        ? '🟢'
+        : metrics.health.status === 'warning'
+          ? '🟡'
+          : '🔴';
+    lines.push(
+      `${scoreEmoji} SANTÉ GLOBALE: ${metrics.health.score}/100 (${metrics.health.status.toUpperCase()})`
+    );
     lines.push('');
 
     // Statistiques database
@@ -368,7 +380,11 @@ export class MonitoringService {
     lines.push('');
 
     // Alertes
-    if (metrics.alerts.critical.length > 0 || metrics.alerts.warnings.length > 0 || metrics.alerts.info.length > 0) {
+    if (
+      metrics.alerts.critical.length > 0 ||
+      metrics.alerts.warnings.length > 0 ||
+      metrics.alerts.info.length > 0
+    ) {
       lines.push('🚨 ALERTES:');
 
       if (metrics.alerts.critical.length > 0) {
@@ -409,9 +425,14 @@ export class MonitoringService {
     // Tendances (si historique disponible)
     if (this.metricsHistory.length > 10) {
       const recentMetrics = this.metricsHistory.slice(-10);
-      const avgHealthScore = recentMetrics.reduce((sum, m) => sum + m.health.score, 0) / recentMetrics.length;
-      const trend = metrics.health.score > avgHealthScore ? '↗️ Amélioration' :
-                   metrics.health.score < avgHealthScore ? '↘️ Dégradation' : '➡️ Stable';
+      const avgHealthScore =
+        recentMetrics.reduce((sum, m) => sum + m.health.score, 0) / recentMetrics.length;
+      const trend =
+        metrics.health.score > avgHealthScore
+          ? '↗️ Amélioration'
+          : metrics.health.score < avgHealthScore
+            ? '↘️ Dégradation'
+            : '➡️ Stable';
 
       lines.push('📈 TENDANCES (10 dernières mesures):');
       lines.push(`   • Score moyen: ${avgHealthScore.toFixed(1)}/100`);
@@ -437,7 +458,9 @@ export class MonitoringService {
         const metrics = await this.collectMetrics();
         await this.logToFile(metrics);
 
-        console.log(`📊 [${new Date().toLocaleTimeString()}] Score: ${metrics.health.score}/100 (${metrics.health.status})`);
+        console.log(
+          `📊 [${new Date().toLocaleTimeString()}] Score: ${metrics.health.score}/100 (${metrics.health.status})`
+        );
 
         if (metrics.alerts.critical.length > 0) {
           console.error(`🚨 ALERTES CRITIQUES: ${metrics.alerts.critical.length}`);
@@ -448,7 +471,6 @@ export class MonitoringService {
           console.warn(`⚠️ WARNINGS: ${metrics.alerts.warnings.length}`);
           metrics.alerts.warnings.forEach(warning => console.warn(`   • ${warning}`));
         }
-
       } catch (error) {
         console.error('❌ Erreur lors du monitoring:', error);
       }
@@ -498,7 +520,9 @@ if (require.main === module) {
 
       // Démarrer le monitoring continu si demandé
       if (process.argv.includes('--continuous')) {
-        const interval = parseInt(process.argv.find(arg => arg.startsWith('--interval='))?.split('=')[1] || '5');
+        const interval = parseInt(
+          process.argv.find(arg => arg.startsWith('--interval='))?.split('=')[1] || '5'
+        );
         await monitoring.startContinuousMonitoring(interval);
 
         // Garder le processus en vie

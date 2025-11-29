@@ -351,7 +351,7 @@ export class VixSimpleAgent {
     return `VIX at ${consensusValue.toFixed(2)} reflects ${regime.toLowerCase()} volatility with ${trend.toLowerCase()} bias. Current levels suggest ${this.determineMarketCondition(regime, trend)}.`;
   }
 
-  private determineMarketCondition(regime: string, trend: string): string {
+  private determineMarketCondition(regime: string, _trend: string): string {
     if (regime === 'CRISIS') return 'significant market stress and risk aversion';
     if (regime === 'ELEVATED') return 'increased uncertainty and elevated risk';
     if (regime === 'NORMAL') return 'balanced market conditions with moderate risk';
@@ -488,7 +488,7 @@ export class VixSimpleAgent {
     }
   }
 
-  private generateAlerts(vixValue: number, regime: string): string[] {
+  private generateAlerts(vixValue: number, _regime: string): string[] {
     const alerts = [];
 
     if (vixValue >= 30) {

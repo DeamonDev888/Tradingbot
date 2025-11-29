@@ -128,7 +128,7 @@ async function testCorrections() {
   console.log("\n🤖 Test avec l'agent réel:");
   try {
     const agent = new RougePulseAgent();
-    const result = await agent.analyzeEconomicEvents();
+    const result = await agent.analyzeMarketSentiment();
 
     if (!('error' in result) && result.analysis) {
       const discordMessage = formatRougePulseMessage(result.analysis);

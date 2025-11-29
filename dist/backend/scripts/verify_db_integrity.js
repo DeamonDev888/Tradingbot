@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const pg_1 = require("pg");
-const pool = new pg_1.Pool({
+import { Pool } from 'pg';
+const pool = new Pool({
     host: 'localhost',
     port: 5432,
     database: 'financial_analyst',
@@ -33,3 +31,4 @@ async function verify() {
     }
 }
 verify();
+//# sourceMappingURL=verify_db_integrity.js.map

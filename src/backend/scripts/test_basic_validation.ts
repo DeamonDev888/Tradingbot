@@ -34,7 +34,7 @@ class SimpleValidationTest {
     }
   }
 
-  async basicAnalysis(): Promise<void> {
+  async basicAnalysis(): Promise<number> {
     console.log('📊 Analyse basique de la base de données...');
 
     const client = await this.pool.connect();

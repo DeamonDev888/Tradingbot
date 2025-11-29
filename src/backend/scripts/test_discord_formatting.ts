@@ -117,7 +117,7 @@ async function testDiscordFormatting() {
 
   try {
     console.log("🔍 Lancement de l'analyse RougePulse...");
-    const result = await agent.analyzeEconomicEvents();
+    const result = await agent.analyzeMarketSentiment();
 
     if ('error' in result) {
       console.log('❌ Erreur:', result.error);

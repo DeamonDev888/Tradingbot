@@ -1,41 +1,5 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.foundFiles = exports.vixData = void 0;
-const fs = __importStar(require("fs"));
-const path = __importStar(require("path"));
+import * as fs from 'fs';
+import * as path from 'path';
 const DATA_PATH = 'C:\\SierraChart\\Data\\';
 console.log('🔍 Recherche multi-sources VIX...');
 // Liste des symboles VIX possibles
@@ -74,9 +38,7 @@ const FALLBACK_VIX_DATA = [
     },
 ];
 const foundFiles = [];
-exports.foundFiles = foundFiles;
 let vixData = null;
-exports.vixData = vixData;
 console.log('📁 Vérification des fichiers VIX dans:', DATA_PATH);
 for (const symbol of VIX_SYMBOLS) {
     const filePath = path.join(DATA_PATH, symbol);
@@ -89,7 +51,7 @@ for (const symbol of VIX_SYMBOLS) {
             console.log(`   📊 Taille: ${stats.size} bytes, Modifié: ${stats.mtime}`);
             // Pour l'instant, créer des données simulées basées sur le nom du fichier
             if (symbol.includes('VIX')) {
-                exports.vixData = vixData = {
+                vixData = {
                     symbol: 'VIX',
                     price: 15.89 + Math.random() * 0.5, // Simulation autour de 16
                     change: -0.25 - Math.random() * 0.3,
@@ -136,7 +98,7 @@ else {
     const avgPrice = FALLBACK_VIX_DATA.reduce((sum, d) => sum + d.price, 0) / FALLBACK_VIX_DATA.length;
     const avgChange = FALLBACK_VIX_DATA.reduce((sum, d) => sum + d.change, 0) / FALLBACK_VIX_DATA.length;
     const avgChangePercent = FALLBACK_VIX_DATA.reduce((sum, d) => sum + d.changePercent, 0) / FALLBACK_VIX_DATA.length;
-    exports.vixData = vixData = {
+    vixData = {
         symbol: 'VIX',
         price: avgPrice,
         change: avgChange,
@@ -173,3 +135,5 @@ setInterval(() => {
 }, 10000); // Vérifier toutes les 10 secondes
 console.log("\n💡 Le script continue de surveiller l'apparition des fichiers VIX...");
 console.log('   Arrêter avec Ctrl+C');
+export { vixData, foundFiles };
+//# sourceMappingURL=vix_multi_source.js.map

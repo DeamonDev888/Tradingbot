@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.VixCboeScraper = void 0;
-class VixCboeScraper {
+export class VixCboeScraper {
     pool;
     constructor(pool) {
         this.pool = pool;
@@ -14,23 +11,29 @@ class VixCboeScraper {
         console.log('[CBOE] Début du scraping VIX depuis source officielle...');
         try {
             // Utiliser l'API CBOE ou parsing HTML plus simple
-            const response = await fetch('https://www.cboe.com/us/indices/spx/vix', {
+            const response = await fetch('https://www.cboe.com/tradable-products/vix/', {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                     'Accept-Language': 'en-US,en;q=0.5',
                     'Accept-Encoding': 'gzip, deflate, br',
-                    'DNT': '1',
-                    'Connection': 'keep-alive',
-                    'Upgrade-Insecure-Requests': '1'
-                }
+                    DNT: '1',
+                    Connection: 'keep-alive',
+                    'Upgrade-Insecure-Requests': '1',
+                },
             });
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
             const html = await response.text();
             // Parsing simple du HTML pour trouver le prix VIX
-            const vixMatch = html.match(/VIX[:\s]*([0-9]+\.[0-9]+)/i);
+            // Recherche de motifs comme "$ 16.35" ou "16.35" près de "VIX"
+            // Le site affiche souvent "$ 16.35"
+            let vixMatch = html.match(/\$\s*([0-9]+\.[0-9]+)/);
+            // Fallback: chercher "VIX" suivi d'un nombre
+            if (!vixMatch) {
+                vixMatch = html.match(/VIX.*?([0-9]+\.[0-9]+)/i);
+            }
             const changeMatch = html.match(/([-+]?[0-9]+\.[0-9]+)%/i);
             if (vixMatch) {
                 const vixValue = parseFloat(vixMatch[1]);
@@ -41,7 +44,7 @@ class VixCboeScraper {
                     value: vixValue,
                     change_abs: null,
                     change_pct: changePct,
-                    last_update: new Date().toISOString()
+                    last_update: new Date().toISOString(),
                 };
             }
             else {
@@ -56,7 +59,7 @@ class VixCboeScraper {
                 change_abs: null,
                 change_pct: null,
                 last_update: null,
-                error: error instanceof Error ? error.message : 'Unknown error'
+                error: error instanceof Error ? error.message : 'Unknown error',
             };
         }
     }
@@ -86,7 +89,7 @@ class VixCboeScraper {
                     value: vixValue,
                     change_abs: null,
                     change_pct: null,
-                    last_update: latestTime
+                    last_update: latestTime,
                 };
             }
             else {
@@ -101,7 +104,7 @@ class VixCboeScraper {
                 change_abs: null,
                 change_pct: null,
                 last_update: null,
-                error: error instanceof Error ? error.message : 'Unknown error'
+                error: error instanceof Error ? error.message : 'Unknown error',
             };
         }
     }
@@ -126,4 +129,4 @@ class VixCboeScraper {
         }
     }
 }
-exports.VixCboeScraper = VixCboeScraper;
+//# sourceMappingURL=VixCboeScraper.js.map

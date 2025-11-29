@@ -269,7 +269,7 @@ export class VIXFileReader extends EventEmitter {
 async function main() {
   const vixReader = new VIXFileReader();
 
-  vixReader.on('vixData', (data: VIXData) => {
+  vixReader.on('vixData', (_data: VIXData) => {
     // Info déjà affichée
   });
 

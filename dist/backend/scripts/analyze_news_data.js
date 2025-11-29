@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const NewsDataManager_1 = require("../data/NewsDataManager");
-const NewsDataProcessor_1 = require("../data/NewsDataProcessor");
+import { NewsDataManager } from '../data/NewsDataManager';
+import { NewsDataProcessor } from '../data/NewsDataProcessor';
 /**
  * SCRIPT: analyze_news_data.ts
  *
@@ -17,8 +15,8 @@ const NewsDataProcessor_1 = require("../data/NewsDataProcessor");
 async function main() {
     const args = process.argv.slice(2);
     const command = args[0];
-    const dataManager = new NewsDataManager_1.NewsDataManager();
-    const processor = new NewsDataProcessor_1.NewsDataProcessor();
+    const dataManager = new NewsDataManager();
+    const processor = new NewsDataProcessor();
     try {
         switch (command) {
             case 'week':
@@ -33,12 +31,13 @@ async function main() {
             case 'today':
                 await showTodaySummary(processor);
                 break;
-            case 'export':
+            case 'export': {
                 const startDate = args[1] || getLastWeekDate();
                 const endDate = args[2] || getTodayDate();
                 await exportToCSV(dataManager, startDate, endDate, args[3]);
                 break;
-            case 'custom':
+            }
+            case 'custom': {
                 const customStart = args[1];
                 const customEnd = args[2];
                 if (!customStart || !customEnd) {
@@ -47,6 +46,7 @@ async function main() {
                 }
                 await analyzeCustomPeriod(dataManager, customStart, customEnd);
                 break;
+            }
             default:
                 showUsage();
                 break;
@@ -200,3 +200,4 @@ function getLastWeekDate() {
     return getDateDaysAgo(7);
 }
 main();
+//# sourceMappingURL=analyze_news_data.js.map

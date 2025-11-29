@@ -182,7 +182,7 @@ export class DataMaintenanceService {
   /**
    * Maintenance des news avec conservation intelligente
    */
-  private async maintainNewsData(): Promise<MaintenanceResult> {
+  public async maintainNewsData(): Promise<MaintenanceResult> {
     const startTime = Date.now();
     const client = await this.pool.connect();
 
@@ -250,25 +250,28 @@ export class DataMaintenanceService {
       const stats = await client.query('SELECT * FROM stats');
       const beforeStats = stats.rows[0];
 
+      const resultCount = result.rowCount || 0;
+      const archiveCount = archiveResult.recordsAffected || 0;
+
       const maintenanceResult: MaintenanceResult = {
         timestamp: new Date(),
         operation: 'MAINTAIN_NEWS_DATA',
-        recordsAffected: result.rowCount + archiveResult.recordsAffected,
+        recordsAffected: resultCount + archiveCount,
         duration: Date.now() - startTime,
         details: {
-          newsProcessed: parseInt(beforeStats.total_before),
-          newsDeleted: result.rowCount,
-          newsArchived: archiveResult.recordsAffected,
+          newsProcessed: parseInt(beforeStats.total_before) || 0,
+          newsDeleted: resultCount,
+          newsArchived: archiveCount,
           duplicatesRemoved: 0, // Traité séparément
-          lowQualityRemoved: result.rowCount,
-          spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', result.rowCount),
+          lowQualityRemoved: resultCount,
+          spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', resultCount),
         },
         errors: [],
         warnings: [],
       };
 
       console.log(
-        `✅ Maintenance news terminée: ${result.rowCount} supprimées, ${archiveResult.recordsAffected} archivées`
+        `✅ Maintenance news terminée: ${resultCount} supprimées, ${archiveCount} archivées`
       );
       return maintenanceResult;
     } finally {
@@ -341,8 +344,9 @@ export class DataMaintenanceService {
       RETURNING id
     `);
 
-    console.log(`   📦 ${archiveResult.rowCount} données archivées pour backtesting`);
-    return { recordsAffected: archiveResult.rowCount };
+    const archiveCount = archiveResult.rowCount || 0;
+    console.log(`   📦 ${archiveCount} données archivées pour backtesting`);
+    return { recordsAffected: archiveCount };
   }
 
   /**
@@ -384,7 +388,7 @@ export class DataMaintenanceService {
           const result = await client.query(`DELETE FROM news_items WHERE id = ANY($1)`, [
             idsToRemove,
           ]);
-          totalRemoved += result.rowCount;
+          totalRemoved += result.rowCount || 0;
         }
       }
 
@@ -394,7 +398,7 @@ export class DataMaintenanceService {
         recordsAffected: totalRemoved,
         duration: Date.now() - startTime,
         details: {
-          newsProcessed: duplicateGroups.rowCount,
+          newsProcessed: duplicateGroups.rowCount || 0,
           newsDeleted: totalRemoved,
           newsArchived: 0,
           duplicatesRemoved: totalRemoved,
@@ -435,26 +439,25 @@ export class DataMaintenanceService {
         [this.config.minQualityScoreThreshold]
       );
 
+      const resultCount = result.rowCount || 0;
       const maintenanceResult: MaintenanceResult = {
         timestamp: new Date(),
         operation: 'CLEANUP_LOW_QUALITY',
-        recordsAffected: result.rowCount,
+        recordsAffected: resultCount,
         duration: Date.now() - startTime,
         details: {
-          newsProcessed: result.rowCount,
-          newsDeleted: result.rowCount,
+          newsProcessed: resultCount,
+          newsDeleted: resultCount,
           newsArchived: 0,
           duplicatesRemoved: 0,
-          lowQualityRemoved: result.rowCount,
-          spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', result.rowCount),
+          lowQualityRemoved: resultCount,
+          spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', resultCount),
         },
         errors: [],
         warnings: [],
       };
 
-      console.log(
-        `✅ Nettoyage faible qualité terminé: ${result.rowCount} enregistrements supprimés`
-      );
+      console.log(`✅ Nettoyage faible qualité terminé: ${resultCount} enregistrements supprimés`);
       return maintenanceResult;
     } finally {
       client.release();
@@ -464,7 +467,7 @@ export class DataMaintenanceService {
   /**
    * Archivage des anciennes données
    */
-  private async archiveOldData(): Promise<MaintenanceResult> {
+  public async archiveOldData(): Promise<MaintenanceResult> {
     const startTime = Date.now();
     const client = await this.pool.connect();
 
@@ -494,7 +497,7 @@ export class DataMaintenanceService {
         RETURNING id
       `);
 
-      const totalArchived = sentimentResult.rowCount + marketResult.rowCount;
+      const totalArchived = (sentimentResult.rowCount || 0) + (marketResult.rowCount || 0);
 
       const maintenanceResult: MaintenanceResult = {
         timestamp: new Date(),
@@ -546,7 +549,7 @@ export class DataMaintenanceService {
   /**
    * Optimisation de la base de données
    */
-  private async optimizeDatabase(): Promise<MaintenanceResult> {
+  public async optimizeDatabase(): Promise<MaintenanceResult> {
     const startTime = Date.now();
     const client = await this.pool.connect();
 

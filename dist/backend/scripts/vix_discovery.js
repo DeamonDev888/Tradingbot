@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SierraChartSymbolDiscovery = void 0;
-const ws_1 = __importDefault(require("ws"));
-const events_1 = require("events");
-class SierraChartSymbolDiscovery extends events_1.EventEmitter {
+import WebSocket from 'ws';
+import { EventEmitter } from 'events';
+export class SierraChartSymbolDiscovery extends EventEmitter {
     ws = null;
     isConnected = false;
     isAuthenticated = false;
@@ -19,7 +13,7 @@ class SierraChartSymbolDiscovery extends events_1.EventEmitter {
         return new Promise((resolve, reject) => {
             try {
                 console.log('🔍 Connexion Discovery à Sierra Chart...');
-                this.ws = new ws_1.default('ws://localhost:11099');
+                this.ws = new WebSocket('ws://localhost:11099');
                 this.ws.on('open', () => {
                     console.log('✅ WebSocket connecté');
                     this.isConnected = true;
@@ -55,7 +49,7 @@ class SierraChartSymbolDiscovery extends events_1.EventEmitter {
         console.log('🔐 Authentification envoyée');
     }
     sendMessage(message) {
-        if (!this.ws || this.ws.readyState !== ws_1.default.OPEN)
+        if (!this.ws || this.ws.readyState !== WebSocket.OPEN)
             return;
         const messageStr = JSON.stringify(message) + '\0';
         this.ws.send(messageStr);
@@ -339,7 +333,6 @@ class SierraChartSymbolDiscovery extends events_1.EventEmitter {
         console.log('🔌 Discovery terminé');
     }
 }
-exports.SierraChartSymbolDiscovery = SierraChartSymbolDiscovery;
 async function main() {
     const discovery = new SierraChartSymbolDiscovery();
     discovery.on('authenticated', () => {
@@ -380,7 +373,8 @@ async function main() {
         process.exit(1);
     }
 }
-exports.default = SierraChartSymbolDiscovery;
+export default SierraChartSymbolDiscovery;
 if (require.main === module) {
     main();
 }
+//# sourceMappingURL=vix_discovery.js.map

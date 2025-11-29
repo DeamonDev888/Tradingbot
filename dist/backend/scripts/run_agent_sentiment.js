@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Vortex500Agent_1 = require("../agents/Vortex500Agent");
+import { Vortex500Agent } from '../agents/Vortex500Agent';
 /**
  * SCRIPT: run_agent_sentiment.ts
  *
@@ -13,7 +11,7 @@ const Vortex500Agent_1 = require("../agents/Vortex500Agent");
  */
 async function main() {
     console.log('🧪 Initializing Vortex500 Agent...');
-    const agent = new Vortex500Agent_1.Vortex500Agent();
+    const agent = new Vortex500Agent();
     try {
         console.log('🧠 Running Market Analysis (This may take 10-30s)...');
         const result = await agent.analyzeMarketSentiment();
@@ -34,3 +32,4 @@ async function main() {
     }
 }
 main();
+//# sourceMappingURL=run_agent_sentiment.js.map

@@ -9,6 +9,7 @@ import { VixSimpleAgent } from '../backend/agents/VixSimpleAgent';
 import { NewsAggregator } from '../backend/ingestion/NewsAggregator';
 import { TradingEconomicsScraper } from '../backend/ingestion/TradingEconomicsScraper';
 import { VixPlaywrightScraper } from '../backend/ingestion/VixPlaywrightScraper';
+import { RougePulseDatabaseService } from '../backend/database/RougePulseDatabaseService';
 
 // Load env
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -31,6 +32,67 @@ const pool = new Pool({
 
 const CHANNEL_ID = process.env.DISCORD_CHANNEL_ID || '';
 const APPLICATION_ID = '1442309135646331001';
+
+// Services de base de données
+const rougePulseDb = new RougePulseDatabaseService();
+
+// Fonction de formatage pour le nouvel agent RougePulseFixed
+function formatRougePulseMessageFixed(data: any): string | string[] {
+  const volatilityScore = data.volatility_score || 0;
+  const criticalCount = data.critical_count || 0;
+  const highCount = data.high_count || 0;
+  const mediumCount = data.medium_count || 0;
+  const lowCount = data.low_count || 0;
+  const marketMovers = data.market_movers || [];
+  const criticalAlerts = data.critical_alerts || [];
+
+  // Formatter le message principal
+  const message = `
+**🔴 RougePulseAgent - Analyse Calendrier Économique**
+
+📊 **Score de Volatilité Global : ${volatilityScore}/10** ${volatilityScore >= 8 ? '🔥' : volatilityScore >= 5 ? '⚠️' : '✅'}
+
+📈 **Vue d'ensemble (7 prochains jours) :**
+🔴 **${criticalCount} événement(s) CRITIQUE(S)** - Marché très volatil attendu
+🔴 **${highCount} événement(s) à FORT impact** - Mouvements significatifs probables
+🟡 **${mediumCount} événement(s) à impact MOYEN** - Volatilité modérée possible
+⚪ **${lowCount} événement(s) à faible impact** - Impact limité
+
+${
+  criticalAlerts.length > 0
+    ? `
+🚨 **ALERTES CRITIQUES 24h :**
+${criticalAlerts
+  .slice(0, 3)
+  .map((alert: any) => `${alert.icon} ${alert.time} - ${alert.event}`)
+  .join('\n')}`
+    : ''
+}
+
+${
+  marketMovers.length > 0
+    ? `
+🔥 **MARKET MOVERS (qui changent vraiment le marché) :**
+${marketMovers
+  .slice(0, 3)
+  .map((mover: any, index: number) => `${index + 1}. **${mover.event}** (${mover.time})`)
+  .join('\n')}`
+    : ''
+}
+
+**Résumé complet généré par RougePulseAgent**
+  `.trim();
+
+  // Si le message est trop long, le diviser
+  if (message.length > 1800) {
+    const splitPoint = Math.floor(message.length / 2);
+    const part1 = message.substring(0, splitPoint) + '...';
+    const part2 = "... Suite de l'analyse:\n\n" + message.substring(splitPoint);
+    return [part1, part2];
+  }
+
+  return [message];
+}
 
 // Helper function to convert English to French
 function convertToFrenchIfNeeded(text: string): string {
@@ -248,13 +310,20 @@ Niveaux Cibles : ${expert.trading_recommendations?.target_vix_levels?.join(' - '
 }
 
 function formatRougePulseMessage(data: any): string[] {
-  const narrative = data.market_narrative || 'Pas de narratif disponible.';
-  const score = data.impact_score || 0;
-  const events = Array.isArray(data.high_impact_events)
+  // Use the actual properties returned by RougePulseAgent
+  const narrative = data.summary || 'Pas de narratif disponible.';
+  const score = data.volatility_score || 0;
+  const criticalEvents = Array.isArray(data.critical_events)
+    ? data.critical_events
+    : data.critical_events
+      ? JSON.parse(data.critical_events)
+      : [];
+  const highEvents = Array.isArray(data.high_impact_events)
     ? data.high_impact_events
     : data.high_impact_events
       ? JSON.parse(data.high_impact_events)
       : [];
+  const events = [...criticalEvents, ...highEvents];
 
   // Handle new ES Futures format (es_futures_analysis) and old (asset_analysis)
   const assets = data.asset_analysis
@@ -314,19 +383,20 @@ ${eventsList}
   `.trim();
 
   // Message 2: Continuation of events (if necessary) and trading signal
-  const message2 = `
+  const createMessage2 = () =>
+    `
 **🎯 Signal Trading ES :**
 ${frenchRec}
 
 💹 *ES Futures Analysis | ${(() => {
-    try {
-      return data.created_at && new Date(data.created_at).getTime() > 0
-        ? new Date(data.created_at).toLocaleDateString('fr-FR')
-        : new Date().toLocaleDateString('fr-FR');
-    } catch {
-      return new Date().toLocaleDateString('fr-FR');
-    }
-  })()}*
+      try {
+        return data.created_at && new Date(data.created_at).getTime() > 0
+          ? new Date(data.created_at).toLocaleDateString('fr-FR')
+          : new Date().toLocaleDateString('fr-FR');
+      } catch {
+        return new Date().toLocaleDateString('fr-FR');
+      }
+    })()}*
   `.trim();
 
   // Check if we need 2 messages
@@ -354,20 +424,8 @@ ${eventsList}
 **🔴 RougePulse ES Futures Expert** 📊 (2/2)
 **📈 Suite Analyse :**
 ${part2Narrative}
-
-**🎯 Signal Trading ES :**
-${frenchRec}
-
-💹 *ES Futures Analysis | ${(() => {
-      try {
-        return data.created_at && new Date(data.created_at).getTime() > 0
-          ? new Date(data.created_at).toLocaleDateString('fr-FR')
-          : new Date().toLocaleDateString('fr-FR');
-      } catch {
-        return new Date().toLocaleDateString('fr-FR');
-      }
-    })()}*
-    `.trim();
+${createMessage2()}
+  `.trim();
 
     return [optimizedMessage1, optimizedMessage2];
   }
@@ -663,14 +721,12 @@ client.on('messageCreate', async message => {
         setTimeout(() => reject(new Error("Timeout: L'analyse prend trop de temps.")), 95000)
       );
 
-      const result = (await Promise.race([agent.analyzeEconomicEvents(), timeoutPromise])) as any;
+      const result = (await Promise.race([agent.analyzeMarketSentiment(), timeoutPromise])) as any;
 
-      if ('error' in result) {
+      if (result.error) {
         await loadingMsg.edit(`❌ Erreur d'analyse RougePulse : ${result.error}`);
-      } else if ('message' in result) {
-        await loadingMsg.edit(`ℹ️ **RougePulseAgent** : ${result.message}`);
-      } else if (result && result.analysis) {
-        const formattedMessages = formatRougePulseMessage(result.analysis);
+      } else if (result.summary) {
+        const formattedMessages = formatRougePulseMessage(result);
 
         if (formattedMessages.length === 1) {
           // Single message - simple edit
@@ -988,6 +1044,71 @@ ${formattedResults.join('\n\n')}
       const truncatedError =
         errorMessage.length > 500 ? errorMessage.substring(0, 497) + '...' : errorMessage;
       await loadingMsg.edit(`❌ Erreur VIX Scraper : ${truncatedError}`);
+    }
+  }
+
+  if (message.content.trim().toLowerCase() === '!rougepulselatest') {
+    console.log('📊 Processing !rougepulselatest command...');
+    try {
+      const latest = await rougePulseDb.getLatestAnalysis();
+      if (latest) {
+        const formattedMessages = formatRougePulseMessageFixed(latest);
+        if (Array.isArray(formattedMessages)) {
+          await message.reply(formattedMessages[0]);
+          setTimeout(async () => {
+            try {
+              await message.channel.send(formattedMessages[1]);
+            } catch (sendError) {
+              console.error('Error sending second message:', sendError);
+              await message.channel.send("❌ Erreur lors de l'envoi du second message");
+            }
+          }, 500);
+        } else {
+          await message.reply(formattedMessages);
+        }
+      } else {
+        await message.reply(
+          '❌ Aucune analyse RougePulse sauvegardée. Utilisez !rougepulseagent pour créer une nouvelle analyse.'
+        );
+      }
+    } catch (error) {
+      console.error('Error in !rougepulselatest command:', error);
+      await message.reply('❌ Erreur lors de la récupération de la dernière analyse');
+    }
+  }
+
+  if (message.content.trim().toLowerCase() === '!rougepulsearchistory') {
+    console.log('📈 Processing !rougepulsearchistory command...');
+    try {
+      const recentAnalyses = await rougePulseDb.getRecentAnalyses(7); // 7 derniers jours
+      if (recentAnalyses.length === 0) {
+        await message.reply('❌ Aucune analyse RougePulse sauvegardée pour les 7 derniers jours.');
+      } else {
+        let response = `📈 **Historique des Analyses RougePulse (7 derniers jours)**\n\n`;
+
+        recentAnalyses.forEach((analysis, index) => {
+          const date = new Date(analysis.analysis_date).toLocaleDateString('fr-FR');
+          const volatilityScore = analysis.volatility_score;
+          const criticalCount = analysis.critical_count;
+
+          response += `🔸 **Analyse #${recentAnalyses.length - index}** (${date})\n`;
+          response += `📊 Score de Volatilité : ${volatilityScore}/10\n`;
+          response += `🔴 Événements critiques : ${criticalCount}\n`;
+          response += `📝 ${analysis.summary || 'Aucun résumé'}\n\n`;
+        });
+
+        if (response.length > 1900) {
+          // Diviser en plusieurs messages si trop long
+          const firstPart = response.substring(0, 1900) + '...';
+          await message.reply(firstPart);
+          await message.channel.send("Suite de l'historique... (message trop long)");
+        } else {
+          await message.reply(response);
+        }
+      }
+    } catch (error) {
+      console.error('Error in !rougepulsearchistory command:', error);
+      await message.reply("❌ Erreur lors de la récupération de l'historique des analyses");
     }
   }
 

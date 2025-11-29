@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 import { Pool } from 'pg';
 import { NewsItem } from '../ingestion/NewsAggregator';
 import * as dotenv from 'dotenv';
@@ -37,6 +37,8 @@ export interface ProcessedNewsItem extends NewsItem {
   scraped_at: Date;
   created_at: Date;
   updated_at: Date;
+  sentiment?: 'bullish' | 'bearish' | 'neutral';
+  confidence?: number;
 }
 
 export class NewsValidationService {

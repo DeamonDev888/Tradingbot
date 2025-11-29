@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const NewsDatabaseService_1 = require("../database/NewsDatabaseService");
-const NewsAggregator_1 = require("../ingestion/NewsAggregator");
+import { NewsDatabaseService } from '../database/NewsDatabaseService';
+import { NewsAggregator } from '../ingestion/NewsAggregator';
 async function main() {
     const args = process.argv.slice(2);
     const options = {
@@ -21,8 +19,8 @@ async function main() {
     console.log('='.repeat(40));
     console.log(`Options: Force=${options.force}, Cleanup=${options.cleanup}, Stats=${options.stats}, Hours=${options.hours || 'default'}`);
     console.log('');
-    const dbService = new NewsDatabaseService_1.NewsDatabaseService();
-    const aggregator = new NewsAggregator_1.NewsAggregator();
+    const dbService = new NewsDatabaseService();
+    const aggregator = new NewsAggregator();
     try {
         // 1. Afficher les statistiques si demandé
         if (options.stats) {
@@ -148,3 +146,4 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
     process.exit(0);
 }
 main();
+//# sourceMappingURL=refresh_news_cache.js.map

@@ -280,7 +280,7 @@ export class EnhancedNewsPipeline {
       const vixResults = await this.vixScraper.scrapeAll();
       const validVIX = vixResults.find(r => r.value !== null && r.value > 0);
 
-      if (validVIX) {
+      if (validVIX && validVIX.value !== null) {
         result.marketData.vixValue = validVIX.value;
         console.log(`   ✅ VIX: ${validVIX.value} (source: ${validVIX.source})`);
 
@@ -534,7 +534,7 @@ export class EnhancedNewsPipeline {
    * Finalise le pipeline et retourne le résultat
    */
   private async finalizePipeline(result: PipelineResult, startTime: Date): Promise<PipelineResult> {
-    result.duration = Date.now() - startTime;
+    result.duration = Date.now() - startTime.getTime();
 
     console.log('\n' + '='.repeat(80));
     console.log('📋 RAPPORT FINAL DU PIPELINE AMÉLIORÉ');
@@ -726,5 +726,3 @@ Exemples:
       process.exit(3);
     });
 }
-
-export { EnhancedNewsPipeline };

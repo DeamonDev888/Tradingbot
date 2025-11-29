@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const RougePulseAgent_1 = require("../agents/RougePulseAgent");
+import { RougePulseAgent } from '../agents/RougePulseAgent';
 // Simulation de la fonction corrigée
 function formatRougePulseMessage(data) {
     const narrative = data.market_narrative || 'Pas de narratif disponible.';
@@ -108,8 +106,8 @@ async function testCorrections() {
     // Test 3: Agent réel si possible
     console.log("\n🤖 Test avec l'agent réel:");
     try {
-        const agent = new RougePulseAgent_1.RougePulseAgent();
-        const result = await agent.analyzeEconomicEvents();
+        const agent = new RougePulseAgent();
+        const result = await agent.analyzeMarketSentiment();
         if (!('error' in result) && result.analysis) {
             const discordMessage = formatRougePulseMessage(result.analysis);
             console.log('✅ Message Discord généré:', discordMessage.length, 'caractères');
@@ -133,3 +131,4 @@ async function testCorrections() {
     console.log('\n✅ Test des corrections terminé !');
 }
 testCorrections();
+//# sourceMappingURL=test_discord_corrections.js.map

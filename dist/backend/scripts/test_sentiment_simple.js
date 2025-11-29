@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Vortex500Agent_1 = require("../agents/Vortex500Agent");
+import { Vortex500Agent } from '../agents/Vortex500Agent';
 /**
  * Script de test simple pour le Vortex500Agent
  * Résout les problèmes de timeout en utilisant une approche simplifiée
@@ -8,7 +6,7 @@ const Vortex500Agent_1 = require("../agents/Vortex500Agent");
 async function main() {
     console.log('🧪 Testing Vortex500Agent (Simple Mode)');
     console.log('='.repeat(50));
-    const agent = new Vortex500Agent_1.Vortex500Agent();
+    const agent = new Vortex500Agent();
     try {
         console.log('📊 Starting sentiment analysis...');
         // Utiliser un timeout plus long pour tester l'amélioration
@@ -58,3 +56,4 @@ process.on('uncaughtException', error => {
     process.exit(1);
 });
 main();
+//# sourceMappingURL=test_sentiment_simple.js.map

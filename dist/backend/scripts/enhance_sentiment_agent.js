@@ -1,52 +1,15 @@
-"use strict";
 /**
  * Script pour enrichir le Vortex500Agent avec capture de données détaillées
  * à chaque inference pour algorithmes avancés
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnhancedVortex500Agent = void 0;
-exports.testEnhancedAgent = testEnhancedAgent;
-const Vortex500Agent_1 = require("../agents/Vortex500Agent");
-const NewsDatabaseService_1 = require("../database/NewsDatabaseService");
-const dotenv = __importStar(require("dotenv"));
+import { Vortex500Agent } from '../agents/Vortex500Agent';
+import { NewsDatabaseService } from '../database/NewsDatabaseService';
+import * as dotenv from 'dotenv';
 dotenv.config();
 /**
  * Agent de sentiment enrichi avec capture de données détaillées
  */
-class EnhancedVortex500Agent extends Vortex500Agent_1.Vortex500Agent {
+class EnhancedVortex500Agent extends Vortex500Agent {
     analysisStartTime = 0;
     newsItemsData = [];
     /**
@@ -288,7 +251,7 @@ class EnhancedVortex500Agent extends Vortex500Agent_1.Vortex500Agent {
         console.log(`[${this.agentName}] 📈 Starting ENHANCED market sentiment analysis...`);
         try {
             // Récupérer les données de la base
-            const dbService = new NewsDatabaseService_1.NewsDatabaseService();
+            const dbService = new NewsDatabaseService();
             this.newsItemsData = await dbService.getRecentNews(48);
             console.log(`[${this.agentName}] 📊 Analyzing ${this.newsItemsData.length} news items...`);
             // Lancer l'analyse de base
@@ -353,7 +316,6 @@ class EnhancedVortex500Agent extends Vortex500Agent_1.Vortex500Agent {
         };
     }
 }
-exports.EnhancedVortex500Agent = EnhancedVortex500Agent;
 /**
  * Script pour tester l'agent enrichi
  */
@@ -382,3 +344,5 @@ async function testEnhancedAgent() {
 if (require.main === module) {
     testEnhancedAgent().catch(console.error);
 }
+export { EnhancedVortex500Agent, testEnhancedAgent };
+//# sourceMappingURL=enhance_sentiment_agent.js.map

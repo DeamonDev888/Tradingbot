@@ -1,4 +1,3 @@
-
 import { VixCboeScraper } from '../ingestion/VixCboeScraper';
 import { Pool } from 'pg';
 import * as dotenv from 'dotenv';
@@ -7,7 +6,7 @@ dotenv.config();
 
 async function main() {
   console.log('Testing VixCboeScraper...');
-  
+
   const pool = new Pool({
     host: process.env.DB_HOST || 'localhost',
     port: parseInt(process.env.DB_PORT || '5432'),
@@ -17,7 +16,7 @@ async function main() {
   });
 
   const scraper = new VixCboeScraper(pool);
-  
+
   try {
     console.log('1. Testing CBOE Official Scraper...');
     const cboeResult = await scraper.scrapeCboeVix();
@@ -26,7 +25,6 @@ async function main() {
     console.log('\n2. Testing Alpha Vantage Scraper...');
     const avResult = await scraper.scrapeAlphaVantage();
     console.log('Alpha Vantage Result:', JSON.stringify(avResult, null, 2));
-    
   } catch (error) {
     console.error('Error running scraper:', error);
   } finally {

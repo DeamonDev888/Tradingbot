@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const FinnhubClient_1 = require("../ingestion/FinnhubClient");
+import { FinnhubClient } from '../ingestion/FinnhubClient';
 async function testSP500() {
     console.log('🚀 Test de récupération des données du S&P 500 avec Finnhub...\n');
-    const finnhubClient = new FinnhubClient_1.FinnhubClient();
+    const finnhubClient = new FinnhubClient();
     // Test 1: S&P 500 avec différents symboles
     console.log('📊 Test 1 - S&P 500 (test avec différents symboles):');
     const testSymbols = ['^GSPC', '.SPX', 'SPY', 'SPX', 'S&P500', 'GSPC'];
@@ -52,3 +50,4 @@ testSP500().catch((error) => {
     console.error('❌ Erreur lors du test:', error);
     process.exit(1);
 });
+//# sourceMappingURL=test_sp500_finnhub.js.map

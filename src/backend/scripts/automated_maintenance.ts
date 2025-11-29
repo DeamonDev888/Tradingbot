@@ -117,7 +117,7 @@ class AutomatedMaintenanceService {
     // Arrêter toutes les tâches cron
     this.schedules.forEach(schedule => {
       if (schedule.enabled) {
-        cron.getTasks(schedule.name).forEach(task => {
+        cron.getTasks().forEach(task => {
           task.stop();
         });
       }
@@ -449,7 +449,6 @@ class AutomatedMaintenanceService {
             }
           },
           {
-            scheduled: true,
             timezone: 'America/New_York',
           }
         );
@@ -743,4 +742,3 @@ Exemples:
     process.exit(1);
   }
 }
-

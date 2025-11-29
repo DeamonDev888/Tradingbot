@@ -1,51 +1,72 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
+import { Pool } from 'pg';
+import * as dotenv from 'dotenv';
+// Simple service pour tester la validation sans dépendances complexes
+class SimpleNewsDatabaseService {
+    pool;
+    constructor() {
+        this.pool = new Pool({
+            host: process.env.DB_HOST || 'localhost',
+            port: parseInt(process.env.DB_PORT || '5432'),
+            database: process.env.DB_NAME || 'financial_analyst',
+            user: process.env.DB_USER || 'postgres',
+            password: process.env.DB_PASSWORD || '9022',
+        });
     }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataQualityValidator = void 0;
-const pg_1 = require("pg");
-const NewsDatabaseService_1 = require("../backend/database/NewsDatabaseService");
-const dotenv = __importStar(require("dotenv"));
+    async testConnection() {
+        try {
+            const client = await this.pool.connect();
+            await client.query('SELECT NOW()');
+            client.release();
+            return true;
+        }
+        catch {
+            return false;
+        }
+    }
+    async getDatabaseStats() {
+        const client = await this.pool.connect();
+        try {
+            const [newsStats, sources] = await Promise.all([
+                client.query(`
+          SELECT
+            COUNT(*) as total_news,
+            COUNT(CASE WHEN published_at >= CURRENT_DATE THEN 1 END) as today_news,
+            COUNT(CASE WHEN published_at >= NOW() - INTERVAL '24 hours' THEN 1 END) as recent_24h,
+            COUNT(CASE WHEN published_at >= NOW() - INTERVAL '7 days' THEN 1 END) as recent_7d,
+            COUNT(CASE WHEN sentiment = 'bullish' THEN 1 END) as bullish,
+            COUNT(CASE WHEN sentiment = 'bearish' THEN 1 END) as bearish,
+            COUNT(CASE WHEN sentiment = 'neutral' THEN 1 END) as neutral,
+            MAX(published_at) as latest_news
+          FROM news_items
+        `),
+                client.query(`
+          SELECT COUNT(DISTINCT source) as active_sources
+          FROM news_items
+          WHERE published_at >= NOW() - INTERVAL '7 days'
+        `),
+            ]);
+            return {
+                news: newsStats.rows[0],
+                sources: sources.rows[0],
+            };
+        }
+        finally {
+            client.release();
+        }
+    }
+    async close() {
+        await this.pool.end();
+    }
+}
 dotenv.config();
-class DataQualityValidator {
+export class DataQualityValidator {
     dbService;
     constructor() {
-        this.dbService = new NewsDatabaseService_1.NewsDatabaseService();
+        this.dbService = new SimpleNewsDatabaseService();
     }
     async runFullValidation() {
         console.log('🔍 Démarrage validation complète de la qualité des données...');
-        const pool = new pg_1.Pool({
+        const pool = new Pool({
             host: process.env.DB_HOST || 'localhost',
             port: parseInt(process.env.DB_PORT || '5432'),
             database: process.env.DB_NAME || 'financial_analyst',
@@ -67,7 +88,7 @@ class DataQualityValidator {
                 sentimentDistribution: {},
                 qualityScore: 0,
                 issues: [],
-                recommendations: []
+                recommendations: [],
             };
             const client = await pool.connect();
             try {
@@ -313,7 +334,7 @@ class DataQualityValidator {
     }
     async fixCommonIssues() {
         console.log('🔧 Correction des problèmes courants...');
-        const pool = new pg_1.Pool({
+        const pool = new Pool({
             host: process.env.DB_HOST || 'localhost',
             port: parseInt(process.env.DB_PORT || '5432'),
             database: process.env.DB_NAME || 'financial_analyst',
@@ -368,22 +389,23 @@ class DataQualityValidator {
         }
     }
 }
-exports.DataQualityValidator = DataQualityValidator;
 // Script principal
 if (require.main === module) {
     const validator = new DataQualityValidator();
-    validator.generateDetailedReport()
+    validator
+        .generateDetailedReport()
         .then(report => {
         console.log(report);
         // Demander si l'utilisateur veut corriger les problèmes
         const readline = require('readline');
         const rl = readline.createInterface({
             input: process.stdin,
-            output: process.stdout
+            output: process.stdout,
         });
         rl.question('\nVoulez-vous corriger automatiquement les problèmes détectés? (y/N): ', (answer) => {
             if (answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes') {
-                validator.fixCommonIssues()
+                validator
+                    .fixCommonIssues()
                     .then(() => {
                     console.log('✅ Corrections appliquées avec succès!');
                     process.exit(0);
@@ -404,3 +426,4 @@ if (require.main === module) {
         process.exit(1);
     });
 }
+//# sourceMappingURL=validate_data_quality.js.map

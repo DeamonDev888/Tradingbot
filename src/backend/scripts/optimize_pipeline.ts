@@ -110,20 +110,23 @@ class PipelineOptimizer {
   async analyzeAgentPerformance(): Promise<{
     bufferUtilization: number;
     avgAgentEfficiency: number;
-    agentStats: { [name: string]: { itemsUsed: number; efficiency: number; } };
+    agentStats: { [name: string]: { itemsUsed: number; efficiency: number } };
   }> {
-    const agentStats: { [name: string]: { itemsUsed: number; efficiency: number; } } = {};
+    const agentStats: { [name: string]: { itemsUsed: number; efficiency: number } } = {};
 
     try {
       console.log('🔍 Analyse performance Vortex500Agent...');
       const vortexAgent = new Vortex500Agent();
       const startVortex = Date.now();
-      const vortexResult = await vortexAgent.analyzeMarketSentiment(false);
+      const vortexResult = (await vortexAgent.analyzeMarketSentiment(false)) as any;
       const vortexTime = Date.now() - startVortex;
 
       agentStats['Vortex500Agent'] = {
         itemsUsed: vortexResult.news_count || 0,
-        efficiency: vortexResult.news_count > 0 ? vortexResult.news_count / (vortexTime / 1000) : 0,
+        efficiency:
+          (vortexResult.news_count || 0) > 0
+            ? (vortexResult.news_count || 0) / (vortexTime / 1000)
+            : 0,
       };
     } catch (error) {
       console.error('❌ Erreur Vortex500Agent:', error);
@@ -144,7 +147,7 @@ class PipelineOptimizer {
   }
 
   async generateOptimizationPlan(): Promise<OptimizationReport> {
-    console.log('🚀 Génération du plan d\'optimisation du pipeline...');
+    console.log("🚀 Génération du plan d'optimisation du pipeline...");
 
     const report: OptimizationReport = {
       timestamp: new Date(),
@@ -199,8 +202,12 @@ class PipelineOptimizer {
     const current = report.current;
     const target = report.target;
 
-    report.optimizations.scraping.frequency = current.recentNews24h < 50 ? 'Every 15 minutes' :
-                                                   current.recentNews24h < 100 ? 'Every 30 minutes' : 'Every hour';
+    report.optimizations.scraping.frequency =
+      current.recentNews24h < 50
+        ? 'Every 15 minutes'
+        : current.recentNews24h < 100
+          ? 'Every 30 minutes'
+          : 'Every hour';
 
     report.optimizations.scraping.sources = [
       'Finnhub (augmenter fréquence)',
@@ -221,7 +228,7 @@ class PipelineOptimizer {
       'CREATE INDEX CONCURRENTLY idx_news_items_published_at ON news_items(published_at DESC)',
       'CREATE INDEX CONCURRENTLY idx_news_items_source ON news_items(source)',
       'CREATE INDEX CONCURRENTLY idx_news_items_sentiment ON news_items(sentiment)',
-      'PARTITION BY RANGE(published_at) INTERVAL \'1 month\'',
+      "PARTITION BY RANGE(published_at) INTERVAL '1 month'",
     ];
 
     report.optimizations.database.cleanup = [
@@ -244,7 +251,7 @@ class PipelineOptimizer {
       report.optimizations.agents[name] = {
         bufferWindow: this.calculateOptimalBufferWindow(stats.itemsUsed),
         caching: stats.efficiency > 10,
-        optimization: this.generateAgentOptimizations(name, stats),
+        optimization: this.generateAgentOptimizationList(name, stats),
       };
     });
 
@@ -253,8 +260,8 @@ class PipelineOptimizer {
       const vortex = agentStats['Vortex500Agent'];
       report.optimizations.agents['Vortex500Agent'].optimization.push(
         'Réduire fenêtre temporelle à 48h si données fraîches disponibles',
-        'Implémenter cache des résultats d\'analyse',
-        'Optimiser taille du prompt KiloCode',
+        "Implémenter cache des résultats d'analyse",
+        'Optimiser taille du prompt KiloCode'
       );
     }
   }
@@ -266,11 +273,11 @@ class PipelineOptimizer {
     return 168; // 7j
   }
 
-  private generateAgentOptimizations(name: string, stats: any): string[] {
+  private generateAgentOptimizationList(name: string, stats: any): string[] {
     const optimizations: string[] = [];
 
     if (stats.efficiency < 10) {
-      optimizations.push('Optimiser algorithme d\'analyse');
+      optimizations.push("Optimiser algorithme d'analyse");
       optimizations.push('Réduire taille des données traitées');
     }
 
@@ -366,7 +373,7 @@ class PipelineOptimizer {
     const lines: string[] = [];
 
     lines.push('='.repeat(80));
-    lines.push('🚀 RAPPORT D\'OPTIMISATION DU PIPELINE DE DONNÉES');
+    lines.push("🚀 RAPPORT D'OPTIMISATION DU PIPELINE DE DONNÉES");
     lines.push('='.repeat(80));
     lines.push(`Timestamp: ${report.timestamp.toLocaleString('fr-FR')}`);
     lines.push('');
@@ -374,16 +381,42 @@ class PipelineOptimizer {
     // État actuel vs cible
     lines.push('📊 ÉTAT ACTUEL vs CIBLE:');
     lines.push(`                ACTUEL      CIBLE       ÉCART`);
-    lines.push(`News 24h        ${report.current.recentNews24h.toString().padStart(4)}        ${report.target.recentNews24h.toString().padStart(4)}        ${Math.abs(report.target.recentNews24h - report.current.recentNews24h).toString().padStart(4)}`);
-    lines.push(`News 48h        ${report.current.recentNews48h.toString().padStart(4)}        ${report.target.recentNews48h.toString().padStart(4)}        ${Math.abs(report.target.recentNews48h - report.current.recentNews48h).toString().padStart(4)}`);
-    lines.push(`Buffer util.   ${report.current.bufferUtilization.toString().padStart(4)}%        ${report.target.bufferUtilization.toString().padStart(4)}%        ${Math.abs(report.target.bufferUtilization - report.current.bufferUtilization).toString().padStart(4)}%`);
-    lines.push(`Efficacité       ${report.current.avgAgentEfficiency.toFixed(1).padStart(4)}        ${report.target.avgAgentEfficiency.toString().padStart(4)}        ${Math.abs(report.target.avgAgentEfficiency - report.current.avgAgentEfficiency).toFixed(1).padStart(4)}`);
+    lines.push(
+      `News 24h        ${report.current.recentNews24h.toString().padStart(4)}        ${report.target.recentNews24h.toString().padStart(4)}        ${Math.abs(
+        report.target.recentNews24h - report.current.recentNews24h
+      )
+        .toString()
+        .padStart(4)}`
+    );
+    lines.push(
+      `News 48h        ${report.current.recentNews48h.toString().padStart(4)}        ${report.target.recentNews48h.toString().padStart(4)}        ${Math.abs(
+        report.target.recentNews48h - report.current.recentNews48h
+      )
+        .toString()
+        .padStart(4)}`
+    );
+    lines.push(
+      `Buffer util.   ${report.current.bufferUtilization.toString().padStart(4)}%        ${report.target.bufferUtilization.toString().padStart(4)}%        ${Math.abs(
+        report.target.bufferUtilization - report.current.bufferUtilization
+      )
+        .toString()
+        .padStart(4)}%`
+    );
+    lines.push(
+      `Efficacité       ${report.current.avgAgentEfficiency.toFixed(1).padStart(4)}        ${report.target.avgAgentEfficiency.toString().padStart(4)}        ${Math.abs(
+        report.target.avgAgentEfficiency - report.current.avgAgentEfficiency
+      )
+        .toFixed(1)
+        .padStart(4)}`
+    );
     lines.push('');
 
     // Optimisations scraping
     lines.push('📡 OPTIMISATIONS SCRAPING:');
     lines.push(`   • Fréquence: ${report.optimizations.scraping.frequency}`);
-    lines.push(`   • Priorité: ${report.optimizations.scraping.priority === 1 ? '🔴 Haute' : '🟡 Moyenne'}`);
+    lines.push(
+      `   • Priorité: ${report.optimizations.scraping.priority === 1 ? '🔴 Haute' : '🟡 Moyenne'}`
+    );
     lines.push(`   • Sources à ajouter:`);
     report.optimizations.scraping.sources.slice(0, 5).forEach(source => {
       lines.push(`     - ${source}`);
@@ -420,8 +453,8 @@ class PipelineOptimizer {
     });
 
     // Plan d'action
-    lines.push('📋 PLAN D\'ACTION:');
-    lines.push('   🔥 IMMÉDIAT (aujourd\'hui):');
+    lines.push("📋 PLAN D'ACTION:");
+    lines.push("   🔥 IMMÉDIAT (aujourd'hui):");
     report.actions.immediate.slice(0, 5).forEach((action, index) => {
       lines.push(`     ${index + 1}. ${action}`);
     });
@@ -456,10 +489,13 @@ class PipelineOptimizer {
     lines.push('');
 
     // Évaluation
-    lines.push('🎯 ÉVALUATION DE L\'OPTIMISATION:');
+    lines.push("🎯 ÉVALUATION DE L'OPTIMISATION:");
 
     const criticalIssues = report.actions.immediate.length;
-    const complexity = report.actions.immediate.length + report.actions.shortTerm.length + report.actions.longTerm.length;
+    const complexity =
+      report.actions.immediate.length +
+      report.actions.shortTerm.length +
+      report.actions.longTerm.length;
 
     if (criticalIssues > 5) {
       lines.push('   • Priorité: 🔴 CRITIQUE - Action immédiate requise');
@@ -469,23 +505,27 @@ class PipelineOptimizer {
       lines.push('   • Priorité: 🟢 MOYENNE - Améliorations progressives');
     }
 
-    lines.push(`   • Complexité: ${complexity < 10 ? '🟢 Faible' : complexity < 20 ? '🟡 Moyenne' : '🔴 Élevée'} (${complexity} actions totales)`);
-    lines.push(`   • ROI attendu: ${report.impact.performance === 'High' ? '🟢 Élevé' : report.impact.performance === 'Medium' ? '🟡 Moyen' : '�fa Faible'}`);
+    lines.push(
+      `   • Complexité: ${complexity < 10 ? '🟢 Faible' : complexity < 20 ? '🟡 Moyenne' : '🔴 Élevée'} (${complexity} actions totales)`
+    );
+    lines.push(
+      `   • ROI attendu: ${report.impact.performance === 'High' ? '🟢 Élevé' : report.impact.performance === 'Medium' ? '🟡 Moyen' : '�fa Faible'}`
+    );
 
     lines.push('='.repeat(80));
 
     return lines.join('\n');
   }
 
-  async executeImmediateActions(): Promise<{ success: string[], failed: string[] }> {
+  async executeImmediateActions(): Promise<{ success: string[]; failed: string[] }> {
     console.log('🚀 Exécution des actions immédiates...');
 
-    const results = { success: [], failed: [] } as { success: string[], failed: string[] };
+    const results = { success: [], failed: [] } as { success: string[]; failed: string[] };
 
     // Action 1: Lancer scraping immédiat
     try {
       console.log('📡 Démarrage scraping immédiat...');
-      await this.newsAggregator.gatherNews();
+      await this.newsAggregator.fetchAndSaveAllNews();
       results.success.push('Scraping immédiat terminé');
     } catch (error) {
       console.error('❌ Erreur scraping:', error);
@@ -499,7 +539,9 @@ class PipelineOptimizer {
       results.success.push(`Database cache status: ${isFresh ? 'FRESH' : 'STALE'}`);
     } catch (error) {
       console.error('❌ Erreur vérification DB:', error);
-      results.failed.push(`Vérification DB: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      results.failed.push(
+        `Vérification DB: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
 
     return results;
@@ -517,7 +559,7 @@ if (require.main === module) {
   (async () => {
     const optimizer = new PipelineOptimizer();
 
-    console.log('🚀 Démarrage de l\'optimisation du pipeline...');
+    console.log("🚀 Démarrage de l'optimisation du pipeline...");
     console.log('');
 
     // Test de connexion
@@ -551,7 +593,8 @@ if (require.main === module) {
     } else {
       // Évaluation sans exécution
       const criticalIssues = report.actions.immediate.length;
-      const hasPerformanceIssues = report.current.avgAgentEfficiency < report.target.avgAgentEfficiency;
+      const hasPerformanceIssues =
+        report.current.avgAgentEfficiency < report.target.avgAgentEfficiency;
       const hasDataIssues = report.current.recentNews24h < report.target.recentNews24h * 0.5;
 
       console.log('\n🎯 ÉVALUATION:');
@@ -575,7 +618,7 @@ if (require.main === module) {
 
     await optimizer.close();
   })().catch(error => {
-    console.error('❌ Erreur critique de l\'optimisation:', error);
+    console.error("❌ Erreur critique de l'optimisation:", error);
     process.exit(3);
   });
 }

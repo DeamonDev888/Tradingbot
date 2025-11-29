@@ -1,46 +1,10 @@
 #!/usr/bin/env ts-node
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AutomatedMaintenanceService = void 0;
-const DataMaintenanceService_1 = require("../database/DataMaintenanceService");
-const NewsValidationService_1 = require("../database/NewsValidationService");
-const NewsDatabaseService_1 = require("../database/NewsDatabaseService");
-const NewsAggregator_1 = require("../ingestion/NewsAggregator");
-const dotenv = __importStar(require("dotenv"));
-const cron = __importStar(require("node-cron"));
+import { DataMaintenanceService } from '../database/DataMaintenanceService';
+import { NewsValidationService } from '../database/NewsValidationService';
+import { NewsDatabaseService } from '../database/NewsDatabaseService';
+import { NewsAggregator } from '../ingestion/NewsAggregator';
+import * as dotenv from 'dotenv';
+import * as cron from 'node-cron';
 dotenv.config();
 class AutomatedMaintenanceService {
     maintenanceService;
@@ -52,41 +16,41 @@ class AutomatedMaintenanceService {
             name: 'hourly_quick_cleanup',
             cron: '0 * * * *', // Chaque heure
             description: 'Nettoyage rapide des données récentes',
-            enabled: true
+            enabled: true,
         },
         {
             name: 'daily_deep_validation',
             cron: '0 2 * * *', // 2h du matin chaque jour
             description: 'Validation complète et nettoyage quotidien',
-            enabled: true
+            enabled: true,
         },
         {
             name: 'weekly_optimization',
             cron: '0 3 * * 0', // 3h du matin chaque dimanche
             description: 'Optimisation hebdomadaire de la base de données',
-            enabled: true
+            enabled: true,
         },
         {
             name: 'monthly_archive',
             cron: '0 4 1 * *', // 4h du matin le 1er de chaque mois
             description: 'Archivage mensuel des anciennes données',
-            enabled: true
+            enabled: true,
         },
         {
             name: 'quarterly_report',
             cron: '0 5 1 1,4,7,10 *', // 5h du matin le 1er janvier, avril, juillet, octobre
             description: 'Rapport trimestriel de qualité des données',
-            enabled: true
-        }
+            enabled: true,
+        },
     ];
     stats = [];
     isRunning = false;
     currentTask;
     constructor() {
-        this.maintenanceService = new DataMaintenanceService_1.DataMaintenanceService();
-        this.validationService = new NewsValidationService_1.NewsValidationService();
-        this.newsService = new NewsDatabaseService_1.NewsDatabaseService();
-        this.newsAggregator = new NewsAggregator_1.NewsAggregator();
+        this.maintenanceService = new DataMaintenanceService();
+        this.validationService = new NewsValidationService();
+        this.newsService = new NewsDatabaseService();
+        this.newsAggregator = new NewsAggregator();
     }
     /**
      * Démarre le service de maintenance automatisée
@@ -117,7 +81,7 @@ class AutomatedMaintenanceService {
         // Arrêter toutes les tâches cron
         this.schedules.forEach(schedule => {
             if (schedule.enabled) {
-                cron.getTasks(schedule.name).forEach(task => {
+                cron.getTasks().forEach(task => {
                     task.stop();
                 });
             }
@@ -146,7 +110,7 @@ class AutomatedMaintenanceService {
             spaceRecovered: 0,
             errors: [],
             warnings: [],
-            success: true
+            success: true,
         };
         this.isRunning = true;
         this.currentTask = 'full_maintenance';
@@ -175,7 +139,8 @@ class AutomatedMaintenanceService {
             console.log('\n4️⃣ Rapport de qualité des données...');
             await this.generateQualityReport();
             maintenanceStats.endTime = new Date();
-            maintenanceStats.duration = maintenanceStats.endTime.getTime() - maintenanceStats.startTime.getTime();
+            maintenanceStats.duration =
+                maintenanceStats.endTime.getTime() - maintenanceStats.startTime.getTime();
             maintenanceStats.success = maintenanceStats.errors.length === 0;
             this.stats.push(maintenanceStats);
             await this.saveMaintenanceStats(maintenanceStats);
@@ -242,7 +207,7 @@ class AutomatedMaintenanceService {
                 spaceRecovered: 0,
                 errors: [],
                 warnings: [],
-                success: true
+                success: true,
             };
             // Maintenance principale
             const results = await this.maintenanceService.performMaintenance();
@@ -252,7 +217,8 @@ class AutomatedMaintenanceService {
             maintenanceStats.errors.push(...results.flatMap(r => r.errors));
             maintenanceStats.warnings.push(...results.flatMap(r => r.warnings));
             maintenanceStats.endTime = new Date();
-            maintenanceStats.duration = maintenanceStats.endTime.getTime() - maintenanceStats.startTime.getTime();
+            maintenanceStats.duration =
+                maintenanceStats.endTime.getTime() - maintenanceStats.startTime.getTime();
             maintenanceStats.success = maintenanceStats.errors.length === 0;
             await this.saveMaintenanceStats(maintenanceStats);
             console.log(`✅ Validation quotidienne terminée: ${maintenanceStats.recordsProcessed} enregistrements, ${maintenanceStats.spaceRecovered}MB récupérés`);
@@ -270,7 +236,7 @@ class AutomatedMaintenanceService {
             // Optimisation de la base de données
             const optimizationResult = await this.maintenanceService.optimizeDatabase();
             // VACUUM ANALYZE
-            const pool = new (require('pg')).Pool({
+            const pool = new (require('pg').Pool)({
                 host: process.env.DB_HOST || 'localhost',
                 port: parseInt(process.env.DB_PORT || '5432'),
                 database: process.env.DB_NAME || 'financial_analyst',
@@ -369,8 +335,7 @@ class AutomatedMaintenanceService {
                         console.error(`❌ Erreur tâche ${schedule.name}:`, error);
                     }
                 }, {
-                    scheduled: true,
-                    timezone: 'America/New_York'
+                    timezone: 'America/New_York',
                 });
                 console.log(`📅 Tâche enregistrée: ${schedule.name} - ${schedule.cron}`);
             }
@@ -426,7 +391,8 @@ class AutomatedMaintenanceService {
         const now = new Date();
         // Si dernière exécution > 24h, lancer validation complète
         const lastValidation = this.stats.filter(s => s.schedule === 'daily').pop();
-        if (!lastValidation || now.getTime() - new Date(lastValidation.startTime).getTime() > 24 * 60 * 60 * 1000) {
+        if (!lastValidation ||
+            now.getTime() - new Date(lastValidation.startTime).getTime() > 24 * 60 * 60 * 1000) {
             console.log('🔄 Lancement validation complète (dernière > 24h)...');
             this.performDailyValidation().catch(console.error);
         }
@@ -454,7 +420,8 @@ class AutomatedMaintenanceService {
         // Vérifier l'espace disque (simple)
         const recentStats = this.stats.slice(-10);
         const avgSpaceRecovered = recentStats.reduce((sum, s) => sum + (s.spaceRecovered || 0), 0) / recentStats.length;
-        if (avgSpaceRecovered > 100) { // Si on récupère > 100MB en moyenne
+        if (avgSpaceRecovered > 100) {
+            // Si on récupère > 100MB en moyenne
             console.log(`⚠️ Volume élevé de nettoyage: ${avgSpaceRecovered.toFixed(1)}MB moy. - Vérifier la qualité des données entrantes`);
         }
         // Vérifier les erreurs
@@ -536,7 +503,7 @@ class AutomatedMaintenanceService {
         return {
             totalProcessed: Math.floor(Math.random() * 1000) + 100,
             errors: [],
-            warnings: []
+            warnings: [],
         };
     }
     /**
@@ -546,7 +513,6 @@ class AutomatedMaintenanceService {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
-exports.AutomatedMaintenanceService = AutomatedMaintenanceService;
 // Script principal
 if (require.main === module) {
     const maintenance = new AutomatedMaintenanceService();
@@ -589,7 +555,8 @@ Exemples:
     // Exécuter la commande appropriée
     if (args.includes('--run') || args.includes('-r')) {
         console.log('🔧 Exécution de la maintenance complète...');
-        maintenance.runFullMaintenance()
+        maintenance
+            .runFullMaintenance()
             .then(() => {
             console.log('✅ Maintenance terminée avec succès');
             process.exit(0);
@@ -606,7 +573,8 @@ Exemples:
         process.stdin.resume();
     }
     else {
-        console.log('⚠️ Aucune commande spécifiée. Utiliser --help pour l\'aide.');
+        console.log("⚠️ Aucune commande spécifiée. Utiliser --help pour l'aide.");
         process.exit(1);
     }
 }
+//# sourceMappingURL=automated_maintenance.js.map

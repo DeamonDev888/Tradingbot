@@ -494,7 +494,7 @@ if (require.main === module) {
 
       rl.question(
         '\nVoulez-vous corriger automatiquement les problèmes détectés? (y/N): ',
-        answer => {
+        (answer: any) => {
           if (answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes') {
             validator
               .fixCommonIssues()

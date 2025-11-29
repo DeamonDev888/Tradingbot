@@ -1,140 +1,127 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.NewsValidationService = void 0;
-const crypto_1 = __importDefault(require("crypto"));
-const pg_1 = require("pg");
-const dotenv = __importStar(require("dotenv"));
+import * as crypto from 'crypto';
+import { Pool } from 'pg';
+import * as dotenv from 'dotenv';
 dotenv.config();
-class NewsValidationService {
+export class NewsValidationService {
     pool;
     validationRules = [
         {
             name: 'title_length',
             critical: true,
             penalty: 0.4,
-            description: 'Le titre doit avoir entre 10 et 500 caractères'
+            description: 'Le titre doit avoir entre 10 et 500 caractères',
         },
         {
             name: 'title_quality',
             critical: false,
             penalty: 0.3,
-            description: 'Le titre ne doit pas contenir trop de majuscules ou caractères spéciaux'
+            description: 'Le titre ne doit pas contenir trop de majuscules ou caractères spéciaux',
         },
         {
             name: 'url_format',
             critical: true,
             penalty: 0.5,
-            description: 'L\'URL doit être valide et accessible'
+            description: "L'URL doit être valide et accessible",
         },
         {
             name: 'url_shortener',
             critical: false,
             penalty: 0.1,
-            description: 'Les URL raccourcies sont moins fiables'
+            description: 'Les URL raccourcies sont moins fiables',
         },
         {
             name: 'source_reliability',
             critical: false,
             penalty: 0.2,
-            description: 'Vérification de la fiabilité de la source'
+            description: 'Vérification de la fiabilité de la source',
         },
         {
             name: 'content_quality',
             critical: false,
             penalty: 0.2,
-            description: 'Qualité du contenu si disponible'
+            description: 'Qualité du contenu si disponible',
         },
         {
             name: 'date_validity',
             critical: true,
             penalty: 0.5,
-            description: 'La date de publication doit être dans une plage raisonnable'
+            description: 'La date de publication doit être dans une plage raisonnable',
         },
         {
             name: 'duplicate_detection',
             critical: false,
             penalty: 0.3,
-            description: 'Détection des doublons basée sur le hash'
+            description: 'Détection des doublons basée sur le hash',
         },
         {
             name: 'spam_detection',
             critical: true,
             penalty: 0.8,
-            description: 'Détection de spam et contenu suspect'
+            description: 'Détection de spam et contenu suspect',
         },
         {
             name: 'financial_relevance',
             critical: false,
             penalty: 0.15,
-            description: 'Pertinence financière du contenu'
-        }
+            description: 'Pertinence financière du contenu',
+        },
     ];
     // Sources fiables avec scores de confiance
     sourceReliability = {
-        'ZeroHedge': 0.85,
-        'CNBC': 0.90,
-        'FinancialJuice': 0.80,
-        'Finnhub': 0.95,
-        'FRED': 1.0,
-        'TradingEconomics': 0.85,
-        'Bloomberg': 0.95,
-        'Reuters': 0.90,
-        'MarketWatch': 0.80,
+        ZeroHedge: 0.85,
+        CNBC: 0.9,
+        FinancialJuice: 0.8,
+        Finnhub: 0.95,
+        FRED: 1.0,
+        TradingEconomics: 0.85,
+        Bloomberg: 0.95,
+        Reuters: 0.9,
+        MarketWatch: 0.8,
         'Yahoo Finance': 0.85,
         'Investing.com': 0.75,
-        'CBOE': 1.0,
-        'Twitter': 0.40,
-        'Reddit': 0.30,
+        CBOE: 1.0,
+        Twitter: 0.4,
+        Reddit: 0.3,
         'Social Media': 0.25,
     };
     // Mots-clés financiers pour la pertinence
     financialKeywords = [
-        'fed', 'federal reserve', 'inflation', 'cpi', 'interest rate',
-        'market', 'stock', 'bond', 'commodity', 'currency',
-        'trading', 'investing', 'portfolio', 'dividend',
-        'earnings', 'revenue', 'profit', 'loss', 'gdp',
-        'volatility', 'vix', 'sp500', 'nasdaq', 'dow jones',
-        'bullish', 'bearish', 'rally', 'crash', 'correction',
-        'economy', 'recession', 'recovery', 'unemployment'
+        'fed',
+        'federal reserve',
+        'inflation',
+        'cpi',
+        'interest rate',
+        'market',
+        'stock',
+        'bond',
+        'commodity',
+        'currency',
+        'trading',
+        'investing',
+        'portfolio',
+        'dividend',
+        'earnings',
+        'revenue',
+        'profit',
+        'loss',
+        'gdp',
+        'volatility',
+        'vix',
+        'sp500',
+        'nasdaq',
+        'dow jones',
+        'bullish',
+        'bearish',
+        'rally',
+        'crash',
+        'correction',
+        'economy',
+        'recession',
+        'recovery',
+        'unemployment',
     ];
     constructor() {
-        this.pool = new pg_1.Pool({
+        this.pool = new Pool({
             host: process.env.DB_HOST || 'localhost',
             port: parseInt(process.env.DB_PORT || '5432'),
             database: process.env.DB_NAME || 'financial_analyst',
@@ -154,7 +141,7 @@ class NewsValidationService {
             qualityScore: 1.0,
             errors: [],
             warnings: [],
-            appliedRules: []
+            appliedRules: [],
         };
         const processedItem = {
             ...item,
@@ -169,7 +156,7 @@ class NewsValidationService {
             normalized_url: this.normalizeUrl(item.url),
             scraped_at: new Date(),
             created_at: new Date(),
-            updated_at: new Date()
+            updated_at: new Date(),
         };
         // Appliquer chaque règle de validation
         for (const rule of this.validationRules) {
@@ -220,7 +207,7 @@ class NewsValidationService {
                     qualityScore: 0,
                     errors: ['Doublon détecté dans le batch'],
                     warnings: [],
-                    appliedRules: ['duplicate_detection']
+                    appliedRules: ['duplicate_detection'],
                 };
                 results.push(duplicateResult);
                 seenHashes.add(itemHash);
@@ -394,9 +381,17 @@ class NewsValidationService {
         const content = item.content?.toLowerCase() || '';
         // Mots spam typiques
         const spamWords = [
-            'click here', 'buy now', 'limited time', 'act fast',
-            'guaranteed', 'miracle', 'secret', 'shocking',
-            'you won', 'congratulations', 'winner'
+            'click here',
+            'buy now',
+            'limited time',
+            'act fast',
+            'guaranteed',
+            'miracle',
+            'secret',
+            'shocking',
+            'you won',
+            'congratulations',
+            'winner',
         ];
         const hasSpamWords = spamWords.some(word => title.includes(word) || content.includes(word));
         if (hasSpamWords) {
@@ -445,14 +440,14 @@ class NewsValidationService {
      */
     generateTitleHash(title) {
         const normalized = this.normalizeTitle(title);
-        return crypto_1.default.createHash('sha256').update(normalized).digest('hex');
+        return crypto.createHash('sha256').update(normalized).digest('hex');
     }
     /**
      * Génère un hash SHA256 pour une URL normalisée
      */
     generateUrlHash(url) {
         const normalized = this.normalizeUrl(url);
-        return crypto_1.default.createHash('sha256').update(normalized).digest('hex');
+        return crypto.createHash('sha256').update(normalized).digest('hex');
     }
     /**
      * Normalise un titre pour le hashage
@@ -512,7 +507,7 @@ class NewsValidationService {
             saved: 0,
             duplicates: 0,
             rejected: 0,
-            errors: []
+            errors: [],
         };
         const client = await this.pool.connect();
         try {
@@ -554,7 +549,7 @@ class NewsValidationService {
                             item.duplicate_count,
                             item.data_quality_score,
                             item.created_at,
-                            item.updated_at
+                            item.updated_at,
                         ]);
                         stats.saved++;
                     }
@@ -633,4 +628,4 @@ class NewsValidationService {
         await this.pool.end();
     }
 }
-exports.NewsValidationService = NewsValidationService;
+//# sourceMappingURL=NewsValidationService.js.map

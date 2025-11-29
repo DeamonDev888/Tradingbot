@@ -7,7 +7,7 @@ async function main() {
   const agent = new RougePulseAgent();
 
   try {
-    const result = await agent.analyzeEconomicEvents();
+    const result = await agent.analyzeMarketSentiment();
     console.log('📊 Analysis Result saved to rouge_result.json');
     fs.writeFileSync('rouge_result.json', JSON.stringify(result, null, 2));
     process.exit(0);

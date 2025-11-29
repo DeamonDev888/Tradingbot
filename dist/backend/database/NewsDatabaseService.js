@@ -1,46 +1,10 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.NewsDatabaseService = void 0;
-const pg_1 = require("pg");
-const fs = __importStar(require("fs/promises"));
-const path = __importStar(require("path"));
-const dotenv = __importStar(require("dotenv"));
+import { Pool } from 'pg';
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import * as dotenv from 'dotenv';
 // Charger les variables d'environnement
 dotenv.config();
-class NewsDatabaseService {
+export class NewsDatabaseService {
     pool;
     constructor(connectionString) {
         // Vérifier si nous voulons utiliser la base de données
@@ -62,7 +26,7 @@ class NewsDatabaseService {
                 idleTimeoutMillis: 30000,
                 connectionTimeoutMillis: 2000,
             };
-            this.pool = new pg_1.Pool(connectionString ? { connectionString } : defaultConfig);
+            this.pool = new Pool(connectionString ? { connectionString } : defaultConfig);
             // L'initialisation sera faite lors de la première utilisation
         }
         catch {
@@ -432,7 +396,7 @@ class NewsDatabaseService {
                 client.release();
             }
         }
-        catch (_error) {
+        catch {
             console.log('⚠️ Failed to update source status - continuing without database');
         }
     }
@@ -681,6 +645,68 @@ class NewsDatabaseService {
         return 'low';
     }
     /**
+     * Récupère les événements économiques
+     */
+    async getEconomicEvents(startDate, endDate, minImportance = 1) {
+        if (!this.pool)
+            return [];
+        const client = await this.pool.connect();
+        try {
+            const result = await client.query(`
+        SELECT * FROM economic_events
+        WHERE event_date >= $1 AND event_date <= $2
+        AND importance >= $3
+        ORDER BY event_date ASC
+      `, [startDate, endDate, minImportance]);
+            return result.rows;
+        }
+        catch (error) {
+            console.error('Error fetching economic events:', error);
+            return [];
+        }
+        finally {
+            client.release();
+        }
+    }
+    /**
+     * Récupère les statistiques récentes (pour compatibilité)
+     */
+    async getRecentStats(hours = 24) {
+        if (!this.pool) {
+            return {
+                totalNews: 0,
+                recentNews24h: 0,
+                recentNews48h: 0,
+                avgQueryTime: 0,
+            };
+        }
+        const client = await this.pool.connect();
+        try {
+            const [totalResult, recent24hResult, recent48hResult] = await Promise.all([
+                client.query('SELECT COUNT(*) as count FROM news_items'),
+                client.query(`
+          SELECT COUNT(*) as count
+          FROM news_items
+          WHERE published_at >= NOW() - INTERVAL '24 hours'
+        `),
+                client.query(`
+          SELECT COUNT(*) as count
+          FROM news_items
+          WHERE published_at >= NOW() - INTERVAL '48 hours'
+        `),
+            ]);
+            return {
+                totalNews: parseInt(totalResult.rows[0].count) || 0,
+                recentNews24h: parseInt(recent24hResult.rows[0].count) || 0,
+                recentNews48h: parseInt(recent48hResult.rows[0].count) || 0,
+                avgQueryTime: 50, // Valeur par défaut
+            };
+        }
+        finally {
+            client.release();
+        }
+    }
+    /**
      * Ferme proprement la connexion à la base de données
      */
     async close() {
@@ -693,4 +719,4 @@ class NewsDatabaseService {
         }
     }
 }
-exports.NewsDatabaseService = NewsDatabaseService;
+//# sourceMappingURL=NewsDatabaseService.js.map

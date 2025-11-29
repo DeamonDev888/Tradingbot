@@ -79,7 +79,10 @@ class AgentOptimizer {
     }
   }
 
-  async analyzeAgentPerformance(agentName: string, agent: any): Promise<{
+  async analyzeAgentPerformance(
+    agentName: string,
+    agent: any
+  ): Promise<{
     newsItemsUsed: number;
     queryTime: number;
     efficiency: number;
@@ -110,11 +113,9 @@ class AgentOptimizer {
         console.log(`   • Temps d'analyse: ${queryTime}ms`);
         console.log(`   • Efficacité: ${efficiency.toFixed(2)} items/s`);
         console.log(`   • Source: ${source}`);
-
       } else {
         issues.push('Méthode analyzeMarketSentiment manquante');
       }
-
     } catch (error) {
       issues.push(`Erreur analyse: ${error instanceof Error ? error.message : 'Unknown error'}`);
       console.error(`   ❌ Erreur: ${error}`);
@@ -147,8 +148,8 @@ class AgentOptimizer {
   }
 
   async optimizeVortexAgent(): Promise<{
-    before: { newsItemsUsed: number; queryTime: number; efficiency: number; source: string; };
-    after: { newsItemsUsed: number; queryTime: number; efficiency: number; source: string; };
+    before: { newsItemsUsed: number; queryTime: number; efficiency: number; source: string };
+    after: { newsItemsUsed: number; queryTime: number; efficiency: number; source: string };
     improvements: string[];
     issues: string[];
   }> {
@@ -182,8 +183,12 @@ class AgentOptimizer {
       source: before.source,
     };
 
-    improvements.push(`Temps d'analyse réduit: ${before.queryTime}ms → ${after.queryTime}ms (${Math.round((1 - after.queryTime/before.queryTime) * 100)}% plus rapide)`);
-    improvements.push(`Efficacité améliorée: ${before.efficiency.toFixed(2)} → ${after.efficiency.toFixed(2)} items/s (${Math.round((after.efficiency/before.efficiency - 1) * 100)}% plus efficace)`);
+    improvements.push(
+      `Temps d'analyse réduit: ${before.queryTime}ms → ${after.queryTime}ms (${Math.round((1 - after.queryTime / before.queryTime) * 100)}% plus rapide)`
+    );
+    improvements.push(
+      `Efficacité améliorée: ${before.efficiency.toFixed(2)} → ${after.efficiency.toFixed(2)} items/s (${Math.round((after.efficiency / before.efficiency - 1) * 100)}% plus efficace)`
+    );
 
     return {
       before: {
@@ -209,10 +214,10 @@ class AgentOptimizer {
 
     try {
       // Importer l'agent corrigé
-      const { RougePulseAgentFixed } = await import('../agents/RougePulseAgentFixed');
-      const agent = new RougePulseAgentFixed();
+      const { RougePulseAgent } = await import('../agents/RougePulseAgent');
+      const agent = new RougePulseAgent();
 
-      return await this.analyzeAgentPerformance('RougePulseAgentFixed', agent);
+      return await this.analyzeAgentPerformance('RougePulseAgent', agent);
     } catch (error) {
       console.error('❌ Erreur création agent optimisé:', error);
       return {
@@ -220,7 +225,9 @@ class AgentOptimizer {
         queryTime: 0,
         efficiency: 0,
         source: 'error',
-        issues: [`Création agent échouée: ${error instanceof Error ? error.message : 'Unknown error'}`],
+        issues: [
+          `Création agent échouée: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        ],
       };
     }
   }
@@ -252,10 +259,11 @@ class AgentOptimizer {
 
       console.log(`   • ${optimizations.length} optimisations système implémentées`);
       optimizations.forEach(opt => console.log(`     - ${opt}`));
-
     } catch (error) {
       console.error('❌ Erreur optimisations système:', error);
-      optimizations.push(`Erreur système: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      optimizations.push(
+        `Erreur système: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
 
     return optimizations;
@@ -295,10 +303,10 @@ class AgentOptimizer {
         issues: vortexOptimization.issues,
       };
 
-      // 3. Test RougePulseAgentFixed
-      console.log('\n🔧 Test RougePulseAgentFixed...');
+      // 3. Test RougePulseAgent
+      console.log('\n🔧 Test RougePulseAgent...');
       const rougeResult = await this.createOptimizedRougePulseAgent();
-      result.agents['RougePulseAgentFixed'] = {
+      result.agents['RougePulseAgent'] = {
         beforeOptimization: {
           newsItemsUsed: 0,
           queryTime: 0,
@@ -316,34 +324,43 @@ class AgentOptimizer {
 
       // 5. Calculer les métriques système
       const agents = Object.values(result.agents);
-      const avgEfficiency = agents.reduce((sum, agent) => sum + agent.afterOptimization.efficiency, 0) / agents.length;
+      const avgEfficiency =
+        agents.reduce((sum, agent) => sum + agent.afterOptimization.efficiency, 0) / agents.length;
 
-      const bufferUtilization = currentStats.recentNews48h > 0 ?
-        (agents.reduce((sum, agent) => sum + agent.afterOptimization.newsItemsUsed, 0) / agents.length) /
-        currentStats.recentNews48h * 100 : 0;
+      const bufferUtilization =
+        currentStats.recentNews48h > 0
+          ? (agents.reduce((sum, agent) => sum + agent.afterOptimization.newsItemsUsed, 0) /
+              agents.length /
+              currentStats.recentNews48h) *
+            100
+          : 0;
 
-      const dataFreshness = currentStats.totalNews > 0 ?
-        (currentStats.recentNews24h / currentStats.totalNews) * 100 : 0;
+      const dataFreshness =
+        currentStats.totalNews > 0
+          ? (currentStats.recentNews24h / currentStats.totalNews) * 100
+          : 0;
 
       result.systemWide = {
         bufferUtilization,
         avgEfficiency,
         dataFreshness,
-        success: (
+        // 10% de données fraîches minimum
+        success:
           avgEfficiency >= 15 && // 15 items/s minimum
-          bufferUtilization >= 30 && bufferUtilization <= 80 && // 30-80% buffer
-          dataFreshness >= 10 // 10% de données fraîches minimum
-        ),
+          bufferUtilization >= 30 &&
+          bufferUtilization <= 80 && // 30-80% buffer
+          dataFreshness >= 10,
       };
 
       // 6. Générer les recommandations
       console.log('\n💡 Génération recommandations...');
       result.recommendations = this.generateRecommendations(result);
-
     } catch (error) {
       console.error('❌ Erreur optimisation générale:', error);
       result.systemWide.success = false;
-      result.recommendations.push(`Erreur critique: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      result.recommendations.push(
+        `Erreur critique: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
 
     return result;
@@ -354,11 +371,11 @@ class AgentOptimizer {
 
     // Recommandations basées sur les résultats
     if (result.systemWide.avgEfficiency < 20) {
-      recommendations.push('Augmenter l\'efficacité des agents (target: 20+ items/s)');
+      recommendations.push("Augmenter l'efficacité des agents (target: 20+ items/s)");
     }
 
     if (result.systemWide.bufferUtilization < 50) {
-      recommendations.push('Optimiser l\'utilisation du buffer (target: 50-80%)');
+      recommendations.push("Optimiser l'utilisation du buffer (target: 50-80%)");
     } else if (result.systemWide.bufferUtilization > 100) {
       recommendations.push('Réduire la fenêtre temporelle des agents (sur-utilisation)');
     }
@@ -400,7 +417,7 @@ class AgentOptimizer {
     const lines: string[] = [];
 
     lines.push('='.repeat(80));
-    lines.push('🚀 RAPPORT D\'OPTIMISATION DES AGENTS ET SYSTÈME');
+    lines.push("🚀 RAPPORT D'OPTIMISATION DES AGENTS ET SYSTÈME");
     lines.push('='.repeat(80));
     lines.push(`Timestamp: ${result.timestamp.toLocaleString('fr-FR')}`);
     lines.push('');
@@ -409,7 +426,9 @@ class AgentOptimizer {
     lines.push('📈 MÉTRIQUES SYSTÈME APRÈS OPTIMISATION:');
     lines.push(`   • Efficacité moyenne: ${result.systemWide.avgEfficiency.toFixed(2)} items/s`);
     lines.push(`   • Utilisation buffer: ${result.systemWide.bufferUtilization.toFixed(1)}%`);
-    lines.push(`   • Fraîcheur données: ${result.systemWide.dataFreshness.toFixed(1)}% (données 24h/total)`);
+    lines.push(
+      `   • Fraîcheur données: ${result.systemWide.dataFreshness.toFixed(1)}% (données 24h/total)`
+    );
     lines.push(`   • Statut global: ${result.systemWide.success ? '🟢 SUCCÈS' : '🔴 À AMÉLIORER'}`);
     lines.push('');
 

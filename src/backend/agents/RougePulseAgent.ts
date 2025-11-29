@@ -1,1570 +1,601 @@
 import { BaseAgentSimple } from './BaseAgentSimple';
-import { Pool } from 'pg';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-import * as fs from 'fs/promises';
-import * as path from 'path';
+import { NewsDatabaseService } from '../database/NewsDatabaseService';
+import { RougePulseDatabaseService } from '../database/RougePulseDatabaseService';
 import * as dotenv from 'dotenv';
-import { StockData } from '../ingestion/FinnhubClient';
 
 dotenv.config();
 
-export interface TechnicalLevels {
-  supports: Array<{
-    level: number;
-    strength: 'faible' | 'moyen' | 'fort';
-    edge_score: number;
-    source: string;
-    edge_reasoning: string; // Pourquoi ce niveau a un edge
-    market_context: string; // Ce que disent les intervenants
-    confirmation_factors: string[]; // Facteurs qui confirment l'edge
-  }>;
-  resistances: Array<{
-    level: number;
-    strength: 'faible' | 'moyen' | 'fort';
-    edge_score: number;
-    source: string;
-    edge_reasoning: string; // Pourquoi ce niveau a un edge
-    market_context: string; // Ce que disent les intervenants
-    confirmation_factors: string[]; // Facteurs qui confirment l'edge
-  }>;
-  current_price: number;
-  daily_range: { high: number; low: number };
-  round_levels: Array<{ level: number; type: 'psychological'; significance: string }>;
-  pivot_points: { p: number; r1: number; r2: number; s1: number; s2: number };
-  fibonacci_levels: Array<{ level: number; type: 'retracement'; percent: string }>;
-}
-
 export class RougePulseAgent extends BaseAgentSimple {
-  private readonly execAsync: (
-    command: string,
-    options?: Record<string, unknown>
-  ) => Promise<{ stdout: string; stderr: string }>;
-  private readonly pool: Pool;
+  private dbService: NewsDatabaseService;
+  private rpDbService: RougePulseDatabaseService;
 
   constructor() {
     super('rouge-pulse-agent');
-    this.execAsync = promisify(exec);
+    this.dbService = new NewsDatabaseService();
+    this.rpDbService = new RougePulseDatabaseService();
+  }
 
   /**
-   * Analyse de sentiment principale pour compatibilité avec les autres agents
+   * Analyse du calendrier économique avec scoring avancé
    */
   async analyzeMarketSentiment(_forceRefresh: boolean = false): Promise<Record<string, unknown>> {
-    console.log(`[${this.agentName}] Starting Rouge Pulse market sentiment analysis...`);
+    console.log(`[${this.agentName}] Starting Rouge Pulse Calendar analysis...`);
 
     try {
-      // Utiliser la méthode d'analyse technique existante
-      const technicalAnalysis = await this.analyzeWithTechnicalLevels();
-
-      // Convertir en format compatible avec les autres agents
-      const sentiment = this.convertTechnicalToSentiment(technicalAnalysis);
-
-      console.log(`[${this.agentName}] Analysis completed successfully`);
-      console.log(`   • Sentiment: ${sentiment.sentiment}`);
-      console.log(`   • Score: ${sentiment.score}`);
-      console.log(`   • Confidence: ${sentiment.confidence}%`);
-
-      return {
-        sentiment: sentiment.sentiment,
-        score: sentiment.score,
-        confidence: sentiment.confidence,
-        catalysts: sentiment.catalysts,
-        risk_level: sentiment.risk_level,
-        summary: sentiment.summary,
-        news_count: 0, // Technical analysis doesn't use news
-        sources_analyzed: { 'technical_levels': 1 },
-        analysis_method: 'rouge_pulse_technical',
-        data_source: 'technical_analysis',
-        current_price: technicalAnalysis.current_price,
-        supports: technicalAnalysis.supports.length,
-        resistances: technicalAnalysis.resistances.length,
-      };
-    } catch (error) {
-      console.error(`[${this.agentName}] Analysis failed:`, error);
-      return this.createNotAvailableResult(
-        `Technical analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`
-      );
-    }
-  }
-
-  private convertTechnicalToSentiment(technical: TechnicalLevels): {
-    sentiment: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
-    score: number;
-    confidence: number;
-    catalysts: string[];
-    risk_level: 'LOW' | 'MEDIUM' | 'HIGH';
-    summary: string;
-  } {
-    const price = technical.current_price;
-    const { supports, resistances } = technical;
-
-    // Analyser la position par rapport aux supports/résistances
-    const nearestSupport = supports
-      .filter(s => s.level < price)
-      .sort((a, b) => b.level - a.level)[0];
-
-    const nearestResistance = resistances
-      .filter(r => r.level > price)
-      .sort((a, b) => a.level - b.level)[0];
-
-    let sentiment: 'BULLISH' | 'BEARISH' | 'NEUTRAL' = 'NEUTRAL';
-    let score = 0;
-    let confidence = 50;
-
-    // Calculer le sentiment basé sur la position et la force des niveaux
-    if (nearestResistance && nearestSupport) {
-      const distToSupport = ((price - nearestSupport.level) / nearestSupport.level) * 100;
-      const distToResistance = ((nearestResistance.level - price) / nearestResistance.level) * 100;
-
-      if (distToSupport < distToSupport) {
-        // Plus proche du support -> potentiel de rebond haussier
-        if (nearestSupport.strength === 'fort') {
-          sentiment = 'BULLISH';
-          score = Math.min(30, distToSupport * 2);
-          confidence = Math.min(85, 50 + (nearestSupport.edge_score / 10));
-        } else {
-          sentiment = 'NEUTRAL';
-          score = Math.min(15, distToSupport);
-          confidence = Math.min(70, 50 + (nearestSupport.edge_score / 15));
-        }
-      } else {
-        // Plus proche de résistance -> potentiel de baisse
-        if (nearestResistance.strength === 'fort') {
-          sentiment = 'BEARISH';
-          score = Math.max(-30, -distToResistance * 2);
-          confidence = Math.min(85, 50 + (nearestResistance.edge_score / 10));
-        } else {
-          sentiment = 'NEUTRAL';
-          score = Math.max(-15, -distToResistance);
-          confidence = Math.min(70, 50 + (nearestResistance.edge_score / 15));
-        }
-      }
-    }
-
-    // Ajuster basé sur le nombre de niveaux significatifs
-    const strongSupports = supports.filter(s => s.strength === 'fort').length;
-    const strongResistances = resistances.filter(r => r.strength === 'fort').length;
-
-    if (strongSupports > strongResistances) {
-      score = Math.min(score + 10, 40);
-      confidence = Math.min(confidence + 5, 90);
-    } else if (strongResistances > strongSupports) {
-      score = Math.max(score - 10, -40);
-      confidence = Math.min(confidence + 5, 90);
-    }
-
-    // Déterminer le niveau de risque
-    const risk_level: 'LOW' | 'MEDIUM' | 'HIGH' =
-      confidence > 75 ? 'LOW' :
-      confidence > 50 ? 'MEDIUM' : 'HIGH';
-
-    // Générer les catalystes et le résumé
-    const catalysts: string[] = [];
-
-    if (nearestSupport && nearestSupport.strength === 'fort') {
-      catalysts.push(`Support fort à ${nearestSupport.level}`);
-    }
-
-    if (nearestResistance && nearestResistance.strength === 'fort') {
-      catalysts.push(`Résistance forte à ${nearestResistance.level}`);
-    }
-
-    if (strongSupports > strongResistances) {
-      catalysts.push('Plus de supports que de résistances');
-    } else if (strongResistances > strongSupports) {
-      catalysts.push('Plus de résistances que de supports');
-    }
-
-    const summary = `Analyse technique: prix actuel ${price}, ${sentiment.toLowerCase()} avec confiance ${confidence}%. Catalysts: ${catalysts.join(', ')}`;
-
-    return {
-      sentiment,
-      score,
-      confidence,
-      catalysts,
-      risk_level,
-      summary,
-    };
-  }
-    this.pool = new Pool({
-      host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT || '5432'),
-      database: process.env.DB_NAME || 'financial_analyst',
-      user: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || '9022',
-    });
-  }
-
-  async analyzeEconomicEvents(): Promise<Record<string, unknown> | { error: string }> {
-    console.log(`[${this.agentName}] 🔍 Starting Enhanced Economic Calendar Analysis...`);
-
-    try {
-      // 0. Récupérer les prix temps réel du S&P 500 depuis la DB
-      console.log(
-        `[${this.agentName}] 📈 Récupération des données S&P 500 depuis la base de données...`
-      );
-      const sp500Data = await this.getLatestSP500FromDB();
-
-      if (!sp500Data) {
-        console.warn(
-          `[${this.agentName}] ⚠️ Impossible de récupérer les données S&P 500 depuis la DB`
-        );
-      } else {
-        console.log(
-          `[${this.agentName}] ✅ S&P 500 (DB): ${sp500Data.current.toFixed(2)} (${sp500Data.percent_change > 0 ? '+' : ''}${sp500Data.percent_change.toFixed(2)}%)`
-        );
+      const dbConnected = await this.dbService.testConnection();
+      if (!dbConnected) {
+        return {
+          error: 'Database not available for Calendar data',
+          status: 'unavailable',
+          analysis_date: new Date(),
+          data_source: 'trading_economics_calendar',
+        };
       }
 
-      // 1. Fetch Data from Database
-      const events = await this.getUpcomingAndRecentEvents();
+      // Période d'analyse élargie pour meilleure visibilité
+      const startDate = new Date();
+      startDate.setHours(0, 0, 0, 0);
+
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 7); // 7 jours pour meilleure planification
+
+      // Récupérer TOUS les événements (même faible importance)
+      const events = await this.dbService.getEconomicEvents(startDate, endDate, 1);
 
       if (events.length === 0) {
-        console.log(`[${this.agentName}] No relevant economic events found.`);
-        return { message: 'No significant events found.' };
+        return {
+          summary:
+            '📅 **Calendrier Économique**\n\nAucun événement économique prévu pour les 7 prochains jours.',
+          events: [],
+          high_impact_events: [],
+          market_movers: [],
+          critical_alerts: [],
+          analysis_date: new Date(),
+          status: 'no_data',
+          data_source: 'trading_economics_calendar',
+        };
       }
 
-      console.log(`[${this.agentName}] Retrieved ${events.length} events for analysis.`);
+      // Classification avancée avec scoring
+      const classifiedEvents = this.classifyEventsByImpact(events);
 
-      // 1b. Fetch News Context (ZeroHedge/FinancialJuice)
-      const news = await this.getRecentNewsHeadlines();
-      const newsContext = news.map(n => `- ${n.source}: ${n.title}`).join('\n');
+      // Identifier les "Market Movers" - événements qui changent vraiment le marché
+      const marketMovers = this.identifyMarketMovers(classifiedEvents.critical);
 
-      // 1c. Analyser les niveaux techniques depuis les news et données
-      const technicalLevels = await this.analyzeTechnicalLevels(sp500Data || undefined, news);
+      // Générer les alertes critiques
+      const criticalAlerts = this.generateCriticalAlerts(classifiedEvents.critical);
 
-      // 2. Prepare Enhanced Prompt with Technical Data
-      const prompt = this.createEnhancedAnalysisPrompt(
-        events,
-        newsContext,
-        technicalLevels,
-        sp500Data || undefined
-      );
-
-      // 3. Analyze with KiloCode
-      const aiAnalysis = await this.tryKiloCodeWithFile(prompt);
-
-      if (!aiAnalysis) {
-        return { error: 'AI Analysis failed.' };
-      }
-
-      // 4. Save Analysis to Database with Technical Data
-      await this.saveAnalysisToDatabase(aiAnalysis, technicalLevels, sp500Data || undefined);
-
-      console.log(`[${this.agentName}] 🎉 Enhanced analysis completed and saved successfully.`);
+      // Résumé intelligent avec mise en évidence
+      const summary = this.generateAdvancedSummary(classifiedEvents, criticalAlerts);
 
       return {
-        events_analyzed: events.length,
-        analysis: aiAnalysis,
-        technical_levels: technicalLevels,
-        sp500_data: sp500Data,
+        summary,
+
+        // Statistiques
+        total_events: events.length,
+        critical_count: classifiedEvents.critical.length,
+        high_count: classifiedEvents.high.length,
+        medium_count: classifiedEvents.medium.length,
+        low_count: classifiedEvents.low.length,
+
+        // Événements structurés
+        critical_events: classifiedEvents.critical.map(this.formatEventAdvanced.bind(this)),
+        high_impact_events: classifiedEvents.high.map(this.formatEventAdvanced.bind(this)),
+        medium_impact_events: classifiedEvents.medium.map(this.formatEventAdvanced.bind(this)),
+        low_impact_events: classifiedEvents.low.map(this.formatEventAdvanced.bind(this)),
+
+        // Market movers et alertes
+        market_movers: marketMovers,
+        critical_alerts: criticalAlerts,
+
+        // Planning par jour
+        upcoming_schedule: this.groupEventsByImportance(classifiedEvents),
+
+        // Score de volatilité global
+        volatility_score: this.calculateVolatilityScore(classifiedEvents),
+
+        analysis_date: new Date(),
+        data_source: 'trading_economics_calendar',
+        next_24h_alerts: this.getNext24HoursAlerts(classifiedEvents),
       };
     } catch (error) {
       console.error(`[${this.agentName}] Analysis failed:`, error);
       return {
         error: `Analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        status: 'error',
+        analysis_date: new Date(),
+        data_source: 'trading_economics_calendar',
       };
     }
   }
 
   /**
-   * Mapping détaillé des sources de données avec descriptions professionnelles
+   * Classification avancée des événements par impact avec scoring intelligent
    */
-  private getDetailedSourceInfo(data: StockData | null): string | null {
-    if (!data) return null;
+  private classifyEventsByImpact(events: any[]) {
+    const now = new Date();
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 
-    const symbol = data.symbol;
-    const current = data.current;
-
-    // Mapping des sources avec descriptions détaillées
-    const sourceMapping: { [key: string]: () => string } = {
-      ES_CONVERTED: () => {
-        const originalPrice = current && current > 1000 ? (current / 9.5).toFixed(2) : 'N/A';
-        return `🔄 SPY ETF Converti (${originalPrice} × 9.5) → ES Futures`;
-      },
-      ES_FROM_SPY: () => {
-        const originalPrice = current && current > 1000 ? (current / 9.5).toFixed(2) : 'N/A';
-        return `🔄 SPY ETF Backup (${originalPrice} × 9.5) → ES Futures`;
-      },
-      ES_FROM_QQQ: () => {
-        const originalPrice = current && current > 1000 ? (current / 12.0).toFixed(2) : 'N/A';
-        return `🔄 QQQ ETF Backup (${originalPrice} × 12.0) → ES Futures`;
-      },
-      'ES_Investing.com': () => {
-        return `📊 Investing.com (ES Futures) - Scraping Direct`;
-      },
-      ES_Yahoo_Finance: () => {
-        return `📈 Yahoo Finance (ES Futures) - Scraping Direct`;
-      },
-      ES_FUTURES_API: () => {
-        return `🔗 API Finnhub (ES Futures) - Données Brutes`;
-      },
-      ES: () => {
-        return `✅ ES Futures - Source Principale`;
-      },
-      SPY: () => {
-        return `💰 SPY ETF - Données Brutes`;
-      },
-      QQQ: () => {
-        return `🚀 QQQ ETF - Données Brutes`;
-      },
-      US500: () => {
-        return `🇺🇸 US500 Index - Données Brutes`;
-      },
+    const classified = {
+      critical: [] as any[], // Rouge + gras = change vraiment le marché
+      high: [] as any[], // Rouge = impact fort
+      medium: [] as any[], // Jaune/Orange = impact moyen
+      low: [] as any[], // Normal = faible impact
     };
 
-    // Chercher le motif dans le symbole
-    for (const [key, value] of Object.entries(sourceMapping)) {
-      if (symbol?.includes(key)) {
-        const description = value();
+    events.forEach(event => {
+      const eventDate = new Date(event.event_date);
+      const isNext24h = eventDate <= next24h;
 
-        // Ajouter des détails supplémentaires si disponibles
-        const confidence = this.calculateConfidence(symbol, current);
-        const freshness = this.getFreshnessInfo(data.timestamp);
+      // Scoring basé sur l'importance, le timing et le type d'événement
+      let score = event.importance || 1;
 
-        return `${description} | Confiance: ${confidence} | ${freshness}`;
-      }
-    }
+      // Boost pour les événements des prochaines 24h
+      if (isNext24h) score += 0.5;
 
-    // Source inconnue ou non mappée
-    return `❓ Source Non Identifiée (${symbol?.toUpperCase() || 'Inconnue'})`;
-  }
+      // Boost pour les indicateurs clés (FED, PIB, Chômage, Inflation)
+      const isKeyIndicator = this.isKeyMarketIndicator(event.event_name);
+      if (isKeyIndicator) score += 1;
 
-  /**
-   * Calculer le niveau de confiance selon la source et le prix
-   */
-  private calculateConfidence(symbol: string | undefined, current: number | undefined): string {
-    if (!symbol || !current) return 'Inconnue';
-
-    // Haute confiance pour les vrais ES Futures
-    if (
-      symbol.includes('Investing.com') ||
-      symbol.includes('Yahoo_Finance') ||
-      symbol.includes('FUTURES_API')
-    ) {
-      return '🔥 Élevée (Futures Direct)';
-    }
-
-    // Moyenne confiance pour les conversions ETF
-    if (symbol.includes('CONVERTED') || symbol.includes('FROM_')) {
-      return '⚡ Moyenne (Conversion ETF)';
-    }
-
-    // Confiance standard pour les données brutes
-    if (symbol === 'ES' || symbol === 'SPY' || symbol === 'QQQ') {
-      return '📊 Standard (Données Brutes)';
-    }
-
-    return '🔍 Faible (Source Secondaire)';
-  }
-
-  /**
-   * Obtenir des informations sur la fraîcheur des données
-   */
-  private getFreshnessInfo(timestamp: number | undefined): string {
-    if (!timestamp) return 'Timestamp Inconnu';
-
-    const now = Math.floor(Date.now() / 1000);
-    const ageMinutes = Math.floor((now - timestamp) / 60);
-
-    if (ageMinutes < 2) {
-      return `⚡ Temps Réel (${ageMinutes} min)`;
-    } else if (ageMinutes < 15) {
-      return `📈 Très Récent (${ageMinutes} min)`;
-    } else if (ageMinutes < 60) {
-      return `🕐 Récent (${Math.floor(ageMinutes / 60)}h ${ageMinutes % 60} min)`;
-    } else {
-      return `📅 Ancien (${Math.floor(ageMinutes / 60)}h)`;
-    }
-  }
-
-  private async saveAnalysisToDatabase(
-    analysis: any,
-    technicalLevels?: TechnicalLevels,
-    _sp500Data?: StockData
-  ): Promise<void> {
-    const client = await this.pool.connect();
-    try {
-      // Sauvegarder l'analyse principale
-      const sp500Price = technicalLevels?.current_price || null; // Define sp500Price for the new INSERT statement
-
-      // Déterminer la source du prix avec mapping détaillé
-      const priceSource = this.getDetailedSourceInfo(_sp500Data || null);
-
-      await client.query(
-        `
-              INSERT INTO rouge_pulse_analyses
-              (impact_score, market_narrative, high_impact_events, asset_analysis, trading_recommendation, raw_analysis, sp500_price, price_source, technical_levels, es_futures_analysis, bot_signal, agent_state, next_session_levels, created_at)
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, NOW())
-          `,
-        [
-          analysis.impact_score,
-          analysis.market_narrative,
-          JSON.stringify(analysis.high_impact_events),
-          JSON.stringify(analysis.asset_analysis || {}), // Fallback for backward compatibility
-          analysis.trading_recommendation,
-          JSON.stringify(analysis),
-          sp500Price,
-          priceSource,
-          JSON.stringify(technicalLevels),
-          JSON.stringify(analysis.es_futures_analysis || {}),
-          JSON.stringify(analysis.bot_signal || {}),
-          JSON.stringify(analysis.agent_state || {}),
-          JSON.stringify(analysis.next_session_levels || {}),
-        ]
-      );
-
-      console.log(`[${this.agentName}] 💾 Analysis saved to database with technical levels`);
-    } catch (e) {
-      console.error(`[${this.agentName}] Failed to save analysis to DB:`, e);
-    } finally {
-      client.release();
-    }
-  }
-
-  private async analyzeTechnicalLevels(
-    sp500Data?: StockData,
-    news: any[] = []
-  ): Promise<TechnicalLevels> {
-    console.log(`[${this.agentName}] 📊 Analyse des niveaux techniques...`);
-
-    if (!sp500Data) {
-      // Données par défaut si pas de prix
-      return {
-        supports: [],
-        resistances: [],
-        current_price: 0,
-        daily_range: { high: 0, low: 0 },
-        round_levels: [],
-        pivot_points: { p: 0, r1: 0, r2: 0, s1: 0, s2: 0 },
-        fibonacci_levels: [],
-      };
-    }
-
-    const currentPrice = sp500Data.current;
-    const levels: TechnicalLevels = {
-      supports: [],
-      resistances: [],
-      current_price: currentPrice,
-      daily_range: { high: sp500Data.high, low: sp500Data.low },
-      round_levels: [],
-      pivot_points: { p: 0, r1: 0, r2: 0, s1: 0, s2: 0 },
-      fibonacci_levels: [],
-    };
-
-    // 1. Niveaux psychologiques ronds pour ES Futures (tous les 100 points)
-    const stepSize = currentPrice > 1000 ? 100 : 50; // 100 pour ES Futures, 50 pour SPY
-    const range = currentPrice > 1000 ? 500 : 200; // Plus grand range pour ES
-    for (
-      let level = Math.floor(currentPrice / stepSize) * stepSize - range;
-      level <= Math.floor(currentPrice / stepSize) * stepSize + range;
-      level += stepSize
-    ) {
-      levels.round_levels.push({
-        level: level,
-        type: 'psychological',
-        significance: this.getPsychologicalSignificance(level, currentPrice),
-      });
-    }
-
-    // 2. Extraire les niveaux des news
-    const newsLevels = await this.extractLevelsFromNews(news, currentPrice);
-
-    // 3. Fusionner et scorer les niveaux
-    levels.supports = newsLevels.filter(l => l.level < currentPrice && l.type === 'support');
-    levels.resistances = newsLevels.filter(l => l.level > currentPrice && l.type === 'resistance');
-
-    // 4. Ajouter les niveaux techniques basiques
-    this.addBasicTechnicalLevels(levels, sp500Data);
-
-    // 5. Calculer les Points Pivots
-    levels.pivot_points = this.calculatePivotPoints(sp500Data);
-    this.addPivotLevels(levels, levels.pivot_points);
-
-    // 6. Calculer les niveaux de Fibonacci
-    levels.fibonacci_levels = this.calculateFibonacciLevels(sp500Data);
-    this.addFibonacciLevels(levels, levels.fibonacci_levels);
-
-    console.log(
-      `[${this.agentName}] 📈 Niveaux trouvés: ${levels.supports.length} supports, ${levels.resistances.length} résistances`
-    );
-
-    return levels;
-  }
-
-  private getPsychologicalSignificance(level: number, currentPrice: number): string {
-    const distance = (Math.abs(level - currentPrice) / currentPrice) * 100;
-
-    if (distance < 0.5) return 'Niveau psychologique actuel';
-    if (distance < 2) return 'Zone psychologique proche';
-    if (distance < 4) return 'Niveau psychologique notable';
-
-    // Niveaux majeurs pour ES Futures (tous les 500 points)
-    if (currentPrice > 1000) {
-      if (level % 500 === 0) return 'Niveau psychologique majeur ES';
-      if (level % 250 === 0) return 'Niveau psychologique important ES';
-      if (level % 100 === 0) return 'Niveau psychologique ES';
-    } else {
-      // Niveaux pour SPY (tous les 50 points)
-      if (level % 100 === 0) return 'Niveau psychologique majeur SPY';
-      if (level % 50 === 0) return 'Niveau psychologique SPY';
-    }
-
-    return 'Niveau psychologique secondaire';
-  }
-
-  private async extractLevelsFromNews(news: any[], currentPrice: number): Promise<any[]> {
-    const levels: any[] = [];
-
-    for (const newsItem of news) {
-      const text = (newsItem.title || '').toLowerCase();
-
-      // Chercher les mentions de niveaux de prix
-      const pricePatterns = [
-        /(\d{4,5})\s*support/gi,
-        /support\s*(\d{4,5})/gi,
-        /(\d{4,5})\s*résistance/gi,
-        /résistance\s*(\d{4,5})/gi,
-        /(\d{4,5})\s*resistance/gi,
-        /resistance\s*(\d{4,5})/gi,
-        /cible\s*(\d{4,5})/gi,
-        /(\d{4,5})\s*cible/gi,
-        /(\d{4,5})\s*level/gi,
-        /level\s*(\d{4,5})/gi,
-      ];
-
-      pricePatterns.forEach(pattern => {
-        const matches = [...text.matchAll(pattern)];
-        matches.forEach(match => {
-          const level = parseInt(match[1]);
-          if (level >= currentPrice * 0.8 && level <= currentPrice * 1.2) {
-            // +/- 20% du prix actuel
-            const type = match[0].toLowerCase().includes('support') ? 'support' : 'resistance';
-
-            const edgeData = this.calculateEdgeScore(text, type, currentPrice);
-            levels.push({
-              level: level,
-              type: type,
-              source: newsItem.source,
-              strength: this.calculateStrengthFromText(text, level, currentPrice),
-              edge_score: edgeData.score,
-              edge_reasoning: edgeData.reasoning,
-              market_context: edgeData.market_context,
-              confirmation_factors: edgeData.confirmation_factors,
-            });
-          }
-        });
-      });
-    }
-
-    return levels;
-  }
-
-  private calculateStrengthFromText(
-    text: string,
-    level: number,
-    currentPrice: number
-  ): 'faible' | 'moyen' | 'fort' {
-    const strongIndicators = [
-      'strong',
-      'major',
-      'critical',
-      'key',
-      'important',
-      'majeur',
-      'critique',
-      'fort',
-      'important',
-    ];
-    const weakIndicators = ['minor', 'small', 'weak', 'faible', 'mineur'];
-
-    const textLower = text.toLowerCase();
-
-    if (strongIndicators.some(indicator => textLower.includes(indicator))) return 'fort';
-    if (weakIndicators.some(indicator => textLower.includes(indicator))) return 'faible';
-
-    // Basé sur la proximité du prix actuel
-    const distance = (Math.abs(level - currentPrice) / currentPrice) * 100;
-    if (distance < 2) return 'fort';
-    if (distance < 5) return 'moyen';
-    return 'faible';
-  }
-
-  private calculateEdgeScore(
-    text: string,
-    type: string,
-    currentPrice: number
-  ): {
-    score: number;
-    reasoning: string;
-    market_context: string;
-    confirmation_factors: string[];
-  } {
-    let score = 50; // Score de base
-    const reasoning: string[] = [];
-    const market_context: string[] = [];
-    const confirmation_factors: string[] = [];
-
-    // Analyse des mots-clés des intervenants institutionnels
-    const institutionalTerms = [
-      'institutional',
-      'fund managers',
-      'hedge funds',
-      'asset managers',
-      'goldman sachs',
-      'jpmorgan',
-      'morgan stanley',
-      'blackrock',
-      'institutions',
-      'portfolio managers',
-      'analysts',
-      'traders',
-    ];
-    const technicalTerms = [
-      'technical analysis',
-      'chart pattern',
-      'breakout',
-      'support',
-      'resistance',
-      'trend line',
-      'moving average',
-      'volume',
-      'candlestick',
-    ];
-    const economicTerms = [
-      'fed',
-      'inflation',
-      'interest rates',
-      'economic data',
-      'gdp',
-      'employment',
-      'cpi',
-      'ppi',
-      'retail sales',
-      'fomc',
-    ];
-
-    // Vérifier qui parle et analyse le contexte
-    const textLower = text.toLowerCase();
-
-    if (institutionalTerms.some(term => textLower.includes(term))) {
-      confirmation_factors.push('Validation institutionnelle');
-      score += 20;
-      reasoning.push('Institutions mentionnent ce niveau');
-      market_context.push('Gestionnaires de fonds et banques actives sur ce niveau');
-    }
-
-    if (technicalTerms.some(term => textLower.includes(term))) {
-      confirmation_factors.push('Confirmation technique');
-      score += 15;
-      reasoning.push('Analyse technique confirme le niveau');
-      market_context.push('Analystes techniques identifient cette zone');
-    }
-
-    if (economicTerms.some(term => textLower.includes(term))) {
-      confirmation_factors.push('Contexte économique');
-      score += 18;
-      reasoning.push('Données économiques influencent ce niveau');
-      market_context.push('Politique monétaire et indicateurs économiques pertinents');
-    }
-
-    // Cohérence directionnelle avancée
-    const bullishWords = [
-      'bullish',
-      'hausse',
-      'montée',
-      'up',
-      'rally',
-      'momentum',
-      'demand',
-      'buying',
-      'accumulation',
-      'long',
-    ];
-    const bearishWords = [
-      'bearish',
-      'baisse',
-      'descente',
-      'down',
-      'decline',
-      'selling',
-      'pressure',
-      'distribution',
-      'short',
-    ];
-
-    const bullishCount = bullishWords.filter(word => textLower.includes(word)).length;
-    const bearishCount = bearishWords.filter(word => textLower.includes(word)).length;
-
-    if (
-      (type === 'resistance' && bearishCount > bullishCount) ||
-      (type === 'support' && bullishCount > bearishCount)
-    ) {
-      score += 30;
-      reasoning.push(
-        `Cohérence directionnelle forte: ${type === 'resistance' ? 'pression vendeuse' : 'pression acheteuse'}`
-      );
-      market_context.push(
-        `${type === 'resistance' ? 'Les vendeurs' : 'Les acheteurs'} ont l'avantage selon les intervenants`
-      );
-    } else if (bullishCount > bearishCount || bearishCount > bullishCount) {
-      score -= 20;
-      reasoning.push(`Conflit directionnel détecté`);
-      market_context.push(`Signaux contradictoires des participants au marché`);
-    }
-
-    // Qualité et poids des sources
-    const premiumSources = ['reuters', 'bloomberg', 'wall street journal', 'financial times'];
-    const reliableSources = ['cnbc', 'marketwatch', 'yahoo finance', 'seeking alpha'];
-
-    if (premiumSources.some(source => textLower.includes(source))) {
-      confirmation_factors.push('Source premium validée');
-      score += 25;
-      reasoning.push('Médias financiers de référence confirment');
-      market_context.push('Couverture par les plus grandes institutions financières');
-    } else if (reliableSources.some(source => textLower.includes(source))) {
-      confirmation_factors.push('Source fiable');
-      score += 15;
-    }
-
-    // Impact des chiffres et données quantifiées
-    const numberPatterns = text.match(/\d+(\.\d+)?%/g);
-    if (numberPatterns) {
-      const significantNumbers = numberPatterns.filter(n => {
-        const num = parseFloat(n);
-        return num >= 1 || num <= -1; // Chiffres significatifs
-      });
-      if (significantNumbers.length > 0) {
-        confirmation_factors.push('Impact quantifié');
-        score += 10 * Math.min(significantNumbers.length, 3);
-        reasoning.push(
-          `Données chiffrées significatives: ${significantNumbers.slice(0, 3).join(', ')}%`
-        );
-        market_context.push("Mesures précises d'impact et de changement");
-      }
-    }
-
-    // Analyse du volume et de la liquidité
-    if (
-      textLower.includes('volume') ||
-      textLower.includes('liquidity') ||
-      textLower.includes('open interest')
-    ) {
-      confirmation_factors.push('Analyse volume/liquidité');
-      score += 12;
-      reasoning.push('Volume et liquidité analysés');
-      market_context.push('Profondeur du marché et intérêt des traders considérés');
-    }
-
-    // Multiple mentions renforcent la pertinence
-    const levelMentions = (text.match(/\d{3,5}/g) || []).length;
-    if (levelMentions >= 3) {
-      confirmation_factors.push('Multiple mentions');
-      score += 8;
-      reasoning.push('Niveau mentionné plusieurs fois');
-      market_context.push('Fréquence de mention indique importance');
-    }
-
-    // Proximité stratégique
-    const distance = (Math.abs(currentPrice * 0.3) / currentPrice) * 100;
-    if (distance < 2) {
-      score += 10;
-      reasoning.push('Proximité stratégique au prix actuel');
-    }
-
-    // Limites du score
-    score = Math.min(100, Math.max(0, score));
-
-    // Classification du niveau de confiance
-    let confidenceLevel = 'Modérée';
-    if (score >= 80) confidenceLevel = 'Élevée';
-    else if (score >= 65) confidenceLevel = 'Forte';
-    else if (score <= 40) confidenceLevel = 'Faible';
-
-    reasoning.unshift(`Niveau de confiance: ${confidenceLevel} (${score}/100)`);
-
-    return {
-      score,
-      reasoning: reasoning.join('; '),
-      market_context: market_context.join('; ') || 'Dynamique standard du marché applicable',
-      confirmation_factors,
-    };
-  }
-
-  private addBasicTechnicalLevels(levels: TechnicalLevels, sp500Data: StockData): void {
-    const { high, low, current, previous_close } = sp500Data;
-
-    // Ajouter les niveaux de la journée
-    if (low) {
-      levels.supports.unshift({
-        level: low,
-        strength: 'moyen',
-        edge_score: 60,
-        source: 'Plus bas de la journée',
-        edge_reasoning: 'Plus bas journalier établit le support technique primaire',
-        market_context: 'Niveau psychologique pour traders intraday',
-        confirmation_factors: [
-          'Plus bas de la séance',
-          'Support technique visible',
-          'Niveau de référence',
-        ],
-      });
-    }
-
-    if (previous_close) {
-      const closeLevel = {
-        level: previous_close,
-        strength: 'faible' as const,
-        edge_score: 40,
-        source: 'Clôture précédente',
-        edge_reasoning: 'Niveau de clôture précédente comme référence technique secondaire',
-        market_context: 'Point de repère pour traders swing et investisseurs',
-        confirmation_factors: [
-          'Clôture journalière',
-          'Niveau psychologique modéré',
-          'Point de repère technique',
-        ],
-      };
-
-      if (previous_close < current) {
-        levels.supports.push(closeLevel);
+      // Classification basée sur le score
+      if (score >= 3.5) {
+        classified.critical.push({ ...event, calculated_score: score });
+      } else if (score >= 2.5) {
+        classified.high.push({ ...event, calculated_score: score });
+      } else if (score >= 1.5) {
+        classified.medium.push({ ...event, calculated_score: score });
       } else {
-        levels.resistances.push(closeLevel);
-      }
-    }
-
-    if (high) {
-      levels.resistances.push({
-        level: high,
-        strength: 'moyen',
-        edge_score: 60,
-        source: 'Plus haut de la journée',
-        edge_reasoning: 'Plus haut journalier établit la résistance technique primaire',
-        market_context: 'Niveau psychologique pour les prises de profits',
-        confirmation_factors: [
-          'Plus haut de la séance',
-          'Résistance technique visible',
-          'Zone de distribution',
-        ],
-      });
-    }
-  }
-
-  private calculatePivotPoints(data: StockData): {
-    p: number;
-    r1: number;
-    r2: number;
-    s1: number;
-    s2: number;
-  } {
-    const { high, low, current } = data;
-    const p = (high + low + current) / 3;
-    const r1 = 2 * p - low;
-    const s1 = 2 * p - high;
-    const r2 = p + (high - low);
-    const s2 = p - (high - low);
-
-    return { p, r1, r2, s1, s2 };
-  }
-
-  private addPivotLevels(
-    levels: TechnicalLevels,
-    pivots: { p: number; r1: number; r2: number; s1: number; s2: number }
-  ): void {
-    levels.supports.push(
-      {
-        level: pivots.s1,
-        strength: 'moyen',
-        edge_score: 65,
-        source: 'Pivot S1',
-        edge_reasoning: 'Support pivot standard calculé sur données journalières',
-        market_context: 'Niveau technique surveillé par les traders intraday',
-        confirmation_factors: ['Calcul mathématique pivot', 'Support technique standard'],
-      },
-      {
-        level: pivots.s2,
-        strength: 'fort',
-        edge_score: 75,
-        source: 'Pivot S2',
-        edge_reasoning: 'Second support pivot avec forte signification technique',
-        market_context: 'Zone de support importante pour les mouvements de prix étendus',
-        confirmation_factors: ['Pivot S2 fort', 'Support majeur', 'Zone daccumulation potentielle'],
-      }
-    );
-    levels.resistances.push(
-      {
-        level: pivots.r1,
-        strength: 'moyen',
-        edge_score: 65,
-        source: 'Pivot R1',
-        edge_reasoning: 'Résistance pivot standard pour première cible haussière',
-        market_context: 'Objectif technique commun pour les mouvements inversés',
-        confirmation_factors: ['Résistance pivot R1', 'Premier objectif haussier'],
-      },
-      {
-        level: pivots.r2,
-        strength: 'fort',
-        edge_score: 75,
-        source: 'Pivot R2',
-        edge_reasoning: 'Résistance pivot majeure pour mouvements directionnels forts',
-        market_context: 'Zone critique pouvant inverser ou accélérer les tendances',
-        confirmation_factors: [
-          'Résistance forte',
-          'Pivot majeur',
-          'Zone de distribution potentielle',
-        ],
-      }
-    );
-    // Pivot central
-    const pivotCentralEdge = {
-      level: pivots.p,
-      strength: 'fort' as const,
-      edge_score: 70,
-      source: 'Pivot Central (P)',
-      edge_reasoning:
-        pivots.p < levels.current_price
-          ? 'Pivot central agissant comme support technique important'
-          : 'Pivot central agissant comme résistance technique importante',
-      market_context: 'Niveau pivot surveillé par tous les traders techniques',
-      confirmation_factors: ['Pivot journalier', 'Niveau central', 'Point de référence technique'],
-    };
-
-    if (pivots.p < levels.current_price) {
-      levels.supports.push(pivotCentralEdge);
-    } else {
-      levels.resistances.push(pivotCentralEdge);
-    }
-  }
-
-  private calculateFibonacciLevels(
-    data: StockData
-  ): Array<{ level: number; type: 'retracement'; percent: string }> {
-    const { high, low } = data;
-    const range = high - low;
-    if (range <= 0) return [];
-
-    return [
-      { level: high - range * 0.236, type: 'retracement', percent: '23.6%' },
-      { level: high - range * 0.382, type: 'retracement', percent: '38.2%' },
-      { level: high - range * 0.5, type: 'retracement', percent: '50.0%' },
-      { level: high - range * 0.618, type: 'retracement', percent: '61.8%' },
-    ];
-  }
-
-  private addFibonacciLevels(
-    levels: TechnicalLevels,
-    fibs: Array<{ level: number; type: 'retracement'; percent: string }>
-  ): void {
-    fibs.forEach(fib => {
-      const fibLevel = {
-        level: fib.level,
-        strength: 'moyen' as const,
-        edge_score: 55,
-        source: `Fibo ${fib.percent}`,
-        edge_reasoning: `Retracement Fibonacci ${fib.percent} calculé sur le range journalier`,
-        market_context:
-          fib.level < levels.current_price
-            ? `Support Fibonacci ${fib.percent} surveillé pour rebonds potentiels`
-            : `Résistance Fibonacci ${fib.percent} surveillé pour corrections potentielles`,
-        confirmation_factors: [
-          `Fibonacci ${fib.percent}`,
-          'Ratio mathématique doré',
-          fib.level < levels.current_price ? 'Support technique' : 'Résistance technique',
-        ],
-      };
-
-      if (fib.level < levels.current_price) {
-        levels.supports.push(fibLevel);
-      } else {
-        levels.resistances.push(fibLevel);
+        classified.low.push({ ...event, calculated_score: score });
       }
     });
-  }
 
-  private async getUpcomingAndRecentEvents(): Promise<any[]> {
-    const client = await this.pool.connect();
-    try {
-      // Get events from last 24h and next 24h
-      const res = await client.query(`
-              SELECT * FROM economic_events 
-              WHERE event_date >= NOW() - INTERVAL '24 hours' 
-              AND event_date <= NOW() + INTERVAL '24 hours'
-              ORDER BY event_date ASC
-          `);
-      return res.rows;
-    } finally {
-      client.release();
-    }
-  }
-
-  private async getRecentNewsHeadlines(): Promise<any[]> {
-    const client = await this.pool.connect();
-    try {
-      const res = await client.query(`
-              SELECT title, source FROM news_items 
-              WHERE published_at >= NOW() - INTERVAL '24 hours'
-              ORDER BY published_at DESC
-              LIMIT 10
-          `);
-      return res.rows;
-    } catch {
-      console.warn(`[${this.agentName}] Failed to fetch news context`);
-      return [];
-    } finally {
-      client.release();
-    }
-  }
-
-  private async getLatestSP500FromDB(): Promise<StockData | null> {
-    const client = await this.pool.connect();
-    try {
-      // Prioritize ES_CONVERTED, then SPY, then others
-      const res = await client.query(`
-        SELECT * FROM market_data 
-        WHERE symbol IN ('ES_CONVERTED', 'SPY', 'ES', 'US500')
-        ORDER BY timestamp DESC 
-        LIMIT 1
-      `);
-
-      if (res.rows.length > 0) {
-        const row = res.rows[0];
-        return {
-          current: parseFloat(row.price),
-          change: parseFloat(row.change_abs || 0),
-          percent_change: parseFloat(row.change_percent || 0),
-          high: parseFloat(row.high || row.price),
-          low: parseFloat(row.low || row.price),
-          open: parseFloat(row.open || row.price),
-          previous_close: parseFloat(row.previous_close || row.price),
-          timestamp: new Date(row.timestamp).getTime() / 1000,
-          symbol: row.symbol,
-        };
-      }
-      return null;
-    } catch (e) {
-      console.error(`[${this.agentName}] Error fetching SP500 from DB:`, e);
-      return null;
-    } finally {
-      client.release();
-    }
-  }
-
-  private createEnhancedAnalysisPrompt(
-    events: any[],
-    newsContext: string = '',
-    technicalLevels?: TechnicalLevels,
-    sp500Data?: StockData
-  ): string {
-    const technicalContext = technicalLevels
-      ? `
-## 📊 DONNÉES TECHNIQUES ES FUTURES EN TEMPS RÉEL:
-
-**Prix Actuel:** ${sp500Data ? sp500Data.current.toFixed(2) : 'N/A'} USD
-**Source:** ${sp500Data ? (sp500Data.symbol === 'ES_CONVERTED' ? 'SPY × 9.5 (Conversion)' : sp500Data.symbol.toUpperCase()) : 'N/A'}
-**Variation Journalière:** ${sp500Data ? `${sp500Data.change > 0 ? '+' : ''}${sp500Data.change.toFixed(2)} (${sp500Data.percent_change > 0 ? '+' : ''}${sp500Data.percent_change.toFixed(2)}%)` : 'N/A'}
-**Fourchette du Jour:** ${sp500Data ? `${sp500Data.low.toFixed(2)} - ${sp500Data.high.toFixed(2)}` : 'N/A'}
-
-**NIVEAUX DE SUPPORT IMPORTANTS (avec Edge Scoring détaillé):**
-${
-  technicalLevels.supports
-    .map(
-      (
-        s,
-        i
-      ) => `${i + 1}. ${s.level.toFixed(2)} - Force: ${s.strength.toUpperCase()}, Edge Score: ${s.edge_score}/100
-   • Edge Reasoning: ${s.edge_reasoning}
-   • Contexte Marché: ${s.market_context}
-   • Facteurs Confirmation: ${s.confirmation_factors.join(', ')}
-   • Source: ${s.source}`
-    )
-    .join('\n\n') || 'Aucun support identifié'
-}
-
-**NIVEAUX DE RÉSISTANCE IMPORTANTS (avec Edge Scoring détaillé):**
-${
-  technicalLevels.resistances
-    .map(
-      (
-        r,
-        i
-      ) => `${i + 1}. ${r.level.toFixed(2)} - Force: ${r.strength.toUpperCase()}, Edge Score: ${r.edge_score}/100
-   • Edge Reasoning: ${r.edge_reasoning}
-   • Contexte Marché: ${r.market_context}
-   • Facteurs Confirmation: ${r.confirmation_factors.join(', ')}
-   • Source: ${r.source}`
-    )
-    .join('\n\n') || 'Aucune résistance identifiée'
-}
-
-**NIVEAUX PSYCHOLOGIQUES RONDS:**
-${
-  technicalLevels.round_levels
-    .filter(l => l.significance.includes('majeur') || l.significance.includes('proche'))
-    .map(l => `- ${l.level}: ${l.significance}`)
-    .join('\n') || 'Aucun niveau psychologique significatif'
-}
-
-**POINTS PIVOTS (Standard):**
-P: ${technicalLevels.pivot_points.p.toFixed(2)} | R1: ${technicalLevels.pivot_points.r1.toFixed(2)} | S1: ${technicalLevels.pivot_points.s1.toFixed(2)}
-
-**RETRACEMENTS DE FIBONACCI (Range du jour):**
-${technicalLevels.fibonacci_levels.map(f => `- ${f.percent}: ${f.level.toFixed(2)}`).join('\n') || 'N/A'}
-`
-      : '';
-
-    return `
-You are RougePulse, an expert ES FUTURES technical analyst specializing in E-mini S&P 500 trading with deep understanding of market microstructure, price levels, futures data, and trading edge. You trade exclusively on TOPSTEP, CME GROUP, and AMP FUTURES platforms.
-
-TASK:
-Analyze the economic events, news context, and REAL-TIME ES FUTURES TECHNICAL DATA to provide a strategic ES futures assessment for professional futures trading.
-You have access to ACTUAL E-mini S&P 500 prices and technical levels from futures markets and specialized trading sources (TopStep, CME, AMP Futures).
-
-${technicalContext}
-
-## 📅 ÉVÉNEMENTS ÉCONOMIQUES:
-${JSON.stringify(events, null, 2)}
-
-## 📰 CONTEXTE DES MARCHÉS (News financières):
-${newsContext || 'No specific news context available.'}
-
-## 🎯 INSTRUCTIONS SPÉCIFIQUES - EXPERT ES FUTURES:
-
-1. **EDGE TRADING FUTURES**: Utilise les niveaux techniques ES avec les edge scores (>70 = forte confiance, 50-70 = modérée, <50 = faible). Explique POURQUOI un niveau a un edge spécifique pour les futures ES.
-
-2. **FUTURES MARKET MICROSTRUCTURE**: Positionnez les événements économiques par rapport aux niveaux ES actuels. Impact sur le market depth, volume profile, et open interest.
-
-3. **TOPSTEP/CME/AMP DATA**: Intégrez les données spécifiques des plateformes de trading futures (margin requirements, contract specifications, trading hours).
-
-4. **PROBABILITISTIC FUTURES**: Donnez une évaluation probabiliste pour ES (ex: "65% de probabilité de cassure du support 5250.50 si mauvaises données CPI").
-
-5. **NEXT SESSION FUTURES**: Identifiez les niveaux clés ES pour la session de demain basés sur la combinaison événements + niveaux techniques + contexte futures.
-
-6. **FUTURES EDGE REASONING**: Expliquez pourquoi ces niveaux fonctionnent pour les contrats ES spécifiquement. Ex: "Le support 5250.50 est significatif car: 1) Niveau psychologique ES, 2) Volume profile accumulation, 3) Confluence événement FOMC, 4) Interest levels sur CME".
-
-7. **LANGUAGE**: Tous les champs texte doivent être en FRANÇAIS.
-
-## 📋 FORMAT JSON REQUIS - ES FUTURES SPECIALIST:
-{
-  "impact_score": number, // 0-100 (100 = Extrême volatilité/importance pour ES)
-  "market_narrative": "Analyse ES Futures détaillée pour le TRADER EXPERT. Récit incluant macro + technique + microstructure futures. EN FRANÇAIS.",
-
-  "bot_signal": {
-    "action": "LONG|SHORT|WAIT",
-    "entry_zone": [min_price, max_price],
-    "stop_loss": price,
-    "targets": [tp1, tp2, tp3],
-    "timeframe": "SCALP|INTRADAY|SWING",
-    "confidence": number (0-100),
-    "setup_type": "BREAKOUT|REVERSAL|TREND_FOLLOWING|RANGE_BOUND",
-    "reason": "Logique d'exécution ES Futures courte pour le bot EN FRANÇAIS"
-  },
-
-  "agent_state": {
-    "market_regime": "TRENDING_UP|TRENDING_DOWN|RANGING|VOLATILE_UNCERTAIN",
-    "volatility_alert": boolean,
-    "sentiment_score": number (-100 à 100),
-    "key_message": "Message concis ES Futures pour les autres agents (Vortex/Vixombre) EN FRANÇAIS"
-  },
-
-  "technical_edge_analysis": {
-    "key_levels": [
-      {
-        "level": number,
-        "type": "support|résistance",
-        "strength": "faible|moyen|fort",
-        "edge_score": number,
-        "reasoning": "Pourquoi ce niveau ES est important maintenant (volume, open interest) EN FRANÇAIS",
-        "probability_break": "Probabilité de cassure ES si X événement (0-100%) EN FRANÇAIS"
-      }
-    ],
-    "current_position": "Position ES actuel par rapport aux niveaux clés et contexte futures EN FRANÇAIS"
-  },
-  "high_impact_events": [
-    {
-      "event": "Nom",
-      "actual_vs_forecast": "Description de l'écart EN FRANÇAIS",
-      "technical_implication": "Impact technique probable sur les niveaux ES Futures EN FRANÇAIS",
-      "significance": "Pourquoi ce chiffre spécifique compte pour ES maintenant EN FRANÇAIS"
-    }
-  ],
-  "es_futures_analysis": {
-    "bias": "BULLISH|BEARISH|NEUTRAL",
-    "reasoning": "Analyse ES détaillée incluant niveaux techniques, événements économiques, et microstructure futures EN FRANÇAIS",
-    "key_levels": [Array of key price levels ES Futures],
-    "edge_confirmation": "Comment les données économiques confirment/infutent l'edge technique ES EN FRANÇAIS",
-    "platform_context": "Analyse spécifique TopStep/CME/AMP (margin, hours, volume) EN FRANÇAIS",
-    "market_microstructure": "Volume profile, open interest, market depth analysis EN FRANÇAIS"
-  },
-  "trading_recommendation": "Conseil actionnable ES Futures basé sur la confluence données + niveaux techniques + contexte futures EN FRANÇAIS",
-  "next_session_levels": {
-    "session_setup": "Configuration potentielle ES Futures pour la prochaine séance EN FRANÇAIS",
-    "breakout_scenarios": "Scénarios de cassure des niveaux clés ES Futures EN FRANÇAIS",
-    "invalidation_levels": "Niveaux d'invalidation des scénarios ES Futures EN FRANÇAIS"
-  }
-}
-
-IMPORTANT: Concentrez-vous sur l'EDGE TRADING ES FUTURES - expliquez pourquoi un trader ES aurait un avantage avec cette information spécifique aux contrats E-mini S&P 500.
-`;
-  }
-
-  private async tryKiloCodeWithFile(prompt: string): Promise<any> {
-    const bufferPath = path.resolve('rouge_pulse_buffer.md');
-
-    const content = `
-# RougePulse Analysis Buffer
-
-## 📊 Economic Data
-\`\`\`json
-${prompt}
-\`\`\`
-
-## 🤖 Instructions
-Analyze the data above and return ONLY the requested JSON.
-`;
-
-    await fs.writeFile(bufferPath, content, 'utf-8');
-
-    console.log(`\n[${this.agentName}] 🔍 SYSTEM PROMPT (Buffer Content):`);
-    // console.log(content); // Optional: print buffer content
-
-    try {
-      const isWindows = process.platform === 'win32';
-      const readCommand = isWindows ? `type "${bufferPath}"` : `cat "${bufferPath}"`;
-      const command = `${readCommand} | kilocode -m ask --auto --json`;
-
-      console.log(`\n[${this.agentName}] 🚀 EXECUTING KILOCODE...`);
-
-      const { stdout, stderr } = await this.execAsync(command, {
-        timeout: 90000,
-        cwd: process.cwd(),
-        maxBuffer: 1024 * 1024 * 10, // 10MB buffer
+    // Trier par score et date
+    Object.keys(classified).forEach(key => {
+      classified[key as keyof typeof classified].sort((a, b) => {
+        // D'abord par score décroissant, puis par date croissante
+        if (b.calculated_score !== a.calculated_score) {
+          return b.calculated_score - a.calculated_score;
+        }
+        return new Date(a.event_date).getTime() - new Date(b.event_date).getTime();
       });
+    });
 
-      await fs.writeFile('rouge_debug.log', `STDOUT:\n${stdout}\n\nSTDERR:\n${stderr}`);
-
-      return this.parseOutput(stdout);
-    } catch (error) {
-      console.error(`[${this.agentName}] KiloCode execution failed:`, error);
-      return null;
-    } finally {
-      // await fs.unlink(bufferPath).catch(() => {});
-    }
+    return classified;
   }
 
-  private async parseOutput(stdout: string): Promise<Record<string, unknown> | null> {
-    try {
-      const clean = stdout.replace(/\\x1b\[[0-9;]*m/g, '').replace(/\\x1b\[[0-9;]*[A-Z]/g, '');
+  /**
+   * Vérifie si c'est un indicateur clé qui fait bouger le marché
+   */
+  private isKeyMarketIndicator(eventName: string): boolean {
+    const keyIndicators = [
+      'fomc',
+      'fed',
+      'federal reserve',
+      'interest rate',
+      'taux directeur',
+      'gdp',
+      'pib',
+      'inflation',
+      'cpi',
+      'ipc',
+      'ppi',
+      'employment',
+      'unemployment',
+      'nonfarm payrolls',
+      'nfp',
+      'retail sales',
+      'consumer confidence',
+      'consumer sentiment',
+      'ISM',
+      'PMI',
+      'manufacturing',
+      'services',
+    ].map(indicator => indicator.toLowerCase());
 
-      // Strategy 1: Handle KiloCode Streaming JSON Output
-      const lines = clean.split('\n');
-      let bestContent = '';
-      let maxJsonLength = 0;
-
-      for (let i = lines.length - 1; i >= 0; i--) {
-        const line = lines[i].trim();
-        if (!line) continue;
-        try {
-          if (line.startsWith('{') && line.endsWith('}')) {
-            const event = JSON.parse(line);
-            if (event.type === 'say' && event.say === 'completion_result' && event.content) {
-              const content = event.content;
-
-              // Find JSON in the content - look for completion_result with JSON structure
-              const hasJsonStructure =
-                content.includes('"impact_score"') && content.includes('"market_narrative"');
-              if (hasJsonStructure && content.length > maxJsonLength) {
-                bestContent = content;
-                maxJsonLength = content.length;
-              }
-            }
-          }
-        } catch {
-          /* Ignore */
-        }
-      }
-
-      if (bestContent) {
-        console.log(`[${this.agentName}] Found best content with length: ${bestContent.length}`);
-        await fs.writeFile('rouge_last_content.log', bestContent);
-
-        // Extract and fix incomplete JSON
-        let jsonStr = bestContent;
-
-        // Remove markdown code blocks
-        jsonStr = jsonStr.replace(/```json\s*|\s*```/g, '').trim();
-
-        // Find the start of JSON
-        const jsonStart = jsonStr.indexOf('{');
-        if (jsonStart !== -1) {
-          jsonStr = jsonStr.substring(jsonStart);
-        }
-
-        console.log(`[${this.agentName}] JSON string length before extraction: ${jsonStr.length}`);
-
-        // Try to extract complete JSON object
-        let braceCount = 0;
-        let endIndex = -1;
-        let inString = false;
-        let escapeNext = false;
-
-        for (let i = 0; i < jsonStr.length; i++) {
-          const char = jsonStr[i];
-
-          if (escapeNext) {
-            escapeNext = false;
-            continue;
-          }
-
-          if (char === '\\') {
-            escapeNext = true;
-            continue;
-          }
-
-          if (char === '"' && !escapeNext) {
-            inString = !inString;
-            continue;
-          }
-
-          if (!inString) {
-            if (char === '{') {
-              braceCount++;
-            } else if (char === '}') {
-              braceCount--;
-              if (braceCount === 0) {
-                endIndex = i + 1;
-                break;
-              }
-            }
-          }
-        }
-
-        if (endIndex !== -1) {
-          jsonStr = jsonStr.substring(0, endIndex);
-          console.log(`[${this.agentName}] Extracted JSON length: ${jsonStr.length}`);
-        } else {
-          // If we can't find a complete JSON, take what we have and fix it
-          console.warn(`[${this.agentName}] JSON appears truncated, attempting repair...`);
-        }
-
-        const parsed = this.safeJsonParse(jsonStr);
-        if (parsed) {
-          console.log(`[${this.agentName}] JSON parsing successful!`);
-          return parsed;
-        } else {
-          console.warn(`[${this.agentName}] JSON parsing failed, trying fallback extraction...`);
-        }
-      } else {
-        console.warn(`[${this.agentName}] No content found in stdout lines`);
-        await fs.writeFile('rouge_last_content.log', 'NO CONTENT FOUND IN STDOUT LINES');
-      }
-
-      // Strategy 2: Fallback to Regex
-      const jsonMatch =
-        clean.match(/```json\s*(\{[\s\S]*?\})\s*```/) || clean.match(/\{[\s\S]*?\}/);
-
-      if (jsonMatch) {
-        const jsonStr = jsonMatch[1] || jsonMatch[0];
-        return this.safeJsonParse(jsonStr);
-      }
-
-      return null;
-    } catch (error) {
-      console.error(`[${this.agentName}] Parsing failed:`, error);
-      return null;
-    }
+    return keyIndicators.some(indicator => eventName.toLowerCase().includes(indicator));
   }
 
-  private safeJsonParse(jsonStr: string): Record<string, unknown> | null {
-    try {
-      return JSON.parse(jsonStr);
-    } catch {
-      console.warn(`[${this.agentName}] Standard JSON parse failed, attempting repairs...`);
+  /**
+   * Formatage avancé avec score et alertes
+   */
+  private formatEventAdvanced(e: any) {
+    const eventDate = new Date(e.event_date);
+    const isNext24h = eventDate <= new Date(Date.now() + 24 * 60 * 60 * 1000);
+    const isKeyIndicator = this.isKeyMarketIndicator(e.event_name);
 
-      // Repair 1: Remove trailing commas
-      const repaired = jsonStr.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-      try {
-        return JSON.parse(repaired);
-      } catch {
-        // Continue to next repair attempt
-      }
+    return {
+      date: eventDate,
+      time: eventDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+      event: e.event_name,
+      importance: this.getImportanceLabel(e),
+      importance_score: e.calculated_score || e.importance || 1,
+      actual: e.actual,
+      forecast: e.forecast,
+      previous: e.previous,
+      currency: e.currency,
 
-      // Repair 2: Smart completion based on structure
-      const braceCount = (jsonStr.match(/{/g) || []).length - (jsonStr.match(/}/g) || []).length;
-      const bracketCount =
-        (jsonStr.match(/\[/g) || []).length - (jsonStr.match(/\]/g) || []).length;
+      // Méta-données avancées
+      is_next_24h: isNext24h,
+      is_key_indicator: isKeyIndicator,
+      impact_level: this.getImpactLevel(e),
+      alert_color: this.getAlertColor(e),
+      market_movement_expected: this.expectMarketMovement(e),
 
-      let completion = '';
-      if (braceCount > 0) completion += '}'.repeat(braceCount);
-      if (bracketCount > 0) completion += ']'.repeat(bracketCount);
-
-      // Also try to close any open strings
-      const quoteCount = (jsonStr.match(/"/g) || []).length;
-      if (quoteCount % 2 !== 0) completion += '"';
-
-      try {
-        const fixed = jsonStr + completion;
-        console.log(`[${this.agentName}] Smart repair: added ${completion}`);
-        return JSON.parse(fixed);
-      } catch {
-        // Continue to next repair attempt
-      }
-
-      // Repair 3: Try common truncation patterns for trading_recommendation
-      const tradingRecommendationMatch = jsonStr.match(/"trading_recommendation"\s*:\s*"([^"]*)$/);
-      if (tradingRecommendationMatch) {
-        const partialValue = tradingRecommendationMatch[1];
-        const fixedJson = jsonStr.replace(
-          /"trading_recommendation"\s*:\s*"([^"]*)$/,
-          `"trading_recommendation": "${partialValue}..."`
-        );
-        try {
-          console.log(`[${this.agentName}] Fixed trading_recommendation field`);
-          return JSON.parse(fixedJson);
-        } catch {
-          // Continue to next repair attempt
-        }
-      }
-
-      // Repair 4: Force complete object structure
-      try {
-        return JSON.parse(jsonStr + '}');
-      } catch {
-        // Continue to next repair attempt
-      }
-      try {
-        return JSON.parse(jsonStr + ']}');
-      } catch {
-        // Continue to next repair attempt
-      }
-      try {
-        return JSON.parse(jsonStr + '"}]}');
-      } catch {
-        // Continue to next repair attempt
-      }
-
-      console.warn(
-        `[${this.agentName}] All repair attempts failed. JSON length: ${jsonStr.length}`
-      );
-
-      // Try to extract partial useful data
-      try {
-        const partial = this.extractPartialData(jsonStr);
-        if (partial) {
-          console.log(`[${this.agentName}] Extracted partial data as fallback`);
-          return partial;
-        }
-      } catch {
-        // All repair attempts failed
-      }
-
-      return null;
-    }
+      // Données de changement
+      forecast_change: this.calculateForecastChange(e.forecast, e.previous),
+      surprise_potential: this.calculateSurprisePotential(e),
+    };
   }
 
-  private extractPartialData(jsonStr: string): Record<string, unknown> | null {
-    try {
-      console.log(`[${this.agentName}] 🔍 Tentative d'extraction de données partielles...`);
+  /**
+   * Étiquette d'importance avec mise en évidence
+   */
+  private getImportanceLabel(e: any): string {
+    const score = e.calculated_score || e.importance || 1;
 
-      // Extraire tous les champs possibles avec des regex plus flexibles
-      const impactMatch = jsonStr.match(/"impact_score"\s*:\s*(\d+)/);
+    if (score >= 3.5) return '🔴 **CRITIQUE**';
+    if (score >= 2.5) return '🔴 **FORT**';
+    if (score >= 1.5) return '🟡 MOYEN';
+    return '⚪ FAIBLE';
+  }
 
-      // Essaye plusieurs patterns pour market_narrative
-      let narrativeText = '';
-      const narrativePatterns = [
-        /"market_narrative"\s*:\s*"([^"]{20,500})"/,
-        /"market_narrative"\s*:\s*'([^']{20,500})'/,
-        /"market_narrative"\s*:\s*"([^"]*)"/,
-      ];
+  /**
+   * Niveau d'impact textuel
+   */
+  private getImpactLevel(e: any): string {
+    const score = e.calculated_score || e.importance || 1;
 
-      for (const pattern of narrativePatterns) {
-        const match = jsonStr.match(pattern);
-        if (match && match[1] && match[1].length > 30) {
-          narrativeText = match[1];
-          break;
-        }
-      }
+    if (score >= 3.5) return 'Volatilité extrême attendue';
+    if (score >= 2.5) return 'Forte volatilité attendue';
+    if (score >= 1.5) return 'Volatilité modérée possible';
+    return 'Impact limité attendu';
+  }
 
-      // Extraire les données S&P 500 si disponibles
-      let sp500Data = null;
-      const sp500Match = jsonStr.match(/"sp500_data"\s*:\s*\{[^}]*"current"\s*:\s*([\d.]+)/);
-      if (sp500Match) {
-        sp500Data = parseFloat(sp500Match[1]);
-      }
+  /**
+   * Couleur d'alerte selon l'importance
+   */
+  private getAlertColor(e: any): string {
+    const score = e.calculated_score || e.importance || 1;
 
-      // Extraire les niveaux techniques
-      let technicalLevels: any = null;
-      const supportsMatch = jsonStr.match(/"supports"\s*:\s*\[([^\]]+)\]/);
-      const resistancesMatch = jsonStr.match(/"resistances"\s*:\s*\[([^\]]+)\]/);
+    if (score >= 3.5) return '🚨';
+    if (score >= 2.5) return '🔴';
+    if (score >= 1.5) return '🟡';
+    return '⚪';
+  }
 
-      if (supportsMatch || resistancesMatch) {
-        technicalLevels = 'Données techniques partiellement extraites';
-      }
+  /**
+   * Détermine si un mouvement de marché est attendu
+   */
+  private expectMarketMovement(e: any): boolean {
+    const score = e.calculated_score || e.importance || 1;
+    const isKeyIndicator = this.isKeyMarketIndicator(e.event_name);
 
-      // Extraire bot_signal si disponible
-      let botAction = 'WAIT';
-      let botConfidence = 25;
-      const botActionMatch = jsonStr.match(/"action"\s*:\s*"([^"]+)"/);
-      const botConfidenceMatch = jsonStr.match(/"confidence"\s*:\s*(\d+)/);
+    return score >= 2.5 || isKeyIndicator;
+  }
 
-      if (botActionMatch) botAction = botActionMatch[1];
-      if (botConfidenceMatch) botConfidence = parseInt(botConfidenceMatch[1]);
+  /**
+   * Calcule le changement entre prévision et précédent
+   */
+  private calculateForecastChange(forecast: string, previous: string): string {
+    if (!forecast || !previous) return 'N/A';
 
-      // Si on a trouvé des données significatives
-      if (impactMatch || narrativeText || sp500Data) {
-        const partialData = {
-          impact_score: impactMatch ? parseInt(impactMatch[1]) : 25,
-          market_narrative:
-            narrativeText || 'Analyse partielle - données JSON tronquées mais utilisables',
-          asset_analysis: {
-            ES_Futures: {
-              bias: narrativeText.toLowerCase().includes('hauss')
-                ? 'BULLISH'
-                : narrativeText.toLowerCase().includes('baiss')
-                  ? 'BEARISH'
-                  : 'NEUTRAL',
-              reasoning: "Extrait de l'analyse tronquée",
-            },
-            Bitcoin: {
-              bias: narrativeText.toLowerCase().includes('hauss')
-                ? 'BULLISH'
-                : narrativeText.toLowerCase().includes('baiss')
-                  ? 'BEARISH'
-                  : 'NEUTRAL',
-              reasoning: "Extrait de l'analyse tronquée",
-            },
-          },
-          trading_recommendation: narrativeText
-            ? `${narrativeText.substring(0, 150)}${narrativeText.length > 150 ? '...' : ''}`
-            : "Analyse partielle - utilisez !rougepulseagent pour l'analyse complète",
-          bot_signal: {
-            action: botAction,
-            confidence: botConfidence,
-            reason: 'Extrait de données tronquées',
-          },
-          agent_state: {
-            market_regime: 'PARTIAL_DATA',
-            volatility_alert: true,
-            sentiment_score: 0,
-          },
-          high_impact_events: [],
-          technical_levels: technicalLevels,
-          sp500_price: sp500Data,
-          partial_data: true,
-          note: "Données extraites d'une réponse JSON tronquée par l'IA",
-        };
+    // Tenter de parser les valeurs numériques
+    const forecastNum = parseFloat(forecast.replace(/[^0-9.-]/g, ''));
+    const previousNum = parseFloat(previous.replace(/[^0-9.-]/g, ''));
 
-        console.log(
-          `[${this.agentName}] ✅ Extraction partielle réussie - Score: ${partialData.impact_score}, Narrative: ${partialData.market_narrative.length} chars`
-        );
-        return partialData;
-      }
+    if (isNaN(forecastNum) || isNaN(previousNum)) return 'N/A';
 
-      console.log(
-        `[${this.agentName}] ⚠️ Aucune donnée significative trouvée dans le JSON tronqué`
-      );
-      return null;
-    } catch (e) {
-      console.warn(`[${this.agentName}] Partial data extraction failed:`, e);
-      return null;
+    const change = forecastNum - previousNum;
+    const changePercent = previousNum !== 0 ? (change / Math.abs(previousNum)) * 100 : 0;
+
+    return `${change >= 0 ? '+' : ''}${change.toFixed(1)} (${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(1)}%)`;
+  }
+
+  /**
+   * Calcule le potentiel de surprise
+   */
+  private calculateSurprisePotential(e: any): 'HIGH' | 'MEDIUM' | 'LOW' {
+    const score = e.calculated_score || e.importance || 1;
+
+    if (score >= 3.5) return 'HIGH';
+    if (score >= 2) return 'MEDIUM';
+    return 'LOW';
+  }
+
+  /**
+   * Identifie les événements qui vont vraiment faire bouger le marché
+   */
+  private identifyMarketMovers(criticalEvents: any[]): any[] {
+    return criticalEvents.slice(0, 5).map(e => ({
+      event: e.event_name,
+      date: new Date(e.event_date),
+      time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      forecast: e.forecast,
+      previous: e.previous,
+      change: this.calculateForecastChange(e.forecast, e.previous),
+      impact_score: e.calculated_score,
+      market_expected_impact: '🔥 **FORT MOUVEMENT ATTENDU**',
+      why_critical: this.explainWhyCritical(e),
+    }));
+  }
+
+  /**
+   * Explique pourquoi un événement est critique
+   */
+  private explainWhyCritical(e: any): string {
+    const reasons = [];
+
+    if (this.isKeyMarketIndicator(e.event_name)) {
+      reasons.push('Indicateur économique majeur');
     }
+
+    const score = e.calculated_score || e.importance || 1;
+    if (score >= 4) {
+      reasons.push("Score maximum d'impact");
+    }
+
+    const eventDate = new Date(e.event_date);
+    const isNext24h = eventDate <= new Date(Date.now() + 24 * 60 * 60 * 1000);
+    if (isNext24h) {
+      reasons.push('Prochaine publication < 24h');
+    }
+
+    if (e.importance === 3) {
+      reasons.push('Importance maximale Trading Economics');
+    }
+
+    return reasons.length > 0 ? reasons.join(' • ') : 'Impact significatif attendu';
+  }
+
+  /**
+   * Génère les alertes critiques
+   */
+  private generateCriticalAlerts(criticalEvents: any[]): any[] {
+    const now = new Date();
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
+    return criticalEvents
+      .filter(e => new Date(e.event_date) <= next24h)
+      .map(e => ({
+        alert_type: 'CRITICAL',
+        icon: '🚨',
+        event: e.event_name,
+        time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        urgency: this.getUrgencyLevel(e),
+        market_impact: '⚡ Volatilité extrême attendue',
+        recommendation: this.getRecommendation(e),
+      }));
+  }
+
+  /**
+   * Niveau d'urgence
+   */
+  private getUrgencyLevel(e: any): string {
+    const eventDate = new Date(e.event_date);
+    const hoursUntil = (eventDate.getTime() - Date.now()) / (1000 * 60 * 60);
+
+    if (hoursUntil <= 1) return '🔥 **IMMÉDIAT**';
+    if (hoursUntil <= 6) return '⚡ **TRÈS URGENT**';
+    if (hoursUntil <= 24) return '⏰ **URGENT**';
+    return '📅 **IMPORTANT**';
+  }
+
+  /**
+   * Recommandation basée sur l'événement
+   */
+  private getRecommendation(e: any): string {
+    const eventName = e.event_name.toLowerCase();
+
+    if (eventName.includes('fed') || eventName.includes('taux directeur')) {
+      return 'Surveillez les paires de devises USD et les indices américains';
+    }
+
+    if (eventName.includes('emploi') || eventName.includes('nfp')) {
+      return 'Impact majeur sur le Dow Jones, S&P 500 et USD';
+    }
+
+    if (eventName.includes('inflation') || eventName.includes('cpi')) {
+      return 'Volatilité attendue sur les obligations et les marchés actions';
+    }
+
+    if (eventName.includes('pib') || eventName.includes('gdp')) {
+      return "Impact sur l'ensemble des marchés américains";
+    }
+
+    return 'Surveillez les mouvements de marché lors de la publication';
+  }
+
+  /**
+   * Génère un résumé avancé avec mise en évidence
+   */
+  private generateAdvancedSummary(classified: any, criticalAlerts: any[]): string {
+    let summary = '📅 **Calendrier Économique - Vue Stratégique**\n\n';
+
+    // Alertes critiques en premier
+    if (criticalAlerts.length > 0) {
+      summary += '🚨 **ALERTES CRITIQUES - 24 PROCHAINES HEURES** 🚨\n';
+      criticalAlerts.forEach(alert => {
+        summary += `${alert.icon} **${alert.time}** : ${alert.event}\n`;
+        summary += `   ${alert.market_impact}\n`;
+        summary += `   💡 ${alert.recommendation}\n\n`;
+      });
+      summary += '\n';
+    }
+
+    // Résumé des événements par importance
+    const totalCritical = classified.critical.length;
+    const totalHigh = classified.high.length;
+    const totalMedium = classified.medium.length;
+    const totalLow = classified.low.length;
+
+    summary += "**Vue d'ensemble (7 prochains jours) :**\n";
+
+    if (totalCritical > 0) {
+      summary += `🔴 **${totalCritical} événement(s) CRITIQUE(S)** - Marché très volatil attendu\n`;
+    }
+
+    if (totalHigh > 0) {
+      summary += `🔴 **${totalHigh} événement(s) à FORT impact** - Mouvements significatifs probables\n`;
+    }
+
+    if (totalMedium > 0) {
+      summary += `🟡 **${totalMedium} événement(s) à impact MOYEN** - Volatilité modérée possible\n`;
+    }
+
+    if (totalLow > 0) {
+      summary += `⚪ **${totalLow} événement(s) à faible impact** - Impact limité\n`;
+    }
+
+    summary += '\n';
+
+    // Score de volatilité
+    const volatilityScore = this.calculateVolatilityScore(classified);
+    summary += `📊 **Score de Volatilité Global : ${volatilityScore}/10**\n\n`;
+
+    // Prochains événements importants
+    const nextImportant = [...classified.critical, ...classified.high]
+      .sort((a, b) => new Date(a.event_date).getTime() - new Date(b.event_date).getTime())
+      .slice(0, 3);
+
+    if (nextImportant.length > 0) {
+      summary += '📈 **Prochains événements importants :**\n';
+      nextImportant.forEach(e => {
+        const date = new Date(e.event_date);
+        const day = date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' });
+        const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        const score = e.calculated_score || e.importance || 1;
+        const label = score >= 3.5 ? '🔴 CRITIQUE' : '🔴 FORT';
+
+        summary += `- ${day} ${time} : ${label} **${e.event_name}**\n`;
+        if (e.forecast && e.previous) {
+          summary += `  Prévision: ${e.forecast} | Précédent: ${e.previous}\n`;
+        }
+      });
+    }
+
+    return summary;
+  }
+
+  /**
+   * Calcule un score de volatilité global
+   */
+  private calculateVolatilityScore(classified: any): number {
+    let score = 0;
+
+    // Pondération par type d'événement
+    score += classified.critical.length * 3; // Critique = 3 points
+    score += classified.high.length * 2; // Fort = 2 points
+    score += classified.medium.length * 1; // Moyen = 1 point
+    score += classified.low.length * 0.5; // Faible = 0.5 point
+
+    // Bonus si événements dans les 24h
+    const now = new Date();
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
+    [...classified.critical, ...classified.high, ...classified.medium].forEach(e => {
+      if (new Date(e.event_date) <= next24h) {
+        score += 0.5; // Bonus de proximité temporelle
+      }
+    });
+
+    return Math.min(Math.round(score * 10) / 10, 10); // Arrondi à 1 décimale, max 10
+  }
+
+  /**
+   * Groupe les événements par importance et par jour
+   */
+  private groupEventsByImportance(classified: any): any {
+    const grouped: any = {};
+
+    (['critical', 'high', 'medium', 'low'] as const).forEach(level => {
+      const events = classified[level];
+      events.forEach((e: any) => {
+        const day = new Date(e.event_date).toLocaleDateString('fr-FR', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+        });
+
+        if (!grouped[day]) {
+          grouped[day] = {
+            critical: [],
+            high: [],
+            medium: [],
+            low: [],
+          };
+        }
+
+        grouped[day][level].push(this.formatEventAdvanced(e));
+      });
+    });
+
+    return grouped;
+  }
+
+  /**
+   * Alertes pour les prochaines 24h
+   */
+  private getNext24HoursAlerts(classified: any): any[] {
+    const now = new Date();
+    const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
+    const next24Events = [...classified.critical, ...classified.high, ...classified.medium].filter(
+      e => new Date(e.event_date) <= next24h
+    );
+
+    return next24Events.map(e => ({
+      event: e.event_name,
+      time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      urgency: this.getUrgencyLevel(e),
+      icon: this.getAlertColor(e),
+      impact: this.getImpactLevel(e),
+    }));
+  }
+
+  private generateCalendarSummary(high: any[], medium: any[]): string {
+    let summary = '📅 **Calendrier Économique (3 jours)**\n\n';
+
+    if (high.length > 0) {
+      summary += '🔴 **IMPACT FORT - ATTENTION MARCHÉ**\n';
+      high.forEach(e => {
+        const date = new Date(e.event_date);
+        const day = date.toLocaleDateString('fr-FR', { weekday: 'short' });
+        const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+        summary += `- ${day} ${time} : **${e.event_name}**\n`;
+        if (e.forecast) summary += `  (Prévu: ${e.forecast} | Préc: ${e.previous})\n`;
+      });
+      summary += '\n';
+    } else {
+      summary += "✅ Aucun événement à fort impact (🔴) prévu pour l'instant.\n\n";
+    }
+
+    if (medium.length > 0) {
+      summary += '🟡 **Impact Moyen**\n';
+      // On affiche les 5 prochains événements moyens
+      medium.slice(0, 5).forEach(e => {
+        const date = new Date(e.event_date);
+        const day = date.toLocaleDateString('fr-FR', { weekday: 'short' });
+        const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        summary += `- ${day} ${time} : ${e.event_name}\n`;
+      });
+      if (medium.length > 5) summary += `... et ${medium.length - 5} autres événements.\n`;
+    }
+
+    return summary;
+  }
+
+  async close(): Promise<void> {
+    await this.dbService.close();
+    console.log(`[${this.agentName}] Database connection closed`);
   }
 }

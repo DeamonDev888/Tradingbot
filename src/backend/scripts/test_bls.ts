@@ -1,4 +1,3 @@
-
 import { BlsScraper } from '../ingestion/BlsScraper';
 import * as dotenv from 'dotenv';
 
@@ -7,7 +6,7 @@ dotenv.config();
 async function main() {
   console.log('Testing BlsScraper...');
   const scraper = new BlsScraper();
-  
+
   try {
     const events = await scraper.scrapeLatestNumbers();
     console.log(`Found ${events.length} BLS events.`);

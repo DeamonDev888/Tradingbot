@@ -273,7 +273,7 @@ async function main() {
     console.log('🎉 Connecté aux exchanges crypto !\n');
   });
 
-  client.on('cryptoData', (data: CryptoData) => {
+  client.on('cryptoData', (_data: CryptoData) => {
     // Éviter le double affichage (déjà géré dans handleMarketData)
   });
 

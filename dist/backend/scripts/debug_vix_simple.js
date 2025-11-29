@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const playwright_1 = require("playwright");
+import { chromium } from 'playwright';
 async function debugScraper() {
-    const browser = await playwright_1.chromium.launch({
+    const browser = await chromium.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
@@ -127,3 +125,4 @@ async function debugScraper() {
     }
 }
 debugScraper();
+//# sourceMappingURL=debug_vix_simple.js.map

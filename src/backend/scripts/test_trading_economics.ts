@@ -1,4 +1,3 @@
-
 import { TradingEconomicsScraper } from '../ingestion/TradingEconomicsScraper';
 import * as dotenv from 'dotenv';
 
@@ -7,7 +6,7 @@ dotenv.config();
 async function main() {
   console.log('Testing TradingEconomicsScraper...');
   const scraper = new TradingEconomicsScraper();
-  
+
   try {
     const events = await scraper.scrapeUSCalendar();
     console.log(`Found ${events.length} events.`);

@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const playwright_1 = require("playwright");
+import { chromium } from 'playwright';
 async function checkKeys() {
-    const browser = await playwright_1.chromium.launch({ headless: true });
+    const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto('https://www.investing.com/indices/volatility-s-p-500', { waitUntil: 'commit' });
     const metaContent = await page.getAttribute('meta[name="global-translation-variables"]', 'content');
@@ -20,3 +18,4 @@ async function checkKeys() {
     await browser.close();
 }
 checkKeys();
+//# sourceMappingURL=debug_investing_keys.js.map

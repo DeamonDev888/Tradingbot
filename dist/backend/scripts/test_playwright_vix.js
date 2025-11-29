@@ -1,43 +1,7 @@
 #!/usr/bin/env ts-node
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.testPlaywrightVixScraper = testPlaywrightVixScraper;
-const VixPlaywrightScraper_1 = require("../ingestion/VixPlaywrightScraper");
-const pg_1 = require("pg");
-const pool = new pg_1.Pool({
+import { VixPlaywrightScraper } from '../ingestion/VixPlaywrightScraper';
+import { Pool } from 'pg';
+const pool = new Pool({
     host: 'localhost',
     port: 5432,
     database: 'financial_analyst',
@@ -46,7 +10,7 @@ const pool = new pg_1.Pool({
 });
 async function testPlaywrightVixScraper() {
     console.log('🎭 TEST DU SCRAPER VIX AVEC PLAYWRIGHT (ANTI-BOT BYPASS)\n');
-    const scraper = new VixPlaywrightScraper_1.VixPlaywrightScraper();
+    const scraper = new VixPlaywrightScraper();
     try {
         console.log('🚀 Initialisation du browser...');
         await scraper.init();
@@ -152,7 +116,7 @@ async function checkPlaywrightInstallation() {
     console.log('🔍 VÉRIFICATION INSTALLATION PLAYWRIGHT');
     console.log('='.repeat(50));
     try {
-        const { chromium } = await Promise.resolve().then(() => __importStar(require('playwright')));
+        const { chromium } = await import('playwright');
         console.log('✅ Playwright installé');
         try {
             const browser = await chromium.launch({ headless: true });
@@ -186,3 +150,5 @@ if (require.main === module) {
         .then(() => console.log('\n✅ Tests terminés!'))
         .catch(error => console.error('\n❌ Erreur:', error instanceof Error ? error.message : String(error)));
 }
+export { testPlaywrightVixScraper };
+//# sourceMappingURL=test_playwright_vix.js.map

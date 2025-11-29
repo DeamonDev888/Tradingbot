@@ -11,7 +11,7 @@ async function debugRougePulse() {
     // Since I can't easily access private methods without modifying the class or using any,
     // I will run the public analyzeEconomicEvents and see the logs (since I added logs in the class).
 
-    const result = await agent.analyzeEconomicEvents();
+    const result = await agent.analyzeMarketSentiment();
     console.log('\n--- RESULT ---');
     console.log(JSON.stringify(result, null, 2));
   } catch (error) {

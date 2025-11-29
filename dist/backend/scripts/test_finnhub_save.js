@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const FinnhubClient_1 = require("../ingestion/FinnhubClient");
-const pg_1 = require("pg");
-const pool = new pg_1.Pool({
+import { FinnhubClient } from '../ingestion/FinnhubClient';
+import { Pool } from 'pg';
+const pool = new Pool({
     host: 'localhost',
     port: 5432,
     database: 'financial_analyst',
@@ -11,7 +9,7 @@ const pool = new pg_1.Pool({
 });
 async function testFinnhubSaveUnique() {
     console.log('Testing FinnhubClient and DB Save...');
-    const client = new FinnhubClient_1.FinnhubClient();
+    const client = new FinnhubClient();
     const dbClient = await pool.connect();
     try {
         console.log('Fetching SP500 Data...');
@@ -43,3 +41,4 @@ async function testFinnhubSaveUnique() {
     }
 }
 testFinnhubSaveUnique();
+//# sourceMappingURL=test_finnhub_save.js.map

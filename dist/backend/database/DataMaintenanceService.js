@@ -1,47 +1,11 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataMaintenanceService = void 0;
-const pg_1 = require("pg");
-const dotenv = __importStar(require("dotenv"));
+import { Pool } from 'pg';
+import * as dotenv from 'dotenv';
 dotenv.config();
-class DataMaintenanceService {
+export class DataMaintenanceService {
     pool;
     config;
     constructor(config) {
-        this.pool = new pg_1.Pool({
+        this.pool = new Pool({
             host: process.env.DB_HOST || 'localhost',
             port: parseInt(process.env.DB_PORT || '5432'),
             database: process.env.DB_NAME || 'financial_analyst',
@@ -65,34 +29,34 @@ class DataMaintenanceService {
                     name: 'COVID-19 Market Crash',
                     startDate: new Date('2020-02-19'),
                     endDate: new Date('2020-03-23'),
-                    description: 'Crash de marché lié au COVID-19'
+                    description: 'Crash de marché lié au COVID-19',
                 },
                 {
                     name: 'GameStop Short Squeeze',
                     startDate: new Date('2021-01-13'),
                     endDate: new Date('2021-02-02'),
-                    description: 'Short squeeze GameStop et actions meme'
+                    description: 'Short squeeze GameStop et actions meme',
                 },
                 {
                     name: '2022 Inflation Crisis',
                     startDate: new Date('2022-01-01'),
                     endDate: new Date('2022-12-31'),
-                    description: 'Crise inflationniste de 2022'
+                    description: 'Crise inflationniste de 2022',
                 },
                 {
                     name: '2023 Banking Crisis',
                     startDate: new Date('2023-03-08'),
                     endDate: new Date('2023-03-31'),
-                    description: 'Crise bancaire SVB/CS'
+                    description: 'Crise bancaire SVB/CS',
                 },
                 {
                     name: '2024 Election Year',
                     startDate: new Date('2024-01-01'),
                     endDate: new Date('2024-12-31'),
-                    description: 'Année électorale américaine 2024'
-                }
+                    description: 'Année électorale américaine 2024',
+                },
             ],
-            ...config
+            ...config,
         };
     }
     /**
@@ -132,10 +96,10 @@ class DataMaintenanceService {
                     newsArchived: 0,
                     duplicatesRemoved: 0,
                     lowQualityRemoved: 0,
-                    spaceRecovered: 0
+                    spaceRecovered: 0,
                 },
                 errors: [error instanceof Error ? error.message : String(error)],
-                warnings: []
+                warnings: [],
             };
             console.error('❌ Erreur critique lors de la maintenance:', error);
             return [...results, errorResult];
@@ -185,28 +149,36 @@ class DataMaintenanceService {
         DELETE FROM news_items
         WHERE id IN (SELECT id FROM news_to_delete)
         RETURNING id
-      `, [rawThreshold, processedThreshold, this.config.minQualityScoreThreshold, analyzedThreshold, this.config.duplicateThreshold]);
+      `, [
+                rawThreshold,
+                processedThreshold,
+                this.config.minQualityScoreThreshold,
+                analyzedThreshold,
+                this.config.duplicateThreshold,
+            ]);
             // Archivage des données importantes pour backtesting
             const archiveResult = await this.archiveImportantData(client);
             const stats = await client.query('SELECT * FROM stats');
             const beforeStats = stats.rows[0];
+            const resultCount = result.rowCount || 0;
+            const archiveCount = archiveResult.recordsAffected || 0;
             const maintenanceResult = {
                 timestamp: new Date(),
                 operation: 'MAINTAIN_NEWS_DATA',
-                recordsAffected: result.rowCount + archiveResult.recordsAffected,
+                recordsAffected: resultCount + archiveCount,
                 duration: Date.now() - startTime,
                 details: {
-                    newsProcessed: parseInt(beforeStats.total_before),
-                    newsDeleted: result.rowCount,
-                    newsArchived: archiveResult.recordsAffected,
+                    newsProcessed: parseInt(beforeStats.total_before) || 0,
+                    newsDeleted: resultCount,
+                    newsArchived: archiveCount,
                     duplicatesRemoved: 0, // Traité séparément
-                    lowQualityRemoved: result.rowCount,
-                    spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', result.rowCount)
+                    lowQualityRemoved: resultCount,
+                    spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', resultCount),
                 },
                 errors: [],
-                warnings: []
+                warnings: [],
             };
-            console.log(`✅ Maintenance news terminée: ${result.rowCount} supprimées, ${archiveResult.recordsAffected} archivées`);
+            console.log(`✅ Maintenance news terminée: ${resultCount} supprimées, ${archiveCount} archivées`);
             return maintenanceResult;
         }
         finally {
@@ -266,8 +238,9 @@ class DataMaintenanceService {
         data_quality_score = GREATEST(news_archive.data_quality_score, EXCLUDED.data_quality_score)
       RETURNING id
     `);
-        console.log(`   📦 ${archiveResult.rowCount} données archivées pour backtesting`);
-        return { recordsAffected: archiveResult.rowCount };
+        const archiveCount = archiveResult.rowCount || 0;
+        console.log(`   📦 ${archiveCount} données archivées pour backtesting`);
+        return { recordsAffected: archiveCount };
     }
     /**
      * Nettoyage des doublons
@@ -300,8 +273,10 @@ class DataMaintenanceService {
                 const idsToKeep = group.ordered_ids.slice(0, 1);
                 const idsToRemove = group.ordered_ids.slice(1);
                 if (idsToRemove.length > 0) {
-                    const result = await client.query(`DELETE FROM news_items WHERE id = ANY($1)`, [idsToRemove]);
-                    totalRemoved += result.rowCount;
+                    const result = await client.query(`DELETE FROM news_items WHERE id = ANY($1)`, [
+                        idsToRemove,
+                    ]);
+                    totalRemoved += result.rowCount || 0;
                 }
             }
             const maintenanceResult = {
@@ -310,15 +285,15 @@ class DataMaintenanceService {
                 recordsAffected: totalRemoved,
                 duration: Date.now() - startTime,
                 details: {
-                    newsProcessed: duplicateGroups.rowCount,
+                    newsProcessed: duplicateGroups.rowCount || 0,
                     newsDeleted: totalRemoved,
                     newsArchived: 0,
                     duplicatesRemoved: totalRemoved,
                     lowQualityRemoved: 0,
-                    spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', totalRemoved)
+                    spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', totalRemoved),
                 },
                 errors: [],
-                warnings: []
+                warnings: [],
             };
             console.log(`✅ Nettoyage doublons terminé: ${totalRemoved} doublons supprimés`);
             return maintenanceResult;
@@ -344,23 +319,24 @@ class DataMaintenanceService {
           (url ~ 'bit\.ly|tinyurl|t\.co|goo\.gl' AND data_quality_score < 0.7)
         RETURNING id
       `, [this.config.minQualityScoreThreshold]);
+            const resultCount = result.rowCount || 0;
             const maintenanceResult = {
                 timestamp: new Date(),
                 operation: 'CLEANUP_LOW_QUALITY',
-                recordsAffected: result.rowCount,
+                recordsAffected: resultCount,
                 duration: Date.now() - startTime,
                 details: {
-                    newsProcessed: result.rowCount,
-                    newsDeleted: result.rowCount,
+                    newsProcessed: resultCount,
+                    newsDeleted: resultCount,
                     newsArchived: 0,
                     duplicatesRemoved: 0,
-                    lowQualityRemoved: result.rowCount,
-                    spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', result.rowCount)
+                    lowQualityRemoved: resultCount,
+                    spaceRecovered: await this.calculateSpaceRecovered(client, 'news_items', resultCount),
                 },
                 errors: [],
-                warnings: []
+                warnings: [],
             };
-            console.log(`✅ Nettoyage faible qualité terminé: ${result.rowCount} enregistrements supprimés`);
+            console.log(`✅ Nettoyage faible qualité terminé: ${resultCount} enregistrements supprimés`);
             return maintenanceResult;
         }
         finally {
@@ -395,7 +371,7 @@ class DataMaintenanceService {
         ON CONFLICT DO NOTHING
         RETURNING id
       `);
-            const totalArchived = sentimentResult.rowCount + marketResult.rowCount;
+            const totalArchived = (sentimentResult.rowCount || 0) + (marketResult.rowCount || 0);
             const maintenanceResult = {
                 timestamp: new Date(),
                 operation: 'ARCHIVE_OLD_DATA',
@@ -407,10 +383,10 @@ class DataMaintenanceService {
                     newsArchived: totalArchived,
                     duplicatesRemoved: 0,
                     lowQualityRemoved: 0,
-                    spaceRecovered: 0 // Archive doesn't recover space immediately
+                    spaceRecovered: 0, // Archive doesn't recover space immediately
                 },
                 errors: [],
-                warnings: []
+                warnings: [],
             };
             console.log(`✅ Archivage terminé: ${totalArchived} enregistrements archivés`);
             return maintenanceResult;
@@ -489,10 +465,10 @@ class DataMaintenanceService {
                     newsArchived: 0,
                     duplicatesRemoved: 0,
                     lowQualityRemoved: 0,
-                    spaceRecovered: 0 // Optimization doesn't immediately recover space
+                    spaceRecovered: 0, // Optimization doesn't immediately recover space
                 },
                 errors: [],
-                warnings: []
+                warnings: [],
             };
             console.log(`✅ Optimisation terminée: ${optimizedTables} tables optimisées`);
             return maintenanceResult;
@@ -557,10 +533,10 @@ class DataMaintenanceService {
                     newsArchived: 0,
                     duplicatesRemoved: 0,
                     lowQualityRemoved: 0,
-                    spaceRecovered: 0
+                    spaceRecovered: 0,
                 },
                 errors: [],
-                warnings: []
+                warnings: [],
             };
             console.log('✅ Statistiques mises à jour');
             return maintenanceResult;
@@ -581,7 +557,7 @@ class DataMaintenanceService {
       `);
             if (result.rows.length > 0 && result.rows[0].avg_row_size) {
                 const avgRowSize = result.rows[0].avg_row_size;
-                return Math.round((rowsDeleted * avgRowSize) / (1024 * 1024) * 100) / 100; // MB
+                return Math.round(((rowsDeleted * avgRowSize) / (1024 * 1024)) * 100) / 100; // MB
             }
             return 0;
         }
@@ -637,23 +613,23 @@ class DataMaintenanceService {
             const marketEvents = this.config.historicalPeriods.map(period => ({
                 date: period.startDate,
                 description: period.description,
-                importance: 'critical'
+                importance: 'critical',
             }));
             const global = globalStats.rows[0];
             const summary = {
                 totalNews: parseInt(global.total_news),
                 dateRange: {
                     start: new Date(global.earliest_date),
-                    end: new Date(global.latest_date)
+                    end: new Date(global.latest_date),
                 },
                 sentimentDistribution: {},
                 sourceDistribution: {},
                 qualityScoreDistribution: {
                     high: parseInt(qualityStats.rows[0]?.high || 0),
                     medium: parseInt(qualityStats.rows[0]?.medium || 0),
-                    low: parseInt(qualityStats.rows[0]?.low || 0)
+                    low: parseInt(qualityStats.rows[0]?.low || 0),
                 },
-                marketEvents
+                marketEvents,
             };
             // Remplir les distributions
             sentimentStats.rows.forEach(row => {
@@ -675,4 +651,4 @@ class DataMaintenanceService {
         await this.pool.end();
     }
 }
-exports.DataMaintenanceService = DataMaintenanceService;
+//# sourceMappingURL=DataMaintenanceService.js.map

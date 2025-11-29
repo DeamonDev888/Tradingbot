@@ -1,12 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CboeScraper = void 0;
-const playwright_1 = require("playwright");
-class CboeScraper {
+import { chromium } from 'playwright';
+export class CboeScraper {
     browser = null;
     async init() {
         if (!this.browser) {
-            this.browser = await playwright_1.chromium.launch({
+            this.browser = await chromium.launch({
                 headless: true,
                 args: [
                     '--no-sandbox',
@@ -123,4 +120,4 @@ class CboeScraper {
         }
     }
 }
-exports.CboeScraper = CboeScraper;
+//# sourceMappingURL=CboeScraper.js.map

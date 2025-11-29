@@ -68,15 +68,11 @@ export class SP500FuturesScraper {
 
     // Simuler comportement humain
     await page.addInitScript(() => {
-      // @ts-ignore
+      // Browser globals are available in page context
       Object.defineProperty(navigator, 'webdriver', { get: () => false });
-      // @ts-ignore
       Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-      // @ts-ignore
       Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-      // @ts-ignore
       (window as any).chrome = { runtime: {} };
-      // @ts-ignore
       Object.defineProperty(navigator, 'permissions', {
         get: () => ({
           query: () => Promise.resolve({ state: 'granted' }),
@@ -352,7 +348,9 @@ export class SP500FuturesScraper {
 
     numbers.forEach(level => {
       const index = text.indexOf(level.toString());
-      const context = text.substring(Math.max(0, index - 30), Math.min(text.length, index + 30)).toUpperCase();
+      const context = text
+        .substring(Math.max(0, index - 30), Math.min(text.length, index + 30))
+        .toUpperCase();
 
       if (resistanceKeywords.some(k => context.includes(k.toUpperCase()))) {
         resistances.push(level);
@@ -436,7 +434,7 @@ export class SP500FuturesScraper {
     try {
       // Uniquement ZeroHedge
       const zhData = await this.scrapeZeroHedgeData();
-      
+
       if (zhData) {
         return zhData;
       }

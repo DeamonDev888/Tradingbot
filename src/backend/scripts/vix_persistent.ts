@@ -70,7 +70,7 @@ export class SierraChartVIXPersistent extends EventEmitter {
           }
         });
 
-        this.ws.on('close', (code: number, reason: Buffer) => {
+        this.ws.on('close', (code: number, _reason: Buffer) => {
           console.log(`🔌 WebSocket fermé - Code: ${code}`);
           this.isConnected = false;
           this.isAuthenticated = false;

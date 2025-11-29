@@ -1,4 +1,3 @@
-
 import { NewsAggregator } from '../ingestion/NewsAggregator';
 import * as dotenv from 'dotenv';
 
@@ -7,7 +6,7 @@ dotenv.config();
 async function main() {
   console.log('Testing NewsAggregator...');
   const aggregator = new NewsAggregator();
-  
+
   try {
     // Test individual sources first
     console.log('Fetching ZeroHedge...');
@@ -22,7 +21,6 @@ async function main() {
     console.log('Fetching All News...');
     const allNews = await aggregator.fetchAndSaveAllNews();
     console.log(`Total News Fetched: ${allNews.length}`);
-    
   } catch (error) {
     console.error('Error running aggregator:', error);
   }

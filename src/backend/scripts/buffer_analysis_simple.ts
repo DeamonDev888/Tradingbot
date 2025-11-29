@@ -103,7 +103,10 @@ class SimpleBufferAnalyzer {
     }
   }
 
-  async analyzeAgentBufferUsage(agentName: string, agent: any): Promise<{
+  async analyzeAgentBufferUsage(
+    agentName: string,
+    agent: any
+  ): Promise<{
     newsItemsUsed: number;
     queryTime: number;
     source: string;
@@ -147,7 +150,7 @@ class SimpleBufferAnalyzer {
   }
 
   async generateReport(): Promise<SimpleBufferReport> {
-    console.log('🚀 Génération du rapport d\'analyse du buffer...');
+    console.log("🚀 Génération du rapport d'analyse du buffer...");
 
     const report: SimpleBufferReport = {
       timestamp: new Date(),
@@ -184,11 +187,14 @@ class SimpleBufferAnalyzer {
     console.log(`   • Temps requête moyen: ${report.database.avgQueryTime}ms`);
 
     // Analyser chaque agent
-    console.log('\n🤖 Analyse de l\'utilisation du buffer par les agents...');
+    console.log("\n🤖 Analyse de l'utilisation du buffer par les agents...");
 
     try {
       const vortexAgent = new Vortex500Agent();
-      report.agents['Vortex500Agent'] = await this.analyzeAgentBufferUsage('Vortex500Agent', vortexAgent);
+      report.agents['Vortex500Agent'] = await this.analyzeAgentBufferUsage(
+        'Vortex500Agent',
+        vortexAgent
+      );
     } catch (error) {
       console.error('❌ Erreur Vortex500Agent:', error);
       report.agents['Vortex500Agent'] = {
@@ -201,7 +207,10 @@ class SimpleBufferAnalyzer {
 
     try {
       const rougeAgent = new RougePulseAgent();
-      report.agents['RougePulseAgent'] = await this.analyzeAgentBufferUsage('RougePulseAgent', rougeAgent);
+      report.agents['RougePulseAgent'] = await this.analyzeAgentBufferUsage(
+        'RougePulseAgent',
+        rougeAgent
+      );
     } catch (error) {
       console.error('❌ Erreur RougePulseAgent:', error);
       report.agents['RougePulseAgent'] = {
@@ -223,20 +232,17 @@ class SimpleBufferAnalyzer {
 
     // Recommandations liées au buffer
     if (database.recentNews24h < 50) {
-      report.recommendations.push(
-        '📊 Augmenter la fréquence de scraping (moins de 50 news/24h)'
-      );
+      report.recommendations.push('📊 Augmenter la fréquence de scraping (moins de 50 news/24h)');
     }
 
     if (database.recentNews48h < 100) {
-      report.recommendations.push(
-        '📊 Volume de données 48h faible (moins de 100 news/48h)'
-      );
+      report.recommendations.push('📊 Volume de données 48h faible (moins de 100 news/48h)');
     }
 
-    if (database.bufferSize > 500) { // 500MB
+    if (database.bufferSize > 500) {
+      // 500MB
       report.recommendations.push(
-        '🗃️ Mettre en place l\'archivage des anciennes données (buffer > 500MB)'
+        "🗃️ Mettre en place l'archivage des anciennes données (buffer > 500MB)"
       );
     }
 
@@ -255,37 +261,28 @@ class SimpleBufferAnalyzer {
       }
 
       if (agent.queryTime > 3000) {
-        report.recommendations.push(
-          `🐌 ${name} lent (temps: ${agent.queryTime}ms)`
-        );
+        report.recommendations.push(`🐌 ${name} lent (temps: ${agent.queryTime}ms)`);
       }
 
       if (agent.source === 'error') {
-        report.recommendations.push(
-          `🔧 Corriger ${name} (erreur d'analyse)`
-        );
+        report.recommendations.push(`🔧 Corriger ${name} (erreur d'analyse)`);
       }
     });
 
     // Performance de la base de données
     if (database.avgQueryTime > 500) {
-      report.recommendations.push(
-        '🗄️ Optimiser les requêtes à la base de données (>500ms)'
-      );
+      report.recommendations.push('🗄️ Optimiser les requêtes à la base de données (>500ms)');
     }
 
     // Utilisation globale du buffer
-    const avgNewsUsed = Object.values(agents).reduce((sum, agent) => sum + agent.newsItemsUsed, 0) /
-                        (Object.keys(agents).length || 1);
+    const avgNewsUsed =
+      Object.values(agents).reduce((sum, agent) => sum + agent.newsItemsUsed, 0) /
+      (Object.keys(agents).length || 1);
 
     if (avgNewsUsed < database.recentNews48h * 0.3) {
-      report.recommendations.push(
-        '📈 Agents sous-utilisent le buffer de données 48h'
-      );
+      report.recommendations.push('📈 Agents sous-utilisent le buffer de données 48h');
     } else if (avgNewsUsed > database.recentNews48h * 0.8) {
-      report.recommendations.push(
-        '📉 Agents sur-utilisent le buffer de données 48h'
-      );
+      report.recommendations.push('📉 Agents sur-utilisent le buffer de données 48h');
     }
   }
 
@@ -293,7 +290,7 @@ class SimpleBufferAnalyzer {
     const lines: string[] = [];
 
     lines.push('='.repeat(80));
-    lines.push('📊 RAPPORT D\'ANALYSE DU BUFFER DES AGENTS');
+    lines.push("📊 RAPPORT D'ANALYSE DU BUFFER DES AGENTS");
     lines.push('='.repeat(80));
     lines.push(`Timestamp: ${report.timestamp.toLocaleString('fr-FR')}`);
     lines.push('');
@@ -321,10 +318,11 @@ class SimpleBufferAnalyzer {
     });
 
     // Utilisation globale
-    const avgNewsUsed = Object.values(report.agents).reduce((sum, agent) => sum + agent.newsItemsUsed, 0) /
-                        (Object.keys(report.agents).length || 1);
-    const bufferUtilization = report.database.recentNews48h > 0 ?
-                              (avgNewsUsed / report.database.recentNews48h) * 100 : 0;
+    const avgNewsUsed =
+      Object.values(report.agents).reduce((sum, agent) => sum + agent.newsItemsUsed, 0) /
+      (Object.keys(report.agents).length || 1);
+    const bufferUtilization =
+      report.database.recentNews48h > 0 ? (avgNewsUsed / report.database.recentNews48h) * 100 : 0;
 
     lines.push('📈 UTILISATION GLOBALE DU BUFFER:');
     lines.push(`   • Items moyens utilisés: ${avgNewsUsed.toFixed(1)}`);
@@ -382,7 +380,7 @@ if (require.main === module) {
   (async () => {
     const analyzer = new SimpleBufferAnalyzer();
 
-    console.log('🚀 Démarrage de l\'analyse du buffer des agents...');
+    console.log("🚀 Démarrage de l'analyse du buffer des agents...");
     console.log('');
 
     // Test de connexion
@@ -399,14 +397,20 @@ if (require.main === module) {
 
     // Évaluation
     const hasCriticalIssues = report.recommendations.length > 8;
-    const avgNewsUsed = Object.values(report.agents).reduce((sum, agent) => sum + agent.newsItemsUsed, 0) /
-                        (Object.keys(report.agents).length || 1);
-    const bufferUtilization = report.database.recentNews48h > 0 ?
-                              (avgNewsUsed / report.database.recentNews48h) * 100 : 0;
+    const avgNewsUsed =
+      Object.values(report.agents).reduce((sum, agent) => sum + agent.newsItemsUsed, 0) /
+      (Object.keys(report.agents).length || 1);
+    const bufferUtilization =
+      report.database.recentNews48h > 0 ? (avgNewsUsed / report.database.recentNews48h) * 100 : 0;
 
     console.log('\n🎯 ÉVALUATION:');
 
-    if (!hasCriticalIssues && bufferUtilization >= 30 && bufferUtilization <= 80 && report.database.avgQueryTime < 500) {
+    if (
+      !hasCriticalIssues &&
+      bufferUtilization >= 30 &&
+      bufferUtilization <= 80 &&
+      report.database.avgQueryTime < 500
+    ) {
       console.log('🟢 UTILISATION DU BUFFER OPTIMALE');
       console.log('   • Les agents utilisent efficacement le buffer');
       console.log('   • Performance acceptable');
@@ -425,7 +429,7 @@ if (require.main === module) {
 
     await analyzer.close();
   })().catch(error => {
-    console.error('❌ Erreur critique de l\'analyse:', error);
+    console.error("❌ Erreur critique de l'analyse:", error);
     process.exit(3);
   });
 }

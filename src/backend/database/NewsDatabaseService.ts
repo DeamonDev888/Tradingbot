@@ -486,7 +486,7 @@ export class NewsDatabaseService {
       } finally {
         client.release();
       }
-    } catch (_error) {
+    } catch {
       console.log('⚠️ Failed to update source status - continuing without database');
     }
   }
@@ -744,6 +744,80 @@ export class NewsDatabaseService {
     if (score > 50) return 'high';
     if (score > 20) return 'normal';
     return 'low';
+  }
+
+  /**
+   * Récupère les événements économiques
+   */
+  async getEconomicEvents(
+    startDate: Date,
+    endDate: Date,
+    minImportance: number = 1
+  ): Promise<any[]> {
+    if (!this.pool) return [];
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query(
+        `
+        SELECT * FROM economic_events
+        WHERE event_date >= $1 AND event_date <= $2
+        AND importance >= $3
+        ORDER BY event_date ASC
+      `,
+        [startDate, endDate, minImportance]
+      );
+      return result.rows;
+    } catch (error) {
+      console.error('Error fetching economic events:', error);
+      return [];
+    } finally {
+      client.release();
+    }
+  }
+
+  /**
+   * Récupère les statistiques récentes (pour compatibilité)
+   */
+  async getRecentStats(hours: number = 24): Promise<{
+    totalNews: number;
+    recentNews24h: number;
+    recentNews48h: number;
+    avgQueryTime: number;
+  }> {
+    if (!this.pool) {
+      return {
+        totalNews: 0,
+        recentNews24h: 0,
+        recentNews48h: 0,
+        avgQueryTime: 0,
+      };
+    }
+
+    const client = await this.pool.connect();
+    try {
+      const [totalResult, recent24hResult, recent48hResult] = await Promise.all([
+        client.query('SELECT COUNT(*) as count FROM news_items'),
+        client.query(`
+          SELECT COUNT(*) as count
+          FROM news_items
+          WHERE published_at >= NOW() - INTERVAL '24 hours'
+        `),
+        client.query(`
+          SELECT COUNT(*) as count
+          FROM news_items
+          WHERE published_at >= NOW() - INTERVAL '48 hours'
+        `),
+      ]);
+
+      return {
+        totalNews: parseInt(totalResult.rows[0].count) || 0,
+        recentNews24h: parseInt(recent24hResult.rows[0].count) || 0,
+        recentNews48h: parseInt(recent48hResult.rows[0].count) || 0,
+        avgQueryTime: 50, // Valeur par défaut
+      };
+    } finally {
+      client.release();
+    }
   }
 
   /**

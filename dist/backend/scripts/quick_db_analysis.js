@@ -1,9 +1,6 @@
 #!/usr/bin/env ts-node
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.quickDatabaseAnalysis = quickDatabaseAnalysis;
-const pg_1 = require("pg");
-const pool = new pg_1.Pool({
+import { Pool } from 'pg';
+const pool = new Pool({
     host: 'localhost',
     port: 5432,
     database: 'financial_analyst',
@@ -210,3 +207,5 @@ if (require.main === module) {
         .then(() => console.log('\n✅ Analyse terminée avec succès!'))
         .catch(error => console.error('\n❌ Erreur:', error instanceof Error ? error.message : String(error)));
 }
+export { quickDatabaseAnalysis };
+//# sourceMappingURL=quick_db_analysis.js.map

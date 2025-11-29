@@ -1,5 +1,5 @@
 import { Vortex500Agent } from './src/backend/agents/Vortex500Agent';
-import { VixombreAgent } from './src/backend/agents/VixombreAgent';
+import { RougePulseAgent } from './src/backend/agents/RougePulseAgent';
 import { NewsDatabaseService } from './src/backend/database/NewsDatabaseService';
 import { NewsAggregator, NewsItem } from './src/backend/ingestion/NewsAggregator';
 import { VixPlaywrightScraper } from './src/backend/ingestion/VixPlaywrightScraper';
@@ -23,14 +23,14 @@ dotenv.config();
 
 class FinancialAnalystApp {
   private sentimentAgent: Vortex500Agent;
-  private vixAgent: VixombreAgent;
+  private rougePulseAgent: RougePulseAgent;
   private dbService: NewsDatabaseService;
   private newsAggregator: NewsAggregator;
   private vixScraper: VixPlaywrightScraper;
 
   constructor() {
     this.sentimentAgent = new Vortex500Agent();
-    this.vixAgent = new VixombreAgent();
+    this.rougePulseAgent = new RougePulseAgent();
     this.dbService = new NewsDatabaseService();
     this.newsAggregator = new NewsAggregator();
     this.vixScraper = new VixPlaywrightScraper();
@@ -232,7 +232,7 @@ class FinancialAnalystApp {
     console.log('='.repeat(60));
 
     try {
-      const result = await this.vixAgent.analyzeVixStructure();
+      const result = await this.rougePulseAgent.analyzeMarketSentiment();
       console.log('\n✅ VIX Agent Analysis Completed.');
       console.log(JSON.stringify(result, null, 2));
     } catch (error) {

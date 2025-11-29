@@ -1,49 +1,13 @@
 #!/usr/bin/env ts-node
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnhancedNewsPipeline = void 0;
-const NewsAggregator_1 = require("../ingestion/NewsAggregator");
-const NewsValidationService_1 = require("../database/NewsValidationService");
-const NewsDatabaseService_1 = require("../database/NewsDatabaseService");
-const DataMaintenanceService_1 = require("../database/DataMaintenanceService");
-const VixPlaywrightScraper_1 = require("../ingestion/VixPlaywrightScraper");
-const FinnhubClient_1 = require("../ingestion/FinnhubClient");
-const dotenv = __importStar(require("dotenv"));
+import { NewsAggregator } from '../ingestion/NewsAggregator';
+import { NewsValidationService, } from '../database/NewsValidationService';
+import { NewsDatabaseService } from '../database/NewsDatabaseService';
+import { DataMaintenanceService } from '../database/DataMaintenanceService';
+import { VixPlaywrightScraper } from '../ingestion/VixPlaywrightScraper';
+import { FinnhubClient } from '../ingestion/FinnhubClient';
+import * as dotenv from 'dotenv';
 dotenv.config();
-class EnhancedNewsPipeline {
+export class EnhancedNewsPipeline {
     newsAggregator;
     validationService;
     databaseService;
@@ -60,16 +24,16 @@ class EnhancedNewsPipeline {
         batchSize: 100,
         maxParallelSources: 3,
         enableBacktestData: true,
-        preserveHistoricalEvents: true
+        preserveHistoricalEvents: true,
     };
     constructor(config) {
         this.config = { ...this.config, ...config };
-        this.newsAggregator = new NewsAggregator_1.NewsAggregator();
-        this.validationService = new NewsValidationService_1.NewsValidationService();
-        this.databaseService = new NewsDatabaseService_1.NewsDatabaseService();
-        this.maintenanceService = new DataMaintenanceService_1.DataMaintenanceService();
-        this.vixScraper = new VixPlaywrightScraper_1.VixPlaywrightScraper();
-        this.finnhubClient = new FinnhubClient_1.FinnhubClient();
+        this.newsAggregator = new NewsAggregator();
+        this.validationService = new NewsValidationService();
+        this.databaseService = new NewsDatabaseService();
+        this.maintenanceService = new DataMaintenanceService();
+        this.vixScraper = new VixPlaywrightScraper();
+        this.finnhubClient = new FinnhubClient();
     }
     /**
      * Exécute le pipeline complet avec validation et déduplication
@@ -90,13 +54,13 @@ class EnhancedNewsPipeline {
                 duplicatesRemoved: 0,
                 lowQualityRemoved: 0,
                 avgQualityScore: 0,
-                spaceRecovered: 0
+                spaceRecovered: 0,
             },
             marketData: {
-                timestamp: new Date()
+                timestamp: new Date(),
             },
             errors: [],
-            warnings: []
+            warnings: [],
         };
         try {
             // 1. Vérification de la connexion à la base de données
@@ -154,7 +118,8 @@ class EnhancedNewsPipeline {
                 }
                 // Calculer le score de qualité moyen
                 const totalQuality = validResults.reduce((sum, r) => sum + (r.processedItem?.data_quality_score || 0), 0);
-                result.total.avgQualityScore = validResults.length > 0 ? totalQuality / validResults.length : 0;
+                result.total.avgQualityScore =
+                    validResults.length > 0 ? totalQuality / validResults.length : 0;
             }
             else {
                 // Mode sans validation - sauvegarde directe
@@ -218,11 +183,11 @@ class EnhancedNewsPipeline {
             console.log('   📈 Récupération VIX...');
             const vixResults = await this.vixScraper.scrapeAll();
             const validVIX = vixResults.find(r => r.value !== null && r.value > 0);
-            if (validVIX) {
+            if (validVIX && validVIX.value !== null) {
                 result.marketData.vixValue = validVIX.value;
                 console.log(`   ✅ VIX: ${validVIX.value} (source: ${validVIX.source})`);
                 // Sauvegarder en base de données
-                const pool = new (require('pg')).Pool({
+                const pool = new (require('pg').Pool)({
                     host: process.env.DB_HOST || 'localhost',
                     port: parseInt(process.env.DB_PORT || '5432'),
                     database: process.env.DB_NAME || 'financial_analyst',
@@ -240,8 +205,12 @@ class EnhancedNewsPipeline {
               change_percent = EXCLUDED.change_percent,
               timestamp = EXCLUDED.timestamp
           `, [
-                        'VIX', 'VOLATILITY', validVIX.value,
-                        validVIX.change_abs, validVIX.change_pct, validVIX.source
+                        'VIX',
+                        'VOLATILITY',
+                        validVIX.value,
+                        validVIX.change_abs,
+                        validVIX.change_pct,
+                        validVIX.source,
                     ]);
                 }
                 finally {
@@ -269,7 +238,7 @@ class EnhancedNewsPipeline {
                 result.marketData.sp500Value = sp500Data.current;
                 console.log(`   ✅ S&P500: ${sp500Data.current.toFixed(2)} (${sp500Data.change > 0 ? '+' : ''}${sp500Data.percent_change.toFixed(2)}%)`);
                 // Sauvegarder en base de données
-                const pool = new (require('pg')).Pool({
+                const pool = new (require('pg').Pool)({
                     host: process.env.DB_HOST || 'localhost',
                     port: parseInt(process.env.DB_PORT || '5432'),
                     database: process.env.DB_NAME || 'financial_analyst',
@@ -291,9 +260,16 @@ class EnhancedNewsPipeline {
               previous_close = EXCLUDED.previous_close,
               timestamp = EXCLUDED.timestamp
           `, [
-                        sp500Data.symbol || 'SP500', 'INDEX', sp500Data.current,
-                        sp500Data.change, sp500Data.percent_change, sp500Data.high,
-                        sp500Data.low, sp500Data.open, sp500Data.previous_close, sp500Data.symbol || 'Finnhub'
+                        sp500Data.symbol || 'SP500',
+                        'INDEX',
+                        sp500Data.current,
+                        sp500Data.change,
+                        sp500Data.percent_change,
+                        sp500Data.high,
+                        sp500Data.low,
+                        sp500Data.open,
+                        sp500Data.previous_close,
+                        sp500Data.symbol || 'Finnhub',
                     ]);
                 }
                 finally {
@@ -321,7 +297,10 @@ class EnhancedNewsPipeline {
             { name: 'FinancialJuice', func: () => this.newsAggregator.fetchFinancialJuice() },
             { name: 'Finnhub', func: () => this.newsAggregator.fetchFinnhubNews() },
             { name: 'FRED Economic Data', func: () => this.newsAggregator.fetchFredEconomicData() },
-            { name: 'Trading Economics', func: () => this.newsAggregator.fetchTradingEconomicsCalendar() }
+            {
+                name: 'Trading Economics',
+                func: () => this.newsAggregator.fetchTradingEconomicsCalendar(),
+            },
         ];
         // Exécuter en parallèle avec limite
         const results = [];
@@ -338,7 +317,12 @@ class EnhancedNewsPipeline {
                 }
                 catch (error) {
                     console.log(`       ❌ ${source.name}: ${error instanceof Error ? error.message : error}`);
-                    return { name: source.name, news: [], success: false, error: error instanceof Error ? error.message : String(error) };
+                    return {
+                        name: source.name,
+                        news: [],
+                        success: false,
+                        error: error instanceof Error ? error.message : String(error),
+                    };
                 }
             });
             const batchResults = await Promise.allSettled(batchPromises);
@@ -371,7 +355,7 @@ class EnhancedNewsPipeline {
                 const batchResults = await this.validationService.validateNewsBatch(batch);
                 results.push(...batchResults);
                 const validInBatch = batchResults.filter(r => r.isValid).length;
-                console.log(`       ✅ ${validInBatch}/${batch.length} valides (score moyen: ${(batchResults.reduce((sum, r) => sum + (r.qualityScore || 0), 0) / batchResults.length * 100).toFixed(1)}%)`);
+                console.log(`       ✅ ${validInBatch}/${batch.length} valides (score moyen: ${((batchResults.reduce((sum, r) => sum + (r.qualityScore || 0), 0) / batchResults.length) * 100).toFixed(1)}%)`);
             }
             catch (error) {
                 console.warn(`       ⚠️ Erreur validation batch:`, error);
@@ -382,7 +366,7 @@ class EnhancedNewsPipeline {
                         qualityScore: 0,
                         errors: [error instanceof Error ? error.message : String(error)],
                         warnings: [],
-                        appliedRules: []
+                        appliedRules: [],
                     });
                 });
             }
@@ -417,7 +401,7 @@ class EnhancedNewsPipeline {
      * Finalise le pipeline et retourne le résultat
      */
     async finalizePipeline(result, startTime) {
-        result.duration = Date.now() - startTime;
+        result.duration = Date.now() - startTime.getTime();
         console.log('\n' + '='.repeat(80));
         console.log('📋 RAPPORT FINAL DU PIPELINE AMÉLIORÉ');
         console.log('='.repeat(80));
@@ -466,13 +450,13 @@ class EnhancedNewsPipeline {
         if (result.errors.length === 0 && successRate > 0.7 && qualitySuccess) {
             console.log('🎉 PIPELINE TERMINÉ AVEC SUCCÈS');
             console.log(`   • Taux de réussite: ${(successRate * 100).toFixed(1)}%`);
-            console.log(`   • Qualité supérieure au seuil: ${(result.total.avgQualityScore * 100).toFixed(1)}% >= ${(this.config.minQualityScore * 100)}%`);
+            console.log(`   • Qualité supérieure au seuil: ${(result.total.avgQualityScore * 100).toFixed(1)}% >= ${this.config.minQualityScore * 100}%`);
         }
         else if (result.errors.length === 0 && successRate > 0.4) {
             console.log('🟡 PIPELINE TERMINÉ AVEC RÉSULTATS PARTIELS');
             console.log(`   • Taux de réussite: ${(successRate * 100).toFixed(1)}% (objectif: >70%)`);
             if (!qualitySuccess) {
-                console.log(`   • Qualité inférieure au seuil: ${(result.total.avgQualityScore * 100).toFixed(1)}% < ${(this.config.minQualityScore * 100)}%`);
+                console.log(`   • Qualité inférieure au seuil: ${(result.total.avgQualityScore * 100).toFixed(1)}% < ${this.config.minQualityScore * 100}%`);
             }
         }
         else {
@@ -484,12 +468,11 @@ class EnhancedNewsPipeline {
         return result;
     }
 }
-exports.EnhancedNewsPipeline = EnhancedNewsPipeline;
 // Script principal
 if (require.main === module) {
     // Parser des arguments
     const args = process.argv.slice(2);
-    let config = {};
+    const config = {};
     if (args.includes('--disable-validation')) {
         config.enableValidation = false;
     }
@@ -549,15 +532,16 @@ Exemples:
     }
     // Démarrer le pipeline
     console.log('🔧 Démarrage du Pipeline Amélioré avec configuration:');
-    console.log(`   Validation: ${config.enableValidation ?? true ? '✅' : '❌'}`);
-    console.log(`   Déduplication: ${config.enableDeduplication ?? true ? '✅' : '❌'}`);
-    console.log(`   Filtrage qualité: ${config.enableQualityFiltering ?? true ? '✅' : '❌'}`);
-    console.log(`   Données marché: ${config.enableMarketData ?? true ? '✅' : '❌'}`);
-    console.log(`   Données VIX: ${config.enableVIXData ?? true ? '✅' : '❌'}`);
+    console.log(`   Validation: ${(config.enableValidation ?? true) ? '✅' : '❌'}`);
+    console.log(`   Déduplication: ${(config.enableDeduplication ?? true) ? '✅' : '❌'}`);
+    console.log(`   Filtrage qualité: ${(config.enableQualityFiltering ?? true) ? '✅' : '❌'}`);
+    console.log(`   Données marché: ${(config.enableMarketData ?? true) ? '✅' : '❌'}`);
+    console.log(`   Données VIX: ${(config.enableVIXData ?? true) ? '✅' : '❌'}`);
     console.log(`   Score qualité minimum: ${(config.minQualityScore ?? 0.4) * 100}%`);
     console.log(`   Taille batch: ${config.batchSize ?? 100}\n`);
     const pipeline = new EnhancedNewsPipeline(config);
-    pipeline.runPipeline()
+    pipeline
+        .runPipeline()
         .then(result => {
         const successRate = result.total.itemsFound > 0 ? result.total.itemsSaved / result.total.itemsFound : 0;
         if (successRate > 0.8 && result.errors.length === 0) {
@@ -578,3 +562,4 @@ Exemples:
         process.exit(3);
     });
 }
+//# sourceMappingURL=enhanced_news_pipeline.js.map

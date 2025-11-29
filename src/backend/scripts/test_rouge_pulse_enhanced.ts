@@ -19,7 +19,7 @@ async function testRougePulseEnhanced() {
     // Lancer l'analyse complète
     console.log("🔍 Démarrage de l'analyse économique et technique...");
     const analysisResult: Record<string, unknown> | { error: string } =
-      await agent.analyzeEconomicEvents();
+      await agent.analyzeMarketSentiment();
 
     if ('error' in analysisResult) {
       console.log('❌ Erreur:', analysisResult.error);

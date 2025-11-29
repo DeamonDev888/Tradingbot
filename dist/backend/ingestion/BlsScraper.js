@@ -1,18 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BlsScraper = void 0;
-const pg_1 = require("pg");
-// Use require to avoid type issues with these specific packages in ts-node
+import { Pool } from 'pg';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { chromium } = require('playwright-extra');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const stealth = require('puppeteer-extra-plugin-stealth');
 // Add stealth plugin
 chromium.use(stealth());
-class BlsScraper {
+export class BlsScraper {
     browser = null;
     pool;
     constructor() {
         // Initialize DB connection
-        this.pool = new pg_1.Pool({
+        this.pool = new Pool({
             user: process.env.DB_USER || 'postgres',
             host: process.env.DB_HOST || 'localhost',
             database: process.env.DB_NAME || 'financial_analyst',
@@ -63,15 +61,11 @@ class BlsScraper {
         const page = await context.newPage();
         // Simulate human behavior / Stealth evasions
         await page.addInitScript(() => {
-            // @ts-ignore
+            // Browser globals are available in page context
             Object.defineProperty(navigator, 'webdriver', { get: () => false });
-            // @ts-ignore
             Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-            // @ts-ignore
             Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-            // @ts-ignore
             window.chrome = { runtime: {} };
-            // @ts-ignore
             Object.defineProperty(navigator, 'permissions', {
                 get: () => ({
                     query: () => Promise.resolve({ state: 'granted' }),
@@ -249,4 +243,4 @@ class BlsScraper {
         }
     }
 }
-exports.BlsScraper = BlsScraper;
+//# sourceMappingURL=BlsScraper.js.map

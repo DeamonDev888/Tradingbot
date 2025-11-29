@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const playwright_1 = require("playwright");
+import { chromium } from 'playwright';
 async function debugYahooAndMarketWatch() {
     console.log('🔍 DEBUG SPÉCIALISÉ - Yahoo Finance & MarketWatch\n');
-    const browser = await playwright_1.chromium.launch({
+    const browser = await chromium.launch({
         headless: false, // Mode visible pour debug
         args: [
             '--no-sandbox',
@@ -181,3 +179,4 @@ async function debugYahooAndMarketWatch() {
     }
 }
 debugYahooAndMarketWatch();
+//# sourceMappingURL=debug_yahoo_marketwatch.js.map

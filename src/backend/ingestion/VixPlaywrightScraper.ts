@@ -94,11 +94,11 @@ export class VixPlaywrightScraper {
         // Attendre un court délai pour éviter les race conditions
         await new Promise(resolve => setTimeout(resolve, 100));
 
-          this.browser = await chromium.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            timeout: 30000,
-          });
+        this.browser = await chromium.launch({
+          headless: true,
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          timeout: 30000,
+        });
 
         console.log('[VixPlaywrightScraper] Browser launched successfully');
       } catch (error) {
@@ -148,15 +148,11 @@ export class VixPlaywrightScraper {
 
       // Simuler comportement humain
       await page.addInitScript(() => {
-        // @ts-ignore
+        // Browser globals are available in page context
         Object.defineProperty(navigator, 'webdriver', { get: () => false });
-        // @ts-ignore
         Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-        // @ts-ignore
         Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-        // @ts-ignore
         (window as any).chrome = { runtime: {} };
-        // @ts-ignore
         Object.defineProperty(navigator, 'permissions', {
           get: () => ({
             query: () => Promise.resolve({ state: 'granted' }),

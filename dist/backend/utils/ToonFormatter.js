@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ToonFormatter = void 0;
 /**
  * Utilitaire de formatage TOON (Token-Oriented Object Notation)
  * Optimise la sérialisation des données pour les prompts LLM.
  */
-class ToonFormatter {
+export class ToonFormatter {
     /**
      * Convertit un tableau d'objets JSON en format TOON tabulaire.
      * @param keyName Le nom de la clé parente (ex: "users")
@@ -57,4 +54,4 @@ class ToonFormatter {
         return output.trim();
     }
 }
-exports.ToonFormatter = ToonFormatter;
+//# sourceMappingURL=ToonFormatter.js.map

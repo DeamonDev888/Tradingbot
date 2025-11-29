@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SierraChartDebug = void 0;
-const ws_1 = __importDefault(require("ws"));
-const events_1 = require("events");
-class SierraChartDebug extends events_1.EventEmitter {
+import WebSocket from 'ws';
+import { EventEmitter } from 'events';
+export class SierraChartDebug extends EventEmitter {
     ws = null;
     messageCount = 0;
     constructor() {
@@ -16,7 +10,7 @@ class SierraChartDebug extends events_1.EventEmitter {
         return new Promise((resolve, reject) => {
             try {
                 console.log('🔌 Connexion DEBUG à Sierra Chart sur ws://localhost:11099');
-                this.ws = new ws_1.default('ws://localhost:11099');
+                this.ws = new WebSocket('ws://localhost:11099');
                 this.ws.on('open', () => {
                     console.log('✅ WebSocket connecté');
                     this.sendMessage({
@@ -44,7 +38,7 @@ class SierraChartDebug extends events_1.EventEmitter {
         });
     }
     sendMessage(message) {
-        if (!this.ws || this.ws.readyState !== ws_1.default.OPEN)
+        if (!this.ws || this.ws.readyState !== WebSocket.OPEN)
             return;
         const messageStr = JSON.stringify(message) + '\0';
         this.ws.send(messageStr);
@@ -131,7 +125,6 @@ class SierraChartDebug extends events_1.EventEmitter {
         }
     }
 }
-exports.SierraChartDebug = SierraChartDebug;
 async function main() {
     const client = new SierraChartDebug();
     try {
@@ -152,3 +145,4 @@ async function main() {
 if (require.main === module) {
     main();
 }
+//# sourceMappingURL=vix_debug.js.map

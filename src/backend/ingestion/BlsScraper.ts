@@ -1,8 +1,9 @@
 import { Browser, Page } from 'playwright';
 import { Pool } from 'pg';
 
-// Use require to avoid type issues with these specific packages in ts-node
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { chromium } = require('playwright-extra');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const stealth = require('puppeteer-extra-plugin-stealth');
 
 // Add stealth plugin
@@ -80,15 +81,11 @@ export class BlsScraper {
 
     // Simulate human behavior / Stealth evasions
     await page.addInitScript(() => {
-      // @ts-ignore
+      // Browser globals are available in page context
       Object.defineProperty(navigator, 'webdriver', { get: () => false });
-      // @ts-ignore
       Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-      // @ts-ignore
       Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-      // @ts-ignore
       (window as any).chrome = { runtime: {} };
-      // @ts-ignore
       Object.defineProperty(navigator, 'permissions', {
         get: () => ({
           query: () => Promise.resolve({ state: 'granted' }),

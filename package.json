@@ -2,6 +2,7 @@
   "name": "novaquote-financial-analyst",
   "version": "1.0.0",
   "description": "Expert ES Futures Trading Agent with AI & Real-time Data Analysis",
+  "type": "commonjs",
   "main": "dist/backend/server.js",
   "scripts": {
     "build": "tsc",
@@ -12,7 +13,7 @@
     "continuous": "ts-node run.ts --continuous",
     "status": "ts-node run.ts --status",
     "help": "ts-node run.ts --help",
-    "bot": "ts-node src/discord_bot/index.ts",
+    "bot": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/discord_bot/index.ts",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "format": "prettier --write \"src/**/*.{ts,js,json,md}\"",

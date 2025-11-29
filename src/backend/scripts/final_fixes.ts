@@ -103,7 +103,6 @@ class FinalFixer {
         avgAgentEfficiency,
         bufferUtilization,
       };
-
     } finally {
       client.release();
     }
@@ -133,7 +132,7 @@ class FinalFixer {
 
     try {
       // 1. Statistiques initiales
-      console.log('📊 Analyse de l\'état actuel...');
+      console.log("📊 Analyse de l'état actuel...");
       const initialStats = await this.getCurrentStats();
       console.log(`   • News 24h: ${initialStats.recentNews24h.toLocaleString()}`);
       console.log(`   • News 48h: ${initialStats.recentNews48h.toLocaleString()}`);
@@ -164,7 +163,8 @@ class FinalFixer {
       }
 
       // Correction 3: Utilisation du buffer
-      result.systemOptimized = initialStats.bufferUtilization >= 30 && initialStats.bufferUtilization <= 80; // 30-80%
+      result.systemOptimized =
+        initialStats.bufferUtilization >= 30 && initialStats.bufferUtilization <= 80; // 30-80%
 
       if (result.systemOptimized) {
         console.log('   ✅ Utilisation buffer optimisée (30-80%)');
@@ -182,15 +182,11 @@ class FinalFixer {
       result.finalStats = await this.getCurrentStats();
 
       // 4. Évaluation du succès
-      result.success = (
-        result.dataCrisisFixed &&
-        result.agentPerformanceFixed &&
-        result.systemOptimized
-      );
+      result.success =
+        result.dataCrisisFixed && result.agentPerformanceFixed && result.systemOptimized;
 
       // 5. Générer les recommandations
       result.recommendations = this.generateRecommendations(result);
-
     } catch (error) {
       console.error('❌ Erreur durant les corrections finales:', error);
       result.issues.push(`Erreur système: ${error instanceof Error ? error.message : error}`);
@@ -250,8 +246,12 @@ class FinalFixer {
     // État des corrections
     lines.push('🎯 ÉTAT DES CORRECTIONS:');
     lines.push(`   • Crise données: ${result.dataCrisisFixed ? '✅ RÉSOLUE' : '❌ PERSISTE'}`);
-    lines.push(`   • Performance agents: ${result.agentPerformanceFixed ? '✅ ACCEPTABLE' : '❌ FAIBLE'}`);
-    lines.push(`   • Système optimisé: ${result.systemOptimized ? '✅ OPTIMISÉ' : '❌ À AMÉLIORER'}`);
+    lines.push(
+      `   • Performance agents: ${result.agentPerformanceFixed ? '✅ ACCEPTABLE' : '❌ FAIBLE'}`
+    );
+    lines.push(
+      `   • Système optimisé: ${result.systemOptimized ? '✅ OPTIMISÉ' : '❌ À AMÉLIORER'}`
+    );
     lines.push(`   • Succès global: ${result.success ? '🟢 SUCCÈS COMPLET' : '🟡 PARTIEL'}`);
     lines.push('');
 
@@ -260,15 +260,23 @@ class FinalFixer {
     lines.push(`   • Total news: ${result.finalStats.totalNews.toLocaleString()}`);
     lines.push(`   • News 24h: ${result.finalStats.recentNews24h.toLocaleString()}`);
     lines.push(`   • News 48h: ${result.finalStats.recentNews48h.toLocaleString()}`);
-    lines.push(`   • Efficacité agents: ${result.finalStats.avgAgentEfficiency.toFixed(2)} items/s`);
+    lines.push(
+      `   • Efficacité agents: ${result.finalStats.avgAgentEfficiency.toFixed(2)} items/s`
+    );
     lines.push(`   • Utilisation buffer: ${result.finalStats.bufferUtilization.toFixed(1)}%`);
     lines.push('');
 
     // Objectifs atteints
     lines.push('🎯 OBJECTIFS ATTEINTS:');
-    lines.push(`   • Volume 24h: ${result.finalStats.recentNews24h >= 100 ? '✅' : result.finalStats.recentNews24h >= 50 ? '🟡' : '❌'} (${result.finalStats.recentNews24h}/100)`);
-    lines.push(`   • Performance agents: ${result.finalStats.avgAgentEfficiency >= 20 ? '✅' : result.finalStats.avgAgentEfficiency >= 10 ? '🟡' : '❌'} (${result.finalStats.avgAgentEfficiency.toFixed(2)}/20 items/s)`);
-    lines.push(`   • Buffer utilisation: ${result.finalStats.bufferUtilization >= 30 && result.finalStats.bufferUtilization <= 80 ? '✅' : '❌'} (${result.finalStats.bufferUtilization.toFixed(1)}%, idéal: 30-80%)`);
+    lines.push(
+      `   • Volume 24h: ${result.finalStats.recentNews24h >= 100 ? '✅' : result.finalStats.recentNews24h >= 50 ? '🟡' : '❌'} (${result.finalStats.recentNews24h}/100)`
+    );
+    lines.push(
+      `   • Performance agents: ${result.finalStats.avgAgentEfficiency >= 20 ? '✅' : result.finalStats.avgAgentEfficiency >= 10 ? '🟡' : '❌'} (${result.finalStats.avgAgentEfficiency.toFixed(2)}/20 items/s)`
+    );
+    lines.push(
+      `   • Buffer utilisation: ${result.finalStats.bufferUtilization >= 30 && result.finalStats.bufferUtilization <= 80 ? '✅' : '❌'} (${result.finalStats.bufferUtilization.toFixed(1)}%, idéal: 30-80%)`
+    );
     lines.push('');
 
     // Problèmes restants
@@ -300,7 +308,10 @@ class FinalFixer {
       lines.push('   • Tous les objectifs majeurs atteints');
       lines.push('   • Système prêt pour production continue');
       lines.push('   • Maintenance automatisée recommandée');
-    } else if (result.finalStats.recentNews24h >= 50 && result.finalStats.avgAgentEfficiency >= 10) {
+    } else if (
+      result.finalStats.recentNews24h >= 50 &&
+      result.finalStats.avgAgentEfficiency >= 10
+    ) {
       lines.push('   • État: 🟡 SYSTÈME AMÉLIORÉ MAIS FONCTIONNEL');
       lines.push('   • Objectifs minimums atteints');
       lines.push('   • Optimisations additionnelles possibles');
@@ -317,7 +328,7 @@ class FinalFixer {
 
     if (!result.dataCrisisFixed) {
       lines.push('   1. IMMÉDIAT - Lancer scraping intensif (toutes les 15 min)');
-      lines.push('   2. AUJOURD\'HUI - Ajouter 50+ news test si nécessaire');
+      lines.push("   2. AUJOURD'HUI - Ajouter 50+ news test si nécessaire");
     }
 
     if (!result.agentPerformanceFixed) {
@@ -377,7 +388,10 @@ if (require.main === module) {
       console.log('   • Système optimisé');
       console.log('   • Prêt pour production continue');
       process.exit(0);
-    } else if (result.finalStats.recentNews24h >= 50 && result.finalStats.avgAgentEfficiency >= 10) {
+    } else if (
+      result.finalStats.recentNews24h >= 50 &&
+      result.finalStats.avgAgentEfficiency >= 10
+    ) {
       console.log('\n🟡 SYSTÈME PARTIELLEMENT CORRIGÉ');
       console.log('   • Problèmes critiques résolus');
       console.log('   • Améliorations additionnelles possibles');

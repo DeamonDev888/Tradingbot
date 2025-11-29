@@ -47,10 +47,10 @@ export class VixCboeScraper {
       // Recherche de motifs comme "$ 16.35" ou "16.35" près de "VIX"
       // Le site affiche souvent "$ 16.35"
       let vixMatch = html.match(/\$\s*([0-9]+\.[0-9]+)/);
-      
+
       // Fallback: chercher "VIX" suivi d'un nombre
       if (!vixMatch) {
-         vixMatch = html.match(/VIX.*?([0-9]+\.[0-9]+)/i);
+        vixMatch = html.match(/VIX.*?([0-9]+\.[0-9]+)/i);
       }
 
       const changeMatch = html.match(/([-+]?[0-9]+\.[0-9]+)%/i);

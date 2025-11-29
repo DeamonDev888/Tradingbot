@@ -1,13 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const RougePulseAgent_1 = require("../agents/RougePulseAgent");
+import { RougePulseAgent } from '../agents/RougePulseAgent';
 async function testRougePulseEnhanced() {
     console.log("🚀 Test de l'agent RougePulse amélioré avec données S&P 500 et niveaux techniques...\n");
-    const agent = new RougePulseAgent_1.RougePulseAgent();
+    const agent = new RougePulseAgent();
     try {
         // Lancer l'analyse complète
         console.log("🔍 Démarrage de l'analyse économique et technique...");
-        const analysisResult = await agent.analyzeEconomicEvents();
+        const analysisResult = await agent.analyzeMarketSentiment();
         if ('error' in analysisResult) {
             console.log('❌ Erreur:', analysisResult.error);
             return;
@@ -130,3 +128,4 @@ testRougePulseEnhanced()
     console.error('💥 Erreur fatale:', error);
     process.exit(1);
 });
+//# sourceMappingURL=test_rouge_pulse_enhanced.js.map

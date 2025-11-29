@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const RougePulseAgent_1 = require("../agents/RougePulseAgent");
+import { RougePulseAgent } from '../agents/RougePulseAgent';
 // Simulation de la fonction de formatage Discord
 function convertToFrenchIfNeeded(text) {
     if (!text || typeof text !== 'string')
@@ -97,10 +95,10 @@ ${truncatedRec}
 }
 async function testDiscordFormatting() {
     console.log('🚀 Test du formatage Discord avec traduction française...\n');
-    const agent = new RougePulseAgent_1.RougePulseAgent();
+    const agent = new RougePulseAgent();
     try {
         console.log("🔍 Lancement de l'analyse RougePulse...");
-        const result = await agent.analyzeEconomicEvents();
+        const result = await agent.analyzeMarketSentiment();
         if ('error' in result) {
             console.log('❌ Erreur:', result.error);
             return;
@@ -128,3 +126,4 @@ async function testDiscordFormatting() {
     }
 }
 testDiscordFormatting();
+//# sourceMappingURL=test_discord_formatting.js.map
