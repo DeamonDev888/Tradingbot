@@ -1,0 +1,17 @@
+Starting debug scraper v2...
+
+Testing Yahoo Finance...
+Yahoo Finance committed.
+Yahoo: Consent page detected.
+Yahoo: Agree button visible. Clicking...
+Yahoo: Navigation after consent complete.
+Title: CBOE Volatility Index (^VIX) Charts, Data & News - Yahoo Finance
+Yahoo: Price selector timeout.
+Yahoo: Found price element. Content: 90500.85
+
+Testing MarketWatch...
+MarketWatch committed.
+Title: marketwatch.com
+MarketWatch: Price element NOT found with any selector.
+Body start: 
+Browser closed.

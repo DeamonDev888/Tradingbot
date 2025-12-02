@@ -1,0 +1,19 @@
+Starting debug scraper...
+
+Testing MarketWatch...
+MarketWatch committed.
+Title: marketwatch.com
+Price element NOT found.
+Body start: 
+
+Testing Investing.com...
+Investing.com committed.
+Title: VIX Index | CBOE Volatility (indexcboe: vix) - Investing.com
+Found price element. Content: 17.19
+
+Testing Yahoo Finance...
+Yahoo Finance committed.
+Title: Yahoo is part of the Yahoo family of brands.
+Price element NOT found.
+Body start: guce guce  Yahoo is part of the Yahoo family of brands.  When you use our sites and apps, we use cookies to: provide our sites and apps to you authenticate users, apply security measures, and prevent 
+Browser closed.
