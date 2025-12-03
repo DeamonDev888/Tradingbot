@@ -1,16 +1,234 @@
+# Dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
 .env
-brainstorm.md
-commandes_pg_sql.md
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Discord configuration and keys
+*discord*
+*discord-bot*
+!discord_bot/README.md
+DiscordToken*
+discord_token*
+BOT_TOKEN*
+bot_token*
+DISCORD_TOKEN*
+APPLICATION_ID*
+CLIENT_ID*
+GUILD_ID*
+DISCORD_*
+*_DISCORD
+
+# API Keys and sensitive configuration
+*api_key*
+*apikey*
+*API_KEY*
+*secret*
+*SECRET*
+*token*
+*TOKEN*
+config/secrets.*
+config/credentials.*
+secrets.json
+credentials.json
+api_keys.*
+private_key.*
+*.pem
+*.key
+*.p12
+
+# OPML files (feed configurations)
+*.opml
+
+# Member profiles and personal data
+member_profiles/
+profiles/
+members/
+*_profile*
+*_member*
+
+# Financial data and sensitive information
+*.csv
+*.xlsx
+*.xls
+financial_data.*
+market_data.*
+portfolio.*
+trading_*
+investment_*
+accounts.*
+balance.*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Cache and temporary files
 cache/
+tmp/
+temp/
+*.tmp
+*.temp
 kilocode_cache_*.md
 temp_prompt_*.txt
-*.exe
-*.zip
-dist/
+
+# Logs
+logs/
+*.log
+pipeline_*.txt
+filter_log.txt
+debug_output.txt
+ingestion_errors.log
+scraper_debug.log
+pipeline_log.txt
+verification_output.txt
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration and credentials (keep non-sensitive docs)
+brainstorm.md
+commandes_pg_sql.md
+
+# Certificates and encryption
+*.crt
+*.cert
+*.ca-bundle
+*.pem
+*.key
+*.p12
+*.pfx
+ssl/
+certs/
+certificates/
+
+# Data files and exports (allow documentation)
+*.json
+!package.json
+!tsconfig.json
+!assets/**/*.json
+!README*.json
+!docs/**/*.json
+!*.config.json
 x_news_items*.json
 published_data_*.json
 sentiment_analysis.json
 news_*.json
-pipeline_*.txt
-filter_log.txt
+results.json
+working-sources.json
+verification_results.json
+production_published_data.json
+simple_published.json
+
+# Screenshots and images (exclude assets folder)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+bls_*.png
+!assets/
+!assets/**/*
+!README-*.png
+!README-*.jpg
+!README-*.jpeg
+!README-*.gif
+!README-*.svg
+
+# Archives and executables
+*.exe
+*.zip
+*.tar.gz
+*.rar
+
+# PID files
+*.pid
+bot.pid
+
+# Backup files
+*.bak
+*.backup
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/

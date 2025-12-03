@@ -1,7 +1,8 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="1.0">
 <head>
-<title>Mes Comptes X RSS via xcancel.com</title>
+<title>Mes Comptes X RSS via xcancel.com (Enriched Dec 2025)</title>
 </head>
 <body>
 <outline text="The Spectator Index" type="rss" xmlUrl="https://xcancel.com/spectatorindex/rss" htmlUrl="https://x.com/spectatorindex"/>
@@ -294,5 +295,26 @@
 <outline text="Financial Times" type="rss" xmlUrl="https://xcancel.com/FinancialTimes/rss" htmlUrl="https://x.com/FinancialTimes"/>
 <outline text="LiveSquawk" type="rss" xmlUrl="https://xcancel.com/LiveSquawk/rss" htmlUrl="https://x.com/LiveSquawk"/>
 <outline text="Newsquawk" type="rss" xmlUrl="https://xcancel.com/Newsquawk/rss" htmlUrl="https://x.com/Newsquawk"/>
+<!-- Nouveaux ajouts enrichis Finance (top influencers 2025) -->
+<outline text="Ben Carlson - A Wealth of Common Sense" type="rss" xmlUrl="https://xcancel.com/awealthofcs/rss" htmlUrl="https://x.com/awealthofcs"/>
+<outline text="Michael Batnick - Ritholtz Wealth" type="rss" xmlUrl="https://xcancel.com/michaelbatnick/rss" htmlUrl="https://x.com/michaelbatnick"/>
+<outline text="Sallie Krawcheck - Ellevest CEO" type="rss" xmlUrl="https://xcancel.com/SallieKrawcheck/rss" htmlUrl="https://x.com/SallieKrawcheck"/>
+<outline text="David Faber - CNBC Anchor" type="rss" xmlUrl="https://xcancel.com/davidfaber/rss" htmlUrl="https://x.com/davidfaber"/>
+<outline text="CNBC Official" type="rss" xmlUrl="https://xcancel.com/CNBC/rss" htmlUrl="https://x.com/CNBC"/>
+<outline text="Barry Ritholtz - Ritholtz Wealth CEO" type="rss" xmlUrl="https://xcancel.com/ritholtz/rss" htmlUrl="https://x.com/ritholtz"/>
+<outline text="Matt Levine - Bloomberg Columnist" type="rss" xmlUrl="https://xcancel.com/matt_levine/rss" htmlUrl="https://x.com/matt_levine"/>
+<outline text="Forbes Magazine" type="rss" xmlUrl="https://xcancel.com/Forbes/rss" htmlUrl="https://x.com/Forbes"/>
+<outline text="St. Louis Fed" type="rss" xmlUrl="https://xcancel.com/stlouisfed/rss" htmlUrl="https://x.com/stlouisfed"/>
+<outline text="Jason Zweig - WSJ Columnist" type="rss" xmlUrl="https://xcancel.com/jasonzweigwsj/rss" htmlUrl="https://x.com/jasonzweigwsj"/>
+<outline text="Aswath Damodaran - NYU Finance Prof" type="rss" xmlUrl="https://xcancel.com/aswathdamodaran/rss" htmlUrl="https://x.com/aswathdamodaran"/>
+<outline text="Joshua Brown - Ritholtz CEO" type="rss" xmlUrl="https://xcancel.com/joshuabrown/rss" htmlUrl="https://x.com/joshuabrown"/>
+<outline text="Morgan Stanley" type="rss" xmlUrl="https://xcancel.com/MorganStanley/rss" htmlUrl="https://x.com/MorganStanley"/>
+<outline text="Goldman Sachs" type="rss" xmlUrl="https://xcancel.com/GoldmanSachs/rss" htmlUrl="https://x.com/GoldmanSachs"/>
+<outline text="BlackRock" type="rss" xmlUrl="https://xcancel.com/blackrock/rss" htmlUrl="https://x.com/blackrock"/>
+<outline text="Ray Dalio - Bridgewater Founder" type="rss" xmlUrl="https://xcancel.com/raydalio/rss" htmlUrl="https://x.com/raydalio"/>
+<outline text="Morningstar" type="rss" xmlUrl="https://xcancel.com/morningstar/rss" htmlUrl="https://x.com/morningstar"/>
+<outline text="Investing Swede - Anonymous Investor" type="rss" xmlUrl="https://xcancel.com/investingswede/rss" htmlUrl="https://x.com/investingswede"/>
+<outline text="The Economist" type="rss" xmlUrl="https://xcancel.com/TheEconomist/rss" htmlUrl="https://x.com/TheEconomist"/>
+<outline text="Bloomberg Business" type="rss" xmlUrl="https://xcancel.com/business/rss" htmlUrl="https://x.com/business"/>
 </body>
 </opml>

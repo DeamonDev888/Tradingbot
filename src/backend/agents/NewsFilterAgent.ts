@@ -5,7 +5,8 @@ import fs from 'fs/promises';
 import pathModule from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { XScraperService, XNewsItem, XScrapingResult } from '../../x_scraper/index.js';
+import { XScraperService } from '../../x_scraper/XScraperService.js';
+import { XNewsItem, XScrapingResult } from '../../x_scraper/interfaces.js';
 
 dotenv.config();
 

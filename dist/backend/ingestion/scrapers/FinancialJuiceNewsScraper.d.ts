@@ -9,6 +9,10 @@ export declare class FinancialJuiceNewsScraper {
      */
     private scrapeArticleContent;
     /**
+     * Scores an RSS item based on financial keywords for better ranking.
+     */
+    private scoreItem;
+    /**
      * Récupère les news de FinancialJuice via RSS
      * URL: https://www.financialjuice.com/feed.ashx?xy=rss
      */

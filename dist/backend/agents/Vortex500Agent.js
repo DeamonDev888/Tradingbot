@@ -495,13 +495,14 @@ RULES:
         const cleanForDisplay = (text) => {
             return String(text)
                 .replace(/confidentiel/g, 'confidentiel')
-                .replace(/œ/g, 'oe')
-                .replace(/æ/g, 'ae')
-                .replace(/à/g, 'a')
-                .replace(/é/g, 'e')
-                .replace(/è/g, 'e')
-                .replace(/ù/g, 'u')
-                .replace(/[^a-zA-Z0-9\s.!?]/g, ''); // Garder seulement lettres, chiffres, espaces et ponctuation simple
+                // We want to KEEP French accents for premium quality
+                // .replace(/œ/g, 'oe') // Optional: keep or replace ligatures depending on preference, but standard accents must stay
+                // .replace(/æ/g, 'ae')
+                // .replace(/à/g, 'a') // REMOVED: Do not strip accents
+                // .replace(/é/g, 'e') // REMOVED: Do not strip accents
+                // .replace(/è/g, 'e') // REMOVED: Do not strip accents
+                // .replace(/ù/g, 'u') // REMOVED: Do not strip accents
+                .replace(/[^a-zA-Z0-9\s.!?éèàùâêîôûëïüçÉÈÀÙÂÊÎÔÛËÏÜÇ:,\-'"()%]/g, ''); // Allow French chars and common punctuation
         };
         return {
             sentiment: override.sentiment &&

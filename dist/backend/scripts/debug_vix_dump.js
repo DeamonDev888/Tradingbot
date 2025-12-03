@@ -35,7 +35,9 @@ async function dumpHtml() {
                 await page.waitForNavigation({ timeout: 30000, waitUntil: 'domcontentloaded' });
             }
         }
-        catch (e) { }
+        catch {
+            // Ignore consent popup errors
+        }
         await page.waitForTimeout(5000);
         const yahooHtml = await page.content();
         fs.writeFileSync('yahoo_dump.html', yahooHtml);

@@ -1,4 +1,12 @@
 import { BaseAgentSimple } from './BaseAgentSimple';
+export interface NewsItem {
+    id: string;
+    title: string;
+    content: string;
+    source: string;
+    url: string;
+    published_at: Date;
+}
 export declare class RougePulseAgent extends BaseAgentSimple {
     private dbService;
     private rpDbService;
@@ -15,6 +23,38 @@ export declare class RougePulseAgent extends BaseAgentSimple {
      * Vérifie si c'est un indicateur clé qui fait bouger le marché
      */
     private isKeyMarketIndicator;
+    /**
+     * Identifie les événements qui vont vraiment faire bouger le marché
+     */
+    private identifyMarketMovers;
+    /**
+     * Génère les alertes critiques
+     */
+    private generateCriticalAlerts;
+    /**
+     * Niveau d'urgence
+     */
+    private getUrgencyLevel;
+    /**
+     * Recommandation basée sur l'événement
+     */
+    private getRecommendation;
+    /**
+     * Calcule le changement entre prévision et précédent
+     */
+    private calculateForecastChange;
+    /**
+     * Calcule le potentiel de surprise
+     */
+    private calculateSurprisePotential;
+    /**
+     * Explique pourquoi un événement est critique
+     */
+    private explainWhyCritical;
+    /**
+     * Calcule un score de volatilité global
+     */
+    private calculateVolatilityScore;
     /**
      * Formatage avancé avec score et alertes
      */
@@ -36,41 +76,13 @@ export declare class RougePulseAgent extends BaseAgentSimple {
      */
     private expectMarketMovement;
     /**
-     * Calcule le changement entre prévision et précédent
-     */
-    private calculateForecastChange;
-    /**
-     * Calcule le potentiel de surprise
-     */
-    private calculateSurprisePotential;
-    /**
-     * Identifie les événements qui vont vraiment faire bouger le marché
-     */
-    private identifyMarketMovers;
-    /**
-     * Explique pourquoi un événement est critique
-     */
-    private explainWhyCritical;
-    /**
-     * Génère les alertes critiques
-     */
-    private generateCriticalAlerts;
-    /**
-     * Niveau d'urgence
-     */
-    private getUrgencyLevel;
-    /**
-     * Recommandation basée sur l'événement
-     */
-    private getRecommendation;
-    /**
      * Génère un résumé avancé avec mise en évidence
      */
     private generateAdvancedSummary;
     /**
-     * Calcule un score de volatilité global
+     * Génère un résumé pour un planning plus court
      */
-    private calculateVolatilityScore;
+    private generateCalendarSummary;
     /**
      * Groupe les événements par importance et par jour
      */
@@ -79,7 +91,6 @@ export declare class RougePulseAgent extends BaseAgentSimple {
      * Alertes pour les prochaines 24h
      */
     private getNext24HoursAlerts;
-    private generateCalendarSummary;
     close(): Promise<void>;
 }
 //# sourceMappingURL=RougePulseAgent.d.ts.map

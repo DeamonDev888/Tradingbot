@@ -9,6 +9,10 @@ export declare class ZeroHedgeNewsScraper {
      */
     private scrapeArticleContent;
     /**
+     * Scores an RSS item based on financial keywords for better ranking.
+     */
+    private scoreItem;
+    /**
      * Récupère les news via RSS pour ZeroHedge (Beaucoup plus fiable que le scraping HTML)
      */
     fetchNews(): Promise<NewsItem[]>;

@@ -189,6 +189,9 @@ export class XScraperService {
             published_at TIMESTAMP WITH TIME ZONE,
             created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
             updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+            processing_status VARCHAR(50),
+            relevance_score INTEGER,
+            published_to_discord BOOLEAN DEFAULT FALSE,
             UNIQUE(title, source, published_at)
         );
       `);
@@ -202,15 +205,36 @@ export class XScraperService {
           const category = this.classifyNewsCategory(item.title, item.content || '', item.source);
           categoryCounts[category] = (categoryCounts[category] || 0) + 1;
 
+          // Calculate dynamic relevance score
+          const text = `${item.title} ${item.content || ''}`.toLowerCase();
+          let matchCount = 0;
+          const allKeywords = [
+            'ai', 'artificial intelligence', 'machine learning', 'llm', 'gpt', 'openai', // AI
+            'finance', 'market', 'stock', 'trading', 'crypto', 'bitcoin', 'economy', // Finance
+            'tech', 'software', 'developer', 'nvidia', 'amd', 'google', 'microsoft', // Tech
+            'robot', 'tesla', 'optimus' // Robotics
+          ];
+          
+          allKeywords.forEach(k => {
+             if (text.includes(k)) matchCount++;
+          });
+
+          // Base score 6, +1 for every 2 keywords found, max 9
+          let dynamicScore = 6 + Math.floor(matchCount / 2);
+          if (dynamicScore > 9) dynamicScore = 9;
+          if (matchCount === 0) dynamicScore = 5; // Low relevance if no keywords
+
           await client.query(
             `
-                INSERT INTO news_items (title, source, url, content, sentiment, category, published_at)
-                VALUES ($1, $2, $3, $4, $5, $6, $7)
+                INSERT INTO news_items (title, source, url, content, sentiment, category, published_at, processing_status, relevance_score, published_to_discord)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, FALSE)
                 ON CONFLICT (title, source, published_at)
                 DO UPDATE SET
                   content = EXCLUDED.content,
                   url = EXCLUDED.url,
                   category = EXCLUDED.category,
+                  processing_status = EXCLUDED.processing_status,
+                  relevance_score = GREATEST(news_items.relevance_score, EXCLUDED.relevance_score),
                   updated_at = NOW()
                 WHERE
                   news_items.content IS NULL
@@ -227,6 +251,8 @@ export class XScraperService {
               item.sentiment || 'neutral',
               category,
               item.published_at,
+              'processed',
+              dynamicScore,
             ]
           );
           savedCount++;
@@ -280,9 +306,9 @@ export class XScraperService {
 // Standalone execution
 console.log('Checking execution context:', import.meta.url, process.argv[1]);
 // Convert process.argv[1] to file URL format for comparison if needed, or just loosely check
-const isRunningDirectly = import.meta.url === `file://${process.argv[1]}` ||
-                          process.argv[1].endsWith('XScraperService.ts') ||
-                          process.argv[1].endsWith('XScraperService_fixed.ts');
+const isRunningDirectly = (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) ||
+                          (process.argv[1] && process.argv[1].endsWith('XScraperService.ts')) ||
+                          (process.argv[1] && process.argv[1].endsWith('XScraperService_fixed.ts'));
 
 if (isRunningDirectly) {
   const service = new XScraperService();

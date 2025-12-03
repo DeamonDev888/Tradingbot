@@ -11,13 +11,16 @@ export declare class NewsAggregator {
     private zeroHedgeScraper;
     private cnbcScraper;
     private financialJuiceScraper;
-    private xFeedsScraper;
     private fredScraper;
-    private finnhubScraper;
+    private finnhubNewsScraper;
     private cboeScraper;
     private blsScraper;
     private pool;
     constructor();
+    /**
+     * Initialise la connexion à la base de données et vérifie que tout est prêt
+     */
+    init(): Promise<void>;
     /**
      * Récupère les news via RSS pour ZeroHedge
      */
@@ -32,8 +35,8 @@ export declare class NewsAggregator {
     fetchFinancialJuice(): Promise<NewsItem[]>;
     /**
      * Récupère les news des feeds X via OPML
+     * REMOVED - Use the separate X scraper module at src/x_scraper/
      */
-    fetchXFeedsFromOpml(): Promise<NewsItem[]>;
     /**
      * Récupère les news via Finnhub
      */

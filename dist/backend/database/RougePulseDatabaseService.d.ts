@@ -26,6 +26,7 @@ export declare class RougePulseDatabaseService {
     getLatestAnalysis(): Promise<RougePulseAnalysis | null>;
     getAnalysisById(id: string): Promise<RougePulseAnalysis | null>;
     getRecentAnalyses(daysBack?: number): Promise<RougePulseAnalysis[]>;
+    getEconomicEvents(startDate: Date, endDate: Date): Promise<any[]>;
     close(): Promise<void>;
 }
 //# sourceMappingURL=RougePulseDatabaseService.d.ts.map

@@ -1,110 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="1.0">
 <head>
-<title>Full 100 X RSS via xcancel.com + lightbrd.com fixes (Nov 2025)</title>
+<title>Full 100+ X RSS via xcancel.com + lightbrd.com fixes (Dec 2025 - Full Enriched IA, Dev & Bench)</title>
 </head>
 <body>
-  <outline text="IA" title="IA Feeds" type="folder">
-    <outline text="Kate Crawford (katecrawford)" title="Kate Crawford (katecrawford)" type="rss" xmlUrl="https://xcancel.com/katecrawford/rss" htmlUrl="https://x.com/katecrawford" />
-    <outline text="Geoffrey Hinton (geoffreyhinton)" title="Geoffrey Hinton (geoffreyhinton)" type="rss" xmlUrl="https://xcancel.com/geoffreyhinton/rss" htmlUrl="https://x.com/geoffreyhinton" />
-    <outline text="Soumith Chintala (soumithchintala)" title="Soumith Chintala (soumithchintala)" type="rss" xmlUrl="https://xcancel.com/soumithchintala/rss" htmlUrl="https://x.com/soumithchintala" />
-    <outline text="Antonio Grasso (antgrasso)" title="Antonio Grasso (antgrasso)" type="rss" xmlUrl="https://xcancel.com/antgrasso/rss" htmlUrl="https://x.com/antgrasso" />
-    <outline text="Rowan Cheung (rowancheung)" title="Rowan Cheung (rowancheung)" type="rss" xmlUrl="https://xcancel.com/rowancheung/rss" htmlUrl="https://x.com/rowancheung" />
-    <outline text="Kirk Borne (KirkDBorne)" title="Kirk Borne (KirkDBorne)" type="rss" xmlUrl="https://xcancel.com/KirkDBorne/rss" htmlUrl="https://x.com/KirkDBorne" />
-    <outline text="Demis Hassabis (demishassabis)" title="Demis Hassabis (demishassabis)" type="rss" xmlUrl="https://xcancel.com/demishassabis/rss" htmlUrl="https://x.com/demishassabis" />
-    <outline text="Sam Altman (sama)" title="Sam Altman (sama)" type="rss" xmlUrl="https://xcancel.com/sama/rss" htmlUrl="https://x.com/sama" />
-    <outline text="Bernard Marr (bernardmarr)" title="Bernard Marr (bernardmarr)" type="rss" xmlUrl="https://xcancel.com/bernardmarr/rss" htmlUrl="https://x.com/bernardmarr" />
-    <outline text="Varun Mayya (waitin4agi_)" title="Varun Mayya (waitin4agi_)" type="rss" xmlUrl="https://xcancel.com/waitin4agi_/rss" htmlUrl="https://x.com/waitin4agi_" />
-    <outline text="Andrew Ng (AndrewYNg)" title="Andrew Ng (AndrewYNg)" type="rss" xmlUrl="https://xcancel.com/AndrewYNg/rss" htmlUrl="https://x.com/AndrewYNg" />
-    <outline text="Andrej Karpathy (karpathy)" title="Andrej Karpathy (karpathy)" type="rss" xmlUrl="https://xcancel.com/karpathy/rss" htmlUrl="https://x.com/karpathy" />
-    <outline text="François Chollet (fchollet)" title="François Chollet (fchollet)" type="rss" xmlUrl="https://xcancel.com/fchollet/rss" htmlUrl="https://x.com/fchollet" />
-    <outline text="Lex Fridman (lexfridman)" title="Lex Fridman (lexfridman)" type="rss" xmlUrl="https://xcancel.com/lexfridman/rss" htmlUrl="https://x.com/lexfridman" />
-    <outline text="Kai-Fu Lee (kaifulee)" title="Kai-Fu Lee (kaifulee)" type="rss" xmlUrl="https://xcancel.com/kaifulee/rss" htmlUrl="https://x.com/kaifulee" />
-    <outline text="John Carmack (ID_AA_Carmack)" title="John Carmack (ID_AA_Carmack)" type="rss" xmlUrl="https://xcancel.com/ID_AA_Carmack/rss" htmlUrl="https://x.com/ID_AA_Carmack" />
-    <outline text="Sean Gardner (2morrowknight)" title="Sean Gardner (2morrowknight)" type="rss" xmlUrl="https://xcancel.com/2morrowknight/rss" htmlUrl="https://x.com/2morrowknight" />
-    <outline text="Yann LeCun (ylecun)" title="Yann LeCun (ylecun)" type="rss" xmlUrl="https://xcancel.com/ylecun/rss" htmlUrl="https://x.com/ylecun" />
-    <outline text="Robert Scoble (Scobleizer)" title="Robert Scoble (Scobleizer)" type="rss" xmlUrl="https://xcancel.com/Scobleizer/rss" htmlUrl="https://x.com/Scobleizer" />
-    <outline text="Fei-Fei Li (drfeifei)" title="Fei-Fei Li (drfeifei)" type="rss" xmlUrl="https://xcancel.com/drfeifei/rss" htmlUrl="https://x.com/drfeifei" />
-    <outline text="Ronald van Loon (Ronald_vanLoon)" title="Ronald van Loon (Ronald_vanLoon)" type="rss" xmlUrl="https://xcancel.com/Ronald_vanLoon/rss" htmlUrl="https://x.com/Ronald_vanLoon" />
-    <outline text="Tamara McCleary (TamaraMcCleary)" title="Tamara McCleary (TamaraMcCleary)" type="rss" xmlUrl="https://xcancel.com/TamaraMcCleary/rss" htmlUrl="https://x.com/TamaraMcCleary" />
-    <outline text="Ian Goodfellow (goodfellow_ian)" title="Ian Goodfellow (goodfellow_ian)" type="rss" xmlUrl="https://xcancel.com/goodfellow_ian/rss" htmlUrl="https://x.com/goodfellow_ian" />
-    <outline text="Jeff Dean (jeffdean)" title="Jeff Dean (jeffdean)" type="rss" xmlUrl="https://xcancel.com/jeffdean/rss" htmlUrl="https://x.com/jeffdean" />
-    <outline text="Erik Brynjolfsson (erikbryn)" title="Erik Brynjolfsson (erikbryn)" type="rss" xmlUrl="https://xcancel.com/erikbryn/rss" htmlUrl="https://x.com/erikbryn" />
-    <outline text="Timnit Gebru (timnitgebru)" title="Timnit Gebru (timnitgebru)" type="rss" xmlUrl="https://xcancel.com/timnitgebru/rss" htmlUrl="https://x.com/timnitgebru" />
-    <outline text="Oriol Vinyals (oriolvinyalsml)" title="Oriol Vinyals (oriolvinyalsml)" type="rss" xmlUrl="https://xcancel.com/oriolvinyalsml/rss" htmlUrl="https://x.com/oriolvinyalsml" />
-    <outline text="Gary Marcus (GaryMarcus)" title="Gary Marcus (GaryMarcus)" type="rss" xmlUrl="https://xcancel.com/GaryMarcus/rss" htmlUrl="https://x.com/GaryMarcus" />
-    <outline text="Nando de Freitas (NandoDF)" title="Nando de Freitas (NandoDF)" type="rss" xmlUrl="https://xcancel.com/NandoDF/rss" htmlUrl="https://x.com/NandoDF" />
-    <outline text="Randy Olson (randal_olson)" title="Randy Olson (randal_olson)" type="rss" xmlUrl="https://xcancel.com/randal_olson/rss" htmlUrl="https://x.com/randal_olson" />
-    <outline text="Monica Rogati (mrogati)" title="Monica Rogati (mrogati)" type="rss" xmlUrl="https://xcancel.com/mrogati/rss" htmlUrl="https://x.com/mrogati" />
-    <outline text="Harold Sinnott (HaroldSinnott)" title="Harold Sinnott (HaroldSinnott)" type="rss" xmlUrl="https://xcancel.com/HaroldSinnott/rss" htmlUrl="https://x.com/HaroldSinnott" />
-    <outline text="Helen Yu (YuHelenYu)" title="Helen Yu (YuHelenYu)" type="rss" xmlUrl="https://xcancel.com/YuHelenYu/rss" htmlUrl="https://x.com/YuHelenYu" />
-    <outline text="Martin Ford (mfordfuture)" title="Martin Ford (mfordfuture)" type="rss" xmlUrl="https://xcancel.com/mfordfuture/rss" htmlUrl="https://x.com/mfordfuture" />
-    <outline text="Marcus Borba (marcusborba)" title="Marcus Borba (marcusborba)" type="rss" xmlUrl="https://xcancel.com/marcusborba/rss" htmlUrl="https://x.com/marcusborba" />
-    <outline text="Nicolas Babin (Nicochan33)" title="Nicolas Babin (Nicochan33)" type="rss" xmlUrl="https://xcancel.com/Nicochan33/rss" htmlUrl="https://x.com/Nicochan33" />
-    <outline text="Chris Messina (chrismessina)" title="Chris Messina (chrismessina)" type="rss" xmlUrl="https://lightbrd.com/chrismessina/rss" htmlUrl="https://x.com/chrismessina" />
-  </outline>
-  <outline text="Code" title="Code Feeds" type="folder">
-    <outline text="Jack Forge (TheJackForge)" title="Jack Forge (TheJackForge)" type="rss" xmlUrl="https://xcancel.com/TheJackForge/rss" htmlUrl="https://x.com/TheJackForge" />
-    <outline text="Gavin Wood (gavofyork)" title="Gavin Wood (gavofyork)" type="rss" xmlUrl="https://xcancel.com/gavofyork/rss" htmlUrl="https://x.com/gavofyork" />
-    <outline text="Greg Brockman (gdb)" title="Greg Brockman (gdb)" type="rss" xmlUrl="https://xcancel.com/gdb/rss" htmlUrl="https://x.com/gdb" />
-    <outline text="Gergely Orosz (GergelyOrosz)" title="Gergely Orosz (GergelyOrosz)" type="rss" xmlUrl="https://xcancel.com/GergelyOrosz/rss" htmlUrl="https://x.com/GergelyOrosz" />
-    <outline text="Pieter Levels (levelsio)" title="Pieter Levels (levelsio)" type="rss" xmlUrl="https://xcancel.com/levelsio/rss" htmlUrl="https://x.com/levelsio" />
-  </outline>
-  <outline text="Dev" title="Dev Feeds" type="folder">
-    <outline text="Jen Simmons (jensimmons)" title="Jen Simmons (jensimmons)" type="rss" xmlUrl="https://xcancel.com/jensimmons/rss" htmlUrl="https://x.com/jensimmons" />
-    <outline text="John Resig (jeresig)" title="John Resig (jeresig)" type="rss" xmlUrl="https://xcancel.com/jeresig/rss" htmlUrl="https://x.com/jeresig" />
-    <outline text="The Net Ninja (thenetninjauk)" title="The Net Ninja (thenetninjauk)" type="rss" xmlUrl="https://xcancel.com/thenetninjauk/rss" htmlUrl="https://x.com/thenetninjauk" />
-    <outline text="Web Dev Simplified (DevSimplified)" title="Web Dev Simplified (DevSimplified)" type="rss" xmlUrl="https://xcancel.com/DevSimplified/rss" htmlUrl="https://x.com/DevSimplified" />
-    <outline text="Traversy Media (traversymedia)" title="Traversy Media (traversymedia)" type="rss" xmlUrl="https://xcancel.com/traversymedia/rss" htmlUrl="https://x.com/traversymedia" />
-    <outline text="Sara Soueidan (SaraSoueidan)" title="Sara Soueidan (SaraSoueidan)" type="rss" xmlUrl="https://xcancel.com/SaraSoueidan/rss" htmlUrl="https://x.com/SaraSoueidan" />
-    <outline text="Addy Osmani (addyosmani)" title="Addy Osmani (addyosmani)" type="rss" xmlUrl="https://xcancel.com/addyosmani/rss" htmlUrl="https://x.com/addyosmani" />
-    <outline text="Jason Fried (jasonfried)" title="Jason Fried (jasonfried)" type="rss" xmlUrl="https://xcancel.com/jasonfried/rss" htmlUrl="https://x.com/jasonfried" />
-    <outline text="Brendan Eich (BrendanEich)" title="Brendan Eich (BrendanEich)" type="rss" xmlUrl="https://xcancel.com/BrendanEich/rss" htmlUrl="https://x.com/BrendanEich" />
-    <outline text="Scott Hanselman (shanselman)" title="Scott Hanselman (shanselman)" type="rss" xmlUrl="https://xcancel.com/shanselman/rss" htmlUrl="https://x.com/shanselman" />
-    <outline text="Evan You (youyuxi)" title="Evan You (youyuxi)" type="rss" xmlUrl="https://xcancel.com/youyuxi/rss" htmlUrl="https://x.com/youyuxi" />
-    <outline text="Una Kravets (Una)" title="Una Kravets (Una)" type="rss" xmlUrl="https://xcancel.com/Una/rss" htmlUrl="https://x.com/Una" />
-    <outline text="Wes Bos (wesbos)" title="Wes Bos (wesbos)" type="rss" xmlUrl="https://xcancel.com/wesbos/rss" htmlUrl="https://x.com/wesbos" />
-    <outline text="Dan Abramov (dan_abramov)" title="Dan Abramov (dan_abramov)" type="rss" xmlUrl="https://lightbrd.com/dan_abramov/rss" htmlUrl="https://x.com/dan_abramov" />
-    <outline text="Jeff Atwood (codinghorror)" title="Jeff Atwood (codinghorror)" type="rss" xmlUrl="https://xcancel.com/codinghorror/rss" htmlUrl="https://x.com/codinghorror" />
-    <outline text="The Coding Train (thecodingtrain)" title="The Coding Train (thecodingtrain)" type="rss" xmlUrl="https://xcancel.com/thecodingtrain/rss" htmlUrl="https://x.com/thecodingtrain" />
-    <outline text="Corey Schafer (CoreyMSchafer)" title="Corey Schafer (CoreyMSchafer)" type="rss" xmlUrl="https://xcancel.com/CoreyMSchafer/rss" htmlUrl="https://x.com/CoreyMSchafer" />
-    <outline text="Programming with Mosh (moshhamedani)" title="Programming with Mosh (moshhamedani)" type="rss" xmlUrl="https://xcancel.com/moshhamedani/rss" htmlUrl="https://x.com/moshhamedani" />
-    <outline text="Jeremy Howard (jeremyphoward)" title="Jeremy Howard (jeremyphoward)" type="rss" xmlUrl="https://xcancel.com/jeremyphoward/rss" htmlUrl="https://x.com/jeremyphoward" />
-    <outline text="Logan Kilpatrick (OfficialLoganK)" title="Logan Kilpatrick (OfficialLoganK)" type="rss" xmlUrl="https://xcancel.com/OfficialLoganK/rss" htmlUrl="https://x.com/OfficialLoganK" />
-  </outline>
-  <outline text="Finance" title="Finance Feeds" type="folder">
-    <outline text="Satya Nadella (satyanadella)" title="Satya Nadella (satyanadella)" type="rss" xmlUrl="https://xcancel.com/satyanadella/rss" htmlUrl="https://x.com/satyanadella" />
-    <outline text="Aravind Srinivas (AravSrinivas)" title="Aravind Srinivas (AravSrinivas)" type="rss" xmlUrl="https://xcancel.com/AravSrinivas/rss" htmlUrl="https://x.com/AravSrinivas" />
-    <outline text="Allie K. Miller (alliekmiller)" title="Allie K. Miller (alliekmiller)" type="rss" xmlUrl="https://xcancel.com/alliekmiller/rss" htmlUrl="https://x.com/alliekmiller" />
-    <outline text="Bojan Tunguz (tunguz)" title="Bojan Tunguz (tunguz)" type="rss" xmlUrl="https://xcancel.com/tunguz/rss" htmlUrl="https://x.com/tunguz" />
-    <outline text="Sarah Guo (saranormous)" title="Sarah Guo (saranormous)" type="rss" xmlUrl="https://xcancel.com/saranormous/rss" htmlUrl="https://x.com/saranormous" />
-    <outline text="Justine Moore (venturetwins)" title="Justine Moore (venturetwins)" type="rss" xmlUrl="https://xcancel.com/venturetwins/rss" htmlUrl="https://x.com/venturetwins" />
-    <outline text="Nathan Benaich (nathanbenaich)" title="Nathan Benaich (nathanbenaich)" type="rss" xmlUrl="https://xcancel.com/nathanbenaich/rss" htmlUrl="https://x.com/nathanbenaich" />
-    <outline text="Pedro Domingos (pmddomingos)" title="Pedro Domingos (pmddomingos)" type="rss" xmlUrl="https://xcancel.com/pmddomingos/rss" htmlUrl="https://x.com/pmddomingos" />
-    <outline text="Vin Vashishta (v_vashishta)" title="Vin Vashishta (v_vashishta)" type="rss" xmlUrl="https://xcancel.com/v_vashishta/rss" htmlUrl="https://x.com/v_vashishta" />
-    <outline text="Alexandr Wang (alexandr_wang)" title="Alexandr Wang (alexandr_wang)" type="rss" xmlUrl="https://xcancel.com/alexandr_wang/rss" htmlUrl="https://x.com/alexandr_wang" />
-    <outline text="Sebastian Raschka (rasbt)" title="Sebastian Raschka (rasbt)" type="rss" xmlUrl="https://xcancel.com/rasbt/rss" htmlUrl="https://x.com/rasbt" />
-    <outline text="Jim Fan (drjimfan)" title="Jim Fan (drjimfan)" type="rss" xmlUrl="https://xcancel.com/drjimfan/rss" htmlUrl="https://x.com/drjimfan" />
-    <outline text="Wes Roth (wesroth)" title="Wes Roth (wesroth)" type="rss" xmlUrl="https://xcancel.com/wesroth/rss" htmlUrl="https://x.com/wesroth" />
-    <outline text="Harper Carroll (harpercarrollai)" title="Harper Carroll (harpercarrollai)" type="rss" xmlUrl="https://xcancel.com/harpercarrollai/rss" htmlUrl="https://x.com/harpercarrollai" />
-    <outline text="Dylan Field (zoink)" title="Dylan Field (zoink)" type="rss" xmlUrl="https://xcancel.com/zoink/rss" htmlUrl="https://x.com/zoink" />
-  </outline>
-  <outline text="Bench" title="Bench Feeds" type="folder">
-    <outline text="NVIDIA (nvidia)" title="NVIDIA (nvidia)" type="rss" xmlUrl="https://xcancel.com/nvidia/rss" htmlUrl="https://x.com/nvidia" />
-    <outline text="OpenAI (OpenAI)" title="OpenAI (OpenAI)" type="rss" xmlUrl="https://xcancel.com/OpenAI/rss" htmlUrl="https://x.com/OpenAI" />
-    <outline text="DeepMind (DeepMind)" title="DeepMind (DeepMind)" type="rss" xmlUrl="https://xcancel.com/DeepMind/rss" htmlUrl="https://x.com/DeepMind" />
-    <outline text="Google AI (GoogleAI)" title="Google AI (GoogleAI)" type="rss" xmlUrl="https://xcancel.com/GoogleAI/rss" htmlUrl="https://x.com/GoogleAI" />
-    <outline text="Anthropic (AnthropicAI)" title="Anthropic (AnthropicAI)" type="rss" xmlUrl="https://xcancel.com/AnthropicAI/rss" htmlUrl="https://x.com/AnthropicAI" />
-    <outline text="Groq Inc (GroqInc)" title="Groq Inc (GroqInc)" type="rss" xmlUrl="https://xcancel.com/GroqInc/rss" htmlUrl="https://x.com/GroqInc" />
-    <outline text="Meta AI (MetaAI)" title="Meta AI (MetaAI)" type="rss" xmlUrl="https://xcancel.com/MetaAI/rss" htmlUrl="https://x.com/MetaAI" />
-    <outline text="Midjourney (midjourney)" title="Midjourney (midjourney)" type="rss" xmlUrl="https://xcancel.com/midjourney/rss" htmlUrl="https://x.com/midjourney" />
-    <outline text="MIT CSAIL (MIT_CSAIL)" title="MIT CSAIL (MIT_CSAIL)" type="rss" xmlUrl="https://xcancel.com/MIT_CSAIL/rss" htmlUrl="https://x.com/MIT_CSAIL" />
-    <outline text="IBM Data AI (IBMData)" title="IBM Data AI (IBMData)" type="rss" xmlUrl="https://xcancel.com/IBMData/rss" htmlUrl="https://x.com/IBMData" />
-    <outline text="NVIDIA AI (NVIDIAAI)" title="NVIDIA AI (NVIDIAAI)" type="rss" xmlUrl="https://xcancel.com/NVIDIAAI/rss" htmlUrl="https://x.com/NVIDIAAI" />
-    <outline text="HyperWriteAI (HyperWriteAI)" title="HyperWriteAI (HyperWriteAI)" type="rss" xmlUrl="https://xcancel.com/HyperWriteAI/rss" htmlUrl="https://x.com/HyperWriteAI" />
-    <outline text="Chris Coyier (chriscoyier)" title="Chris Coyier (chriscoyier)" type="rss" xmlUrl="https://xcancel.com/chriscoyier/rss" htmlUrl="https://x.com/chriscoyier" />
-    <outline text="Paul Irish (paul_irish)" title="Paul Irish (paul_irish)" type="rss" xmlUrl="https://xcancel.com/paul_irish/rss" htmlUrl="https://x.com/paul_irish" />
-    <outline text="David Walsh (davidwalshblog)" title="David Walsh (davidwalshblog)" type="rss" xmlUrl="https://xcancel.com/davidwalshblog/rss" htmlUrl="https://x.com/davidwalshblog" />
-  </outline>
+<outline text="IA" title="IA Feeds" type="folder">
+<outline text="Kate Crawford (katecrawford)" title="Kate Crawford (katecrawford)" type="rss" xmlUrl="https://rss.xcancel.com/katecrawford/rss" htmlUrl="https://x.com/katecrawford" />
+<outline text="Geoffrey Hinton (geoffreyhinton)" title="Geoffrey Hinton (geoffreyhinton)" type="rss" xmlUrl="https://rss.xcancel.com/geoffreyhinton/rss" htmlUrl="https://x.com/geoffreyhinton" />
+<outline text="Soumith Chintala (soumithchintala)" title="Soumith Chintala (soumithchintala)" type="rss" xmlUrl="https://rss.xcancel.com/soumithchintala/rss" htmlUrl="https://x.com/soumithchintala" />
+<outline text="Antonio Grasso (antgrasso)" title="Antonio Grasso (antgrasso)" type="rss" xmlUrl="https://rss.xcancel.com/antgrasso/rss" htmlUrl="https://x.com/antgrasso" />
+<outline text="Rowan Cheung (rowancheung)" title="Rowan Cheung (rowancheung)" type="rss" xmlUrl="https://rss.xcancel.com/rowancheung/rss" htmlUrl="https://x.com/rowancheung" />
+<outline text="Kirk Borne (KirkDBorne)" title="Kirk Borne (KirkDBorne)" type="rss" xmlUrl="https://rss.xcancel.com/KirkDBorne/rss" htmlUrl="https://x.com/KirkDBorne" />
+<outline text="Demis Hassabis (demishassabis)" title="Demis Hassabis (demishassabis)" type="rss" xmlUrl="https://rss.xcancel.com/demishassabis/rss" htmlUrl="https://x.com/demishassabis" />
+<outline text="Sam Altman (sama)" title="Sam Altman (sama)" type="rss" xmlUrl="https://rss.xcancel.com/sama/rss" htmlUrl="https://x.com/sama" />
+<outline text="Bernard Marr (bernardmarr)" title="Bernard Marr (bernardmarr)" type="rss" xmlUrl="https://rss.xcancel.com/bernardmarr/rss" htmlUrl="https://x.com/bernardmarr" />
+<outline text="Varun Mayya (waitin4agi_)" title="Varun Mayya (waitin4agi_)" type="rss" xmlUrl="https://rss.xcancel.com/waitin4agi_/rss" htmlUrl="https://x.com/waitin4agi_" />
+<outline text="Andrew Ng (AndrewYNg)" title="Andrew Ng (AndrewYNg)" type="rss" xmlUrl="https://rss.xcancel.com/AndrewYNg/rss" htmlUrl="https://x.com/AndrewYNg" />
+<outline text="Andrej Karpathy (karpathy)" title="Andrej Karpathy (karpathy)" type="rss" xmlUrl="https://rss.xcancel.com/karpathy/rss" htmlUrl="https://x.com/karpathy" />
+<outline text="François Chollet (fchollet)" title="François Chollet (fchollet)" type="rss" xmlUrl="https://rss.xcancel.com/fchollet/rss" htmlUrl="https://x.com/fchollet" />
+<outline text="Lex Fridman (lexfridman)" title="Lex Fridman (lexfridman)" type="rss" xmlUrl="https://rss.xcancel.com/lexfridman/rss" htmlUrl="https://x.com/lexfridman" />
+<outline text="Kai-Fu Lee (kaifulee)" title="Kai-Fu Lee (kaifulee)" type="rss" xmlUrl="https://rss.xcancel.com/kaifulee/rss" htmlUrl="https://x.com/kaifulee" />
+<outline text="John Carmack (ID_AA_Carmack)" title="John Carmack (ID_AA_Carmack)" type="rss" xmlUrl="https://rss.xcancel.com/ID_AA_Carmack/rss" htmlUrl="https://x.com/ID_AA_Carmack" />
+<outline text="Sean Gardner (2morrowknight)" title="Sean Gardner (2morrowknight)" type="rss" xmlUrl="https://rss.xcancel.com/2morrowknight/rss" htmlUrl="https://x.com/2morrowknight" />
+<outline text="Yann LeCun (ylecun)" title="Yann LeCun (ylecun)" type="rss" xmlUrl="https://rss.xcancel.com/ylecun/rss" htmlUrl="https://x.com/ylecun" />
+<outline text="Robert Scoble (Scobleizer)" title="Robert Scoble (Scobleizer)" type="rss" xmlUrl="https://rss.xcancel.com/Scobleizer/rss" htmlUrl="https://x.com/Scobleizer" />
+<outline text="Fei-Fei Li (drfeifei)" title="Fei-Fei Li (drfeifei)" type="rss" xmlUrl="https://rss.xcancel.com/drfeifei/rss" htmlUrl="https://x.com/drfeifei" />
+<outline text="Ronald van Loon (Ronald_vanLoon)" title="Ronald van Loon (Ronald_vanLoon)" type="rss" xmlUrl="https://rss.xcancel.com/Ronald_vanLoon/rss" htmlUrl="https://x.com/Ronald_vanLoon" />
+<outline text="Tamara McCleary (TamaraMcCleary)" title="Tamara McCleary (TamaraMcCleary)" type="rss" xmlUrl="https://rss.xcancel.com/TamaraMcCleary/rss" htmlUrl="https://x.com/TamaraMcCleary" />
+<outline text="Ian Goodfellow (goodfellow_ian)" title="Ian Goodfellow (goodfellow_ian)" type="rss" xmlUrl="https://rss.xcancel.com/goodfellow_ian/rss" htmlUrl="https://x.com/goodfellow_ian" />
+<outline text="Jeff Dean (jeffdean)" title="Jeff Dean (jeffdean)" type="rss" xmlUrl="https://rss.xcancel.com/jeffdean/rss" htmlUrl="https://x.com/jeffdean" />
+<outline text="Erik Brynjolfsson (erikbryn)" title="Erik Brynjolfsson (erikbryn)" type="rss" xmlUrl="https://rss.xcancel.com/erikbryn/rss" htmlUrl="https://x.com/erikbryn" />
+<outline text="Timnit Gebru (timnitgebru)" title="Timnit Gebru (timnitgebru)" type="rss" xmlUrl="https://rss.xcancel.com/timnitgebru/rss" htmlUrl="https://x.com/timnitgebru" />
+<outline text="Oriol Vinyals (oriolvinyalsml)" title="Oriol Vinyals (oriolvinyalsml)" type="rss" xmlUrl="https://rss.xcancel.com/oriolvinyalsml/rss" htmlUrl="https://x.com/oriolvinyalsml" />
+<outline text="Gary Marcus (GaryMarcus)" title="Gary Marcus (GaryMarcus)" type="rss" xmlUrl="https://rss.xcancel.com/GaryMarcus/rss" htmlUrl="https://x.com/GaryMarcus" />
+<outline text="Nando de Freitas (NandoDF)" title="Nando de Freitas (NandoDF)" type="rss" xmlUrl="https://rss.xcancel.com/NandoDF/rss" htmlUrl="https://x.com/NandoDF" />
+<outline text="Randy Olson (randal_olson)" title="Randy Olson (randal_olson)" type="rss" xmlUrl="https://rss.xcancel.com/randal_olson/rss" htmlUrl="https://x.com/randal_olson" />
+<outline text="Monica Rogati (mrogati)" title="Monica Rogati (mrogati)" type="rss" xmlUrl="https://rss.xcancel.com/mrogati/rss" htmlUrl="https://x.com/mrogati" />
+<outline text="Harold Sinnott (HaroldSinnott)" title="Harold Sinnott (HaroldSinnott)" type="rss" xmlUrl="https://rss.xcancel.com/HaroldSinnott/rss" htmlUrl="https://x.com/HaroldSinnott" />
+<outline text="Helen Yu (YuHelenYu)" title="Helen Yu (YuHelenYu)" type="rss" xmlUrl="https://rss.xcancel.com/YuHelenYu/rss" htmlUrl="https://x.com/YuHelenYu" />
+<outline text="Martin Ford (mfordfuture)" title="Martin Ford (mfordfuture)" type="rss" xmlUrl="https://rss.xcancel.com/mfordfuture/rss" htmlUrl="https://x.com/mfordfuture" />
+<outline text="Marcus Borba (marcusborba)" title="Marcus Borba (marcusborba)" type="rss" xmlUrl="https://rss.xcancel.com/marcusborba/rss" htmlUrl="https://x.com/marcusborba" />
+<outline text="Nicolas Babin (Nicochan33)" title="Nicolas Babin (Nicochan33)" type="rss" xmlUrl="https://rss.xcancel.com/Nicochan33/rss" htmlUrl="https://x.com/Nicochan33" />
+<outline text="Chris Messina (chrismessina)" title="Chris Messina (chrismessina)" type="rss" xmlUrl="https://lightbrd.com/chrismessina/rss" htmlUrl="https://x.com/chrismessina" />
+<!-- Nouveaux ajouts enrichis IA -->
+<outline text="Vincent Boucher (ceobillionaire)" title="Vincent Boucher (ceobillionaire)" type="rss" xmlUrl="https://rss.xcancel.com/ceobillionaire/rss" htmlUrl="https://x.com/ceobillionaire" />
+<outline text="Sally Eaves (sallyeaves)" title="Sally Eaves (sallyeaves)" type="rss" xmlUrl="https://rss.xcancel.com/sallyeaves/rss" htmlUrl="https://x.com/sallyeaves" />
+<outline text="Fabio Moioli (fabiomoioli)" title="Fabio Moioli (fabiomoioli)" type="rss" xmlUrl="https://rss.xcancel.com/fabiomoioli/rss" htmlUrl="https://x.com/fabiomoioli" />
+<outline text="Pascal Bornet (pascal_bornet)" title="Pascal Bornet (pascal_bornet)" type="rss" xmlUrl="https://rss.xcancel.com/pascal_bornet/rss" htmlUrl="https://x.com/pascal_bornet" />
+<outline text="Rob Lennon (thatroblennon)" title="Rob Lennon (thatroblennon)" type="rss" xmlUrl="https://rss.xcancel.com/thatroblennon/rss" htmlUrl="https://x.com/thatroblennon" />
+<outline text="Iain Brown (iainljbrown)" title="Iain Brown (iainljbrown)" type="rss" xmlUrl="https://rss.xcancel.com/iainljbrown/rss" htmlUrl="https://x.com/iainljbrown" />
+<outline text="Data Chaz (DataChaz)" title="Data Chaz (DataChaz)" type="rss" xmlUrl="https://rss.xcancel.com/DataChaz/rss" htmlUrl="https://x.com/DataChaz" />
+<outline text="Lorenzo Green (mrgreen)" title="Lorenzo Green (mrgreen)" type="rss" xmlUrl="https://rss.xcancel.com/mrgreen/rss" htmlUrl="https://x.com/mrgreen" />
+<outline text="Claire Silver (clairesilver12)" title="Claire Silver (clairesilver12)" type="rss" xmlUrl="https://rss.xcancel.com/clairesilver12/rss" htmlUrl="https://x.com/clairesilver12" />
+<outline text="Hassan Rashidi (drhassanrashidi)" title="Hassan Rashidi (drhassanrashidi)" type="rss" xmlUrl="https://rss.xcancel.com/drhassanrashidi/rss" htmlUrl="https://x.com/drhassanrashidi" />
+<outline text="Abhishek Thakur (abhi1thakur)" title="Abhishek Thakur (abhi1thakur)" type="rss" xmlUrl="https://rss.xcancel.com/abhi1thakur/rss" htmlUrl="https://x.com/abhi1thakur" />
+<outline text="Yohei Nakajima (yoheinakajima)" title="Yohei Nakajima (yoheinakajima)" type="rss" xmlUrl="https://rss.xcancel.com/yoheinakajima/rss" htmlUrl="https://x.com/yoheinakajima" />
+<outline text="Nige Roberts-Willson (nigewillson)" title="Nige Roberts-Willson (nigewillson)" type="rss" xmlUrl="https://rss.xcancel.com/nigewillson/rss" htmlUrl="https://x.com/nigewillson" />
+<outline text="Karen Hao (_karenhao)" title="Karen Hao (_karenhao)" type="rss" xmlUrl="https://rss.xcancel.com/_karenhao/rss" htmlUrl="https://x.com/_karenhao" />
+<outline text="Nathan Lands (nathanlands)" title="Nathan Lands (nathanlands)" type="rss" xmlUrl="https://rss.xcancel.com/nathanlands/rss" htmlUrl="https://x.com/nathanlands" />
+<outline text="Giuliano Liguori (ingliguori)" title="Giuliano Liguori (ingliguori)" type="rss" xmlUrl="https://rss.xcancel.com/ingliguori/rss" htmlUrl="https://x.com/ingliguori" />
+<outline text="Matt Shumer (mattshumer_)" title="Matt Shumer (mattshumer_)" type="rss" xmlUrl="https://rss.xcancel.com/mattshumer_/rss" htmlUrl="https://x.com/mattshumer_" />
+<outline text="Eliezer Yudkowsky (ESYudkowsky)" title="Eliezer Yudkowsky (ESYudkowsky)" type="rss" xmlUrl="https://rss.xcancel.com/ESYudkowsky/rss" htmlUrl="https://x.com/ESYudkowsky" />
+<outline text="Angelica Lim (petitegeek)" title="Angelica Lim (petitegeek)" type="rss" xmlUrl="https://rss.xcancel.com/petitegeek/rss" htmlUrl="https://x.com/petitegeek" />
+<outline text="Thomas Wolf (Thom_Wolf)" title="Thomas Wolf (Thom_Wolf)" type="rss" xmlUrl="https://rss.xcancel.com/Thom_Wolf/rss" htmlUrl="https://x.com/Thom_Wolf" />
+<outline text="Cassie Kozyrkov (decisionleader)" title="Cassie Kozyrkov (decisionleader)" type="rss" xmlUrl="https://rss.xcancel.com/decisionleader/rss" htmlUrl="https://x.com/decisionleader" />
+<outline text="Anima Anandkumar (AnimaAnandkumar)" title="Anima Anandkumar (AnimaAnandkumar)" type="rss" xmlUrl="https://rss.xcancel.com/AnimaAnandkumar/rss" htmlUrl="https://x.com/AnimaAnandkumar" />
+<outline text="Irene Solaiman (IreneSolaiman)" title="Irene Solaiman (IreneSolaiman)" type="rss" xmlUrl="https://rss.xcancel.com/IreneSolaiman/rss" htmlUrl="https://x.com/IreneSolaiman" />
+<outline text="Rama Akkiraju (rama_akkiraju)" title="Rama Akkiraju (rama_akkiraju)" type="rss" xmlUrl="https://rss.xcancel.com/rama_akkiraju/rss" htmlUrl="https://x.com/rama_akkiraju" />
+<outline text="Noelle Russell (NoelleRussell_)" title="Noelle Russell (NoelleRussell_)" type="rss" xmlUrl="https://rss.xcancel.com/NoelleRussell_/rss" htmlUrl="https://x.com/NoelleRussell_" />
+<outline text="Tony Moroney (BetaMoroney)" title="Tony Moroney (BetaMoroney)" type="rss" xmlUrl="https://rss.xcancel.com/BetaMoroney/rss" htmlUrl="https://x.com/BetaMoroney" />
+</outline>
+<outline text="Code" title="Code Feeds" type="folder">
+<outline text="Jack Forge (TheJackForge)" title="Jack Forge (TheJackForge)" type="rss" xmlUrl="https://rss.xcancel.com/TheJackForge/rss" htmlUrl="https://x.com/TheJackForge" />
+<outline text="Gavin Wood (gavofyork)" title="Gavin Wood (gavofyork)" type="rss" xmlUrl="https://rss.xcancel.com/gavofyork/rss" htmlUrl="https://x.com/gavofyork" />
+<outline text="Greg Brockman (gdb)" title="Greg Brockman (gdb)" type="rss" xmlUrl="https://rss.xcancel.com/gdb/rss" htmlUrl="https://x.com/gdb" />
+<outline text="Gergely Orosz (GergelyOrosz)" title="Gergely Orosz (GergelyOrosz)" type="rss" xmlUrl="https://rss.xcancel.com/GergelyOrosz/rss" htmlUrl="https://x.com/GergelyOrosz" />
+<outline text="Pieter Levels (levelsio)" title="Pieter Levels (levelsio)" type="rss" xmlUrl="https://rss.xcancel.com/levelsio/rss" htmlUrl="https://x.com/levelsio" />
+</outline>
+<outline text="Dev" title="Dev Feeds" type="folder">
+<outline text="Jen Simmons (jensimmons)" title="Jen Simmons (jensimmons)" type="rss" xmlUrl="https://rss.xcancel.com/jensimmons/rss" htmlUrl="https://x.com/jensimmons" />
+<outline text="John Resig (jeresig)" title="John Resig (jeresig)" type="rss" xmlUrl="https://rss.xcancel.com/jeresig/rss" htmlUrl="https://x.com/jeresig" />
+<outline text="The Net Ninja (thenetninjauk)" title="The Net Ninja (thenetninjauk)" type="rss" xmlUrl="https://rss.xcancel.com/thenetninjauk/rss" htmlUrl="https://x.com/thenetninjauk" />
+<outline text="Web Dev Simplified (DevSimplified)" title="Web Dev Simplified (DevSimplified)" type="rss" xmlUrl="https://rss.xcancel.com/DevSimplified/rss" htmlUrl="https://x.com/DevSimplified" />
+<outline text="Traversy Media (traversymedia)" title="Traversy Media (traversymedia)" type="rss" xmlUrl="https://rss.xcancel.com/traversymedia/rss" htmlUrl="https://x.com/traversymedia" />
+<outline text="Sara Soueidan (SaraSoueidan)" title="Sara Soueidan (SaraSoueidan)" type="rss" xmlUrl="https://rss.xcancel.com/SaraSoueidan/rss" htmlUrl="https://x.com/SaraSoueidan" />
+<outline text="Addy Osmani (addyosmani)" title="Addy Osmani (addyosmani)" type="rss" xmlUrl="https://rss.xcancel.com/addyosmani/rss" htmlUrl="https://x.com/addyosmani" />
+<outline text="Jason Fried (jasonfried)" title="Jason Fried (jasonfried)" type="rss" xmlUrl="https://rss.xcancel.com/jasonfried/rss" htmlUrl="https://x.com/jasonfried" />
+<outline text="Brendan Eich (BrendanEich)" title="Brendan Eich (BrendanEich)" type="rss" xmlUrl="https://rss.xcancel.com/BrendanEich/rss" htmlUrl="https://x.com/BrendanEich" />
+<outline text="Scott Hanselman (shanselman)" title="Scott Hanselman (shanselman)" type="rss" xmlUrl="https://rss.xcancel.com/shanselman/rss" htmlUrl="https://x.com/shanselman" />
+<outline text="Evan You (youyuxi)" title="Evan You (youyuxi)" type="rss" xmlUrl="https://rss.xcancel.com/youyuxi/rss" htmlUrl="https://x.com/youyuxi" />
+<outline text="Una Kravets (Una)" title="Una Kravets (Una)" type="rss" xmlUrl="https://rss.xcancel.com/Una/rss" htmlUrl="https://x.com/Una" />
+<outline text="Wes Bos (wesbos)" title="Wes Bos (wesbos)" type="rss" xmlUrl="https://rss.xcancel.com/wesbos/rss" htmlUrl="https://x.com/wesbos" />
+<outline text="Dan Abramov (dan_abramov)" title="Dan Abramov (dan_abramov)" type="rss" xmlUrl="https://lightbrd.com/dan_abramov/rss" htmlUrl="https://x.com/dan_abramov" />
+<outline text="Jeff Atwood (codinghorror)" title="Jeff Atwood (codinghorror)" type="rss" xmlUrl="https://rss.xcancel.com/codinghorror/rss" htmlUrl="https://x.com/codinghorror" />
+<outline text="The Coding Train (thecodingtrain)" title="The Coding Train (thecodingtrain)" type="rss" xmlUrl="https://rss.xcancel.com/thecodingtrain/rss" htmlUrl="https://x.com/thecodingtrain" />
+<outline text="Corey Schafer (CoreyMSchafer)" title="Corey Schafer (CoreyMSchafer)" type="rss" xmlUrl="https://rss.xcancel.com/CoreyMSchafer/rss" htmlUrl="https://x.com/CoreyMSchafer" />
+<outline text="Programming with Mosh (moshhamedani)" title="Programming with Mosh (moshhamedani)" type="rss" xmlUrl="https://rss.xcancel.com/moshhamedani/rss" htmlUrl="https://x.com/moshhamedani" />
+<outline text="Jeremy Howard (jeremyphoward)" title="Jeremy Howard (jeremyphoward)" type="rss" xmlUrl="https://rss.xcancel.com/jeremyphoward/rss" htmlUrl="https://x.com/jeremyphoward" />
+<outline text="Logan Kilpatrick (OfficialLoganK)" title="Logan Kilpatrick (OfficialLoganK)" type="rss" xmlUrl="https://rss.xcancel.com/OfficialLoganK/rss" htmlUrl="https://x.com/OfficialLoganK" />
+<!-- Nouveaux ajouts enrichis Dev -->
+<outline text="Cassidy Williams (cassidoo)" title="Cassidy Williams (cassidoo)" type="rss" xmlUrl="https://rss.xcancel.com/cassidoo/rss" htmlUrl="https://x.com/cassidoo" />
+<outline text="Nana Janashia (nanajanashia)" title="Nana Janashia (nanajanashia)" type="rss" xmlUrl="https://rss.xcancel.com/nanajanashia/rss" htmlUrl="https://x.com/nanajanashia" />
+<outline text="Joshua Fluke (joshuafluke)" title="Joshua Fluke (joshuafluke)" type="rss" xmlUrl="https://rss.xcancel.com/joshuafluke/rss" htmlUrl="https://x.com/joshuafluke" />
+<outline text="Kamil Dębowski (Errichto)" title="Kamil Dębowski (Errichto)" type="rss" xmlUrl="https://rss.xcancel.com/Errichto/rss" htmlUrl="https://x.com/Errichto" />
+<outline text="Ann Adaya (annadaya)" title="Ann Adaya (annadaya)" type="rss" xmlUrl="https://rss.xcancel.com/annadaya/rss" htmlUrl="https://x.com/annadaya" />
+<outline text="Harrison Kinsley (sentdex)" title="Harrison Kinsley (sentdex)" type="rss" xmlUrl="https://rss.xcancel.com/sentdex/rss" htmlUrl="https://x.com/sentdex" />
+<outline text="Danny Thompson (DThompsonDev)" title="Danny Thompson (DThompsonDev)" type="rss" xmlUrl="https://rss.xcancel.com/DThompsonDev/rss" htmlUrl="https://x.com/DThompsonDev" />
+<outline text="Simona Milanović (anomisSi)" title="Simona Milanović (anomisSi)" type="rss" xmlUrl="https://rss.xcancel.com/anomisSi/rss" htmlUrl="https://x.com/anomisSi" />
+<outline text="Tina Huang (tinahuang_)" title="Tina Huang (tinahuang_)" type="rss" xmlUrl="https://rss.xcancel.com/tinahuang_/rss" htmlUrl="https://x.com/tinahuang_" />
+<outline text="Hosanna Hali (hosannahali)" title="Hosanna Hali (hosannahali)" type="rss" xmlUrl="https://rss.xcancel.com/hosannahali/rss" htmlUrl="https://x.com/hosannahali" />
+<outline text="Hitesh Choudhary (hiteshchoudhary)" title="Hitesh Choudhary (hiteshchoudhary)" type="rss" xmlUrl="https://rss.xcancel.com/hiteshchoudhary/rss" htmlUrl="https://x.com/hiteshchoudhary" />
+<outline text="Yan Chernikov (TheCherno)" title="Yan Chernikov (TheCherno)" type="rss" xmlUrl="https://rss.xcancel.com/TheCherno/rss" htmlUrl="https://x.com/TheCherno" />
+<outline text="Rasmus Lerdorf (rasmus)" title="Rasmus Lerdorf (rasmus)" type="rss" xmlUrl="https://rss.xcancel.com/rasmus/rss" htmlUrl="https://x.com/rasmus" />
+<outline text="Joel Spolsky (spolsky)" title="Joel Spolsky (spolsky)" type="rss" xmlUrl="https://rss.xcancel.com/spolsky/rss" htmlUrl="https://x.com/spolsky" />
+<outline text="Chris DiBona (cdibona)" title="Chris DiBona (cdibona)" type="rss" xmlUrl="https://rss.xcancel.com/cdibona/rss" htmlUrl="https://x.com/cdibona" />
+<outline text="Sergio Pereira (SergioRocks)" title="Sergio Pereira (SergioRocks)" type="rss" xmlUrl="https://rss.xcancel.com/SergioRocks/rss" htmlUrl="https://x.com/SergioRocks" />
+<outline text="Tim Beiko (TimBeiko)" title="Tim Beiko (TimBeiko)" type="rss" xmlUrl="https://rss.xcancel.com/TimBeiko/rss" htmlUrl="https://x.com/TimBeiko" />
+<outline text="Péter Szilágyi (peter_szilagyi)" title="Péter Szilágyi (peter_szilagyi)" type="rss" xmlUrl="https://rss.xcancel.com/peter_szilagyi/rss" htmlUrl="https://x.com/peter_szilagyi" />
+<outline text="Chris Staudinger (ChrisStaud)" title="Chris Staudinger (ChrisStaud)" type="rss" xmlUrl="https://rss.xcancel.com/ChrisStaud/rss" htmlUrl="https://x.com/ChrisStaud" />
+<outline text="Kent C. Dodds (kentcdodds)" title="Kent C. Dodds (kentcdodds)" type="rss" xmlUrl="https://rss.xcancel.com/kentcdodds/rss" htmlUrl="https://x.com/kentcdodds" />
+<outline text="Shawn Wang (swyx)" title="Shawn Wang (swyx)" type="rss" xmlUrl="https://rss.xcancel.com/swyx/rss" htmlUrl="https://x.com/swyx" />
+<outline text="Lee Robinson (leeerob)" title="Lee Robinson (leeerob)" type="rss" xmlUrl="https://rss.xcancel.com/leeerob/rss" htmlUrl="https://x.com/leeerob" />
+</outline>
+<outline text="Finance" title="Finance Feeds" type="folder">
+<outline text="Satya Nadella (satyanadella)" title="Satya Nadella (satyanadella)" type="rss" xmlUrl="https://rss.xcancel.com/satyanadella/rss" htmlUrl="https://x.com/satyanadella" />
+<outline text="Aravind Srinivas (AravSrinivas)" title="Aravind Srinivas (AravSrinivas)" type="rss" xmlUrl="https://rss.xcancel.com/AravSrinivas/rss" htmlUrl="https://x.com/AravSrinivas" />
+<outline text="Allie K. Miller (alliekmiller)" title="Allie K. Miller (alliekmiller)" type="rss" xmlUrl="https://rss.xcancel.com/alliekmiller/rss" htmlUrl="https://x.com/alliekmiller" />
+<outline text="Bojan Tunguz (tunguz)" title="Bojan Tunguz (tunguz)" type="rss" xmlUrl="https://rss.xcancel.com/tunguz/rss" htmlUrl="https://x.com/tunguz" />
+<outline text="Sarah Guo (saranormous)" title="Sarah Guo (saranormous)" type="rss" xmlUrl="https://rss.xcancel.com/saranormous/rss" htmlUrl="https://x.com/saranormous" />
+<outline text="Justine Moore (venturetwins)" title="Justine Moore (venturetwins)" type="rss" xmlUrl="https://rss.xcancel.com/venturetwins/rss" htmlUrl="https://x.com/venturetwins" />
+<outline text="Nathan Benaich (nathanbenaich)" title="Nathan Benaich (nathanbenaich)" type="rss" xmlUrl="https://rss.xcancel.com/nathanbenaich/rss" htmlUrl="https://x.com/nathanbenaich" />
+<outline text="Pedro Domingos (pmddomingos)" title="Pedro Domingos (pmddomingos)" type="rss" xmlUrl="https://rss.xcancel.com/pmddomingos/rss" htmlUrl="https://x.com/pmddomingos" />
+<outline text="Vin Vashishta (v_vashishta)" title="Vin Vashishta (v_vashishta)" type="rss" xmlUrl="https://rss.xcancel.com/v_vashishta/rss" htmlUrl="https://x.com/v_vashishta" />
+<outline text="Alexandr Wang (alexandr_wang)" title="Alexandr Wang (alexandr_wang)" type="rss" xmlUrl="https://rss.xcancel.com/alexandr_wang/rss" htmlUrl="https://x.com/alexandr_wang" />
+<outline text="Sebastian Raschka (rasbt)" title="Sebastian Raschka (rasbt)" type="rss" xmlUrl="https://rss.xcancel.com/rasbt/rss" htmlUrl="https://x.com/rasbt" />
+<outline text="Jim Fan (drjimfan)" title="Jim Fan (drjimfan)" type="rss" xmlUrl="https://rss.xcancel.com/drjimfan/rss" htmlUrl="https://x.com/drjimfan" />
+<outline text="Wes Roth (wesroth)" title="Wes Roth (wesroth)" type="rss" xmlUrl="https://rss.xcancel.com/wesroth/rss" htmlUrl="https://x.com/wesroth" />
+<outline text="Harper Carroll (harpercarrollai)" title="Harper Carroll (harpercarrollai)" type="rss" xmlUrl="https://rss.xcancel.com/harpercarrollai/rss" htmlUrl="https://x.com/harpercarrollai" />
+<outline text="Dylan Field (zoink)" title="Dylan Field (zoink)" type="rss" xmlUrl="https://rss.xcancel.com/zoink/rss" htmlUrl="https://x.com/zoink" />
+</outline>
+<outline text="Bench" title="Bench Feeds" type="folder">
+<outline text="NVIDIA (nvidia)" title="NVIDIA (nvidia)" type="rss" xmlUrl="https://rss.xcancel.com/nvidia/rss" htmlUrl="https://x.com/nvidia" />
+<outline text="OpenAI (OpenAI)" title="OpenAI (OpenAI)" type="rss" xmlUrl="https://rss.xcancel.com/OpenAI/rss" htmlUrl="https://x.com/OpenAI" />
+<outline text="DeepMind (DeepMind)" title="DeepMind (DeepMind)" type="rss" xmlUrl="https://rss.xcancel.com/DeepMind/rss" htmlUrl="https://x.com/DeepMind" />
+<outline text="Google AI (GoogleAI)" title="Google AI (GoogleAI)" type="rss" xmlUrl="https://rss.xcancel.com/GoogleAI/rss" htmlUrl="https://x.com/GoogleAI" />
+<outline text="Anthropic (AnthropicAI)" title="Anthropic (AnthropicAI)" type="rss" xmlUrl="https://rss.xcancel.com/AnthropicAI/rss" htmlUrl="https://x.com/AnthropicAI" />
+<outline text="Groq Inc (GroqInc)" title="Groq Inc (GroqInc)" type="rss" xmlUrl="https://rss.xcancel.com/GroqInc/rss" htmlUrl="https://x.com/GroqInc" />
+<outline text="Meta AI (MetaAI)" title="Meta AI (MetaAI)" type="rss" xmlUrl="https://rss.xcancel.com/MetaAI/rss" htmlUrl="https://x.com/MetaAI" />
+<outline text="Midjourney (midjourney)" title="Midjourney (midjourney)" type="rss" xmlUrl="https://rss.xcancel.com/midjourney/rss" htmlUrl="https://x.com/midjourney" />
+<outline text="MIT CSAIL (MIT_CSAIL)" title="MIT CSAIL (MIT_CSAIL)" type="rss" xmlUrl="https://rss.xcancel.com/MIT_CSAIL/rss" htmlUrl="https://x.com/MIT_CSAIL" />
+<outline text="IBM Data AI (IBMData)" title="IBM Data AI (IBMData)" type="rss" xmlUrl="https://rss.xcancel.com/IBMData/rss" htmlUrl="https://x.com/IBMData" />
+<outline text="NVIDIA AI (NVIDIAAI)" title="NVIDIA AI (NVIDIAAI)" type="rss" xmlUrl="https://rss.xcancel.com/NVIDIAAI/rss" htmlUrl="https://x.com/NVIDIAAI" />
+<outline text="HyperWriteAI (HyperWriteAI)" title="HyperWriteAI (HyperWriteAI)" type="rss" xmlUrl="https://rss.xcancel.com/HyperWriteAI/rss" htmlUrl="https://x.com/HyperWriteAI" />
+<outline text="Chris Coyier (chriscoyier)" title="Chris Coyier (chriscoyier)" type="rss" xmlUrl="https://rss.xcancel.com/chriscoyier/rss" htmlUrl="https://x.com/chriscoyier" />
+<outline text="Paul Irish (paul_irish)" title="Paul Irish (paul_irish)" type="rss" xmlUrl="https://rss.xcancel.com/paul_irish/rss" htmlUrl="https://x.com/paul_irish" />
+<outline text="David Walsh (davidwalshblog)" title="David Walsh (davidwalshblog)" type="rss" xmlUrl="https://rss.xcancel.com/davidwalshblog/rss" htmlUrl="https://x.com/davidwalshblog" />
+<!-- Nouveaux ajouts enrichis Bench (AI labs & models from recent posts) -->
+<outline text="DeepSeek AI (deepseek_ai)" title="DeepSeek AI (deepseek_ai)" type="rss" xmlUrl="https://rss.xcancel.com/deepseek_ai/rss" htmlUrl="https://x.com/deepseek_ai" />
+<outline text="Arena (arena)" title="Arena (arena)" type="rss" xmlUrl="https://rss.xcancel.com/arena/rss" htmlUrl="https://x.com/arena" />
+<outline text="Artificial Analysis (ArtificialAnlys)" title="Artificial Analysis (ArtificialAnlys)" type="rss" xmlUrl="https://rss.xcancel.com/ArtificialAnlys/rss" htmlUrl="https://x.com/ArtificialAnlys" />
+<outline text="OpenAI Devs (OpenAIDevs)" title="OpenAI Devs (OpenAIDevs)" type="rss" xmlUrl="https://rss.xcancel.com/OpenAIDevs/rss" htmlUrl="https://x.com/OpenAIDevs" />
+<outline text="Kimi Moonshot (Kimi_Moonshot)" title="Kimi Moonshot (Kimi_Moonshot)" type="rss" xmlUrl="https://rss.xcancel.com/Kimi_Moonshot/rss" htmlUrl="https://x.com/Kimi_Moonshot" />
+<outline text="Alibaba Qwen (Alibaba_Qwen)" title="Alibaba Qwen (Alibaba_Qwen)" type="rss" xmlUrl="https://rss.xcancel.com/Alibaba_Qwen/rss" htmlUrl="https://x.com/Alibaba_Qwen" />
+<outline text="MiniMax AI (MiniMax__AI)" title="MiniMax AI (MiniMax__AI)" type="rss" xmlUrl="https://rss.xcancel.com/MiniMax__AI/rss" htmlUrl="https://x.com/MiniMax__AI" />
+<outline text="Google DeepMind (GoogleDeepMind)" title="Google DeepMind (GoogleDeepMind)" type="rss" xmlUrl="https://rss.xcancel.com/GoogleDeepMind/rss" htmlUrl="https://x.com/GoogleDeepMind" />
+<outline text="Google AI Devs (googleaidevs)" title="Google AI Devs (googleaidevs)" type="rss" xmlUrl="https://rss.xcancel.com/googleaidevs/rss" htmlUrl="https://x.com/googleaidevs" />
+<outline text="Ali Tongyi Lab (Ali_TongyiLab)" title="Ali Tongyi Lab (Ali_TongyiLab)" type="rss" xmlUrl="https://rss.xcancel.com/Ali_TongyiLab/rss" htmlUrl="https://x.com/Ali_TongyiLab" />
+<outline text="AI for Success (ai_for_success)" title="AI for Success (ai_for_success)" type="rss" xmlUrl="https://rss.xcancel.com/ai_for_success/rss" htmlUrl="https://x.com/ai_for_success" />
+<outline text="Testing Catalog (testingcatalog)" title="Testing Catalog (testingcatalog)" type="rss" xmlUrl="https://rss.xcancel.com/testingcatalog/rss" htmlUrl="https://x.com/testingcatalog" />
+<outline text="ARC Prize (arcprize)" title="ARC Prize (arcprize)" type="rss" xmlUrl="https://rss.xcancel.com/arcprize/rss" htmlUrl="https://x.com/arcprize" />
+<outline text="Vals AI (_valsai)" title="Vals AI (_valsai)" type="rss" xmlUrl="https://rss.xcancel.com/_valsai/rss" htmlUrl="https://x.com/_valsai" />
+<outline text="Tencent Hunyuan (TencentHunyuan)" title="Tencent Hunyuan (TencentHunyuan)" type="rss" xmlUrl="https://rss.xcancel.com/TencentHunyuan/rss" htmlUrl="https://x.com/TencentHunyuan" />
+<outline text="Perplexity AI (perplexity_ai)" title="Perplexity AI (perplexity_ai)" type="rss" xmlUrl="https://rss.xcancel.com/perplexity_ai/rss" htmlUrl="https://x.com/perplexity_ai" />
+</outline>
 </body>
 </opml>

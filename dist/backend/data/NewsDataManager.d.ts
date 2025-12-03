@@ -40,6 +40,7 @@ export interface MarketAnalysisReport {
 }
 export declare class NewsDataManager {
     private processor;
+    private deduplicationService;
     constructor();
     /**
      * Exécute le pipeline complet de traitement des nouvelles
@@ -65,6 +66,18 @@ export declare class NewsDataManager {
      * Détermine le sentiment dominant d'une journée
      */
     private getDailySentiment;
+    /**
+     * Récupère les statistiques de déduplication
+     */
+    getDeduplicationStats(): Promise<{
+        total_fingerprints: number;
+        oldest_fingerprint: Date | null;
+        newest_fingerprint: Date | null;
+    }>;
+    /**
+     * Nettoie les anciens empreintes de déduplication
+     */
+    cleanOldFingerprints(daysToKeep?: number): Promise<number>;
     /**
      * Exporte les données en format CSV pour analyse externe
      */

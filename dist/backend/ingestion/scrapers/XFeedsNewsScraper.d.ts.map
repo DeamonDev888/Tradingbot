@@ -1,1 +1,0 @@
-{"version":3,"file":"XFeedsNewsScraper.d.ts","sourceRoot":"","sources":["../../../../src/backend/ingestion/scrapers/XFeedsNewsScraper.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,QAAQ,EAAE,MAAM,mBAAmB,CAAC;AAK7C,qBAAa,iBAAiB;IAC5B,OAAO,CAAC,WAAW,CAAc;;IAM3B,IAAI,IAAI,OAAO,CAAC,IAAI,CAAC;IAIrB,KAAK,IAAI,OAAO,CAAC,IAAI,CAAC;IAItB,SAAS,IAAI,OAAO,CAAC,QAAQ,EAAE,CAAC;CA2HvC"}

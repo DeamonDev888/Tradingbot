@@ -39,7 +39,7 @@ export class CboeScraper {
         const source = 'Barchart';
         try {
             console.log(`[${source}] Navigating to OEX Put/Call Ratio page...`);
-            await page.goto('https://www.barchart.com/stocks/quotes/$CPCO/interactive-chart', {
+            await page.goto('https://www.barchart.com/stocks/quotes/$CPCO', {
                 waitUntil: 'domcontentloaded',
                 timeout: 30000,
             });
@@ -55,29 +55,75 @@ export class CboeScraper {
             catch {
                 // Ignore if not found
             }
-            // Look for the specific text pattern observed by the subagent
-            // "OEX Put/Call Ratio ($CPCO) 1.72 -1.07 (-38.35%) 23:59 ET"
-            // We can try to find the element containing "$CPCO" and extract the text
-            // Wait a bit for dynamic content
-            await page.waitForTimeout(3000);
-            const content = await page.content();
-            // Regex to find the value
-            // Matches: OEX Put/Call Ratio ($CPCO) 1.72
-            const match = content.match(/OEX Put\/Call Ratio \(\$CPCO\)\s+([\d.]+)/);
-            let ratio = null;
-            if (match && match[1]) {
-                ratio = parseFloat(match[1]);
-                console.log(`[${source}] Found OEX Ratio via regex: ${ratio}`);
+            // Wait for the main price element to be visible
+            // We look for the specific text "OEX Put/Call Ratio" but use a looser match
+            const titleLocator = page.locator('text=OEX Put/Call Ratio');
+            try {
+                await titleLocator.first().waitFor({ timeout: 15000 });
             }
-            else {
-                // Fallback: Try to find the price/value element directly if regex fails
-                // Barchart usually puts the last price in a specific class
+            catch (e) {
+                console.log(`[${source}] Title locator timeout. Page content preview:`, (await page.content()).substring(0, 500));
+            }
+            let ratio = null;
+            if (await titleLocator.first().isVisible()) {
+                // Get the element and its text
+                const element = titleLocator.first();
+                const text = (await element.textContent()) || '';
+                const parentText = await element.evaluate(el => el.parentElement?.textContent || '');
+                console.log(`[${source}] Found element text: "${text.trim()}"`);
+                console.log(`[${source}] Found parent text: "${parentText.trim()}"`);
+                // Try to match number in the text or parent text
+                // Matches: 1.72 or 0.85 etc.
+                const numberRegex = /([\d]+\.[\d]+)/;
+                // First try the parent text as it usually contains the price "OEX Put/Call Ratio ($CPCO) 1.72"
+                let match = parentText.match(numberRegex);
+                if (match && match[1]) {
+                    // Verify it's not part of the symbol ($CPCO) - usually price is after
+                    // Let's look for the number specifically after the title
+                    const afterTitle = parentText.split('OEX Put/Call Ratio')[1] || '';
+                    const priceMatch = afterTitle.match(/([\d]+\.[\d]+)/);
+                    if (priceMatch && priceMatch[1]) {
+                        ratio = parseFloat(priceMatch[1]);
+                        console.log(`[${source}] Extracted ratio from parent text: ${ratio}`);
+                    }
+                }
+                if (ratio === null) {
+                    // Try the element text itself
+                    match = text.match(numberRegex);
+                    if (match && match[1]) {
+                        ratio = parseFloat(match[1]);
+                        console.log(`[${source}] Extracted ratio from element text: ${ratio}`);
+                    }
+                }
+            }
+            if (ratio === null) {
+                console.log(`[${source}] Primary extraction failed. Trying fallback class selector...`);
+                // Fallback: Try the specific class selector for Barchart quotes
                 const priceElement = await page.locator('.last-change .last-value').first();
                 if (await priceElement.isVisible()) {
                     const text = await priceElement.textContent();
                     if (text) {
                         ratio = parseFloat(text.replace(/,/g, ''));
-                        console.log(`[${source}] Found OEX Ratio via selector: ${ratio}`);
+                        console.log(`[${source}] Found OEX Ratio via class selector: ${ratio}`);
+                    }
+                }
+                else {
+                    console.log(`[${source}] Fallback selector .last-change .last-value not visible.`);
+                }
+            }
+            if (ratio === null) {
+                console.log(`[${source}] All selectors failed. Trying nuclear option: Full Page Text Search`);
+                const bodyText = await page.innerText('body');
+                // Look for "OEX Put/Call Ratio" and grab the first number after it
+                const parts = bodyText.split('OEX Put/Call Ratio');
+                if (parts.length > 1) {
+                    // Get the part after the text
+                    const afterText = parts[1];
+                    // Match the first number (float)
+                    const match = afterText.match(/(\d+\.\d+)/);
+                    if (match && match[1]) {
+                        ratio = parseFloat(match[1]);
+                        console.log(`[${source}] Found OEX Ratio via full page text search: ${ratio}`);
                     }
                 }
             }

@@ -284,7 +284,7 @@ class ValidationTester {
     }
 }
 // Script principal
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
     const tester = new ValidationTester();
     console.log('🧪 VALIDATION DES SYSTÈMES DE DONNÉES FINANCIÈRES');
     console.log('='.repeat(80));

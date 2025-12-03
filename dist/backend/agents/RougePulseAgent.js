@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { BaseAgentSimple } from './BaseAgentSimple';
 import { NewsDatabaseService } from '../database/NewsDatabaseService';
 import { RougePulseDatabaseService } from '../database/RougePulseDatabaseService';
@@ -32,10 +33,10 @@ export class RougePulseAgent extends BaseAgentSimple {
             const endDate = new Date();
             endDate.setDate(endDate.getDate() + 7); // 7 jours pour meilleure planification
             // Récupérer TOUS les événements (même faible importance)
-            const events = await this.dbService.getEconomicEvents(startDate, endDate, 1);
+            const events = await this.rpDbService.getEconomicEvents(startDate, endDate);
             if (events.length === 0) {
                 return {
-                    summary: '📅 **Calendrier Économique**\n\nAucun événement économique prévu pour les 7 prochains jours.',
+                    summary: '📅 **Calendrier Économique**\n\nAucun événement économique prévu pour les 7 prochains jours.\n\n*Vérifiez Trading Economics API ou la configuration du scraping*\n',
                     events: [],
                     high_impact_events: [],
                     market_movers: [],
@@ -43,6 +44,8 @@ export class RougePulseAgent extends BaseAgentSimple {
                     analysis_date: new Date(),
                     status: 'no_data',
                     data_source: 'trading_economics_calendar',
+                    volatility_score: 0,
+                    next_24h_alerts: [],
                 };
             }
             // Classification avancée avec scoring
@@ -55,7 +58,6 @@ export class RougePulseAgent extends BaseAgentSimple {
             const summary = this.generateAdvancedSummary(classifiedEvents, criticalAlerts);
             return {
                 summary,
-                // Statistiques
                 total_events: events.length,
                 critical_count: classifiedEvents.critical.length,
                 high_count: classifiedEvents.high.length,
@@ -95,10 +97,10 @@ export class RougePulseAgent extends BaseAgentSimple {
         const now = new Date();
         const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
         const classified = {
-            critical: [], // Rouge + gras = change vraiment le marché
-            high: [], // Rouge = impact fort
-            medium: [], // Jaune/Orange = impact moyen
-            low: [], // Normal = faible impact
+            critical: [],
+            high: [],
+            medium: [],
+            low: [],
         };
         events.forEach(event => {
             const eventDate = new Date(event.event_date);
@@ -108,7 +110,7 @@ export class RougePulseAgent extends BaseAgentSimple {
             // Boost pour les événements des prochaines 24h
             if (isNext24h)
                 score += 0.5;
-            // Boost pour les indicateurs clés (FED, PIB, Chômage, Inflation)
+            // Boost si c'est un indicateur clé qui fait bouger le marché
             const isKeyIndicator = this.isKeyMarketIndicator(event.event_name);
             if (isKeyIndicator)
                 score += 1;
@@ -126,7 +128,7 @@ export class RougePulseAgent extends BaseAgentSimple {
                 classified.low.push({ ...event, calculated_score: score });
             }
         });
-        // Trier par score et date
+        // Trier par score et date pour le affichage
         Object.keys(classified).forEach(key => {
             classified[key].sort((a, b) => {
                 // D'abord par score décroissant, puis par date croissante
@@ -146,6 +148,7 @@ export class RougePulseAgent extends BaseAgentSimple {
             'fomc',
             'fed',
             'federal reserve',
+            'powell',
             'interest rate',
             'taux directeur',
             'gdp',
@@ -156,17 +159,170 @@ export class RougePulseAgent extends BaseAgentSimple {
             'ppi',
             'employment',
             'unemployment',
-            'nonfarm payrolls',
+            'jobless claims',
+            'inscriptions chômage',
             'nfp',
+            'non-farm payrolls',
             'retail sales',
+            'ventes au détail',
             'consumer confidence',
             'consumer sentiment',
-            'ISM',
-            'PMI',
+            'michigan',
+            'ism',
+            'pmi',
             'manufacturing',
             'services',
+            'durable goods',
+            'biens durables',
+            'ecb',
+            'bce',
+            'crude oil',
+            'petrole',
         ].map(indicator => indicator.toLowerCase());
         return keyIndicators.some(indicator => eventName.toLowerCase().includes(indicator));
+    }
+    /**
+     * Identifie les événements qui vont vraiment faire bouger le marché
+     */
+    identifyMarketMovers(criticalEvents) {
+        return criticalEvents.slice(0, 5).map(e => ({
+            event: e.event_name,
+            date: new Date(e.event_date),
+            time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+            }),
+            forecast: e.forecast,
+            previous: e.previous,
+            change: this.calculateForecastChange(e.forecast, e.previous),
+            surprise_potential: this.calculateSurprisePotential(e),
+            market_expected_impact: '🔥 **FORT MOUVEMENT ATTENDU**',
+            why_critical: this.explainWhyCritical(e),
+        }));
+    }
+    /**
+     * Génère les alertes critiques
+     */
+    generateCriticalAlerts(criticalEvents) {
+        const now = new Date();
+        const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        return criticalEvents
+            .filter(e => new Date(e.event_date) <= next24h)
+            .map(e => ({
+            alert_type: 'CRITICAL',
+            icon: '🚨',
+            event: e.event_name,
+            time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+            }),
+            urgency: this.getUrgencyLevel(e),
+            market_impact: '🚨 Volatilité extrême attendue',
+            recommendation: this.getRecommendation(e),
+        }));
+    }
+    /**
+     * Niveau d'urgence
+     */
+    getUrgencyLevel(e) {
+        const eventDate = new Date(e.event_date);
+        const hoursUntil = (eventDate.getTime() - Date.now()) / (1000 * 60 * 60);
+        if (hoursUntil <= 1)
+            return '🔥 **IMMÉDIAT**';
+        if (hoursUntil <= 6)
+            return '⚡ **TRÈS URGENT**';
+        if (hoursUntil <= 24)
+            return '⏰ **URGENT**';
+        return '📅 **IMPORTANT**';
+    }
+    /**
+     * Recommandation basée sur l'événement
+     */
+    getRecommendation(e) {
+        const eventName = e.event_name.toLowerCase();
+        if (eventName.includes('fomc') || eventName.includes('fed')) {
+            return 'Surveillez les paires de devises USD et les indices américains';
+        }
+        if (eventName.includes('taux directeur')) {
+            return 'Attention aux décisions futures de la Fed';
+        }
+        if (eventName.includes('emploi') || eventName.includes('nfp')) {
+            return 'Impact majeur sur le Dow Jones, S&P 500 et USD';
+        }
+        if (eventName.includes('inflation') || eventName.includes('cpi')) {
+            return 'Volatilité attendue sur les obligations et les marchés actions';
+        }
+        if (eventName.includes('pib') || eventName.includes('gdp')) {
+            return "Impact sur l'ensemble des marchés américains";
+        }
+        if (eventName.includes('pmi') || eventName.includes('ism')) {
+            return 'Santé du secteur manufacturier/services';
+        }
+        return 'Surveillez les mouvements de marché lors de la publication';
+    }
+    /**
+     * Calcule le changement entre prévision et précédent
+     */
+    calculateForecastChange(forecast, previous) {
+        if (!forecast || !previous)
+            return 'N/A';
+        // Tenter de parser les valeurs numériques
+        const forecastNum = parseFloat(forecast.replace(/[^0-9.-]/g, ''));
+        const previousNum = parseFloat(previous.replace(/[^0-9.-]/g, ''));
+        if (isNaN(forecastNum) || isNaN(previousNum))
+            return 'N/A';
+        const change = forecastNum - previousNum;
+        const changePercent = previousNum !== 0 ? (change / Math.abs(previousNum)) * 100 : 0;
+        return `${change >= 0 ? '+' : ''}${change.toFixed(1)} (${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(1)}%)`;
+    }
+    /**
+     * Calcule le potentiel de surprise
+     */
+    calculateSurprisePotential(e) {
+        const score = e.calculated_score || e.importance || 1;
+        if (score >= 3.5)
+            return 'HIGH';
+        if (score >= 2)
+            return 'MEDIUM';
+        return 'LOW';
+    }
+    /**
+     * Explique pourquoi un événement est critique
+     */
+    explainWhyCritical(e) {
+        const reasons = [];
+        if (this.isKeyMarketIndicator(e.event_name)) {
+            reasons.push('Indicateur économique majeur');
+        }
+        const eventDate = new Date(e.event_date);
+        const isNext24h = eventDate <= new Date(Date.now() + 24 * 60 * 60 * 1000);
+        if (isNext24h) {
+            reasons.push('Prochaine publication < 24h');
+        }
+        if (e.importance === 3) {
+            reasons.push('Importance maximale Trading Economics');
+        }
+        return reasons.length > 0 ? reasons.join(' • ') : 'Impact significatif attendu';
+    }
+    /**
+     * Calcule un score de volatilité global
+     */
+    calculateVolatilityScore(classified) {
+        let score = 0;
+        // Pondération par type d'événement
+        score += classified.critical.length * 3; // Critique = 3 points
+        score += classified.high.length * 2; // Fort = 2 points
+        score += classified.medium.length * 1; // Moyen = 1 point
+        score += classified.low.length * 0.5; // Faible = 0.5 point
+        // Bonus si événements dans les 24h
+        const now = new Date();
+        const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        [...classified.critical, ...classified.high, ...classified.medium].forEach(e => {
+            if (new Date(e.event_date) <= next24h) {
+                score += 0.5; // Bonus de proximité temporelle
+            }
+        });
+        return Math.min(Math.round(score * 10) / 10, 10); // Arrondi à 1 décimale, max 10
     }
     /**
      * Formatage avancé avec score et alertes
@@ -177,7 +333,10 @@ export class RougePulseAgent extends BaseAgentSimple {
         const isKeyIndicator = this.isKeyMarketIndicator(e.event_name);
         return {
             date: eventDate,
-            time: eventDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+            time: eventDate.toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+            }),
             event: e.event_name,
             importance: this.getImportanceLabel(e),
             importance_score: e.calculated_score || e.importance || 1,
@@ -185,7 +344,7 @@ export class RougePulseAgent extends BaseAgentSimple {
             forecast: e.forecast,
             previous: e.previous,
             currency: e.currency,
-            // Méta-données avancées
+            // Métadonnées avancées
             is_next_24h: isNext24h,
             is_key_indicator: isKeyIndicator,
             impact_level: this.getImpactLevel(e),
@@ -244,127 +403,6 @@ export class RougePulseAgent extends BaseAgentSimple {
         return score >= 2.5 || isKeyIndicator;
     }
     /**
-     * Calcule le changement entre prévision et précédent
-     */
-    calculateForecastChange(forecast, previous) {
-        if (!forecast || !previous)
-            return 'N/A';
-        // Tenter de parser les valeurs numériques
-        const forecastNum = parseFloat(forecast.replace(/[^0-9.-]/g, ''));
-        const previousNum = parseFloat(previous.replace(/[^0-9.-]/g, ''));
-        if (isNaN(forecastNum) || isNaN(previousNum))
-            return 'N/A';
-        const change = forecastNum - previousNum;
-        const changePercent = previousNum !== 0 ? (change / Math.abs(previousNum)) * 100 : 0;
-        return `${change >= 0 ? '+' : ''}${change.toFixed(1)} (${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(1)}%)`;
-    }
-    /**
-     * Calcule le potentiel de surprise
-     */
-    calculateSurprisePotential(e) {
-        const score = e.calculated_score || e.importance || 1;
-        if (score >= 3.5)
-            return 'HIGH';
-        if (score >= 2)
-            return 'MEDIUM';
-        return 'LOW';
-    }
-    /**
-     * Identifie les événements qui vont vraiment faire bouger le marché
-     */
-    identifyMarketMovers(criticalEvents) {
-        return criticalEvents.slice(0, 5).map(e => ({
-            event: e.event_name,
-            date: new Date(e.event_date),
-            time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-            }),
-            forecast: e.forecast,
-            previous: e.previous,
-            change: this.calculateForecastChange(e.forecast, e.previous),
-            impact_score: e.calculated_score,
-            market_expected_impact: '🔥 **FORT MOUVEMENT ATTENDU**',
-            why_critical: this.explainWhyCritical(e),
-        }));
-    }
-    /**
-     * Explique pourquoi un événement est critique
-     */
-    explainWhyCritical(e) {
-        const reasons = [];
-        if (this.isKeyMarketIndicator(e.event_name)) {
-            reasons.push('Indicateur économique majeur');
-        }
-        const score = e.calculated_score || e.importance || 1;
-        if (score >= 4) {
-            reasons.push("Score maximum d'impact");
-        }
-        const eventDate = new Date(e.event_date);
-        const isNext24h = eventDate <= new Date(Date.now() + 24 * 60 * 60 * 1000);
-        if (isNext24h) {
-            reasons.push('Prochaine publication < 24h');
-        }
-        if (e.importance === 3) {
-            reasons.push('Importance maximale Trading Economics');
-        }
-        return reasons.length > 0 ? reasons.join(' • ') : 'Impact significatif attendu';
-    }
-    /**
-     * Génère les alertes critiques
-     */
-    generateCriticalAlerts(criticalEvents) {
-        const now = new Date();
-        const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-        return criticalEvents
-            .filter(e => new Date(e.event_date) <= next24h)
-            .map(e => ({
-            alert_type: 'CRITICAL',
-            icon: '🚨',
-            event: e.event_name,
-            time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-            }),
-            urgency: this.getUrgencyLevel(e),
-            market_impact: '⚡ Volatilité extrême attendue',
-            recommendation: this.getRecommendation(e),
-        }));
-    }
-    /**
-     * Niveau d'urgence
-     */
-    getUrgencyLevel(e) {
-        const eventDate = new Date(e.event_date);
-        const hoursUntil = (eventDate.getTime() - Date.now()) / (1000 * 60 * 60);
-        if (hoursUntil <= 1)
-            return '🔥 **IMMÉDIAT**';
-        if (hoursUntil <= 6)
-            return '⚡ **TRÈS URGENT**';
-        if (hoursUntil <= 24)
-            return '⏰ **URGENT**';
-        return '📅 **IMPORTANT**';
-    }
-    /**
-     * Recommandation basée sur l'événement
-     */
-    getRecommendation(e) {
-        const eventName = e.event_name.toLowerCase();
-        if (eventName.includes('fed') || eventName.includes('taux directeur')) {
-            return 'Surveillez les paires de devises USD et les indices américains';
-        }
-        if (eventName.includes('emploi') || eventName.includes('nfp')) {
-            return 'Impact majeur sur le Dow Jones, S&P 500 et USD';
-        }
-        if (eventName.includes('inflation') || eventName.includes('cpi')) {
-            return 'Volatilité attendue sur les obligations et les marchés actions';
-        }
-        if (eventName.includes('pib') || eventName.includes('gdp')) {
-            return "Impact sur l'ensemble des marchés américains";
-        }
-        return 'Surveillez les mouvements de marché lors de la publication';
-    }
-    /**
      * Génère un résumé avancé avec mise en évidence
      */
     generateAdvancedSummary(classified, criticalAlerts) {
@@ -375,7 +413,8 @@ export class RougePulseAgent extends BaseAgentSimple {
             criticalAlerts.forEach(alert => {
                 summary += `${alert.icon} **${alert.time}** : ${alert.event}\n`;
                 summary += `   ${alert.market_impact}\n`;
-                summary += `   💡 ${alert.recommendation}\n\n`;
+                summary += `   💡 ${alert.recommendation}\n`;
+                summary += '\n';
             });
             summary += '\n';
         }
@@ -384,7 +423,6 @@ export class RougePulseAgent extends BaseAgentSimple {
         const totalHigh = classified.high.length;
         const totalMedium = classified.medium.length;
         const totalLow = classified.low.length;
-        summary += "**Vue d'ensemble (7 prochains jours) :**\n";
         if (totalCritical > 0) {
             summary += `🔴 **${totalCritical} événement(s) CRITIQUE(S)** - Marché très volatil attendu\n`;
         }
@@ -402,15 +440,20 @@ export class RougePulseAgent extends BaseAgentSimple {
         const volatilityScore = this.calculateVolatilityScore(classified);
         summary += `📊 **Score de Volatilité Global : ${volatilityScore}/10**\n\n`;
         // Prochains événements importants
-        const nextImportant = [...classified.critical, ...classified.high]
-            .sort((a, b) => new Date(a.event_date).getTime() - new Date(b.event_date).getTime())
-            .slice(0, 3);
+        const nextImportant = [...classified.critical, ...classified.high];
         if (nextImportant.length > 0) {
             summary += '📈 **Prochains événements importants :**\n';
             nextImportant.forEach(e => {
                 const date = new Date(e.event_date);
-                const day = date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' });
-                const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+                const day = date.toLocaleDateString('fr-FR', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'long',
+                });
+                const time = date.toLocaleTimeString('fr-FR', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                });
                 const score = e.calculated_score || e.importance || 1;
                 const label = score >= 3.5 ? '🔴 CRITIQUE' : '🔴 FORT';
                 summary += `- ${day} ${time} : ${label} **${e.event_name}**\n`;
@@ -418,51 +461,83 @@ export class RougePulseAgent extends BaseAgentSimple {
                     summary += `  Prévision: ${e.forecast} | Précédent: ${e.previous}\n`;
                 }
             });
+            summary += '\n';
         }
         return summary;
     }
     /**
-     * Calcule un score de volatilité global
+     * Génère un résumé pour un planning plus court
      */
-    calculateVolatilityScore(classified) {
-        let score = 0;
-        // Pondération par type d'événement
-        score += classified.critical.length * 3; // Critique = 3 points
-        score += classified.high.length * 2; // Fort = 2 points
-        score += classified.medium.length * 1; // Moyen = 1 point
-        score += classified.low.length * 0.5; // Faible = 0.5 point
-        // Bonus si événements dans les 24h
-        const now = new Date();
-        const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-        [...classified.critical, ...classified.high, ...classified.medium].forEach(e => {
-            if (new Date(e.event_date) <= next24h) {
-                score += 0.5; // Bonus de proximité temporelle
-            }
-        });
-        return Math.min(Math.round(score * 10) / 10, 10); // Arrondi à 1 décimale, max 10
+    generateCalendarSummary(high, medium) {
+        let summary = '📅 **Calendrier Économique (3 jours)**\n\n';
+        if (high.length > 0) {
+            summary += '🔴 **IMPACT FORT - ATTENTION**\n';
+            high.forEach(e => {
+                const date = new Date(e.event_date);
+                const day = date.toLocaleDateString('fr-FR', { weekday: 'short' });
+                const time = date.toLocaleTimeString('fr-FR', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                });
+                const score = e.calculated_score || e.importance || 1;
+                const label = score >= 3.5 ? '🔴 CRITIQUE' : '🔴 FORT';
+                summary += `- ${day} ${time} : ${label} **${e.event_name}**\n`;
+                if (e.forecast && e.previous) {
+                    summary += `  Prévision: ${e.forecast} | Précédent: ${e.previous}\n`;
+                }
+            });
+            summary += '\n';
+        }
+        if (medium.length > 0) {
+            summary += '🟡 **Impact Moyen**\n';
+            // On affiche les 5 prochains événements moyens
+            medium.slice(0, 5).forEach(e => {
+                const date = new Date(e.event_date);
+                const day = date.toLocaleDateString('fr-FR', { weekday: 'short' });
+                const time = date.toLocaleTimeString('fr-FR', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                });
+                const score = e.calculated_score || e.importance || 1;
+                const label = score >= 1.5 ? '🔴 FORT' : '🟡 MOYEN';
+                summary += `- ${day} ${time} : ${label} **${e.event_name}**\n`;
+                if (e.forecast && e.previous) {
+                    summary += `  Prévision: ${e.forecast} | Précédent: ${e.previous}\n`;
+                }
+            });
+            if (medium.length > 5)
+                summary += `... et ${medium.length - 5} autres événements.\n`;
+            summary += '\n';
+        }
+        else {
+            summary += "✅ Aucun événement à fort impact (🔴) prévu pour l'instant.\n\n";
+        }
+        return summary;
     }
     /**
      * Groupe les événements par importance et par jour
      */
     groupEventsByImportance(classified) {
         const grouped = {};
-        ['critical', 'high', 'medium', 'low'].forEach(level => {
-            const events = classified[level];
-            events.forEach((e) => {
-                const day = new Date(e.event_date).toLocaleDateString('fr-FR', {
-                    weekday: 'long',
+        // Initialiser les niveaux pour chaque jour
+        const levels = ['critical', 'high', 'medium', 'low'];
+        levels.forEach(level => {
+            classified[level].forEach((event) => {
+                const day = new Date(event.event_date);
+                const dayKey = day.toLocaleDateString('fr-FR', {
+                    weekday: 'short',
                     day: 'numeric',
                     month: 'long',
                 });
-                if (!grouped[day]) {
-                    grouped[day] = {
+                if (!grouped[dayKey]) {
+                    grouped[dayKey] = {
                         critical: [],
                         high: [],
                         medium: [],
                         low: [],
                     };
                 }
-                grouped[day][level].push(this.formatEventAdvanced(e));
+                grouped[dayKey][level].push(this.formatEventAdvanced(event));
             });
         });
         return grouped;
@@ -473,8 +548,9 @@ export class RougePulseAgent extends BaseAgentSimple {
     getNext24HoursAlerts(classified) {
         const now = new Date();
         const next24h = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-        const next24Events = [...classified.critical, ...classified.high, ...classified.medium].filter(e => new Date(e.event_date) <= next24h);
-        return next24Events.map(e => ({
+        return [...classified.critical, ...classified.high, ...classified.medium]
+            .filter(e => new Date(e.event_date) <= next24h)
+            .map(e => ({
             event: e.event_name,
             time: new Date(e.event_date).toLocaleTimeString('fr-FR', {
                 hour: '2-digit',
@@ -483,42 +559,27 @@ export class RougePulseAgent extends BaseAgentSimple {
             urgency: this.getUrgencyLevel(e),
             icon: this.getAlertColor(e),
             impact: this.getImpactLevel(e),
+            recommendation: this.getRecommendation(e),
         }));
     }
-    generateCalendarSummary(high, medium) {
-        let summary = '📅 **Calendrier Économique (3 jours)**\n\n';
-        if (high.length > 0) {
-            summary += '🔴 **IMPACT FORT - ATTENTION MARCHÉ**\n';
-            high.forEach(e => {
-                const date = new Date(e.event_date);
-                const day = date.toLocaleDateString('fr-FR', { weekday: 'short' });
-                const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-                summary += `- ${day} ${time} : **${e.event_name}**\n`;
-                if (e.forecast)
-                    summary += `  (Prévu: ${e.forecast} | Préc: ${e.previous})\n`;
-            });
-            summary += '\n';
+    async close() {
+        await this.rpDbService.close();
+    }
+}
+// Standalone execution
+const __filename = path.resolve(process.argv[1]);
+if (process.argv[1] === __filename) {
+    const agent = new RougePulseAgent();
+    agent.analyzeMarketSentiment().then(result => {
+        console.log('\n=== ROUGE PULSE ANALYSIS RESULTS ===');
+        if (result.error) {
+            console.error('Analysis failed:', result.error);
         }
         else {
-            summary += "✅ Aucun événement à fort impact (🔴) prévu pour l'instant.\n\n";
+            console.log('Analysis completed successfully');
+            console.log('Summary:', result.summary);
         }
-        if (medium.length > 0) {
-            summary += '🟡 **Impact Moyen**\n';
-            // On affiche les 5 prochains événements moyens
-            medium.slice(0, 5).forEach(e => {
-                const date = new Date(e.event_date);
-                const day = date.toLocaleDateString('fr-FR', { weekday: 'short' });
-                const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-                summary += `- ${day} ${time} : ${e.event_name}\n`;
-            });
-            if (medium.length > 5)
-                summary += `... et ${medium.length - 5} autres événements.\n`;
-        }
-        return summary;
-    }
-    async close() {
-        await this.dbService.close();
-        console.log(`[${this.agentName}] Database connection closed`);
-    }
+        console.log('====================================');
+    });
 }
 //# sourceMappingURL=RougePulseAgent.js.map

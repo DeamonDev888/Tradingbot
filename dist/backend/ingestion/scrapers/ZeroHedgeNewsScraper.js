@@ -19,6 +19,49 @@ export class ZeroHedgeNewsScraper {
         return this.newsScraper.scrapeArticle(url);
     }
     /**
+     * Scores an RSS item based on financial keywords for better ranking.
+     */
+    scoreItem(title, description) {
+        const keywords = [
+            'market',
+            'stock',
+            'economy',
+            'trading',
+            'sp500',
+            'nasdaq',
+            'dow',
+            'finance',
+            'economic',
+            'federal reserve',
+            'fed',
+            'interest rate',
+            'inflation',
+            'recession',
+            'bull',
+            'bear',
+            'volatility',
+            'earnings',
+            'profit',
+            'loss',
+            'revenue',
+            'growth',
+            'decline',
+            'crypto',
+            'bitcoin',
+            'ethereum',
+            'bond',
+            'yield',
+            'treasury',
+        ];
+        const text = (title + ' ' + description).toLowerCase();
+        let score = 0;
+        for (const keyword of keywords) {
+            if (text.includes(keyword.toLowerCase()))
+                score++;
+        }
+        return score;
+    }
+    /**
      * Récupère les news via RSS pour ZeroHedge (Beaucoup plus fiable que le scraping HTML)
      */
     async fetchNews() {
@@ -29,18 +72,29 @@ export class ZeroHedgeNewsScraper {
                 timeout: 5000,
             });
             const $ = cheerio.load(data, { xmlMode: true });
-            // Get top 5 items to scrape content for (to avoid timeouts)
-            const items = $('item').toArray().slice(0, 5);
-            const newsPromises = items.map(async (el) => {
+            // Get all items and score them for better ranking
+            const allItems = $('item').toArray();
+            const scoredItems = allItems.map(el => {
                 const title = $(el).find('title').text().trim();
+                const description = $(el).find('description').text().trim();
+                const score = this.scoreItem(title, description);
+                return { el, score, title, description };
+            });
+            // Sort by score descending and take top 5
+            scoredItems.sort((a, b) => b.score - a.score);
+            const topItems = scoredItems.slice(0, 5);
+            const newsPromises = topItems.map(async (item) => {
+                const { el, title, description } = item;
                 const link = $(el).find('link').text().trim();
                 const pubDate = $(el).find('pubDate').text();
-                const description = $(el).find('description').text().trim();
                 if (title && link) {
-                    // Fetch full content - NO FALLBACK
-                    const content = await this.scrapeArticleContent(link);
-                    // Only return if we successfully scraped the content
-                    if (content && content.length >= 50) {
+                    // Fetch full content with fallback to description
+                    let content = await this.scrapeArticleContent(link);
+                    if (!content || content.length < 50) {
+                        content = description;
+                    }
+                    // Return if we have sufficient content
+                    if (content && content.length >= 20) {
                         return {
                             title,
                             source: 'ZeroHedge',
@@ -49,7 +103,6 @@ export class ZeroHedgeNewsScraper {
                             content,
                         };
                     }
-                    // Skip article if scraping failed - NO FALLBACK to description
                     console.log(`[ZeroHedgeNewsScraper] ⚠️ Skipping article due to insufficient content: ${title}`);
                 }
                 return null;
