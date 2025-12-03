@@ -233,6 +233,10 @@ pnpm bot
 
 ## 🏗 Architecture
 
+### 🎯 System Overview
+
+![NovaQuote Architecture](assets/novaquote_architecture.png)
+
 ### 🤖 Vortex500Agent (Core Sentiment Agent)
 
 ```
